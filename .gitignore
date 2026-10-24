@@ -1,0 +1,31 @@
+# Maxfiy sozlamalar
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+
+# Ma'lumotlar bazasi
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+
+# Jurnallar
+*.log
+logs/
+
+# IDE va operatsion tizim
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
