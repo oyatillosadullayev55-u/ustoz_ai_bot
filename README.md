@@ -71,6 +71,15 @@ winget install -e --id Python.Python.3.13 --scope user
 
 O'rnatishda **"Add python.exe to PATH"** belgisini qo'ying.
 
+## Reponi klonlash
+
+```powershell
+git clone https://github.com/oyatillosadullayev55-u/ustoz_ai_bot.git
+Set-Location ustoz_ai_bot
+```
+
+Keyin quyidagi bo'limlardagi kabi `.venv` yarating va `.env` faylini sozlang.
+
 ## PyCharm'da ochish
 
 1. **File → Open** orqali `ustoz_ai_bot` papkasini oching.
@@ -88,7 +97,7 @@ O'rnatishda **"Add python.exe to PATH"** belgisini qo'ying.
 ## Virtual muhit va kutubxonalar (PowerShell)
 
 ```powershell
-Set-Location C:\Users\user\Documents\Qoder\2026-10-24\871d12da\ustoz_ai_bot
+Set-Location C:\Loyihalar\ustoz_ai_bot
 
 py -3.13 -m venv .venv
 .\.venv\Scripts\Activate.ps1
@@ -96,6 +105,8 @@ py -3.13 -m venv .venv
 python -m pip install --upgrade pip
 pip install -r requirements.txt
 ```
+
+Yo'lni o'zingizdagi loyiha papkasiga moslang.
 
 Agar PowerShell skriptlarni bloklasa:
 
