@@ -1,13 +1,27 @@
 # `database/db.py` — ulanish va sxema
 
 **Yo'l:** [`database/db.py`](../../../database/db.py)
-**Vazifasi:** SQLite ulanishini boshqarish, 8 ta jadvalni va indekslarni yaratish.
+**Vazifasi:** SQLite ulanishini boshqarish, 8 ta jadvalni va indekslarni yaratish,
+eski bazaga yangi dars ustunlarini migratsiya qilish.
 
 ## Tarkib
 
 - `SCHEMA_SQL` — barcha `CREATE TABLE IF NOT EXISTS` va `CREATE INDEX IF NOT EXISTS` buyruqlari.
 - `get_connection()` — `@asynccontextmanager`; har bir so'rov uchun ulanish ochadi.
-- `init_db()` — WAL rejimini yoqadi, sxemani qo'llaydi va `seed_content()` ni chaqiradi.
+- `_ensure_lesson_columns(db)` — eski bazaga `summary`, `key_points`, `level`,
+  `duration_min` ustunlarini qo'shadi.
+- `init_db()` — WAL rejimini yoqadi, sxemani qo'llaydi, migratsiyani bajaradi va
+  `seed_content()` ni chaqiradi.
+
+## `lessons` jadvali ustunlari
+
+| Ustun | Ma'nosi |
+|---|---|
+| `content` | To'liq dars matni (batafsil ekranda ko'rsatiladi) |
+| `summary` | Qisqa mazmun; kartochkada ko'rsatiladi |
+| `key_points` | Asosiy fikrlar, JSON ro'yxat sifatida saqlanadi |
+| `level` | `beginner`, `intermediate` yoki `advanced` |
+| `duration_min` | Taxminiy o'qish vaqti, 1–120 daqiqa |
 
 ## `get_connection()` xatti-harakati
 
@@ -21,10 +35,19 @@
 ## Jadval cheklovlari
 
 - `users.level` faqat `beginner`, `intermediate`, `advanced`.
+- `lessons.level` faqat `beginner`, `intermediate`, `advanced`.
+- `lessons.duration_min` 1–120 oralig'ida.
 - `questions.correct_option` 0–3 oralig'ida.
 - `study_progress` asosiy kaliti `(user_id, lesson_id)` — takroriy yozuv oldini oladi.
 - `daily_goals` uchun `UNIQUE (user_id, goal_date)`.
 - `quiz_results.score_percent` 0–100.
+
+## Migratsiya
+
+`CREATE TABLE IF NOT EXISTS` mavjud jadvalni o'zgartirmaydi, shuning uchun yangi
+ustunlar `PRAGMA table_info(lessons)` bilan tekshiriladi va faqat yetishmayotganlari
+`ALTER TABLE lessons ADD COLUMN ...` orqali qo'shiladi. Har bir qo'shilgan ustun logga
+yoziladi. Foydalanuvchi natijalari, progress va maqsadlar saqlanadi.
 
 ## Indekslar
 
@@ -35,3 +58,4 @@
 ## Eslatma
 
 `init_db()` idempotent: qayta ishga tushirilganda mavjud jadvallar va foydalanuvchi ma'lumotlari saqlanadi. Kontent yangilanishi `database/seed.py` tomonidan boshqariladi.
+

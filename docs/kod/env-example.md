@@ -14,6 +14,7 @@
 | Til | `DEFAULT_LANGUAGE` | `uz`, `ru`, `en` |
 | AI | `AI_ENABLED`, `AI_API_KEY`, `AI_BASE_URL`, `AI_MODEL`, `AI_TIMEOUT`, `AI_DAILY_LIMIT`, `AI_MIN_INTERVAL`, `AI_MAX_TOKENS`, `AI_HISTORY_LIMIT` | Kalit bo'lmasa bot dars bazasidan javob beradi |
 | Eslatma | `DAILY_REMINDERS_ENABLED`, `DAILY_REMINDER_HOUR` | Vaqt UTC+5 bo'yicha, standart 19:00 |
+| Hosting | `PORT` | Ixtiyoriy; Render o'zi beradi, Docker Compose 8080 qiladi. Lokal ishda bo'sh |
 
 ## Foydalanish
 

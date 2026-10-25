@@ -83,7 +83,7 @@ async def get_lessons(subject_id: int) -> list[aiosqlite.Row]:
     async with get_connection() as db:
         cursor = await db.execute(
             """
-            SELECT id, subject_id, title, order_index
+            SELECT id, subject_id, title, level, duration_min, order_index
             FROM lessons
             WHERE subject_id = ? AND is_active = 1
             ORDER BY order_index, id
@@ -97,7 +97,8 @@ async def get_lesson(lesson_id: int) -> aiosqlite.Row | None:
     async with get_connection() as db:
         cursor = await db.execute(
             """
-            SELECT l.id, l.subject_id, l.title, l.content, l.order_index,
+            SELECT l.id, l.subject_id, l.title, l.content, l.summary,
+                   l.key_points, l.level, l.duration_min, l.order_index,
                    s.name AS subject_name, s.emoji AS subject_emoji
             FROM lessons AS l
             JOIN subjects AS s ON s.id = l.subject_id

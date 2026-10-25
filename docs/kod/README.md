@@ -58,6 +58,7 @@ Bu papkada UstozAI loyihasining **har bir kod fayli** uchun alohida markdown huj
 | `services/ai_service.py` | [services/ai_service.md](services/ai_service.md) |
 | `services/lesson_media.py` | [services/lesson_media.md](services/lesson_media.md) |
 | `services/reminders.py` | [services/reminders.md](services/reminders.md) |
+| `services/health_server.py` | [services/health_server.md](services/health_server.md) |
 
 ## Testlar va kontent
 
@@ -74,18 +75,26 @@ Bu papkada UstozAI loyihasining **har bir kod fayli** uchun alohida markdown huj
 | `.github/workflows/ci.yml` | [infra/ci.md](infra/ci.md) |
 | `pyproject.toml` | [infra/pyproject.md](infra/pyproject.md) |
 | `requirements.txt`, `requirements-dev.txt` | [infra/requirements.md](infra/requirements.md) |
+| `Dockerfile`, `.dockerignore` | [infra/docker.md](infra/docker.md) |
+| `docker-compose.yml` | [infra/docker-compose.md](infra/docker-compose.md) |
+| `render.yaml` | [infra/render.md](infra/render.md) |
 | `.run/UstozAI Bot.run.xml` | [infra/pycharm-run.md](infra/pycharm-run.md) |
 
 ## Boshqa hujjatlar
 
 - [Loyiha arxitekturasi](../LOYIHA.md)
 - [Foydalanuvchi va admin qo'llanmasi](../FOYDALANISH.md)
+- [Dars kartochkalari dizayni](../DARS_DIZAYNI.md)
+- [Serverga joylash qo'llanmasi](../SERVERGA_JOYLASH.md)
 - [README](../../README.md)
 
 ## Yangilangan imkoniyatlar
 
-- Test yakunida xato javoblar tahlili (tanlangan variant, to'g'ri variant, izoh).
+- Darslar qisqa kartochka + batafsil o'qish ekrani + oldingi/keyingi navigatsiya bilan.
+- Har bir darsda qisqa mazmun, 3 ta asosiy fikr, daraja, davomiylik va mini mashq.
+- Dars kontekstida AI Ustoz (`🧠 AI Ustozga so'rash`).
+- 20 ta dars uchun 80 ta savol; test yakunida xato javoblar tahlili.
 - `/qidiruv` va `/search` orqali darslardan matnli qidiruv.
 - Har kuni belgilangan vaqtda kunlik reja eslatmasi (UTC+5).
-- Faollik statistikasida AI suhbat kunlari ham hisobga olinadi.
+- Render, Docker va Oracle uchun health-check serveri va joylash fayllari.
 - Ruff lint va GitHub Actions CI.

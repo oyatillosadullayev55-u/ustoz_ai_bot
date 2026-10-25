@@ -15,7 +15,8 @@
 | `get_levels_keyboard()` | `level:<code>` |
 | `get_subjects_keyboard(subjects, prefix)` | `<prefix>:subject:<id>` |
 | `get_lessons_keyboard(lessons, completed_ids, subject_id)` | `lesson:view:<id>` |
-| `get_lesson_keyboard(...)` | `lesson:complete:<id>`, `quiz:subject:<id>`, `lesson:subject:<id>` |
+| `get_lesson_keyboard(...)` | `lesson:read:<id>`, `lesson:complete:<id>`, `lesson:ask:<id>`, `quiz:subject:<id>`, `lesson:view:<id>` (qo'shnilar), `lesson:subject:<id>` |
+| `get_lesson_details_keyboard(...)` | `lesson:view:<id>` (kartochkaga qaytish), `lesson:complete`, `lesson:ask`, `quiz:subject`, qo'shni darslar, `lesson:subject`, `menu:home` |
 | `get_quiz_options_keyboard(question_id, options)` | `quiz:answer:<question_id>:<0-3>` |
 | `get_quiz_result_keyboard(subject_id)` | `quiz:subject:<id>`, `quiz:subjects` |
 | `get_search_results_keyboard(lessons)` | `lesson:view:<id>` |
@@ -35,4 +36,12 @@
 
 ## Yangilanishlar
 
-`get_search_results_keyboard()` yangi `/qidiruv` buyrug'i uchun qo'shilgan. U natijalarni `lesson:view:<id>` tugmalari bilan ko'rsatadi va "Darslar"/"Menyu" tugmalarini beradi.
+- `get_lesson_keyboard()` qisqa kartochka uchun: batafsil o'qish, tugatish, AI, test va
+  oldingi/keyingi dars tugmalari.
+- `get_lesson_details_keyboard()` batafsil ekran uchun: kartochkaga qaytish va AI
+  tugmasi bilan bir xil navigatsiya.
+- `_lesson_nav_row()` faqat mavjud qo'shni darslar uchun tugma qo'shadi.
+- `get_search_results_keyboard()` `/qidiruv` natijalarini `lesson:view:<id>` bilan
+  ko'rsatadi.
+- Qo'shni darslar va qidiruv natijalari doim kartochka orqali ochiladi, shuning uchun
+  har bir dars bir xil ko'rinishda boshlanadi.

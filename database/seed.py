@@ -12,6 +12,7 @@ from time_utils import utc_now
 logger = logging.getLogger(__name__)
 
 SEED_PATH = BASE_DIR / "content" / "seed_data.json"
+VALID_LEVELS = frozenset({"beginner", "intermediate", "advanced"})
 
 
 async def seed_content() -> None:
@@ -60,17 +61,50 @@ async def seed_content() -> None:
             )
 
             for lesson_order, lesson in enumerate(subject.get("lessons", []), start=1):
+                summary = str(lesson.get("summary", "")).strip()
+                raw_points = lesson.get("key_points", [])
+                level = str(lesson.get("level", "beginner")).strip()
+                duration_min = lesson.get("duration_min", 7)
+
+                if not summary:
+                    raise RuntimeError(
+                        f"Dars uchun qisqa mazmun yo'q (dars id={lesson['id']})."
+                    )
+                if not isinstance(raw_points, list) or not 1 <= len(raw_points) <= 5:
+                    raise RuntimeError(
+                        "Har bir darsda 1-5 ta asosiy fikr bo'lishi kerak "
+                        f"(dars id={lesson['id']})."
+                    )
+                key_points = [str(point).strip() for point in raw_points]
+                if any(not point for point in key_points):
+                    raise RuntimeError(
+                        f"Asosiy fikrlar bo'sh bo'lmasligi kerak (dars id={lesson['id']})."
+                    )
+                if level not in VALID_LEVELS:
+                    raise RuntimeError(
+                        f"Dars darajasi noto'g'ri: {level!r} (dars id={lesson['id']})."
+                    )
+                if not isinstance(duration_min, int) or not 1 <= duration_min <= 120:
+                    raise RuntimeError(
+                        "Dars davomiyligi 1-120 daqiqa oralig'ida bo'lishi kerak "
+                        f"(dars id={lesson['id']})."
+                    )
+
                 await db.execute(
                     """
                     INSERT INTO lessons (
-                        id, subject_id, title, content, order_index,
-                        is_active, created_at
+                        id, subject_id, title, content, summary, key_points,
+                        level, duration_min, order_index, is_active, created_at
                     )
-                    VALUES (?, ?, ?, ?, ?, 1, ?)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 1, ?)
                     ON CONFLICT(id) DO UPDATE SET
                         subject_id = excluded.subject_id,
                         title = excluded.title,
                         content = excluded.content,
+                        summary = excluded.summary,
+                        key_points = excluded.key_points,
+                        level = excluded.level,
+                        duration_min = excluded.duration_min,
                         order_index = excluded.order_index,
                         is_active = 1
                     """,
@@ -79,6 +113,10 @@ async def seed_content() -> None:
                         subject["id"],
                         lesson["title"],
                         lesson["content"],
+                        summary,
+                        json.dumps(key_points, ensure_ascii=False),
+                        level,
+                        duration_min,
                         lesson_order,
                         now,
                     ),

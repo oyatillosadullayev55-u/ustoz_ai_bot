@@ -7,11 +7,16 @@ Ishga tushirish:
 from __future__ import annotations
 
 import asyncio
+import json
 import os
 import pathlib
+import socket
 import sys
 import tempfile
 from datetime import datetime
+
+import aiohttp
+import aiosqlite
 
 PROJECT_ROOT = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(PROJECT_ROOT))
@@ -30,12 +35,18 @@ get_settings.cache_clear()
 from database.admin import get_admin_stats, get_all_user_ids  # noqa: E402
 from database.chat import add_message, get_ai_usage, get_history  # noqa: E402
 from database.content import (  # noqa: E402
+    get_lesson,
+    get_lessons,
     get_questions_by_ids,
     get_quiz_questions,
     get_subjects_with_counts,
     search_lessons,
 )
-from database.db import get_connection, init_db  # noqa: E402
+from database.db import (  # noqa: E402
+    _ensure_lesson_columns,
+    get_connection,
+    init_db,
+)
 from database.goals import (  # noqa: E402
     get_pending_reminders,
     get_today_goal,
@@ -57,6 +68,10 @@ from database.users import (  # noqa: E402
     update_notifications,
 )
 from services.ai_service import ask_tutor  # noqa: E402
+from services.health_server import (  # noqa: E402
+    start_health_server,
+    stop_health_server,
+)
 from services.reminders import format_reminder  # noqa: E402
 from time_utils import (  # noqa: E402
     LOCAL_TZ,
@@ -79,10 +94,99 @@ async def run_tests() -> None:
 
     subjects = await get_subjects_with_counts()
     check(len(subjects) == 10, "10 ta fan yuklandi")
+    total_questions = sum(int(item["question_count"]) for item in subjects)
+    check(total_questions == 80, "80 ta savol yuklandi")
+
+    all_lessons = []
+    for subject in subjects:
+        all_lessons.extend(await get_lessons(int(subject["id"])))
+    check(len(all_lessons) == 20, "20 ta dars yuklandi")
+
+    content_ok = True
+    for item in all_lessons:
+        lesson = await get_lesson(int(item["id"]))
+        points = json.loads(lesson["key_points"]) if lesson else []
+        if not (
+            lesson
+            and len(str(lesson["summary"])) >= 80
+            and isinstance(points, list)
+            and len(points) == 3
+            and all(str(point).strip() for point in points)
+            and lesson["level"] in {"beginner", "intermediate", "advanced"}
+            and 1 <= int(lesson["duration_min"]) <= 120
+            and len(str(lesson["content"])) >= 900
+        ):
+            content_ok = False
+            break
     check(
-        sum(int(item["question_count"]) for item in subjects) == 60,
-        "60 ta savol yuklandi",
+        content_ok,
+        "har bir darsda mazmun, 3 asosiy fikr, daraja va davomiylik bor",
     )
+
+    async with get_connection() as db:
+        cursor = await db.execute(
+            """
+            SELECT lesson_id, COUNT(*) AS total
+            FROM questions
+            GROUP BY lesson_id
+            """
+        )
+        per_lesson = list(await cursor.fetchall())
+    check(
+        len(per_lesson) == 20
+        and all(int(row["total"]) == 4 for row in per_lesson),
+        "har bir darsda 4 tadan savol bor",
+    )
+
+    legacy_path = pathlib.Path(TEMP_DIR.name) / "legacy.db"
+    async with aiosqlite.connect(legacy_path) as legacy:
+        legacy.row_factory = aiosqlite.Row
+        await legacy.execute(
+            """
+            CREATE TABLE lessons (
+                id INTEGER PRIMARY KEY,
+                subject_id INTEGER,
+                title TEXT,
+                content TEXT,
+                order_index INTEGER,
+                is_active INTEGER,
+                created_at TEXT
+            )
+            """
+        )
+        await _ensure_lesson_columns(legacy)
+        await legacy.commit()
+        cursor = await legacy.execute("PRAGMA table_info(lessons)")
+        legacy_columns = {str(row["name"]) for row in await cursor.fetchall()}
+    check(
+        {"summary", "key_points", "level", "duration_min"} <= legacy_columns,
+        "eski baza yangi dars ustunlari bilan yangilandi",
+    )
+
+    os.environ.pop("PORT", None)
+    check(
+        await start_health_server() is None,
+        "PORT bo'lmasa health server ochilmaydi",
+    )
+    with socket.socket() as sock:
+        sock.bind(("127.0.0.1", 0))
+        free_port = int(sock.getsockname()[1])
+    os.environ["PORT"] = str(free_port)
+    health_runner = await start_health_server()
+    check(health_runner is not None, "PORT berilganda health server ishga tushdi")
+    try:
+        async with aiohttp.ClientSession() as session:
+            async with session.get(
+                f"http://127.0.0.1:{free_port}/health"
+            ) as response:
+                payload = await response.json()
+        check(
+            response.status == 200 and payload["status"] == "ok",
+            "health server /health manzilida 200 qaytardi",
+        )
+    finally:
+        await stop_health_server(health_runner)
+        os.environ.pop("PORT", None)
 
     questions = await get_quiz_questions(5, 5)
     check(len(questions) == 5, "test uchun 5 ta savol tanlandi")
@@ -230,6 +334,26 @@ async def run_tests() -> None:
     check("Fotosintez" in answer, "zaxira javobda fotosintez darsi bor")
     check("AI kaliti" in answer, "foydalanuvchiga AI sozlamasi holati aytildi")
 
+    lesson_501 = await get_lesson(501)
+    check(lesson_501 is not None, "dars konteksti uchun 501-dars topildi")
+    context_answer, context_source = await ask_tutor(
+        "hujayra nima?",
+        [],
+        "beginner",
+        {
+            "subject": f"{lesson_501['subject_emoji']} {lesson_501['subject_name']}",
+            "title": lesson_501["title"],
+            "summary": lesson_501["summary"],
+            "content": lesson_501["content"],
+        },
+    )
+    check(
+        context_source == "lessons"
+        and "Shu darsdan tushuntirish" in context_answer
+        and "hujayra" in context_answer.lower(),
+        "dars konteksti bilan zaxira javob shu darsdan olindi",
+    )
+
     check(await update_notifications(USER_ID, False), "bildirishnoma o'chirildi")
     user = await get_user(USER_ID)
     check(int(user["notifications_enabled"]) == 0, "sozlama bazada saqlandi")
@@ -245,7 +369,7 @@ async def run_tests() -> None:
     admin_stats = await get_admin_stats()
     check(int(admin_stats["total_users"]) == 1, "admin statistikasi foydalanuvchini ko'rsatdi")
     check(int(admin_stats["quizzes"]) == 1, "admin statistikasi testni ko'rsatdi")
-    check(int(admin_stats["questions"]) == 60, "admin statistikasi 60 savolni ko'rsatdi")
+    check(int(admin_stats["questions"]) == 80, "admin statistikasi 80 savolni ko'rsatdi")
     check(
         round(float(admin_stats["average_score"])) == 80,
         "admin statistikasi o'rtachani ko'rsatdi",

@@ -14,8 +14,8 @@ oqimlari va texnik qarorlarini tavsiflaydi.
 | Bo'lim | Tavsif |
 | --- | --- |
 | Ro'yxatdan o'tish | Ism, bilim darajasi (boshlang'ich / o'rta / yuqori), ma'lumotlarni saqlash |
-| AI Ustoz | Savol-javob, AI provayderi yoki dars bazasidan fallback, kunlik limit |
-| Darslar | 10 fan, 20 dars, darsni tugatish va natijani kuzatish |
+| AI Ustoz | Savol-javob, AI provayderi yoki dars bazasidan fallback, dars konteksti, kunlik limit |
+| Darslar | 10 fan, 20 dars; qisqa mazmun, 3 asosiy fikr, batafsil izoh, mini mashq, oldingi/keyingi dars |
 | Qidiruv | Darslarni nomi va mazmuni bo'yicha topish (`/qidiruv`) |
 | Testlar | Har urinishda 5 ta tasodifiy savol, 4 variant, yakuniy natija va xato javoblar tahlili |
 | Natijalar | Testlar, o'rtacha va eng yaxshi natija, faol kunlar, streak |
@@ -24,8 +24,10 @@ oqimlari va texnik qarorlarini tavsiflaydi.
 | Sozlamalar | Daraja, bildirishnomalar, til va AI holati |
 | Admin panel | Statistika, foydalanuvchilarga xabar yuborish |
 | Kontent | JSON orqali fan, dars va savollarni boshqarish |
+| Joylash | Render bepul tarifi, Docker/Compose, Oracle Always Free, `/health` |
 
-Jami: **10 fan**, **20 dars**, **60 savol**. Har bir savolda 4 ta variant va izoh.
+Jami: **10 fan**, **20 dars**, **80 savol** (har bir darsda 4 tadan). Har bir
+savolda 4 ta variant va izoh bor.
 
 ## Arxitektura
 
@@ -41,8 +43,9 @@ aiogram Dispatcher (polling)
 handlers/  ── FSM, validatsiya, foydalanuvchi oqimlari
    │
    ├── keyboards/  ── reply va inline tugmalar
-   ├── services/ai_service.py ── AI provayderi + lokal fallback
+   ├── services/ai_service.py ── AI provayderi + lokal fallback + dars konteksti
    ├── services/lesson_media.py ── dars rasmlari + file_id kesh
+   ├── services/health_server.py ── Render uchun /health HTTP serveri
    ├── services/reminders.py ── kunlik eslatmalar
    ▼
 database/  ── SQL so'rovlar qatlami
@@ -52,21 +55,30 @@ SQLite (WAL, foreign keys, busy_timeout)
 ```
 
 - **bot.py** — logging, Dispatcher, routerlarni ulash, xatolarni markaziy ushlash,
-  bot buyruqlarini o'rnatish, kunlik eslatma vazifasini ishga tushirish va pollingni
-  boshlash.
+  bot buyruqlarini o'rnatish, kunlik eslatma vazifasini ishga tushirish, ixtiyoriy
+  health-check serverini ochish va pollingni boshlash.
 - **config.py** — `.env` dan sozlamalarni o'qiydi, qiymatlarni tekshiradi.
   Sozlamalar `lru_cache` bilan bir marta o'qiladi.
 - **handlerlar** — har bir bo'lim alohida router. Har bir handler avval
   foydalanuvchining bazada borligini tekshiradi.
 - **database/** — har bir jadval uchun alohida modul; SQL faqat shu qatlamda.
 - **services/ai_service.py** — tashqi AI bilan ishlash; handler AI provayderining
-  detallarini bilmaydi.
+  detallarini bilmaydi. Darsdan ochilgan AI rejimida dars matni alohida system
+  xabari sifatida beriladi.
 - **services/lesson_media.py** — dars rasmlarini `assets/lesson_images/` dan topadi,
   birinchi yuborishdan keyin Telegram `file_id` sini keshlaydi. Dizayn tafsilotlari:
   [`DARS_DIZAYNI.md`](DARS_DIZAYNI.md).
+- **services/health_server.py** — `PORT` o'rnatilgan bo'lsa `/`, `/health` va
+  `/healthz` manzillarida javob beradigan kichik aiohttp serveri. Render bepul
+  web-service talab qiladigan portni shu server ta'minlaydi; lokal ishda `PORT`
+  bo'sh bo'lsa, server ochilmaydi.
 - **services/reminders.py** — kunlik reja bo'yicha eslatmalarni yuboradi; Telegram
   limitlarini hisobga oladi va faqat ruxsat bergan foydalanuvchilarga yozadi.
 - **time_utils.py** — UTC saqlash, UTC+5 bo'yicha kun va streak hisoblash.
+
+Serverga joylash: `Dockerfile`, `docker-compose.yml` va `render.yaml`. Bepul
+Render tarifi tez sinov uchun, Oracle Always Free esa doimiy SQLite bazasi uchun
+mo'ljallangan. To'liq qo'llanma: [`SERVERGA_JOYLASH.md`](SERVERGA_JOYLASH.md).
 
 Routerlar tartibi muhim: `menu` routeri eng oxirida turadi, chunki unda noma'lum
 matn va boshqa callback'lar uchun catch-all handlerlar bor. Maxsus routerlar
@@ -84,7 +96,7 @@ Sxema idempotent: `CREATE TABLE IF NOT EXISTS`.
 | --- | --- | --- |
 | `users` | Foydalanuvchi profili | `telegram_id` (PK), `full_name`, `language`, `level`, `notifications_enabled` |
 | `subjects` | Fanlar | `id`, `code` (UNIQUE), `name`, `emoji`, `order_index`, `is_active` |
-| `lessons` | Darslar | `id`, `subject_id` (FK), `title`, `content`, `order_index`, `is_active` |
+| `lessons` | Darslar | `id`, `subject_id` (FK), `title`, `content`, `summary`, `key_points`, `level`, `duration_min`, `order_index`, `is_active` |
 | `questions` | Test savollari | `id`, `lesson_id` (FK), `question_text`, `option_a..d`, `correct_option` (0–3), `explanation` |
 | `quiz_results` | Test natijalari | `user_id` (FK), `subject_id` (FK), `total_questions`, `correct_answers`, `score_percent` |
 | `study_progress` | Dars progressi | PK (`user_id`, `lesson_id`), `status` (`started` / `completed`) |
@@ -125,14 +137,22 @@ va savollar o'chadi.
 
 1. Fanlar ro'yxati dars va savollar soni bilan chiqadi.
 2. Fan tanlanganda darslar ro'yxati, tugatilgan darslar hisobi va progress bar ochiladi.
-3. Dars 16:9 rasm, sarlavha, matn va tugmalar bilan kartochka bo'lib ochiladi;
-   `study_progress` ga `started` holati yoziladi.
-4. «✅ Darsni tugatdim» birinchi bosishda `completed` holatiga o'tadi, kartochka caption'i
-   yangilanadi va kunlik rejaga +1 dars qo'shiladi. Takroriy bosish qayta hisoblanmaydi.
-5. Darsdan to'g'ridan-to'g'ri shu fan testiga o'tish mumkin.
-6. `/qidiruv so'z` buyrug'i dars nomi va mazmuni bo'yicha izlaydi. So'rov 2–100
+3. Dars 16:9 rasmli kartochka bo'lib ochiladi: fan va dars raqami, sarlavha, qisqa
+   mazmun, 3 ta asosiy fikr, davomiylik va daraja. `study_progress` ga `started`
+   holati yoziladi.
+4. **📖 Batafsil o'qish** to'liq dars matnini alohida ekranda ochadi: maqsad, sodda
+   tushuntirish, hayotiy misol, asosiy fikrlar, eslab qolish siri, mini mashq va
+   xulosa. 4000 belgi limiti amal qiladi; **🖼️ Kartochkaga qaytish** orqali rasmli
+   ko'rinishga qaytiladi.
+5. **⬅️ Oldingi dars** va **➡️ Keyingi dars** tugmalari shu fan ichida navigatsiyani
+   beradi; **🧠 AI Ustozga so'rash** shu dars konteksti bilan AI rejimini ochadi.
+6. «✅ Darsni tugatdim» birinchi bosishda `completed` holatiga o'tadi, joriy ekran
+   (kartochka yoki batafsil matn) yangilanadi va kunlik rejaga +1 dars qo'shiladi.
+   Takroriy bosish qayta hisoblanmaydi.
+7. Darsdan to'g'ridan-to'g'ri shu fan testiga o'tish mumkin.
+8. `/qidiruv so'z` buyrug'i dars nomi va mazmuni bo'yicha izlaydi. So'rov 2–100
    belgi, natijalar soni 5 ta bilan cheklangan; natijadan darsni darhol ochish mumkin.
-7. Rasm topilmasa yoki caption 1024 belgidan oshsa, dars matnli kartochka sifatida
+9. Rasm topilmasa yoki caption 1024 belgidan oshsa, dars matnli kartochka sifatida
    ochiladi — mazmun yo'qolmaydi.
 
 ### 3. Testlar
@@ -175,12 +195,17 @@ va savollar o'chadi.
 ### 7. AI Ustoz
 
 1. Foydalanuvchi «🧠 AI Ustoz» tugmasini bosadi — FSM `chatting` holatiga o'tadi.
+   Dars kartochkasidagi «🧠 AI Ustozga so'rash» ham shu holatga o'tadi va FSM'ga
+   `lesson_context` (fan, sarlavha, qisqa mazmun, dars matni) yozadi.
 2. Savol 2–1000 belgi oralig'ida tekshiriladi.
 3. Kunlik limit va minimal tanaffus tekshiriladi.
 4. Suhbat tarixining oxirgi N xabari kontekst sifatida olinadi.
-5. AI provayderi sozlanmagan yoki xato bo'lsa, dars bazasidan mos parcha qidiriladi.
-6. Javob HTML sifatida ekranlanadi va 3900 belgigacha qisqartiriladi.
-7. «⬅️ Chiqish» yoki menyu tugmasi rejimdan chiqaradi.
+5. Dars konteksti bo'lsa, AI ga alohida system xabari yuboriladi: tushunarsiz joyni
+   shu dars asosida sodda tushuntirish, hayotiy misol va mini mashq berish so'raladi.
+6. AI provayderi sozlanmagan yoki xato bo'lsa, dars konteksti bo'lsa shu darsdan,
+   aks holda bazadan mos parcha qidiriladi.
+7. Javob HTML sifatida ekranlanadi va 3900 belgigacha qisqartiriladi.
+8. «⬅️ Chiqish» yoki menyu tugmasi rejimdan chiqaradi va dars kontekstini tozalaydi.
 
 ### 8. Admin panel
 
@@ -220,15 +245,17 @@ yuboradi. Provayder, model va manzil `.env` orqali sozlanadi.
 Fallback mantiqi:
 
 - `AI_ENABLED=false` yoki kalit yo'q → dars bazasidan javob + izoh.
+- Dars konteksti berilgan bo'lsa → avval shu dars matnidan tegishli parcha olinadi.
 - Provayder xatosi yoki timeout → dars bazasidan javob + ogohlantirish.
 - Mos dars topilmasa → mavjud fanlar ro'yxati va aniqroq yozish taklifi.
 
-API kaliti faqat `.env` dan o'qiladi, loglarga yozilmaydi. Xato loglarida HTTP
-status kodi qayd etiladi, kalit yoki so'rov matni emas.
+API kaliti faqat `.env` yoki hosting environment'idan o'qiladi, loglarga yozilmaydi.
+Xato loglarida HTTP status kodi qayd etiladi, kalit yoki so'rov matni emas.
 
 ## Xavfsizlik
 
-- Token va AI kaliti faqat `.env` da; `.env`, baza, loglar `.gitignore` da.
+- Token va AI kaliti faqat `.env` yoki hosting environment'ida; `.env`, baza, loglar
+  `.gitignore` da, `.env` Docker image'ga kirmaydi.
 - Foydalanuvchi ismi va AI javoblari HTML sifatida ekranlanadi.
 - Kiritilgan matn uzunligi tekshiriladi (ism, savol, qidiruv so'rovi, broadcast).
 - Testda to'g'ri javob yakuniy natijagacha oshkor qilinmaydi.
@@ -237,7 +264,9 @@ status kodi qayd etiladi, kalit yoki so'rov matni emas.
 - AI uchun timeout, kunlik limit va minimal interval qo'llanadi.
 - Admin amallari `ADMIN_IDS` bilan cheklangan.
 - Kunlik eslatmalar faqat bildirishnomalarga ruxsat bergan foydalanuvchilarga yuboriladi.
+- Health server faqat `PORT` berilganda ochiladi va maxfiy ma'lumot qaytarmaydi.
 - Kutilmagan xatolar markaziy handler orqali logga yoziladi.
+- Serverda `.env` huquqi `600`; token oshkor bo'lsa, BotFather'da `/revoke` qilinadi.
 
 ## Testlar
 
@@ -245,8 +274,8 @@ Loyihada Telegram'ga ulanmasdan ishlaydigan ikkita test to'plami bor:
 
 | Test | Qamrov | Natija |
 | --- | --- | --- |
-| `tests/test_offline.py` | Baza sxemasi, kontent, qidiruv, savollarni ID bo'yicha olish, natijalar, streak, vaqt yordamchilari, eslatmalar, AI fallback, admin statistikasi | `OFFLINE_TESTS_OK` |
-| `tests/test_handlers_offline.py` | Ro'yxatdan o'tish, dars, qidiruv, 5 savolli test va xato tahlili, statistika, reja, sozlamalar, AI, `/id`, admin, broadcast, eslatma | `HANDLER_FLOW_OK` |
+| `tests/test_offline.py` | Baza sxemasi va migratsiya, 80 savol, dars maydonlari, qidiruv, savollarni ID bo'yicha olish, natijalar, streak, vaqt yordamchilari, eslatmalar, AI fallback va dars konteksti, health server, admin statistikasi | `OFFLINE_TESTS_OK` |
+| `tests/test_handlers_offline.py` | Ro'yxatdan o'tish, rasmli kartochka, asosiy fikrlar, batafsil o'qish, oldingi/keyingi dars, batafsil ekranda tugatish, dars AI konteksti, qidiruv, 5 savolli test va xato tahlili, statistika, reja, sozlamalar, AI, `/id`, admin, broadcast, eslatma | `HANDLER_FLOW_OK` |
 
 Testlar vaqtinchalik SQLite faylidan foydalanadi va haqiqiy bazaga tegmaydi.
 Handler testi aiogram `FakeSession` orqali chiquvchi so'rovlarni ushlaydi; bu
@@ -276,12 +305,16 @@ Manba: `content/seed_data.json`.
 
 - Fan `id` va `code` barqaror bo'lishi kerak.
 - Dars `id` — global unikal son.
+- Har bir darsda `summary` (qisqa mazmun), `key_points` (1–5 ta asosiy fikr),
+  `level` (`beginner` / `intermediate` / `advanced`) va `duration_min` (1–120) bor.
 - Savol ID'si avtomatik `dars_id * 10 + tartib` bo'ladi.
 - Har bir savolda aynan 4 ta variant va `0`–`3` oralig'idagi `correct` bo'lishi shart.
 - Bot har ishga tushganda kontent upsert qilinadi; JSON'dan olib tashlangan fan yoki
   dars `is_active = 0` bo'ladi, foydalanuvchi natijalari saqlanadi.
 - Savollar har safar qayta yoziladi, shuning uchun savol matnini o'zgartirish uchun
   botni qayta ishga tushirish kifoya.
+- Eski bazaga yangi dars ustunlari `ALTER TABLE` orqali qo'shiladi; mavjud progress
+  va natijalar saqlanadi.
 
 ## Fayl tuzilmasi
 
@@ -293,15 +326,20 @@ ustoz_ai_bot/
 ├── pyproject.toml            # Ruff sozlamalari
 ├── requirements.txt          # Ish vaqti kutubxonalari
 ├── requirements-dev.txt      # Ruff va testlar uchun
+├── Dockerfile                # Python 3.13 image
+├── docker-compose.yml        # Doimiy baza bilan ishga tushirish
+├── render.yaml               # Render bepul web-service blueprint
+├── .dockerignore
 ├── .github/workflows/ci.yml  # GitHub Actions CI
 ├── assets/lesson_images/     # 20 ta dars rasmi (1280x720 JPEG)
-├── content/seed_data.json    # O'quv kontenti
+├── content/seed_data.json    # O'quv kontenti (80 savol)
 ├── database/                 # Sxema, seed va jadval modullari
 ├── handlers/                 # Bo'limlar bo'yicha routerlar
 ├── keyboards/                # Reply va inline klaviaturalar
-├── services/                 # AI, dars rasmlari va kunlik eslatmalar
+├── services/                 # AI, rasm, health server va eslatmalar
 ├── tests/                    # Offline testlar
-└── docs/                     # Hujjatlar va har bir kod fayli uchun tavsif
+├── docs/                     # Hujjatlar va har bir kod fayli uchun tavsif
+└── data/                     # Docker'dagi SQLite (git'ga kirmaydi)
 ```
 
 ## Cheklovlar
@@ -317,6 +355,10 @@ ustoz_ai_bot/
 - SQLite bitta bot nusxasi uchun mo'ljallangan; bir vaqtda bir nechta polling
   jarayoni ishlatilmasligi kerak.
 - Vaqt mintaqasi UTC+5 ga belgilangan.
+- Render bepul tarifida doimiy disk yo'q: restartda baza nolga tushadi. Doimiy
+  saqlash uchun Oracle Always Free + `docker compose` ishlatiladi.
+- `MemoryStorage` tufayli bir nechta server instansiyasida FSM umumiy emas; polling
+  uchun bitta instansiya saqlanadi.
 
 ## Kelgusi ishlar
 
@@ -325,4 +367,4 @@ ustoz_ai_bot/
 - Natijalar bo'yicha batafsil tahlil (mavzular kesimida).
 - Qidiruvni FTS bilan tezlashtirish va filtrlar qo'shish.
 - Ko'p tilli interfeys.
-- Docker yoki server uchun deployment qo'llanmasi.
+- Doimiy tashqi baza (PostgreSQL) yoki bulutli disk bilan gorizontal masshtablash.

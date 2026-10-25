@@ -22,6 +22,7 @@ os.environ["BOT_TOKEN"] = "123456789:TEST_TOKEN_FOR_HANDLER_TESTS"
 os.environ["ADMIN_IDS"] = "999000001"
 os.environ["AI_ENABLED"] = "false"
 os.environ["AI_API_KEY"] = ""
+os.environ["AI_MIN_INTERVAL"] = "0"
 
 from aiogram import Bot, Dispatcher  # noqa: E402
 from aiogram.client.default import DefaultBotProperties  # noqa: E402
@@ -136,6 +137,18 @@ def last_inline_callbacks(session: FakeSession) -> list[str]:
                     if button.callback_data
                 ]
     return callbacks
+
+
+def last_inline_markup(session: FakeSession) -> InlineKeyboardMarkup | None:
+    for method in reversed(session.calls):
+        if isinstance(
+            method,
+            (SendMessage, EditMessageText, SendPhoto, EditMessageCaption),
+        ):
+            markup = method.reply_markup
+            if isinstance(markup, InlineKeyboardMarkup):
+                return markup
+    return None
 
 
 def last_reply_keyboard(session: FakeSession) -> list[str]:
@@ -316,16 +329,61 @@ async def main() -> None:
         errors,
     )
     check(
-        "lesson:complete:501" in last_inline_callbacks(fake),
-        "darsni tugatish tugmasi bor",
+        "Asosiy fikrlar" in last_caption(fake),
+        "kartochkada asosiy fikrlar ko'rsatildi",
+        errors,
+    )
+    card_callbacks = last_inline_callbacks(fake)
+    check(
+        "lesson:read:501" in card_callbacks
+        and "lesson:ask:501" in card_callbacks,
+        "batafsil o'qish va AI so'rash tugmalari bor",
+        errors,
+    )
+    check(
+        "lesson:view:502" in card_callbacks,
+        "keyingi darsga o'tish tugmasi bor",
         errors,
     )
 
     fake.calls.clear()
-    await send_callback("lesson:complete:501", message=photo_message)
+    await send_callback("lesson:view:502", message=photo_message)
+    check("Fotosintez" in last_caption(fake), "keyingi darsga o'tildi", errors)
     check(
-        "Tugatilgan" in last_caption(fake),
-        "dars tugatilgan deb belgilandi",
+        "lesson:view:501" in last_inline_callbacks(fake),
+        "oldingi darsga qaytish tugmasi bor",
+        errors,
+    )
+
+    fake.calls.clear()
+    await send_callback("lesson:read:501", message=photo_message)
+    details_text = last_text(fake)
+    check(
+        "Hujayra tuzilishi" in details_text
+        and "Maqsad" in details_text
+        and "Mini mashq" in details_text,
+        "batafsil dars matni alohida ekranda ochildi",
+        errors,
+    )
+    check(
+        "lesson:view:501" in last_inline_callbacks(fake),
+        "batafsil ekranda kartochkaga qaytish tugmasi bor",
+        errors,
+    )
+    details_message = Message(
+        message_id=9002,
+        date=datetime.now(UTC),
+        chat=chat,
+        from_user=bot_user,
+        text=details_text,
+        reply_markup=last_inline_markup(fake),
+    ).as_(bot)
+
+    fake.calls.clear()
+    await send_callback("lesson:complete:501", message=details_message)
+    check(
+        "Tugatilgan" in last_text(fake),
+        "dars batafsil ekranda tugatilgan deb belgilandi",
         errors,
     )
     check(
@@ -335,6 +393,20 @@ async def main() -> None:
     )
     goal = await get_today_goal(USER_ID)
     check(int(goal["completed_lessons"]) == 1, "kunlik reja darsni sanadi", errors)
+
+    fake.calls.clear()
+    await send_callback("lesson:view:501", message=details_message)
+    check(
+        "Hujayra tuzilishi" in last_caption(fake)
+        and "Tugatilgan" in last_caption(fake),
+        "batafsil ekrandan kartochkaga qaytildi",
+        errors,
+    )
+    check(
+        "lesson:complete:501" not in last_inline_callbacks(fake),
+        "tugatilgan darsda tugatish tugmasi yo'q",
+        errors,
+    )
 
     fake.calls.clear()
     await send_callback("lesson:subject:5", message=photo_message)
@@ -486,6 +558,46 @@ async def main() -> None:
     await send_text("⬅️ Chiqish")
     check("📚 Darslar" in last_reply_keyboard(fake), "AI rejimidan chiqildi", errors)
 
+    # 5b. Darsdagi AI Ustoz konteksti
+    fake.calls.clear()
+    await send_callback("lesson:ask:501", message=callback_message)
+    check(
+        "dars bo'yicha" in last_text(fake).lower(),
+        "dars bo'yicha AI rejimi ochildi",
+        errors,
+    )
+    check(
+        "Hujayra tuzilishi" in last_text(fake),
+        "AI rejimida dars nomi ko'rsatildi",
+        errors,
+    )
+    check(
+        "⬅️ Chiqish" in last_reply_keyboard(fake),
+        "dars AI rejimida chiqish tugmasi bor",
+        errors,
+    )
+
+    fake.calls.clear()
+    await send_text("Hujayra nima?")
+    check(
+        "Shu darsdan tushuntirish" in last_text(fake),
+        "AI dars konteksti bilan javob berdi",
+        errors,
+    )
+    check(
+        "hujayra" in last_text(fake).lower(),
+        "javob shu dars mazmunidan olindi",
+        errors,
+    )
+
+    fake.calls.clear()
+    await send_text("⬅️ Chiqish")
+    check(
+        "📚 Darslar" in last_reply_keyboard(fake),
+        "dars AI rejimidan chiqildi",
+        errors,
+    )
+
     fake.calls.clear()
     await send_text("tushunarsiz matn")
     check("tushunmadim" in last_text(fake).lower(), "noma'lum matnga javob berildi", errors)
@@ -502,7 +614,7 @@ async def main() -> None:
     fake.calls.clear()
     await send_callback("admin:stats")
     check("Bot statistikasi" in last_text(fake), "admin statistikasi chiqdi", errors)
-    check("60</b> savol" in last_text(fake), "statistikada savollar soni bor", errors)
+    check("80</b> savol" in last_text(fake), "statistikada savollar soni bor", errors)
 
     fake.calls.clear()
     await send_callback("admin:broadcast")

@@ -9,7 +9,7 @@
 |---|---|---|
 | [`start.py`](start.md) | `start` | `/start`, ro'yxatdan o'tish |
 | [`ai_tutor.py`](ai_tutor.md) | `ai_tutor` | AI Ustoz rejimi |
-| [`lessons.py`](lessons.md) | `lessons` | Darslar va `/qidiruv` |
+| [`lessons.py`](lessons.md) | `lessons` | Darslar, qisqa kartochka, batafsil matn, navigatsiya va `/qidiruv` |
 | [`quizzes.py`](quizzes.md) | `quizzes` | 4 variantli testlar |
 | [`progress.py`](progress.md) | `progress` | Statistika |
 | [`daily_plan.py`](daily_plan.md) | `daily_plan` | Kunlik reja |
@@ -33,6 +33,8 @@ start → ai_tutor → lessons → quizzes → progress → daily_plan → setti
 - Barcha holatlar `StatesGroup` bilan e'lon qilinadi.
 - `MemoryStorage` ishlatiladi: bot qayta ishga tushsa, tugallanmagan test yoki ro'yxatdan o'tish holati yo'qoladi.
 - Har bir bo'limga kirishda `state.clear()` chaqiriladi.
+- `lesson:ask` AI rejimida `lesson_context` ni FSM'da saqlaydi; chiqishda u ham
+  tozalanadi.
 
 ## Xavfsizlik qoidalari
 

@@ -3,13 +3,14 @@
 from __future__ import annotations
 
 import html
+import json
 import logging
 
 from aiogram import F, Router
 from aiogram.exceptions import TelegramBadRequest
 from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
-from aiogram.types import CallbackQuery, Message
+from aiogram.types import CallbackQuery, InlineKeyboardMarkup, Message
 
 from database.content import (
     get_lesson,
@@ -31,6 +32,7 @@ from handlers.common import (
     safe_edit,
 )
 from keyboards.inline_buttons import (
+    get_lesson_details_keyboard,
     get_lesson_keyboard,
     get_lessons_keyboard,
     get_search_results_keyboard,
@@ -46,6 +48,12 @@ SEARCH_MIN_LENGTH = 2
 SEARCH_MAX_LENGTH = 100
 SEARCH_RESULTS_LIMIT = 5
 LESSON_CAPTION_LIMIT = 1024
+LESSON_TEXT_LIMIT = 4000
+LESSON_LEVEL_LABELS = {
+    "beginner": "🟢 Boshlang'ich",
+    "intermediate": "🟡 O'rta",
+    "advanced": "🔴 Yuqori",
+}
 
 
 def _subjects_text(subjects) -> str:
@@ -54,6 +62,7 @@ def _subjects_text(subjects) -> str:
         "📚 <b>Darslar</b>\n"
         "━━━━━━━━━━━━━━\n\n"
         "🖼️ Har bir dars rasmli kartochka ko'rinishida ochiladi.\n"
+        "🎯 Qisqa mazmun, asosiy fikrlar, batafsil izoh va mini mashq.\n"
         f"📖 {len(subjects)} fan · {total_lessons} dars\n\n"
         "Fan tanlang:"
     )
@@ -63,33 +72,111 @@ def _lessons_text(subject, lessons, completed_ids: set[int]) -> str:
     completed_count = sum(
         1 for lesson in lessons if int(lesson["id"]) in completed_ids
     )
+    durations = [int(lesson["duration_min"]) for lesson in lessons]
+    duration_note = ""
+    if durations:
+        duration_note = f"⏱️ Har bir dars {min(durations)}–{max(durations)} daqiqa.\n"
+
     return (
         f"{subject['emoji']} "
         f"<b>{html.escape(str(subject['name']).upper())}</b>\n"
         "━━━━━━━━━━━━━━\n\n"
         f"{html.escape(subject['description'])}\n\n"
         f"📊 {completed_count}/{len(lessons)} dars · "
-        f"{progress_bar(completed_count, len(lessons))}\n\n"
+        f"{progress_bar(completed_count, len(lessons))}\n"
+        f"{duration_note}\n"
         "Mavzuni tanlang:"
     )
 
 
-def build_lesson_card(lesson, *, completed: bool) -> str:
-    status = (
-        "✅ <b>Tugatilgan.</b> Natijangizda saqlandi."
-        if completed
-        else "💡 <b>Maslahat:</b> Matnni o'qib, «Darsni tugatdim» tugmasini bosing."
+def _key_points(raw: str) -> list[str]:
+    try:
+        value = json.loads(raw or "[]")
+    except json.JSONDecodeError:
+        return []
+    if not isinstance(value, list):
+        return []
+    return [str(item).strip() for item in value if str(item).strip()]
+
+
+def _level_label(lesson) -> str:
+    return LESSON_LEVEL_LABELS.get(
+        str(lesson["level"]), "🟢 Boshlang'ich"
     )
+
+
+def _lesson_status(completed: bool) -> str:
+    if completed:
+        return "✅ <b>Tugatilgan.</b> Natijangizda saqlandi."
     return (
+        "💡 <b>Maslahat:</b> «Batafsil o'qish» bilan mavzuni chuqurroq "
+        "o'rganing."
+    )
+
+
+def build_lesson_card(lesson, *, completed: bool) -> str:
+    summary = str(lesson["summary"]).strip()
+    if not summary:
+        summary = " ".join(str(lesson["content"]).split())[:220]
+
+    lines = [
         f"{lesson['subject_emoji']} "
         f"<b>{html.escape(str(lesson['subject_name']).upper())}</b>"
-        f" · <b>{lesson['order_index']}-DARS</b>\n"
-        "━━━━━━━━━━━━━━\n"
-        f"📖 <b>{html.escape(lesson['title'])}</b>\n\n"
-        f"{html.escape(str(lesson['content']).strip())}\n\n"
-        "━━━━━━━━━━━━━━\n"
-        f"{status}"
+        f" · <b>{lesson['order_index']}-DARS</b>",
+        "━━━━━━━━━━━━━━",
+        f"📖 <b>{html.escape(str(lesson['title']))}</b>",
+        "",
+        f"🎯 {html.escape(summary)}",
+    ]
+
+    points = _key_points(str(lesson["key_points"]))
+    if points:
+        lines.extend(["", "🔑 <b>Asosiy fikrlar</b>"])
+        lines.extend(f"• {html.escape(point)}" for point in points[:4])
+
+    lines.extend(
+        [
+            "",
+            f"⏱️ {lesson['duration_min']} daqiqa · {_level_label(lesson)}",
+            "━━━━━━━━━━━━━━",
+            _lesson_status(completed),
+        ]
     )
+    return "\n".join(lines)
+
+
+def build_lesson_details(lesson, *, completed: bool) -> str:
+    content = str(lesson["content"]).strip()
+    header = (
+        f"📖 <b>{html.escape(str(lesson['title']))}</b>\n"
+        f"{lesson['subject_emoji']} "
+        f"{html.escape(str(lesson['subject_name']))} · "
+        f"{lesson['order_index']}-dars\n"
+        f"⏱️ {lesson['duration_min']} daqiqa · {_level_label(lesson)}\n"
+        "━━━━━━━━━━━━━━\n\n"
+    )
+    footer = (
+        "\n\n━━━━━━━━━━━━━━\n"
+        f"{_lesson_status(completed)}\n"
+        "📝 Darsni tugatgach, test orqali bilimingizni sinang."
+    )
+    escaped = html.escape(content)
+    room = LESSON_TEXT_LIMIT - len(header) - len(footer)
+    if room > 0 and len(escaped) > room:
+        escaped = escaped[: room - 1].rstrip() + "…"
+    return f"{header}{escaped}{footer}"
+
+
+async def _adjacent_lesson_ids(lesson) -> tuple[int | None, int | None]:
+    lessons = await get_lessons(int(lesson["subject_id"]))
+    lesson_ids = [int(item["id"]) for item in lessons]
+    current_id = int(lesson["id"])
+    if current_id not in lesson_ids:
+        return None, None
+    index = lesson_ids.index(current_id)
+    previous_id = lesson_ids[index - 1] if index > 0 else None
+    next_id = lesson_ids[index + 1] if index + 1 < len(lesson_ids) else None
+    return previous_id, next_id
 
 
 async def _send_lesson_card(
@@ -101,10 +188,13 @@ async def _send_lesson_card(
 
     text = build_lesson_card(lesson, completed=completed)
     lesson_id = int(lesson["id"])
+    previous_id, next_id = await _adjacent_lesson_ids(lesson)
     keyboard = get_lesson_keyboard(
         lesson_id=lesson_id,
         subject_id=int(lesson["subject_id"]),
         is_completed=completed,
+        prev_lesson_id=previous_id,
+        next_lesson_id=next_id,
     )
     photo = get_lesson_photo(lesson_id)
 
@@ -135,6 +225,34 @@ async def _send_lesson_card(
 
     if isinstance(sent, Message) and sent.photo:
         remember_lesson_file_id(lesson_id, sent.photo[-1].file_id)
+
+
+async def _send_lesson_details(
+    callback: CallbackQuery, lesson, *, completed: bool
+) -> None:
+    previous_id, next_id = await _adjacent_lesson_ids(lesson)
+    await safe_edit(
+        callback,
+        build_lesson_details(lesson, completed=completed),
+        get_lesson_details_keyboard(
+            lesson_id=int(lesson["id"]),
+            subject_id=int(lesson["subject_id"]),
+            is_completed=completed,
+            prev_lesson_id=previous_id,
+            next_lesson_id=next_id,
+        ),
+    )
+
+
+def _is_details_view(message: Message) -> bool:
+    markup = message.reply_markup
+    if not isinstance(markup, InlineKeyboardMarkup):
+        return False
+    return any(
+        button.text == "🖼️ Kartochkaga qaytish"
+        for row in markup.inline_keyboard
+        for button in row
+    )
 
 
 def _search_results_text(query: str, lessons) -> str:
@@ -286,6 +404,32 @@ async def view_lesson(callback: CallbackQuery) -> None:
     await callback.answer()
 
 
+@router.callback_query(F.data.startswith("lesson:read:"))
+async def read_lesson(callback: CallbackQuery) -> None:
+    user = await require_user_callback(callback)
+    if user is None or callback.data is None:
+        return
+
+    try:
+        lesson_id = int(callback.data.rsplit(":", 1)[-1])
+    except ValueError:
+        await callback.answer("Dars topilmadi.", show_alert=True)
+        return
+
+    lesson = await get_lesson(lesson_id)
+    if lesson is None:
+        await callback.answer("Dars topilmadi.", show_alert=True)
+        return
+
+    user_id = user["telegram_id"]
+    await mark_lesson_started(user_id, lesson_id)
+    completed_ids = await get_completed_lesson_ids(user_id, lesson["subject_id"])
+    await _send_lesson_details(
+        callback, lesson, completed=lesson_id in completed_ids
+    )
+    await callback.answer("Batafsil izoh ochildi 📖")
+
+
 @router.callback_query(F.data.startswith("lesson:complete:"))
 async def mark_completed(callback: CallbackQuery) -> None:
     user = await require_user_callback(callback)
@@ -312,6 +456,9 @@ async def mark_completed(callback: CallbackQuery) -> None:
         return
 
     await increment_goal(user_id, lessons=1)
-    await _send_lesson_card(callback, lesson, completed=True)
+    if isinstance(callback.message, Message) and _is_details_view(callback.message):
+        await _send_lesson_details(callback, lesson, completed=True)
+    else:
+        await _send_lesson_card(callback, lesson, completed=True)
     await callback.answer("Dars tugatildi ✅ Kunlik rejaga qo'shildi.")
     logger.info("Foydalanuvchi darsni tugatdi: id=%s, dars=%s", user_id, lesson_id)

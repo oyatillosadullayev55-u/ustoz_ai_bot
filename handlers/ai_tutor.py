@@ -11,11 +11,12 @@ from aiogram import F, Router
 from aiogram.enums import ChatAction
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
-from aiogram.types import Message
+from aiogram.types import CallbackQuery, Message
 
 from config import get_settings
 from database.chat import add_message, get_ai_usage, get_history
-from handlers.common import require_user
+from database.content import get_lesson
+from handlers.common import require_user, require_user_callback
 from keyboards.main_menu import (
     BTN_AI_EXIT,
     BTN_AI_TUTOR,
@@ -89,6 +90,53 @@ async def enter_ai_mode(message: Message, state: FSMContext) -> None:
         "Chiqish uchun «⬅️ Chiqish» tugmasini bosing.",
         reply_markup=get_ai_mode_keyboard(),
     )
+
+
+@router.callback_query(F.data.startswith("lesson:ask:"))
+async def ask_about_lesson(callback: CallbackQuery, state: FSMContext) -> None:
+    user = await require_user_callback(callback)
+    if user is None or callback.data is None:
+        return
+
+    try:
+        lesson_id = int(callback.data.rsplit(":", 1)[-1])
+    except ValueError:
+        await callback.answer("Dars topilmadi.", show_alert=True)
+        return
+
+    lesson = await get_lesson(lesson_id)
+    if lesson is None:
+        await callback.answer("Dars topilmadi.", show_alert=True)
+        return
+
+    await state.clear()
+    await state.set_state(AITutorStates.chatting)
+    await state.update_data(
+        lesson_context={
+            "lesson_id": int(lesson["id"]),
+            "subject": (
+                f"{lesson['subject_emoji']} {lesson['subject_name']}"
+            ),
+            "title": str(lesson["title"]),
+            "summary": str(lesson["summary"]),
+            "content": str(lesson["content"]),
+        }
+    )
+
+    if isinstance(callback.message, Message):
+        await callback.message.answer(
+            "🧠 <b>AI Ustoz — dars bo'yicha</b>\n\n"
+            f"📖 {html.escape(str(lesson['title']))}\n"
+            f"{lesson['subject_emoji']} "
+            f"{html.escape(str(lesson['subject_name']))}\n\n"
+            "Shu dars bo'yicha savolingizni yozing. Masalan:\n"
+            "• «Buni oddiyroq tushuntirib bering»\n"
+            "• «Hayotiy misol keltiring»\n"
+            "• «Menga mini mashq bering»\n\n"
+            "Chiqish uchun «⬅️ Chiqish» tugmasini bosing.",
+            reply_markup=get_ai_mode_keyboard(),
+        )
+    await callback.answer("Savolingizni yozing 🧠")
 
 
 @router.message(AITutorStates.chatting, F.text, ~F.text.startswith("/"))
@@ -168,6 +216,10 @@ async def ai_chat(message: Message, state: FSMContext) -> None:
         for row in history_rows
     ]
 
+    data = await state.get_data()
+    raw_context = data.get("lesson_context")
+    lesson_context = raw_context if isinstance(raw_context, dict) else None
+
     await add_message(user_id, "user", text)
 
     if message.bot is not None:
@@ -179,7 +231,9 @@ async def ai_chat(message: Message, state: FSMContext) -> None:
             logger.debug("Typing xabarini yuborib bo'lmadi.", exc_info=True)
 
     try:
-        answer, source = await ask_tutor(text, history, user["level"])
+        answer, source = await ask_tutor(
+            text, history, user["level"], lesson_context
+        )
         await add_message(user_id, "assistant", answer[:4000])
     except Exception:
         logger.exception("AI Ustoz javobini olishda xatolik")

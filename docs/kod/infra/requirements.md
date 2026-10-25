@@ -8,10 +8,12 @@
 | Paket | Versiya | Nima uchun |
 |---|---|---|
 | `aiogram` | 3.22.0 | Telegram Bot API, routerlar, FSM |
+| `aiohttp` | 3.12.15 | AI so'rovlari va health-check serveri |
 | `aiosqlite` | 0.22.1 | Asinxron SQLite |
 | `python-dotenv` | 1.2.4 | `.env` faylini o'qish |
 
-`aiohttp` aiogram bilan birga o'rnatiladi va `services/ai_service.py` da AI so'rovlari uchun ishlatiladi.
+`aiohttp` endi to'g'ridan-to'g'ri talab qilinadi, chunki `services/health_server.py` Render
+uchun HTTP port tinglaydi.
 
 ## Development paketlari
 

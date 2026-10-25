@@ -9,8 +9,8 @@
 |---|---|
 | `get_subjects_with_counts()` | Faol fanlar, darslar soni va savollar soni bilan |
 | `get_subject(subject_id)` | Bitta faol fan |
-| `get_lessons(subject_id)` | Fanning faol darslari, tartib bilan |
-| `get_lesson(lesson_id)` | Dars matni va fan nomi/emoji'si |
+| `get_lessons(subject_id)` | Fanning faol darslari: id, sarlavha, daraja, davomiylik, tartib |
+| `get_lesson(lesson_id)` | Darsning to'liq maydonlari (`summary`, `key_points`, `level`, `duration_min`, `content`) va fan nomi/emoji'si |
 | `get_quiz_questions(subject_id, limit)` | Tasodifiy savollar to'plami |
 | `get_question(question_id)` | Bitta savol va uning dars/fan ma'lumoti |
 | `get_questions_by_ids(ids)` | Savollarni bitta `IN (...)` so'rovda olib, `{id: row}` qaytaradi |

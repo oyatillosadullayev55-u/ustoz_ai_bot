@@ -69,8 +69,30 @@ def _excerpt(content: str, tokens: list[str], length: int = 600) -> str:
     return " ".join(snippet.split())
 
 
-async def _fallback_reply(question: str, note: str) -> str:
+async def _fallback_reply(
+    question: str,
+    note: str,
+    lesson_context: dict[str, str] | None = None,
+) -> str:
     tokens = extract_tokens(question)
+
+    if lesson_context:
+        title = lesson_context.get("title", "")
+        subject = lesson_context.get("subject", "")
+        content = lesson_context.get("content", "") or lesson_context.get(
+            "summary", ""
+        )
+        excerpt = _excerpt(content, tokens, length=900)
+        return (
+            "📚 <b>Shu darsdan tushuntirish</b>\n\n"
+            f"{html.escape(subject)} — "
+            f"<b>{html.escape(title)}</b>\n\n"
+            f"{html.escape(excerpt)}\n\n"
+            "💡 Savolingizni darsdagi tushunarsiz joyga qaratib yozsangiz, "
+            "yanada aniqroq yordam beraman.\n\n"
+            f"{note}"
+        )
+
     lessons = await search_lessons(question, limit=2)
 
     if not lessons:
@@ -102,8 +124,24 @@ async def _fallback_reply(question: str, note: str) -> str:
     return "\n".join(parts)
 
 
+LESSON_CONTEXT_PROMPT = (
+    "Foydalanuvchi hozir quyidagi darsni o'qimoqda:\n"
+    "Fan: {subject}\n"
+    "Dars: {title}\n"
+    "Qisqa mazmun: {summary}\n\n"
+    "Dars matni (qisqartirilgan):\n{content}\n\n"
+    "Javobni shu darsga bog'lab bering: tushunarsiz joyni sodda tilda qayta "
+    "tushuntiring, hayotiy misol keltiring va kerak bo'lsa qisqa mini mashq "
+    "bering. Darsda yo'q ma'lumot kerak bo'lsa, uni alohida ta'kidlang. "
+    "Javob 1200 belgidan oshmasin."
+)
+
+
 async def _call_provider(
-    question: str, history: list[dict[str, str]], level: str
+    question: str,
+    history: list[dict[str, str]],
+    level: str,
+    lesson_context: dict[str, str] | None = None,
 ) -> str:
     settings = get_settings()
     level_name = LEVEL_NAMES.get(level, "boshlang'ich")
@@ -113,6 +151,18 @@ async def _call_provider(
             "content": SYSTEM_PROMPT.format(level=level_name),
         }
     ]
+    if lesson_context:
+        messages.append(
+            {
+                "role": "system",
+                "content": LESSON_CONTEXT_PROMPT.format(
+                    subject=lesson_context.get("subject", ""),
+                    title=lesson_context.get("title", ""),
+                    summary=lesson_context.get("summary", ""),
+                    content=lesson_context.get("content", "")[:2500],
+                ),
+            }
+        )
     for item in history:
         content = str(item.get("content", "")).strip()
         if not content:
@@ -175,17 +225,28 @@ async def _call_provider(
 
 
 async def ask_tutor(
-    question: str, history: list[dict[str, str]], level: str
+    question: str,
+    history: list[dict[str, str]],
+    level: str,
+    lesson_context: dict[str, str] | None = None,
 ) -> tuple[str, str]:
     """(javob matni, manba) qaytaradi. Manba: ai, lessons yoki plain."""
     settings = get_settings()
 
     if settings.ai_configured:
         try:
-            answer = await _call_provider(question, history, level)
+            answer = await _call_provider(
+                question, history, level, lesson_context
+            )
             return answer, "ai"
         except AIServiceError:
             logger.warning("AI javob bera olmadi; dars bazasi ishlatiladi.")
-            return await _fallback_reply(question, FALLBACK_NOTE_ERROR), "lessons"
+            return (
+                await _fallback_reply(question, FALLBACK_NOTE_ERROR, lesson_context),
+                "lessons",
+            )
 
-    return await _fallback_reply(question, FALLBACK_NOTE_DISABLED), "lessons"
+    return (
+        await _fallback_reply(question, FALLBACK_NOTE_DISABLED, lesson_context),
+        "lessons",
+    )

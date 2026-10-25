@@ -10,52 +10,120 @@
         {
           "id": 101,
           "title": "Alifbo va tovushlar",
-          "content": "Ingliz alifbosida 26 ta harf bor: 5 ta unli (A, E, I, O, U) va 21 ta undosh. Harfning nomi va tovushi har xil bo'lishi mumkin. Masalan, «A» harfi alifboda «ey» deb aytiladi, so'z ichida esa ko'pincha «e» yoki «ə» tovushini beradi.\n\nEng ko'p uchraydigan harf birikmalari: «sh» — sh tovushi (shoe — poyabzal), «ch» — ch tovushi (chair — stul), «th» — til uchi tishlar orasidan chiqadigan tovush (think — o'ylamoq).\n\nMashq: «ship», «shop», «chess», «three» so'zlarini ovoz chiqarib o'qing va har bir harfni alohida ayting.",
+          "content": "🎯 Maqsad: ingliz harflarini tanish, ularning nomi va tovushini farqlash.\n\n1️⃣ Oddiy tilda\nIngliz alifbosida 26 ta harf bor. Ulardan 5 tasi unli (A, E, I, O, U), 21 tasi undosh. Unlilar bo'g'in hosil qiladi, undoshlar esa ularga tayanch bo'ladi.\n\n2️⃣ Harf nomi va tovushi\nHarfning nomi bilan so'zdagi tovushi bir xil emas. Masalan, «A» harfining nomi — «ey». Lekin «cat» so'zida u boshqacha, kengroq tovush beradi. Shuning uchun harfni yodlash bilan birga, so'z ichida qanday eshitilishini ham o'rganish kerak.\n\n3️⃣ Asosiy birikmalar\n• sh — «sh» tovushi: shoe (poyabzal), shop (do'kon).\n• ch — «ch» tovushi: chair (stul), chess (shaxmat).\n• th — til uchi tishlar orasidan chiqadigan tovush: think (o'ylamoq), three (uch).\n\n4️⃣ Hayotiy misol\n«Ship» so'zini sekin ayting: s-h-i-p. Har bir harfni alohida aytsangiz, so'z qanday qurilganini ko'rasiz. Keyin butun so'zni tez ayting — eshitilishi boshqacha bo'ladi. Bu tabiiy holat.\n\n5️⃣ Eslab qolish siri\nHar kuni 5 ta yangi so'zni ovoz chiqarib o'qing. Harflarni emas, tovushlarni eshitishga harakat qiling.\n\n✍️ Mini mashq\n«ship», «shop», «chess», «three» so'zlarini yozing, o'qing va sh/ch/th birikmalarini belgilang.\n\n✅ Xulosa\n26 ta harf, 5 ta unli. Harf nomi va tovushi farq qiladi. sh, ch, th — alohida tovushlar.",
           "questions": [
             {
               "text": "Ingliz alifbosida nechta harf bor?",
-              "options": ["24", "25", "26", "27"],
+              "options": [
+                "24",
+                "25",
+                "26",
+                "27"
+              ],
               "correct": 2,
               "explanation": "Ingliz alifbosida 26 ta harf bor."
             },
             {
               "text": "Qaysi qatorda faqat unli harflar berilgan?",
-              "options": ["A, E, I, O, U", "A, B, C, D, E", "I, J, K, L, M", "O, P, Q, R, S"],
+              "options": [
+                "A, E, I, O, U",
+                "A, B, C, D, E",
+                "I, J, K, L, M",
+                "O, P, Q, R, S"
+              ],
               "correct": 0,
               "explanation": "Ingliz tilida 5 ta unli harf bor: A, E, I, O, U."
             },
             {
               "text": "«sh» harf birikmasi qanday tovush beradi?",
-              "options": ["s", "sh", "k", "f"],
+              "options": [
+                "s",
+                "sh",
+                "k",
+                "f"
+              ],
               "correct": 1,
               "explanation": "«sh» birikmasi «sh» tovushini beradi: shoe, shop."
+            },
+            {
+              "text": "«Think» so'zida qaysi harf birikmasi uchraydi?",
+              "options": [
+                "sh",
+                "ch",
+                "th",
+                "ph"
+              ],
+              "correct": 2,
+              "explanation": "«Think» so'zida th birikmasi bor; u til uchi tishlar orasidan chiqadigan tovushni beradi."
             }
-          ]
+          ],
+          "summary": "Ingliz alifbosida 26 ta harf bor: 5 unli va 21 undosh. Harf nomi bilan so'zdagi tovushi har xil bo'lishi mumkin; sh, ch, th birikmalarini alohida o'rganamiz.",
+          "key_points": [
+            "26 harf: 5 unli (A, E, I, O, U) va 21 undosh.",
+            "Harf nomi va so'zdagi tovush har doim bir xil emas.",
+            "sh, ch, th birikmalari alohida tovush beradi."
+          ],
+          "level": "beginner",
+          "duration_min": 6
         },
         {
           "id": 102,
           "title": "Present Simple: hozirgi oddiy zamon",
-          "content": "Present Simple odatlar, doimiy holatlar va jadval bo'yicha takrorlanadigan ishlar uchun ishlatiladi.\n\nTuzilishi: I / you / we / they + fe'l. He / she / it + fe'l + s (yoki es). Masalan: «I play football» — men futbol o'ynayman; «She plays tennis» — u tennis o'ynaydi.\n\nInkor: do not (don't) yoki does not (doesn't) + fe'lning boshlang'ich shakli. «She doesn't go to school» — u maktabga bormaydi. Savol: Do / Does + ega + fe'l? «Do you like tea?» — choy yoqtirasizmi?\n\nBelgi so'zlar: every day, usually, often, sometimes, never.",
+          "content": "🎯 Maqsad: kundalik odatlarni Present Simple'da to'g'ri gapirish.\n\n1️⃣ Qachon ishlatiladi?\nPresent Simple har kuni takrorlanadigan ish, odat yoki doimiy holat uchun ishlatiladi:\nI go to school every day. — Men har kuni maktabga boraman.\nShe likes tea. — U choyni yaxshi ko'radi.\n\n2️⃣ Tuzilishi\n• I / you / we / they + fe'l: I play football.\n• he / she / it + fe'l + s yoki es: He plays football. She goes to school.\n«Go» fe'li -es oladi: goes. «Watch» — watches.\n\n3️⃣ Inkor va savol\nInkor: don't (I/you/we/they) yoki doesn't (he/she/it) + fe'lning boshlang'ich shakli.\nShe doesn't go to school. — U maktabga bormaydi.\nBu yerda «goes» emas, «go» ishlatiladi.\n\nSavol: Do / Does + ega + fe'l?\nDo you like tea? — Choy yoqtirasizmi?\nDoes she play tennis? — U tennis o'ynaydimi?\n\n4️⃣ Belgilovchi so'zlar\nevery day, usually, often, sometimes, never — bu so'zlar Present Simple bilan tez-tez keladi. Ularni ko'rsangiz, zamon odat haqida ekanini bilib olasiz.\n\n5️⃣ Eslab qolish siri\nHe/she/it oldiga «s» qo'yadigan qahramon deb tasavvur qiling. Inkor yoki savolda bu «s» yordamchi fe'lga o'tadi: does. Asosiy fe'l esa yalang'och qoladi.\n\n✍️ Mini mashq\n«She ___ (go) to school every day» va «___ you like tea?» gaplarini to'ldiring.\n\n✅ Xulosa\nOdatlar uchun Present Simple. He/she/it + s. Inkor va savolda do/does ishlatiladi.",
           "questions": [
             {
               "text": "Present Simple'da he, she, it olmoshlaridan keyin fe'lga nima qo'shiladi?",
-              "options": ["-ing", "-ed", "-s yoki -es", "hech narsa"],
+              "options": [
+                "-ing",
+                "-ed",
+                "-s yoki -es",
+                "hech narsa"
+              ],
               "correct": 2,
               "explanation": "Uchinchi shaxs birlikda fe'lga -s yoki -es qo'shiladi: plays, goes."
             },
             {
               "text": "«She ___ to school every day.» gapni to'ldiring.",
-              "options": ["go", "goes", "going", "gone"],
+              "options": [
+                "go",
+                "goes",
+                "going",
+                "gone"
+              ],
               "correct": 1,
               "explanation": "She olmoshi uchun go fe'liga -es qo'shilib, goes bo'ladi."
             },
             {
               "text": "Qaysi gap inkor shaklda to'g'ri tuzilgan?",
-              "options": ["She don't go to work.", "She doesn't goes to work.", "She doesn't go to work.", "She not go to work."],
+              "options": [
+                "She don't go to work.",
+                "She doesn't goes to work.",
+                "She doesn't go to work.",
+                "She not go to work."
+              ],
               "correct": 2,
               "explanation": "She uchun doesn't ishlatiladi va fe'l boshlang'ich shaklda qoladi: doesn't go."
+            },
+            {
+              "text": "Qaysi gap Present Simple'da to'g'ri tuzilgan?",
+              "options": [
+                "She go to school every day.",
+                "She goes to school every day.",
+                "She going to school every day.",
+                "She is go to school every day."
+              ],
+              "correct": 1,
+              "explanation": "«She» uchinchi shaxs birlik bo'lgani uchun fe'lga -es qo'shiladi: goes."
             }
-          ]
+          ],
+          "summary": "Present Simple odatlar va takrorlanadigan ishlar uchun ishlatiladi. He/she/it bilan fe'lga -s qo'shiladi, inkor va savolda do/does yordamchi fe'llari keladi.",
+          "key_points": [
+            "I/you/we/they + fe'l; he/she/it + fe'l + s/es.",
+            "Inkor: don't yoki doesn't + fe'lning boshlang'ich shakli.",
+            "Savol: Do yoki Does + ega + fe'l?"
+          ],
+          "level": "beginner",
+          "duration_min": 7
         }
       ]
     },
@@ -69,52 +137,120 @@
         {
           "id": 201,
           "title": "Kasrlar bilan amallar",
-          "content": "Kasr ikki qismdan iborat: surat (yuqori) va maxraj (pastki). Masalan, 3/4 kasrida 3 — surat, 4 — maxraj.\n\nQo'shish va ayirish uchun maxrajlar bir xil bo'lishi kerak. 1/2 + 1/4 ni hisoblash uchun 1/2 ni 2/4 ko'rinishida yozamiz va 2/4 + 1/4 = 3/4 natijani olamiz.\n\nKo'paytirishda suratlar suratga, maxrajlar maxrajga ko'paytiriladi: 2/3 × 3/4 = 6/12, uni qisqartirsak 1/2 bo'ladi. Bo'lishda ikkinchi kasr teskari yoziladi: 1/2 ÷ 3/4 = 1/2 × 4/3 = 4/6 = 2/3.\n\nJavobni har doim qisqartirishni unutmang: 8/12 = 2/3.",
+          "content": "🎯 Maqsad: kasrlarni qo'shish, ayirish, ko'paytirish va bo'lishni o'rganish.\n\n1️⃣ Kasr nima?\nKasr butunning bir qismini ko'rsatadi. 3/4 kasrida 3 — surat, 4 — maxraj. Maxraj butun nechta teng qismga bo'linganini, surat esa shunday qismlardan nechtasi olinganini bildiradi.\n\n2️⃣ Qo'shish va ayirish\nMaxrajlar bir xil bo'lishi shart. Masalan:\n1/2 + 1/4.\n1/2 ni 2/4 ko'rinishida yozamiz. Keyin 2/4 + 1/4 = 3/4.\nMaxrajlar har xil bo'lsa, avval umumiy maxraj topiladi.\n\n3️⃣ Ko'paytirish\nSurat suratga, maxraj maxrajga ko'paytiriladi:\n2/3 × 3/4 = (2×3)/(3×4) = 6/12.\nNatijani qisqartiramiz: 6/12 = 1/2.\n\n4️⃣ Bo'lish\nIkkinchi kasr teskari yoziladi va ko'paytiriladi:\n1/2 ÷ 3/4 = 1/2 × 4/3 = 4/6 = 2/3.\nBo'lishda «teskari kasr» qoidasini unutmang.\n\n5️⃣ Hayotiy misol\nPitsani 4 ta teng bo'lakka bo'ldingiz. Bitta bo'lak — 1/4. Yana bitta bo'lak yesangiz, jami 2/4, ya'ni yarim pitsa bo'ladi.\n\n✍️ Mini mashq\n3/8 + 1/8 va 2/5 × 5/6 ni hisoblang. Javobni qisqartiring.\n\n✅ Xulosa\nQo'shish/ayirishda umumiy maxraj kerak. Ko'paytirishda surat va maxraj alohida ko'paytiriladi. Bo'lishda teskari kasr ishlatiladi.",
           "questions": [
             {
               "text": "1/2 + 1/4 yig'indi qanday bo'ladi?",
-              "options": ["2/6", "3/4", "1/6", "2/4"],
+              "options": [
+                "2/6",
+                "3/4",
+                "1/6",
+                "2/4"
+              ],
               "correct": 1,
               "explanation": "1/2 ni 2/4 ga keltirib, 2/4 + 1/4 = 3/4 hosil qilamiz."
             },
             {
               "text": "2/3 × 3/4 ko'paytma qisqartirilgandan keyin qanday bo'ladi?",
-              "options": ["1/2", "5/7", "6/7", "2/3"],
+              "options": [
+                "1/2",
+                "5/7",
+                "6/7",
+                "2/3"
+              ],
               "correct": 0,
               "explanation": "2/3 × 3/4 = 6/12, uni 6 ga qisqartirsak 1/2 bo'ladi."
             },
             {
               "text": "8/12 kasrni qisqartirsak, qanday kasr hosil bo'ladi?",
-              "options": ["4/6", "2/3", "3/4", "1/3"],
+              "options": [
+                "4/6",
+                "2/3",
+                "3/4",
+                "1/3"
+              ],
               "correct": 1,
               "explanation": "Surat va maxrajni 4 ga bo'lamiz: 8/12 = 2/3."
+            },
+            {
+              "text": "1/3 + 1/6 yig'indi qanday bo'ladi?",
+              "options": [
+                "2/9",
+                "1/2",
+                "2/6",
+                "1/3"
+              ],
+              "correct": 1,
+              "explanation": "1/3 = 2/6. U holda 2/6 + 1/6 = 3/6 = 1/2."
             }
-          ]
+          ],
+          "summary": "Kasr butunning qismini ko'rsatadi: surat va maxraj. Qo'shish-ayirishda umumiy maxraj, ko'paytirishda surat-suratga, bo'lishda teskari kasr qoidasi ishlaydi.",
+          "key_points": [
+            "3/4 da 3 — surat, 4 — maxraj.",
+            "Qo'shish/ayirishda maxrajlar bir xil bo'lishi kerak.",
+            "Bo'lishda ikkinchi kasr teskari yozilib, ko'paytiriladi."
+          ],
+          "level": "beginner",
+          "duration_min": 8
         },
         {
           "id": 202,
           "title": "Foizlar va nisbatlar",
-          "content": "Foiz — sonning yuzdan bir qismi. 1% = 1/100. Sonning foizini topish uchun sonni foizga ko'paytirib, 100 ga bo'lamiz.\n\nMisol: 150 ning 20% i = 150 × 20 ÷ 100 = 30. 80 ning 25% i = 80 × 25 ÷ 100 = 20.\n\nChegirma hisoblash: 400 000 so'mlik buyumga 10% chegirma bo'lsa, chegirma 40 000 so'm, yangi narx 360 000 so'm bo'ladi.\n\nNisbat ikki miqdorni taqqoslaydi: 6:3 nisbati 2:1 bilan bir xil. Proporsiya esa ikki nisbatning tengligidir: 2/4 = 5/10.",
+          "content": "🎯 Maqsad: foiz va nisbatlarni kundalik hayotda qo'llash.\n\n1️⃣ Foiz nima?\nFoiz — butunning yuzdan bir qismi. 1% = 1/100. Shuning uchun 50% — yarmi, 25% — choragi, 100% — butun son.\n\n2️⃣ Foizni topish\nSonning p foizini topish uchun:\nson × p ÷ 100.\nMasalan, 150 ning 20% i:\n150 × 20 ÷ 100 = 30.\n80 ning 25% i:\n80 × 25 ÷ 100 = 20.\n\n3️⃣ Chegirma hisoblash\n400 000 so'mlik buyumga 10% chegirma berilmoqda.\nChegirma = 400 000 × 10 ÷ 100 = 40 000 so'm.\nYangi narx = 400 000 − 40 000 = 360 000 so'm.\nAvval chegirma summasini, keyin yangi narxni topish xatolarni kamaytiradi.\n\n4️⃣ Nisbat va proporsiya\nNisbat ikki miqdorni taqqoslaydi: 6:3 = 2:1.\nProporsiya — ikki nisbatning tengligi: 2/4 = 5/10.\nProporsiyada ichki hadlar ko'paytmasi tashqi hadlar ko'paytmasiga teng bo'ladi.\n\n5️⃣ Eslab qolish siri\n«Foiz» so'zini «yuzga bo'lingan qism» deb eslab qoling. Har safar sonni 100 ga bo'lib, kerakli foizga ko'paytirish mumkin.\n\n✍️ Mini mashq\n200 000 so'mlik kitobga 15% chegirma bo'lsa, yangi narx qancha?\n\n✅ Xulosa\nFoiz — yuzdan bir qism. p% = son × p ÷ 100. Nisbat miqdorlarni, proporsiya teng nisbatlarni bog'laydi.",
           "questions": [
             {
               "text": "150 ning 20 foizi nechaga teng?",
-              "options": ["20", "25", "30", "35"],
+              "options": [
+                "20",
+                "25",
+                "30",
+                "35"
+              ],
               "correct": 2,
               "explanation": "150 × 20 ÷ 100 = 30."
             },
             {
               "text": "80 ning 25 foizi nechaga teng?",
-              "options": ["15", "20", "25", "30"],
+              "options": [
+                "15",
+                "20",
+                "25",
+                "30"
+              ],
               "correct": 1,
               "explanation": "80 × 25 ÷ 100 = 20."
             },
             {
               "text": "400 000 so'mlik buyumga 10% chegirma qilinsa, yangi narx qancha bo'ladi?",
-              "options": ["350 000 so'm", "360 000 so'm", "380 000 so'm", "390 000 so'm"],
+              "options": [
+                "350 000 so'm",
+                "360 000 so'm",
+                "380 000 so'm",
+                "390 000 so'm"
+              ],
               "correct": 1,
               "explanation": "Chegirma 40 000 so'm, yangi narx 400 000 - 40 000 = 360 000 so'm."
+            },
+            {
+              "text": "Sonning 10% ini topish uchun qaysi amal eng qulay?",
+              "options": [
+                "Sonni 10 ga ko'paytirish",
+                "Sonni 10 ga bo'lish",
+                "Sonni 100 ga bo'lish",
+                "Sonni 100 ga ko'paytirish"
+              ],
+              "correct": 1,
+              "explanation": "10% = 10/100 = 1/10, shuning uchun sonni 10 ga bo'lish kifoya."
             }
-          ]
+          ],
+          "summary": "Foiz — yuzdan bir qism; sonning p% ini son × p ÷ 100 orqali topamiz. Nisbat ikki miqdorni taqqoslaydi, proporsiya esa teng nisbatlarni bog'laydi.",
+          "key_points": [
+            "1% = 1/100; 50% — yarmi, 25% — choragi.",
+            "Sonning p% i = son × p ÷ 100.",
+            "Chegirmada avval chegirma summasini, keyin yangi narxni toping."
+          ],
+          "level": "beginner",
+          "duration_min": 7
         }
       ]
     },
@@ -128,52 +264,120 @@
         {
           "id": 301,
           "title": "Harakat va tezlik",
-          "content": "Harakat — jismning vaqt o'tishi bilan fazodagi o'rnini o'zgartirishi. Tezlik bosib o'tilgan yo'lning shu yo'lni o'tishga ketgan vaqtga nisbati bilan topiladi: v = s / t.\n\nXalqaro birliklar tizimida tezlik metr/sekund (m/s) da o'lchanadi. Amalda km/soat ham ishlatiladi. 36 km/soatni m/s ga o'tkazish uchun 36 ni 3,6 ga bo'lamiz: 10 m/s.\n\nMisol: velosipedchi 100 metrni 20 sekundda bosib o'tsa, uning tezligi 100 ÷ 20 = 5 m/s bo'ladi.\n\nTekis harakatda tezlik o'zgarmaydi, notekis harakatda esa o'rtacha tezlik hisoblanadi.",
+          "content": "🎯 Maqsad: harakat, yo'l, vaqt va tezlik orasidagi bog'lanishni tushunish.\n\n1️⃣ Harakat nima?\nJismning vaqt o'tishi bilan fazodagi o'rnining o'zgarishi harakat deyiladi. Harakatni tasvirlash uchun uchta kattalik kerak: yo'l (s), vaqt (t) va tezlik (v).\n\n2️⃣ Tezlik formulasi\nTezlik — birlik vaqtda bosib o'tilgan yo'l:\nv = s ÷ t.\nMisol: 100 metrni 20 sekundda bosib o'tsangiz:\nv = 100 ÷ 20 = 5 m/s.\n\n3️⃣ Formuladan foydalanish\n• Yo'lni topish: s = v × t.\n• Vaqtni topish: t = s ÷ v.\nMisol: 60 km/soat tezlikda 2 soatda 120 km yo'l bosiladi.\n\n4️⃣ Birliklar\n1 km = 1000 m, 1 soat = 3600 s.\n36 km/soat tezlikni m/s ga o'tkazamiz:\n36 000 ÷ 3600 = 10 m/s.\nMasalada birliklar bir xil bo'lishi shart.\n\n5️⃣ O'rtacha tezlik\nUmumiy yo'lni umumiy vaqtga bo'ling. To'xtashlar ham umumiy vaqtga kiradi. Shuning uchun o'rtacha tezlik har doim eng katta tezlikka teng bo'lmaydi.\n\n✍️ Mini mashq\nVelosipedchi 30 daqiqada 9 km yurdi. Uning tezligi km/soatda qancha?\n\n✅ Xulosa\nv = s ÷ t, s = v × t, t = s ÷ v. Birliklarni almashtirishni unutmang.",
           "questions": [
             {
               "text": "Tezlikni qaysi formula bilan topamiz?",
-              "options": ["v = s × t", "v = s / t", "v = t / s", "v = s + t"],
+              "options": [
+                "v = s × t",
+                "v = s / t",
+                "v = t / s",
+                "v = s + t"
+              ],
               "correct": 1,
               "explanation": "Tezlik yo'lni vaqtga bo'lish orqali topiladi: v = s / t."
             },
             {
               "text": "100 metrni 20 sekundda bosib o'tgan jismning tezligi qancha?",
-              "options": ["4 m/s", "5 m/s", "10 m/s", "20 m/s"],
+              "options": [
+                "4 m/s",
+                "5 m/s",
+                "10 m/s",
+                "20 m/s"
+              ],
               "correct": 1,
               "explanation": "v = 100 / 20 = 5 m/s."
             },
             {
               "text": "36 km/soat necha m/s ga teng?",
-              "options": ["5 m/s", "10 m/s", "15 m/s", "20 m/s"],
+              "options": [
+                "5 m/s",
+                "10 m/s",
+                "15 m/s",
+                "20 m/s"
+              ],
               "correct": 1,
               "explanation": "36 ÷ 3,6 = 10 m/s."
+            },
+            {
+              "text": "60 km/soat tezlikda 2 soatda qancha yo'l bosiladi?",
+              "options": [
+                "100 km",
+                "120 km",
+                "140 km",
+                "160 km"
+              ],
+              "correct": 1,
+              "explanation": "s = v × t = 60 × 2 = 120 km."
             }
-          ]
+          ],
+          "summary": "Tezlik — birlik vaqtda bosilgan yo'l. v = s ÷ t formulasidan foydalanib, yo'l, vaqt yoki tezlikni topishni o'rganamiz; birliklarni almashtirish muhim.",
+          "key_points": [
+            "Tezlik v = s ÷ t; yo'l s = v × t; vaqt t = s ÷ v.",
+            "1 km = 1000 m, 1 soat = 3600 s.",
+            "O'rtacha tezlik = umumiy yo'l ÷ umumiy vaqt."
+          ],
+          "level": "beginner",
+          "duration_min": 7
         },
         {
           "id": 302,
           "title": "Nyuton qonunlari",
-          "content": "Nyutonning birinchi qonuni: tashqi kuch ta'sir qilmasa, jism tinch holatda qoladi yoki tekis to'g'ri chiziqli harakatni davom ettiradi. Bu hodisa inertsiya deyiladi.\n\nIkkinchi qonun: jismga ta'sir etuvchi kuch uning massasi va tezlanishi ko'paytmasiga teng: F = m × a. Kuch nyuton (N) da, massa kilogrammda, tezlanish m/s² da o'lchanadi.\n\nUchinchi qonun: har bir ta'sirga teng va qarama-qarshi yo'nalgan aks ta'sir mavjud. Masalan, yerga bosgan oyog'imiz yerdan xuddi shunday kuch bilan itariladi.\n\nMisol: massasi 2 kg jismga 10 N kuch ta'sir qilsa, tezlanish a = F / m = 5 m/s² bo'ladi.",
+          "content": "🎯 Maqsad: Nyutonning uch qonunini kundalik misollar bilan tushunish.\n\n1️⃣ Birinchi qonun — inertsiya\nAgar jismga tashqi kuch ta'sir qilmasa yoki kuchlar muvozanatlashsa, u tinch holatini yoki tekis harakatini saqlaydi.\nAvtobus birdan tormozlaganda oldinga ketishingiz — inertsiya. Tana harakatni davom ettirishga intiladi.\n\n2️⃣ Ikkinchi qonun\nKuch jismni tezlashtiradi:\nF = m × a.\nF — kuch (nyuton), m — massa (kg), a — tezlanish (m/s²).\nMisol: 2 kg jismga 10 N kuch ta'sir etsa:\na = F ÷ m = 10 ÷ 2 = 5 m/s².\n\n3️⃣ Uchinchi qonun\nHar bir ta'sirga teng va qarama-qarshi ta'sir bor. Yer sizni tortadi, siz ham Yerni tortasiz. Raketa gazni orqaga chiqaradi, gaz esa raketani oldinga itaradi.\n\n4️⃣ Kuch va tezlik bir xil emas\nKuch tezlikni o'zgartiradi: tezlashtiradi yoki sekinlashtiradi. Agar kuch bo'lmasa, tezlik o'zgarmaydi. Katta kuch katta tezlanish beradi, lekin massa qanchalik katta bo'lsa, tezlanish shunchalik kichik bo'ladi.\n\n5️⃣ Eslab qolish siri\n1-qonun — «muvozanat», 2-qonun — «formula F = ma», 3-qonun — «siz menga, men sizga». Shu uchta kalit so'z qonunlarni eslashga yordam beradi.\n\n✍️ Mini mashq\n5 kg jismga 20 N kuch ta'sir etsa, tezlanish qancha? Qaysi qonun ishlatiladi?\n\n✅ Xulosa\n1-qonun — muvozanat, 2-qonun — F = m × a, 3-qonun — ta'sir va aks ta'sir.",
           "questions": [
             {
               "text": "Tashqi kuch ta'sir qilmasa, jismning holatini saqlash xossasi qanday nomlanadi?",
-              "options": ["Tezlanish", "Inertsiya", "Bosim", "Ishqalanish"],
+              "options": [
+                "Tezlanish",
+                "Inertsiya",
+                "Bosim",
+                "Ishqalanish"
+              ],
               "correct": 1,
               "explanation": "Jismning holatini saqlash xossasi inertsiya deyiladi."
             },
             {
               "text": "Nyutonning ikkinchi qonuni qaysi formula bilan ifodalanadi?",
-              "options": ["F = m / a", "F = m × a", "F = a / m", "F = m + a"],
+              "options": [
+                "F = m / a",
+                "F = m × a",
+                "F = a / m",
+                "F = m + a"
+              ],
               "correct": 1,
               "explanation": "Kuch massa va tezlanish ko'paytmasiga teng: F = m × a."
             },
             {
               "text": "Massasi 2 kg jismga 10 N kuch ta'sir etsa, tezlanish qancha bo'ladi?",
-              "options": ["2 m/s²", "5 m/s²", "10 m/s²", "20 m/s²"],
+              "options": [
+                "2 m/s²",
+                "5 m/s²",
+                "10 m/s²",
+                "20 m/s²"
+              ],
               "correct": 1,
               "explanation": "a = F / m = 10 / 2 = 5 m/s²."
+            },
+            {
+              "text": "F = m × a formulasida «a» nimani bildiradi?",
+              "options": [
+                "Massa",
+                "Kuch",
+                "Tezlanish",
+                "Yo'l"
+              ],
+              "correct": 2,
+              "explanation": "«a» — tezlanish. U kuch ta'sirida tezlik qanchalik tez o'zgarishini ko'rsatadi."
             }
-          ]
+          ],
+          "summary": "Nyutonning uch qonuni kuch va harakatni tushuntiradi: inertsiya, F = m × a va ta'sirga teng aks ta'sir. Kundalik misollar bilan mustahkamlaymiz.",
+          "key_points": [
+            "1-qonun: kuchlar muvozanatlashsa, jism holatini saqlaydi.",
+            "2-qonun: F = m × a; kuch tezlanish hosil qiladi.",
+            "3-qonun: har bir ta'sirga teng va qarama-qarshi ta'sir bor."
+          ],
+          "level": "intermediate",
+          "duration_min": 8
         }
       ]
     },
@@ -187,52 +391,120 @@
         {
           "id": 401,
           "title": "Atom va molekula",
-          "content": "Atom — moddaning kimyoviy xossalari saqlanadigan eng kichik zarrachasi. Atom markazida yadro joylashgan bo'lib, unda protonlar (musbat zaryad) va neytronlar (zaryadsiz) bor. Yadro atrofida esa manfiy zaryadli elektronlar harakatlanadi.\n\nProtonlar soni elementning tartib raqamini belgilaydi. Masalan, vodorodda 1 ta proton, kislorodda 8 ta proton bor.\n\nMolekula — bir nechta atomning birikishi. Suv molekulasi H2O bo'lib, u 2 ta vodorod va 1 ta kislorod atomidan tashkil topgan.\n\nKimyoviy elementlar davriy jadvalda tartib raqami bo'yicha joylashgan.",
+          "content": "🎯 Maqsad: atom va molekula tushunchalarini farqlash.\n\n1️⃣ Atom nima?\nAtom — moddaning kimyoviy xossalarini saqlaydigan eng kichik zarrachasi. U yadro va elektronlardan tuzilgan. Yadroda protonlar (musbat zaryad) va neytronlar (zaryadsiz) bor. Elektronlar manfiy zaryadga ega va yadro atrofida harakatlanadi.\n\n2️⃣ Elementni nima belgilaydi?\nProtonlar soni. 1 proton — vodorod, 6 proton — uglerod, 8 proton — kislorod. Neytronlar soni o'zgarishi mumkin, lekin protonlar soni o'zgarsa, element ham o'zgaradi.\n\n3️⃣ Molekula nima?\nMolekula — ikki yoki undan ortiq atomning kimyoviy bog'lanishi.\n• H₂O — suv molekulasi: 2 vodorod + 1 kislorod.\n• O₂ — kislorod molekulasi: 2 kislorod atomi.\n• CO₂ — karbonat angidrid: 1 uglerod + 2 kislorod.\n\n4️⃣ Atom va molekula farqi\nAtom — bitta zarra. Molekula — atomlar guruhi. «O» — kislorod atomi, «O₂» — kislorod molekulasi. Bu farqni yozuvdagi kichik indeks ko'rsatadi.\n\n5️⃣ Hayotiy misol\nSuvni maydalab borsangiz, oxir-oqibat H₂O molekulalariga yetasiz. Ularni yana bo'lsangiz, vodorod va kislorod atomlari qoladi.\n\n✍️ Mini mashq\nCO₂ molekulasida nechta atom bor va ular qaysi elementlar?\n\n✅ Xulosa\nAtom — elementning eng kichik zarrachasi. Molekula — atomlar guruhi. Protonlar soni elementni belgilaydi.",
           "questions": [
             {
               "text": "Atom markazidagi yadroda qanday zarrachalar bor?",
-              "options": ["Faqat elektronlar", "Protonlar va neytronlar", "Faqat protonlar", "Molekulalar"],
+              "options": [
+                "Faqat elektronlar",
+                "Protonlar va neytronlar",
+                "Faqat protonlar",
+                "Molekulalar"
+              ],
               "correct": 1,
               "explanation": "Yadroda musbat protonlar va zaryadsiz neytronlar joylashgan."
             },
             {
               "text": "Suv molekulasi (H2O) tarkibida nechta vodorod atomi bor?",
-              "options": ["1", "2", "3", "4"],
+              "options": [
+                "1",
+                "2",
+                "3",
+                "4"
+              ],
               "correct": 1,
               "explanation": "H2O tarkibida 2 ta vodorod va 1 ta kislorod atomi bor."
             },
             {
               "text": "Elektron qanday zaryadga ega?",
-              "options": ["Musbat", "Manfiy", "Zaryadsiz", "O'zgaruvchan"],
+              "options": [
+                "Musbat",
+                "Manfiy",
+                "Zaryadsiz",
+                "O'zgaruvchan"
+              ],
               "correct": 1,
               "explanation": "Elektron manfiy zaryadga ega."
+            },
+            {
+              "text": "Atomdagi protonlar soni nimani belgilaydi?",
+              "options": [
+                "Molekula nomini",
+                "Element turini",
+                "Elektronlar sonini",
+                "Massa sonini"
+              ],
+              "correct": 1,
+              "explanation": "Protonlar soni elementni belgilaydi: 1 proton — vodorod, 8 proton — kislorod."
             }
-          ]
+          ],
+          "summary": "Atom — moddaning eng kichik kimyoviy zarrachasi, molekula — atomlar guruhi. Yadro, proton, neytron va elektronlarning vazifalarini sodda tilda ko'rib chiqamiz.",
+          "key_points": [
+            "Atom yadro va elektronlardan tuzilgan.",
+            "Protonlar soni element turini belgilaydi.",
+            "Molekula — ikki yoki undan ortiq atomning birikmasi."
+          ],
+          "level": "beginner",
+          "duration_min": 7
         },
         {
           "id": 402,
           "title": "Kimyoviy reaksiyalar",
-          "content": "Kimyoviy reaksiya — bir moddalarning boshqa moddalarga aylanishi. Reaksiyaga kirishuvchi moddalar reagentlar, hosil bo'lgan moddalar esa mahsulotlar deyiladi. Tenglamada reagentlar chap tomonda, mahsulotlar o'ng tomonda yoziladi.\n\nMassa saqlanish qonuniga ko'ra, reaksiyadan oldin va keyin har bir element atomlarining soni teng bo'lishi kerak. Shuning uchun tenglamalar koeffitsiyentlar bilan tenglashtiriladi.\n\nYonish — kislorod bilan tez reaksiyaga kirishib, issiqlik va yorug'lik chiqarish. Issiqlik chiqaradigan reaksiyalar ekzotermik, issiqlik yutadigan reaksiyalar endotermik deyiladi.\n\nMisol: 2H2 + O2 = 2H2O — vodorodning yonishi.",
+          "content": "🎯 Maqsad: kimyoviy reaksiyalarni yozish va tenglashtirishni o'rganish.\n\n1️⃣ Reaksiya nima?\nKimyoviy reaksiyada bir moddalar (reagentlar) yangi moddalarga (mahsulotlarga) aylanadi. Masalan, vodorod yonib suv hosil qiladi:\n2H₂ + O₂ → 2H₂O.\n\n2️⃣ Massaning saqlanish qonuni\nReaksiyadan oldin va keyin har bir element atomlari soni teng bo'lishi kerak. Atomlar yo'qolmaydi va yangidan paydo bo'lmaydi — ular faqat qayta guruhlanadi.\n\n3️⃣ Tenglashtirish qoidasi\nChap va o'ng tomondagi atomlar sonini sanang. Kerak bo'lsa, formulalar oldiga koeffitsient qo'ying:\n2H₂ + O₂ → 2H₂O.\nBu yerda 4 ta vodorod va 2 ta kislorod atomi ikkala tomonda ham bor.\nIndekslarni (H₂ dagi 2 ni) o'zgartirmang — bu moddani o'zgartiradi.\n\n4️⃣ Reaksiya belgilari\n• Issiqlik yoki yorug'lik ajralishi.\n• Gaz pufakchalari.\n• Cho'kma hosil bo'lishi.\n• Rang o'zgarishi.\nBu belgilar reaksiya borayotganini ko'rsatadi.\n\n5️⃣ Hayotiy misol\nTemirning zanglashi — kislorod va suv bilan sekin oksidlanish. Osh sodasi va sirka aralashganda karbonat angidrid gazi ajraladi.\n\n✍️ Mini mashq\nH₂ + O₂ → H₂O tenglamasini tenglashtiring. Chap va o'ng tomonda nechta atom bor?\n\n✅ Xulosa\nReaksiyada yangi moddalar hosil bo'ladi, atomlar soni saqlanadi, tenglama tenglashtiriladi.",
           "questions": [
             {
               "text": "Reaksiyaga kirishuvchi moddalar qanday nomlanadi?",
-              "options": ["Mahsulotlar", "Reagentlar", "Katalizatorlar", "Elementlar"],
+              "options": [
+                "Mahsulotlar",
+                "Reagentlar",
+                "Katalizatorlar",
+                "Elementlar"
+              ],
               "correct": 1,
               "explanation": "Reaksiyaga kirishuvchi moddalar reagentlar deyiladi."
             },
             {
               "text": "Massa saqlanish qonuniga ko'ra reaksiyadan oldin va keyin nima teng bo'lishi kerak?",
-              "options": ["Harorat", "Atomlar soni", "Bosim", "Hajm"],
+              "options": [
+                "Harorat",
+                "Atomlar soni",
+                "Bosim",
+                "Hajm"
+              ],
               "correct": 1,
               "explanation": "Har bir element atomlarining soni teng bo'lishi kerak."
             },
             {
               "text": "Issiqlik chiqaradigan reaksiyalar qanday ataladi?",
-              "options": ["Endotermik", "Ekzotermik", "Katalitik", "Neytral"],
+              "options": [
+                "Endotermik",
+                "Ekzotermik",
+                "Katalitik",
+                "Neytral"
+              ],
               "correct": 1,
               "explanation": "Issiqlik chiqaradigan reaksiyalar ekzotermik deyiladi."
+            },
+            {
+              "text": "2H₂ + O₂ → 2H₂O tenglamasining chap tomonida nechta vodorod atomi bor?",
+              "options": [
+                "2",
+                "3",
+                "4",
+                "6"
+              ],
+              "correct": 2,
+              "explanation": "2H₂ — bu 2 × 2 = 4 ta vodorod atomi. O'ng tomonda ham 2H₂O da 4 ta vodorod bor."
             }
-          ]
+          ],
+          "summary": "Kimyoviy reaksiyada moddalar yangi moddalarga aylanadi, atomlar soni esa saqlanadi. Tenglamani tenglashtirish va reaksiya belgilarini o'rganamiz.",
+          "key_points": [
+            "Reagentlar → mahsulotlar; atomlar yo'qolmaydi.",
+            "Tenglamada chap va o'ng tomondagi atomlar soni teng bo'ladi.",
+            "Yonish, gaz, cho'kma va rang o'zgarishi reaksiya belgilaridir."
+          ],
+          "level": "beginner",
+          "duration_min": 8
         }
       ]
     },
@@ -246,52 +518,120 @@
         {
           "id": 501,
           "title": "Hujayra tuzilishi",
-          "content": "Hujayra — barcha tirik organizmlarning eng kichik tuzilish va funksional birligi. Hujayra membrana bilan o'ralgan bo'lib, ichida sitoplazma joylashgan.\n\nYadro hujayraning irsiy axborotini (DNK) saqlaydi va uning ishlashini boshqaradi. Mitoxondriyalar energiya ishlab chiqaradi, shuning uchun ularni hujayraning «energiya stansiyalari» deyishadi.\n\nO'simlik va hayvon hujayralari orasida farq bor: o'simlik hujayrasida xloroplast, qalin hujayra devori va katta vakuola bo'ladi. Xloroplast yordamida o'simlik fotosintez qiladi.\n\nHayvon hujayrasida xloroplast bo'lmaydi, lekin ikkala hujayrada ham membrana, sitoplazma, yadro va mitoxondriya mavjud.",
+          "content": "🎯 Maqsad: hujayraning asosiy qismlari va ularning vazifalarini bilish.\n\n1️⃣ Hujayra nima?\nHujayra — tirik organizmning eng kichik tuzilish va funksional birligi. Bir hujayrali organizmlar bitta hujayradan, ko'p hujayrali organizmlar esa millionlab hujayralardan tuzilgan.\n\n2️⃣ Asosiy qismlar\n• Membrana — hujayrani o'rab turadi va moddalar kirishini boshqaradi.\n• Sitoplazma — hujayra ichidagi suyuq muhit; organoidlar shu yerda joylashgan.\n• Yadro — irsiy axborotni (DNK) saqlaydi va hujayra ishini boshqaradi.\n• Mitoxondriya — hujayra uchun energiya ishlab chiqaradi.\n\n3️⃣ O'simlik va hayvon hujayrasi\nO'simlik hujayrasida qattiq qobiq (sellyuloza), xloroplast va katta vakuola bor. Hayvon hujayrasida bunday qobiq va xloroplast yo'q. Xloroplast fotosintez uchun javobgar.\n\n4️⃣ Hayotiy misol\nHujayrani zavodga o'xshatish mumkin:\n• Membrana — darvoza.\n• Yadro — boshqaruv markazi.\n• Mitoxondriya — energiya stansiyasi.\nHar bir qism o'z ishini qilsa, zavod — ya'ni hujayra — normal ishlaydi.\n\n5️⃣ Eslab qolish siri\n«Membrana — darvoza, yadro — boshliq, mitoxondriya — elektr stansiya» degan uchlikni yodda tuting.\n\n✍️ Mini mashq\nO'simlik hujayrasida bo'lib, hayvon hujayrasida bo'lmagan ikkita qismni ayting.\n\n✅ Xulosa\nHujayra — tiriklik birligi. Membrana, sitoplazma va yadro asosiy qismlar. O'simlik hujayrasida xloroplast va qobiq bor.",
           "questions": [
             {
               "text": "Hujayraning irsiy axboroti qayerda saqlanadi?",
-              "options": ["Membranada", "Yadroda", "Mitoxondriyada", "Sitoplazmada"],
+              "options": [
+                "Membranada",
+                "Yadroda",
+                "Mitoxondriyada",
+                "Sitoplazmada"
+              ],
               "correct": 1,
               "explanation": "Irsiy axborot (DNK) hujayra yadrosida saqlanadi."
             },
             {
               "text": "Qaysi organoid energiya ishlab chiqaradi?",
-              "options": ["Ribosoma", "Mitoxondriya", "Vakuola", "Xloroplast"],
+              "options": [
+                "Ribosoma",
+                "Mitoxondriya",
+                "Vakuola",
+                "Xloroplast"
+              ],
               "correct": 1,
               "explanation": "Mitoxondriya hujayraning energiya stansiyasi hisoblanadi."
             },
             {
               "text": "Qaysi tuzilma faqat o'simlik hujayrasida uchraydi?",
-              "options": ["Yadro", "Membrana", "Xloroplast", "Sitoplazma"],
+              "options": [
+                "Yadro",
+                "Membrana",
+                "Xloroplast",
+                "Sitoplazma"
+              ],
               "correct": 2,
               "explanation": "Xloroplast faqat o'simlik hujayrasida bo'ladi."
+            },
+            {
+              "text": "Hujayra membranasining asosiy vazifasi nima?",
+              "options": [
+                "Irsiy axborotni saqlash",
+                "Moddalar kirishini boshqarish",
+                "Energiya ishlab chiqarish",
+                "Oqsil sintez qilish"
+              ],
+              "correct": 1,
+              "explanation": "Membrana hujayrani o'rab turadi va qaysi moddalar kirishi yoki chiqishini boshqaradi."
             }
-          ]
+          ],
+          "summary": "Hujayra — tirik organizmning eng kichik birligi. Membrana, sitoplazma, yadro va mitoxondriya vazifalarini hamda o'simlik hujayrasining farqini bilamiz.",
+          "key_points": [
+            "Membrana hujayrani o'rab, moddalar kirishini boshqaradi.",
+            "Yadro irsiy axborotni saqlaydi, mitoxondriya energiya beradi.",
+            "O'simlik hujayrasida xloroplast va qattiq qobiq bor."
+          ],
+          "level": "beginner",
+          "duration_min": 7
         },
         {
           "id": 502,
           "title": "Fotosintez",
-          "content": "Fotosintez — yashil o'simliklarning yorug'lik energiyasi yordamida organik modda hosil qilish jarayoni. U xloroplastlarda joylashgan xlorofill pigmenti ishtirokida kechadi.\n\nUmumiy jarayon: karbonat angidrid (CO2) va suv (H2O) yorug'lik ta'sirida glyukozaga aylanadi, kislorod esa atmosferaga ajralib chiqadi.\n\nFotosintez natijasida hosil bo'lgan glyukoza o'simlik uchun oziq moddasi, kislorod esa tirik organizmlar nafas olishi uchun zarur.\n\nFotosintez asosan barglarda kechadi, chunki bargda ko'p xloroplast bo'ladi. Yorug'lik, suv va CO2 yetarli bo'lmasa, jarayon sekinlashadi.",
+          "content": "🎯 Maqsad: fotosintezning mohiyati, shartlari va ahamiyatini tushunish.\n\n1️⃣ Fotosintez nima?\nFotosintez — o'simliklar (va ba'zi bakteriyalar) yorug'lik energiyasidan foydalanib, suv va karbonat angidriddan glyukoza sintez qilish jarayoni. Kislorod yon mahsulot sifatida ajraladi.\n\n2️⃣ Qayerda boradi?\nBargdagi xloroplastlarda. Xlorofill pigmenti quyosh energiyasini yutadi va uni kimyoviy energiyaga aylantiradi. Shuning uchun barglar yashil ko'rinadi.\n\n3️⃣ Umumiy tenglama\n6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂.\nOlti molekula karbonat angidrid va olti molekula suvdan bitta glyukoza va olti molekula kislorod hosil bo'ladi.\n\n4️⃣ Nima uchun kerak?\n• O'simlik uchun oziq-ovqat manbai.\n• Atmosferaga kislorod chiqaradi.\n• Oziq-ovqat zanjirining asosi.\nFotosintez bo'lmasa, hayot uchun zarur kislorod yetarli bo'lmaydi.\n\n5️⃣ Shartlari\nYorug'lik, suv, karbonat angidrid, xlorofill va mos harorat. Yorug'lik yetarli bo'lmasa, fotosintez sekinlashadi.\n\n✍️ Mini mashq\nFotosintezda qaysi gaz yutiladi va qaysi gaz ajraladi?\n\n✅ Xulosa\nFotosintez xloroplastda boradi. CO₂ va suvdan glyukoza va kislorod hosil bo'ladi. Bu jarayon hayot uchun kislorod beradi.",
           "questions": [
             {
               "text": "Fotosintez uchun qaysi shart zarur?",
-              "options": ["Qorong'ilik", "Yorug'lik", "Kislorodning ko'pligi", "Sovuq"],
+              "options": [
+                "Qorong'ilik",
+                "Yorug'lik",
+                "Kislorodning ko'pligi",
+                "Sovuq"
+              ],
               "correct": 1,
               "explanation": "Fotosintez yorug'lik energiyasi yordamida kechadi."
             },
             {
               "text": "Fotosintez natijasida qaysi gaz atmosferaga ajraladi?",
-              "options": ["Azot", "Kislorod", "Vodorod", "Metan"],
+              "options": [
+                "Azot",
+                "Kislorod",
+                "Vodorod",
+                "Metan"
+              ],
               "correct": 1,
               "explanation": "Fotosintezda kislorod ajralib chiqadi."
             },
             {
               "text": "Fotosintezda qaysi pigment ishtirok etadi?",
-              "options": ["Xlorofill", "Gemoglobin", "Melanin", "Keratin"],
+              "options": [
+                "Xlorofill",
+                "Gemoglobin",
+                "Melanin",
+                "Keratin"
+              ],
               "correct": 0,
               "explanation": "Xlorofill yashil pigment bo'lib, yorug'likni yutadi."
+            },
+            {
+              "text": "Fotosintez jarayoni hujayraning qaysi qismida boradi?",
+              "options": [
+                "Mitoxondriyada",
+                "Xloroplastda",
+                "Yadroda",
+                "Membranada"
+              ],
+              "correct": 1,
+              "explanation": "Fotosintez xloroplastda boradi; uning xlorofill pigmenti yorug'lik energiyasini yutadi."
             }
-          ]
+          ],
+          "summary": "Fotosintez — o'simliklarning yorug'lik, suv va CO₂ yordamida glyukoza hosil qilishi. Jarayon xloroplastda boradi va atmosferaga kislorod chiqaradi.",
+          "key_points": [
+            "Xlorofill yorug'lik energiyasini yutadi.",
+            "6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂.",
+            "Fotosintez oziq-ovqat va kislorod manbai."
+          ],
+          "level": "beginner",
+          "duration_min": 7
         }
       ]
     },
@@ -305,52 +645,120 @@
         {
           "id": 601,
           "title": "Amir Temur davri",
-          "content": "Amir Temur 1336-yilda hozirgi Shahrisabz hududida tug'ilgan. U Movarounnahrda markazlashgan davlat barpo etib, poytaxtni Samarqandga ko'chirgan.\n\nAmir Temur davlatni boshqarishda qonun va tartibga katta e'tibor bergan. Uning davrida hunarmandchilik, savdo, ilm-fan va me'morchilik rivojlandi. Samarqandda ko'plab masjid, madrasa va bog'lar qurilgan.\n\nU 1405-yilda vafot etgan. Amir Temur nomi bilan bog'liq tarixiy obidalar bugungi kunda ham saqlanib qolgan.\n\nTarixiy sanalarni o'rganishda manbalarni tanqidiy baholash va turli kitoblardagi ma'lumotlarni solishtirish muhim.",
+          "content": "🎯 Maqsad: Amir Temur davrining asosiy voqealari va ahamiyatini bilish.\n\n1️⃣ Kim edi?\nAmir Temur 1336-yilda hozirgi Shahrisabz yaqinida tug'ilgan. U Movarounnahrda tarqoq hokimliklarni birlashtirib, markazlashgan davlat tuzdi. 1370-yilda Samarqand poytaxt bo'ldi.\n\n2️⃣ Davlat boshqaruvi\nTemur davlatni qat'iy tartib va harbiy kuch asosida boshqardi. Savdo yo'llari nazorat qilindi, hunarmandlar va olimlar qo'llab-quvvatlandi. Bu davrda shaharlar obod bo'ldi.\n\n3️⃣ Me'morlik va madaniyat\nSamarqandda Bibi-Xonim masjidi, Go'ri Amir maqbarasi va Shohi Zinda majmuasi qurildi. Shahrisabzda Oqsaroy bunyod etildi. Me'moriy obidalar bugungi kungacha saqlanib qolgan.\n\n4️⃣ Tashqi yurishlar\nTemur Eron, Kavkaz va boshqa hududlarga yurishlar qildi. Bu davlat chegaralarini kengaytirdi, lekin urushlar oddiy aholi uchun og'ir yuk bo'ldi.\n\n5️⃣ Tarixiy ahamiyati\nTemur davri Markaziy Osiyoda siyosiy birlik, savdo va madaniyat rivoji bilan bog'lanadi. 1405-yilda vafot etgach, davlat vorislar o'rtasidagi kurashga duch keldi.\n\n✍️ Mini mashq\nAmir Temur davlatining poytaxti qaysi shahar edi va u qaysi yilda markazlashgan davlat tuzdi?\n\n✅ Xulosa\nAmir Temur 1370-yilda markazlashgan davlat tuzdi, poytaxt — Samarqand. Me'morlik va savdo rivojlandi.",
           "questions": [
             {
               "text": "Amir Temur qaysi yilda tug'ilgan?",
-              "options": ["1336-yil", "1346-yil", "1405-yil", "1441-yil"],
+              "options": [
+                "1336-yil",
+                "1346-yil",
+                "1405-yil",
+                "1441-yil"
+              ],
               "correct": 0,
               "explanation": "Amir Temur 1336-yilda tug'ilgan."
             },
             {
               "text": "Amir Temur davlatining poytaxti qaysi shahar bo'lgan?",
-              "options": ["Buxoro", "Xiva", "Samarqand", "Toshkent"],
+              "options": [
+                "Buxoro",
+                "Xiva",
+                "Samarqand",
+                "Toshkent"
+              ],
               "correct": 2,
               "explanation": "Amir Temur poytaxtni Samarqandga ko'chirgan."
             },
             {
               "text": "Amir Temur qaysi yilda vafot etgan?",
-              "options": ["1400-yil", "1402-yil", "1405-yil", "1410-yil"],
+              "options": [
+                "1400-yil",
+                "1402-yil",
+                "1405-yil",
+                "1410-yil"
+              ],
               "correct": 2,
               "explanation": "Amir Temur 1405-yilda vafot etgan."
+            },
+            {
+              "text": "Amir Temur davri qaysi sulola nomi bilan bog'liq?",
+              "options": [
+                "Somoniylar",
+                "Temuriylar",
+                "Shayboniylar",
+                "Qoraxoniylar"
+              ],
+              "correct": 1,
+              "explanation": "Amir Temur asos solgan davlat va uning avlodlari tarixda Temuriylar sulolasi deb ataladi."
             }
-          ]
+          ],
+          "summary": "Amir Temur Movarounnahrda markazlashgan davlat tuzib, Samarqandni poytaxt qildi. Uning davri savdo, me'morlik va madaniyat rivoji bilan tarixda qoldi.",
+          "key_points": [
+            "1370-yilda markazlashgan davlat tuzildi, poytaxt — Samarqand.",
+            "Davr me'morligi: Bibi-Xonim, Go'ri Amir, Oqsaroy.",
+            "1405-yilda vafot etgach, vorislar o'rtasida kurash boshlandi."
+          ],
+          "level": "beginner",
+          "duration_min": 8
         },
         {
           "id": 602,
           "title": "Buyuk Ipak yo'li",
-          "content": "Buyuk Ipak yo'li — Xitoyni O'rta Osiyo va Yevropa bilan bog'lagan qadimiy savdo yo'llari tizimi. U miloddan avvalgi II asrdan boshlab faol ishlagan.\n\nYo'l orqali ipak, chinni, qog'oz, ziravorlar, oltin va boshqa tovarlar tashilgan. Ipak Xitoyda ishlab chiqarilgani uchun yo'l shu nom bilan atalgan.\n\nSamarqand, Buxoro va Xiva kabi shaharlar savdo markazlari bo'lgan. Karvonlar cho'llar va tog'lardan o'tib, uzoq masofalarga sayohat qilgan.\n\nBuyuk Ipak yo'li nafaqat savdo, balki madaniyat, fan va dinlarning almashinuviga ham xizmat qilgan.",
+          "content": "🎯 Maqsad: Buyuk Ipak yo'lining yo'nalishi va tarixiy ahamiyatini tushunish.\n\n1️⃣ Nima uchun «Ipak yo'li»?\nBu nom XIX asrda paydo bo'lgan. Yo'l Xitoydan O'rta yer dengizi mamlakatlariga cho'zilgan savdo yo'llari tarmog'i bo'lib, asosiy mollardan biri ipak edi.\n\n2️⃣ Qanday yo'llar?\nQuruqlikdagi karvon yo'llari Markaziy Osiyo orqali o'tgan. Samarqand, Buxoro, Xiva va Toshkent savdo hamda hunarmandchilik markazlari bo'lgan. Savdogarlar uzoq masofalarni karvonlar bilan bosib o'tgan.\n\n3️⃣ Nima almashilgan?\nXitoydan ipak, choy, chinni va qog'oz; g'arbdan oltin, kumush, shisha, ot va jun. Savdogarlar bilan birga bilim, din, san'at va texnologiyalar ham tarqalgan.\n\n4️⃣ Ahamiyati\nIpak yo'li shaharlarni boyitdi, madaniyatlararo muloqotni kuchaytirdi. Qog'oz, kompas va raqamlarning tarqalishi ilm-fan rivojiga ta'sir qildi.\n\n5️⃣ Bugungi meros\nBugungi savdo va transport yo'laklari tarixiy yo'nalishlarni eslatadi. Ipak yo'li bo'ylab joylashgan obidalar sayyohlar uchun muhim madaniy meros hisoblanadi.\n\n✍️ Mini mashq\nIpak yo'li orqali qanday tovarlar va g'oyalar almashilganiga 3 ta misol keltiring.\n\n✅ Xulosa\nIpak yo'li Osiyo va Yevropani bog'lagan. Savdo bilan birga bilim va madaniyat almashilgan.",
           "questions": [
             {
               "text": "Buyuk Ipak yo'li asosan qaysi tovar nomi bilan atalgan?",
-              "options": ["Choy", "Ipak", "Qog'oz", "Ziravor"],
+              "options": [
+                "Choy",
+                "Ipak",
+                "Qog'oz",
+                "Ziravor"
+              ],
               "correct": 1,
               "explanation": "Yo'l ipak savdosi bilan mashhur bo'lgani uchun shu nom olgan."
             },
             {
               "text": "Buyuk Ipak yo'li qaysi hududlarni bog'lagan?",
-              "options": ["Amerika va Afrikani", "Xitoy, O'rta Osiyo va Yevropani", "Faqat O'rta Osiyoni", "Avstraliya va Osiyoni"],
+              "options": [
+                "Amerika va Afrikani",
+                "Xitoy, O'rta Osiyo va Yevropani",
+                "Faqat O'rta Osiyoni",
+                "Avstraliya va Osiyoni"
+              ],
               "correct": 1,
               "explanation": "Yo'l Xitoyni O'rta Osiyo orqali Yevropa bilan bog'lagan."
             },
             {
               "text": "Qaysi shahar Buyuk Ipak yo'lidagi savdo markazi bo'lgan?",
-              "options": ["Samarqand", "Parij", "Rim", "London"],
+              "options": [
+                "Samarqand",
+                "Parij",
+                "Rim",
+                "London"
+              ],
               "correct": 0,
               "explanation": "Samarqand qadimiy savdo markazlaridan biri bo'lgan."
+            },
+            {
+              "text": "Ipak yo'li orqali Xitoydan qaysi tovar ko'proq chiqarilgan?",
+              "options": [
+                "Ipak",
+                "Oltin",
+                "Shisha",
+                "Ot"
+              ],
+              "correct": 0,
+              "explanation": "Yo'l nomi ham ipak bilan bog'liq; Xitoydan ipak, choy va chinni chiqarilgan."
             }
-          ]
+          ],
+          "summary": "Buyuk Ipak yo'li Osiyo va Yevropani bog'lagan savdo yo'llari tarmog'i. U orqali ipak, qog'oz, bilim va madaniyat almashilgan; savdo shaharlari gullagan.",
+          "key_points": [
+            "Yo'l Osiyoni Yevropa bilan bog'lagan.",
+            "Samarqand, Buxoro, Xiva savdo markazlari bo'lgan.",
+            "Savdo bilan birga bilim va madaniyat tarqalgan."
+          ],
+          "level": "beginner",
+          "duration_min": 7
         }
       ]
     },
@@ -364,52 +772,120 @@
         {
           "id": 701,
           "title": "So'z turkumlari",
-          "content": "O'zbek tilida so'zlar ma'no va grammatik xususiyatlariga ko'ra turkumlarga bo'linadi. Mustaqil so'z turkumlari mustaqil ma'noga ega: ot, sifat, son, olmosh, fe'l va ravish.\n\nOt kim? nima? savollariga javob beradi: kitob, o'quvchi, Toshkent. Sifat narsaning belgisini bildiradi: chiroyli, katta, aqlli. Son miqdor yoki tartibni bildiradi: besh, birinchi.\n\nOlmosh ot, sifat yoki son o'rnida ishlatiladi: men, u, shu. Fe'l harakat yoki holatni bildiradi: o'qimoq, yozmoq, keldi. Ravish harakat belgisini bildiradi: tez, sekin, bugun.\n\nYordamchi so'z turkumlari: ko'makchi, bog'lovchi va yuklama. Ular mustaqil ma'noga ega bo'lmaydi, boshqa so'zlarga bog'lanib keladi.",
+          "content": "🎯 Maqsad: so'z turkumlarini aniqlash va gapda to'g'ri qo'llash.\n\n1️⃣ Mustaqil so'z turkumlari\n• Ot — narsa, shaxs, joy: kitob, o'quvchi, Toshkent.\n• Sifat — belgi: qizil, baland, mehnatkash.\n• Son — miqdor yoki tartib: besh, ikkinchi.\n• Olmosh — ot o'rnida: men, u, bu.\n• Fe'l — harakat yoki holat: o'qimoq, yugurmoq.\n• Ravish — harakat belgisi: tez, yaxshi, bugun.\n\n2️⃣ Yordamchi turkumlar\nKo'makchi (bilan, uchun), bog'lovchi (va, lekin), yuklama (mi, -ku) va undov (voy, oh) mustaqil ma'noga ega emas. Ular so'zlarni yoki gaplarni bog'lash uchun xizmat qiladi.\n\n3️⃣ Qanday aniqlash kerak?\nSo'zga savol bering:\n• kim? nima? — ot.\n• qanday? — sifat.\n• nechta? — son.\n• nima qildi? — fe'l.\n• qanday? qachon? — ravish.\nSavolga javob beradigan so'z turkumini ko'rsatadi.\n\n4️⃣ Hayotiy misol\n«Tez yugurgan bola charchadi» gapida:\n• tez — ravish,\n• yugurgan — fe'l,\n• bola — ot,\n• charchadi — fe'l.\n\n5️⃣ Eslab qolish siri\nAvval so'zning ma'nosini emas, gapda qanday vazifa bajarayotganini so'rang. Bitta so'z turli gapda turli turkumda kelishi mumkin.\n\n✍️ Mini mashq\n«Yashil barglar mayin shamolda tebranadi» gapidagi so'z turkumlarini aniqlang.\n\n✅ Xulosa\nOt, sifat, son, olmosh, fe'l va ravish — mustaqil turkumlar. Ko'makchi, bog'lovchi va yuklama — yordamchi turkumlar.",
           "questions": [
             {
               "text": "«Kitob» so'zi qaysi so'z turkumiga mansub?",
-              "options": ["Sifat", "Ot", "Fe'l", "Ravish"],
+              "options": [
+                "Sifat",
+                "Ot",
+                "Fe'l",
+                "Ravish"
+              ],
               "correct": 1,
               "explanation": "Kitob nima? savoliga javob beradi, demak u ot."
             },
             {
               "text": "Narsaning belgisini bildiruvchi so'z turkumi qaysi?",
-              "options": ["Ot", "Sifat", "Son", "Olmosh"],
+              "options": [
+                "Ot",
+                "Sifat",
+                "Son",
+                "Olmosh"
+              ],
               "correct": 1,
               "explanation": "Sifat narsaning belgisini bildiradi: chiroyli, katta."
             },
             {
               "text": "Qaysi qatorda faqat yordamchi so'z turkumlari berilgan?",
-              "options": ["Ot, sifat, fe'l", "Ko'makchi, bog'lovchi, yuklama", "Son, olmosh, ravish", "Ot, olmosh, fe'l"],
+              "options": [
+                "Ot, sifat, fe'l",
+                "Ko'makchi, bog'lovchi, yuklama",
+                "Son, olmosh, ravish",
+                "Ot, olmosh, fe'l"
+              ],
               "correct": 1,
               "explanation": "Ko'makchi, bog'lovchi va yuklama yordamchi so'z turkumlaridir."
+            },
+            {
+              "text": "«Tez yugurdi» gapida «tez» qaysi so'z turkumiga kiradi?",
+              "options": [
+                "Sifat",
+                "Ravish",
+                "Ot",
+                "Son"
+              ],
+              "correct": 1,
+              "explanation": "«Tez» harakatning belgisini bildiradi va «qanday?» savoliga javob beradi — bu ravish."
             }
-          ]
+          ],
+          "summary": "O'zbek tilida so'zlar ot, sifat, son, olmosh, fe'l, ravish va yordamchi turkumlarga bo'linadi. Savol berish orqali turkumni aniqlashni o'rganamiz.",
+          "key_points": [
+            "Ot — narsa-shaxs, sifat — belgi, son — miqdor.",
+            "Fe'l — harakat, ravish — harakat belgisi.",
+            "Ko'makchi, bog'lovchi va yuklama — yordamchi turkumlar."
+          ],
+          "level": "beginner",
+          "duration_min": 7
         },
         {
           "id": 702,
           "title": "Alisher Navoiy ijodi",
-          "content": "Alisher Navoiy 1441-yilda Hirotda tug'ilgan. U buyuk shoir, mutafakkir va davlat arbobi bo'lib, o'zbek adabiy tilining rivojlanishiga katta hissa qo'shgan.\n\nNavoiyning «Xamsa» asari besh dostondan iborat: «Hayrat ul-abror», «Farhod va Shirin», «Layli va Majnun», «Sab'ayi sayyor» va «Saddi Iskandariy».\n\nU «Muhokamat ul-lug'atayn» asarida turkiy tilning boyligi va imkoniyatlarini ko'rsatgan. Navoiy asarlari nafaqat O'rta Osiyoda, balki Sharqning boshqa mamlakatlarida ham keng tarqalgan.\n\nNavoiy 1501-yilda vafot etgan. Uning ijodi o'zbek adabiyotining eng yorqin sahifalaridan biri hisoblanadi.",
+          "content": "🎯 Maqsad: Alisher Navoiy hayoti va ijodining asosiy jihatlarini bilish.\n\n1️⃣ Kim edi?\nAlisher Navoiy 1441-yilda Hirotda tug'ilgan. U shoir, mutafakkir va davlat arbobi bo'lgan. 1501-yilda vafot etgan. Navoiy turkiy tilni adabiyotda yuqori bosqichga ko'targan.\n\n2️⃣ Asosiy asarlari\n• «Xamsa» — besh dostondan iborat majmua: «Hayrat ul-abror», «Farhod va Shirin», «Layli va Majnun», «Sab'ai sayyor», «Saddi Iskandariy».\n• «Mahbub ul-qulub» — axloqiy fikrlar.\n• «Muhokamat ul-lug'atayn» — turkiy va fors tillarini taqqoslagan asar.\n\n3️⃣ Badiiy uslubi\nNavoiy g'azallarida ishq, inson, adolat va ma'rifat mavzularini kuylagan. Tili boy, obrazlari teran. U turkiy tilning she'riyat uchun boyligini isbotlagan.\n\n4️⃣ Tarixiy ahamiyati\nNavoiy ijodi o'zbek adabiy tilining shakllanishiga kuchli ta'sir qilgan. Keyingi shoirlar unga ergashgan. Hirot ilm va san'at markaziga aylangan.\n\n5️⃣ Eslab qolish siri\n«Xamsa» — besh doston. Beshni barmoqlar bilan bog'lang: har bir barmoq bitta doston. Bu nomni va tuzilishini eslashni osonlashtiradi.\n\n✍️ Mini mashq\n«Xamsa»ga kirgan besh dostondan ikkitasini ayting.\n\n✅ Xulosa\nNavoiy — buyuk turkiy shoir. «Xamsa» va boshqa asarlari bilan adabiy til rivojiga hissa qo'shgan.",
           "questions": [
             {
               "text": "Alisher Navoiyning «Xamsa» asari nechta dostondan iborat?",
-              "options": ["3", "4", "5", "6"],
+              "options": [
+                "3",
+                "4",
+                "5",
+                "6"
+              ],
               "correct": 2,
               "explanation": "Xamsa besh dostondan iborat."
             },
             {
               "text": "Alisher Navoiy qaysi yilda tug'ilgan?",
-              "options": ["1401-yil", "1441-yil", "1501-yil", "1336-yil"],
+              "options": [
+                "1401-yil",
+                "1441-yil",
+                "1501-yil",
+                "1336-yil"
+              ],
               "correct": 1,
               "explanation": "Alisher Navoiy 1441-yilda tug'ilgan."
             },
             {
               "text": "Navoiyning turkiy til haqidagi asari qaysi?",
-              "options": ["Muhokamat ul-lug'atayn", "Xamsa", "Boburnoma", "Devonu lug'ati-t-turk"],
+              "options": [
+                "Muhokamat ul-lug'atayn",
+                "Xamsa",
+                "Boburnoma",
+                "Devonu lug'ati-t-turk"
+              ],
               "correct": 0,
               "explanation": "Muhokamat ul-lug'atayn turkiy tilning boyligini ko'rsatadi."
+            },
+            {
+              "text": "Alisher Navoiy qaysi shaharda tug'ilgan?",
+              "options": [
+                "Samarqand",
+                "Hirot",
+                "Buxoro",
+                "Toshkent"
+              ],
+              "correct": 1,
+              "explanation": "Alisher Navoiy 1441-yilda Hirotda tug'ilgan."
             }
-          ]
+          ],
+          "summary": "Alisher Navoiy — turkiy adabiyotning buyuk shoiri, «Xamsa» muallifi. Uning asarlari, tili va adabiy merosi o'zbek madaniyatida alohida o'rin tutadi.",
+          "key_points": [
+            "1441-yilda Hirotda tug'ilgan, 1501-yilda vafot etgan.",
+            "«Xamsa» besh dostondan iborat.",
+            "Turkiy tilni adabiyotda yuksak bosqichga ko'targan."
+          ],
+          "level": "intermediate",
+          "duration_min": 8
         }
       ]
     },
@@ -423,52 +899,120 @@
         {
           "id": 801,
           "title": "Kompyuter tuzilishi",
-          "content": "Kompyuter — ma'lumotlarni qabul qilish, qayta ishlash, saqlash va chiqarish uchun ishlatiladigan qurilma. Apparat (hardware) va dasturiy ta'minot (software) uning asosiy qismlaridir.\n\nProtsessor (CPU) hisoblash ishlarini bajaradi. Operativ xotira (RAM) vaqtinchalik ma'lumotlarni saqlaydi; u kompyuter o'chganda tozalanadi. Doimiy xotira (disk) ma'lumotlarni uzoq muddat saqlaydi.\n\nKiritish qurilmalari: klaviatura, sichqoncha, mikrofon. Chiqarish qurilmalari: monitor, dinamik, printer.\n\nKompyuter ma'lumotlarni ikkilik sanoqda, ya'ni 0 va 1 yordamida qayta ishlaydi. 8 bit 1 baytga teng.",
+          "content": "🎯 Maqsad: kompyuterning asosiy qurilmalari va ularning vazifasini bilish.\n\n1️⃣ Kompyuter nima?\nKompyuter ma'lumotni qabul qiladi, qayta ishlaydi, saqlaydi va chiqaradi. U apparat (qurilmalar) va dasturiy ta'minotdan iborat. Apparat — ko'rinadigan qismlar, dasturiy ta'minot — buyruqlar to'plami.\n\n2️⃣ Protsessor\nCPU — kompyuterning «miyasi». U buyruqlarni bajaradi va hisob-kitob qiladi. Tezligi gerts (Hz) bilan o'lchanadi. Kuchli protsessor ko'proq amallarni tezroq bajaradi.\n\n3️⃣ Xotira\n• Operativ xotira (RAM) — vaqtinchalik. Kompyuter o'chganda undagi ma'lumot tozalanadi.\n• SSD yoki HDD — doimiy xotira. Fayllar va dasturlar shu yerda saqlanadi.\nSSD HDD'ga qaraganda tezroq ishlaydi.\n\n4️⃣ Kiritish va chiqarish\nKiritish qurilmalari: klaviatura, sichqoncha, mikrofon, kamera.\nChiqarish qurilmalari: monitor, printer, dinamik.\nBa'zi qurilmalar ikkala vazifani ham bajaradi, masalan sensorli ekran.\n\n5️⃣ Hayotiy misol\nSiz klaviaturada so'z yozasiz (kiritish). Protsessor uni qayta ishlaydi. Monitor natijani ko'rsatadi (chiqarish). Fayl esa SSD'da saqlanadi.\n\n✍️ Mini mashq\nRAM va SSD o'rtasidagi asosiy farqni ayting.\n\n✅ Xulosa\nCPU hisoblaydi. RAM vaqtinchalik, SSD/HDD doimiy xotira. Kiritish-chiqarish qurilmalari foydalanuvchi bilan bog'laydi.",
           "questions": [
             {
               "text": "Kompyuterda hisoblash ishlarini qaysi qurilma bajaradi?",
-              "options": ["Monitor", "Protsessor", "Klaviatura", "Printer"],
+              "options": [
+                "Monitor",
+                "Protsessor",
+                "Klaviatura",
+                "Printer"
+              ],
               "correct": 1,
               "explanation": "Protsessor (CPU) hisoblash ishlarini bajaradi."
             },
             {
               "text": "Ma'lumotlarni uzoq muddat saqlaydigan qurilma qaysi?",
-              "options": ["Operativ xotira", "Doimiy xotira (disk)", "Protsessor", "Monitor"],
+              "options": [
+                "Operativ xotira",
+                "Doimiy xotira (disk)",
+                "Protsessor",
+                "Monitor"
+              ],
               "correct": 1,
               "explanation": "Doimiy xotira ma'lumotlarni uzoq muddat saqlaydi."
             },
             {
               "text": "Kompyuter qaysi sanoq tizimida ishlaydi?",
-              "options": ["O'nlik", "Ikkilik", "Sakkizlik", "O'n oltilik"],
+              "options": [
+                "O'nlik",
+                "Ikkilik",
+                "Sakkizlik",
+                "O'n oltilik"
+              ],
               "correct": 1,
               "explanation": "Kompyuter ikkilik sanoq tizimida, 0 va 1 bilan ishlaydi."
+            },
+            {
+              "text": "Kompyuter o'chganda qaysi xotira tozalanadi?",
+              "options": [
+                "SSD",
+                "HDD",
+                "RAM",
+                "Flesh-disk"
+              ],
+              "correct": 2,
+              "explanation": "RAM operativ xotiradir; kompyuter o'chganda undagi ma'lumot saqlanmaydi."
             }
-          ]
+          ],
+          "summary": "Kompyuter apparat va dasturiy ta'minotdan iborat. Protsessor, RAM, doimiy xotira hamda kiritish-chiqarish qurilmalarining vazifalarini tushunamiz.",
+          "key_points": [
+            "CPU — hisoblash markazi.",
+            "RAM — vaqtinchalik, SSD/HDD — doimiy xotira.",
+            "Kiritish va chiqarish qurilmalari aloqani ta'minlaydi."
+          ],
+          "level": "beginner",
+          "duration_min": 7
         },
         {
           "id": 802,
           "title": "Algoritm asoslari",
-          "content": "Algoritm — ma'lum masalani yechish uchun bajariladigan qadamlar ketma-ketligi. Har qanday algoritm aniq, chekli va natijali bo'lishi kerak.\n\nAlgoritmning asosiy tuzilmalari: ketma-ketlik (qadamlar tartib bilan), tarmoqlanish (shartga qarab tanlash) va takrorlash (sikl).\n\nMisol: ikki sonni solishtirish algoritmi: 1) birinchi sonni o'qi; 2) ikkinchi sonni o'qi; 3) agar birinchi son katta bo'lsa, uni chiqar, aks holda ikkinchisini chiqar.\n\nAlgoritmni so'zlar, blok-sxema yoki dasturlash tili bilan ifodalash mumkin. Sikl noto'g'ri yozilsa, cheksiz takrorlanish yuzaga kelishi mumkin.",
+          "content": "🎯 Maqsad: algoritm tushunchasi va uni yozish usullarini o'rganish.\n\n1️⃣ Algoritm nima?\nAlgoritm — berilgan masalani yechish uchun bajariladigan aniq va ketma-ket qadamlar. Har bir qadam tushunarli bo'lishi va oxirida natija berishi kerak.\n\n2️⃣ Algoritm xossalari\n• Aniqlik — har bir qadam bir xil tushuniladi.\n• Ketma-ketlik — qadamlar tartib bilan bajariladi.\n• Natijalilik — chekli qadamlardan keyin natija olinadi.\n• Ommaviylik — bir turdagi masalalarga qo'llaniladi.\n\n3️⃣ Blok-sxema\n• Oval — boshlanish yoki tugash.\n• To'rtburchak — amal.\n• Romb — shart.\n• Parallelogram — kiritish yoki chiqarish.\nShart yordamida «agar ... bo'lsa» tarmoqlari yasaladi.\n\n4️⃣ Hayotiy misol\nChoy tayyorlash algoritmi:\n1. Suvni qaynat.\n2. Choynakka choy sol.\n3. Qaynoq suv quy.\n4. 3 daqiqa kut.\n5. Stakanga quy.\nQadamlar tartibi buzilsa, natija boshqacha bo'ladi.\n\n5️⃣ Takrorlash\nBir amalni bir necha marta bajarish sikl deyiladi. Masalan, 10 ta savolni tekshirish uchun bir xil amalni takrorlaysiz. Sikl noto'g'ri yozilsa, dastur cheksiz aylanishi mumkin.\n\n✍️ Mini mashq\n«Ertalab maktabga tayyorlanish» uchun 5 qadamli algoritm yozing.\n\n✅ Xulosa\nAlgoritm — aniq ketma-ket qadamlar. U aniq, natijali va takrorlanuvchan bo'lishi kerak.",
           "questions": [
             {
               "text": "Algoritm nima?",
-              "options": ["Kompyuter dasturi", "Masalani yechish uchun qadamlar ketma-ketligi", "Fayl formati", "Internet protokoli"],
+              "options": [
+                "Kompyuter dasturi",
+                "Masalani yechish uchun qadamlar ketma-ketligi",
+                "Fayl formati",
+                "Internet protokoli"
+              ],
               "correct": 1,
               "explanation": "Algoritm — masalani yechish uchun aniq qadamlar ketma-ketligi."
             },
             {
               "text": "Shartga qarab tanlash qanday tuzilma deyiladi?",
-              "options": ["Ketma-ketlik", "Tarmoqlanish", "Takrorlash", "O'zgaruvchi"],
+              "options": [
+                "Ketma-ketlik",
+                "Tarmoqlanish",
+                "Takrorlash",
+                "O'zgaruvchi"
+              ],
               "correct": 1,
               "explanation": "Shartga qarab yo'l tanlash tarmoqlanish deyiladi."
             },
             {
               "text": "Sikl noto'g'ri yozilsa, qanday muammo yuzaga kelishi mumkin?",
-              "options": ["Xotira yetishmasligi", "Cheksiz takrorlanish", "Fayl o'chishi", "Tarmoq uzilishi"],
+              "options": [
+                "Xotira yetishmasligi",
+                "Cheksiz takrorlanish",
+                "Fayl o'chishi",
+                "Tarmoq uzilishi"
+              ],
               "correct": 1,
               "explanation": "Noto'g'ri sikl cheksiz takrorlanishga olib kelishi mumkin."
+            },
+            {
+              "text": "Blok-sxemada romb shakli nimani bildiradi?",
+              "options": [
+                "Boshlanish yoki tugash",
+                "Amal",
+                "Shart",
+                "Kiritish yoki chiqarish"
+              ],
+              "correct": 2,
+              "explanation": "Romb shartni bildiradi; undan «ha» va «yo'q» tarmoqlari chiqadi."
             }
-          ]
+          ],
+          "summary": "Algoritm — masalani yechish uchun aniq va ketma-ket qadamlar. Uning xossalari, blok-sxema shakllari va kundalik hayotdagi misollarini ko'rib chiqamiz.",
+          "key_points": [
+            "Aniqlik, ketma-ketlik, natijalilik va ommaviylik.",
+            "Blok-sxemada romb — shart, to'rtburchak — amal.",
+            "Sikl bir amalni bir necha marta takrorlaydi."
+          ],
+          "level": "beginner",
+          "duration_min": 7
         }
       ]
     },
@@ -482,52 +1026,120 @@
         {
           "id": 901,
           "title": "O'zgaruvchilar va turlar",
-          "content": "O'zgaruvchi — qiymat saqlash uchun nom. Python'da o'zgaruvchi yaratish uchun unga qiymat berish kifoya: ism = 'Ali'.\n\nAsosiy ma'lumot turlari: int (butun son) — 5; float (kasr son) — 3.14; str (matn) — 'salom'; bool (mantiqiy) — True yoki False.\n\nTurini bilish uchun type() funksiyasidan foydalanamiz: type(5) natijasi int bo'ladi. input() funksiyasi kiritilgan qiymatni har doim matn (str) sifatida qaytaradi, shuning uchun son kerak bo'lsa int() yoki float() bilan o'girish kerak.\n\nMisol:\nyosh = int(input('Yoshingiz: '))\nprint('Siz', yosh, 'yoshdasiz')",
+          "content": "🎯 Maqsad: o'zgaruvchilar va asosiy ma'lumot turlarini o'rganish.\n\n1️⃣ O'zgaruvchi nima?\nO'zgaruvchi — qiymat saqlash uchun nom. Python'da turini oldindan yozish shart emas:\nism = \"Ali\"\nyosh = 15\nnarx = 9.99\ntayyor = True\n\n2️⃣ Asosiy turlar\n• int — butun son: 5, -3, 100.\n• float — kasr son: 3.14, 9.99.\n• str — matn: \"Salom\", 'UstozAI'.\n• bool — True yoki False.\n\n3️⃣ Turini tekshirish\ntype(yosh) natijasi int bo'ladi. Bu qiymat qaysi turga tegishli ekanini ko'rsatadi. Turini bilish muhim, chunki har bir tur bilan turli amallar bajariladi.\n\n4️⃣ Foydalanuvchidan kiritish\ninput() har doim matn (str) qaytaradi. Son kerak bo'lsa, uni aylantirish kerak:\nyosh = int(input(\"Yoshingiz: \"))\nKasr son uchun float() ishlatiladi.\nAks holda \"15\" + 1 kabi amal xato beradi.\n\n5️⃣ Eslab qolish siri\nO'zgaruvchini yorliqli quti deb tasavvur qiling: nomi yorliqda, ichida qiymat. Bir nomga yangi qiymat bersangiz, eski qiymat almashtiriladi.\n\n✍️ Mini mashq\nIsm, yosh va bo'y o'lchamini saqlovchi 3 ta o'zgaruvchi yarating va type() bilan turlarini tekshiring.\n\n✅ Xulosa\nO'zgaruvchi qiymat saqlaydi. int, float, str, bool — asosiy turlar. input() matn qaytaradi.",
           "questions": [
             {
               "text": "Python'da matn qaysi tur bilan ifodalanadi?",
-              "options": ["int", "float", "str", "bool"],
+              "options": [
+                "int",
+                "float",
+                "str",
+                "bool"
+              ],
               "correct": 2,
               "explanation": "Matn str (string) turi bilan ifodalanadi."
             },
             {
               "text": "3.14 qiymati qaysi turga mansub?",
-              "options": ["int", "float", "str", "bool"],
+              "options": [
+                "int",
+                "float",
+                "str",
+                "bool"
+              ],
               "correct": 1,
               "explanation": "Kasr sonlar float turiga mansub."
             },
             {
               "text": "input() funksiyasi qanday turdagi qiymat qaytaradi?",
-              "options": ["int", "float", "str", "bool"],
+              "options": [
+                "int",
+                "float",
+                "str",
+                "bool"
+              ],
               "correct": 2,
               "explanation": "input() har doim matn, ya'ni str qaytaradi."
+            },
+            {
+              "text": "Python'da butun son qaysi tur bilan ifodalanadi?",
+              "options": [
+                "str",
+                "int",
+                "float",
+                "bool"
+              ],
+              "correct": 1,
+              "explanation": "Butun sonlar int turiga kiradi: 5, -3, 100. Kasr sonlar float bo'ladi."
             }
-          ]
+          ],
+          "summary": "O'zgaruvchi — qiymat saqlanadigan nom. Python'ning int, float, str va bool turlarini, type() va input() bilan ishlashni o'rganamiz.",
+          "key_points": [
+            "int — butun son, float — kasr, str — matn, bool — True/False.",
+            "type() qiymat turini ko'rsatadi.",
+            "input() matn qaytaradi; son uchun int() yoki float() kerak."
+          ],
+          "level": "beginner",
+          "duration_min": 7
         },
         {
           "id": 902,
           "title": "Shart operatorlari",
-          "content": "Shart operatorlari dasturga qaror qabul qilish imkonini beradi. Python'da ular if, elif va else kalit so'zlari bilan yoziladi.\n\nMisol:\nball = 85\nif ball >= 90:\n    print('Ajoyib')\nelif ball >= 70:\n    print('Yaxshi')\nelse:\n    print('Mashq qilish kerak')\n\nTaqqoslash operatorlari: == (teng), != (teng emas), >= (katta yoki teng), <= (kichik yoki teng), > (katta), < (kichik). Tenglikni tekshirishda = emas, == ishlatiladi.\n\nPython'da kod bloklari qator boshidagi bo'sh joy (indentatsiya) bilan belgilanadi. Noto'g'ri indentatsiya xatoga olib keladi.",
+          "content": "🎯 Maqsad: shart operatorlari yordamida qaror qabul qiluvchi dastur yozish.\n\n1️⃣ if — agar\nif shart:\n    amal\nShart True bo'lsa, ichidagi amal bajariladi. Masalan:\nyosh = 16\nif yosh >= 16:\n    print(\"Ruxsat berildi\")\n\n2️⃣ else — aks holda\nif shart:\n    amal1\nelse:\n    amal2\nShart False bo'lsa, else qismi bajariladi. Bu ikki yo'ldan birini tanlash imkonini beradi.\n\n3️⃣ elif — boshqa holat\nif ball >= 90:\n    print(\"A'lo\")\nelif ball >= 70:\n    print(\"Yaxshi\")\nelse:\n    print(\"Mashq qilish kerak\")\nPython shartlarni yuqoridan pastga tekshiradi va birinchi mos shartda to'xtaydi.\n\n4️⃣ Taqqoslash va mantiq\n== teng, != teng emas, > katta, < kichik, >= katta yoki teng, <= kichik yoki teng.\nShartlarni and (va), or (yoki), not (emas) bilan birlashtirish mumkin:\nif yosh >= 16 and tayyor:\n    print(\"Mumkin\")\n\n5️⃣ Muhim qoida\nPython'da if ichidagi qatorlar 4 bo'sh joy bilan chekinadi. Chekinish buzilsa, dastur xato beradi yoki noto'g'ri ishlaydi.\n\n✍️ Mini mashq\nBahoga qarab «A'lo», «Yaxshi» yoki «Qoniqarli» chiqaradigan dastur yozing.\n\n✅ Xulosa\nif/elif/else qaror qabul qiladi. Taqqoslash va mantiqiy amallar ishlatiladi. Chekinish shart.",
           "questions": [
             {
               "text": "Python'da shart qaysi kalit so'z bilan boshlanadi?",
-              "options": ["for", "while", "if", "def"],
+              "options": [
+                "for",
+                "while",
+                "if",
+                "def"
+              ],
               "correct": 2,
               "explanation": "Shart if kalit so'zi bilan boshlanadi."
             },
             {
               "text": "Tenglikni tekshirish uchun qaysi operator ishlatiladi?",
-              "options": ["=", "==", "!=", "=>"],
+              "options": [
+                "=",
+                "==",
+                "!=",
+                "=>"
+              ],
               "correct": 1,
               "explanation": "Tenglikni tekshirish uchun == operatori ishlatiladi."
             },
             {
               "text": "Python'da kod bloklari nimasi bilan belgilanadi?",
-              "options": ["Qavslar bilan", "Indentatsiya bilan", "Nuqta-vergul bilan", "Tirnoq bilan"],
+              "options": [
+                "Qavslar bilan",
+                "Indentatsiya bilan",
+                "Nuqta-vergul bilan",
+                "Tirnoq bilan"
+              ],
               "correct": 1,
               "explanation": "Python'da bloklar indentatsiya (bo'sh joy) bilan belgilanadi."
+            },
+            {
+              "text": "Python'da «teng emas» ma'nosini qaysi operator beradi?",
+              "options": [
+                "==",
+                "!=",
+                ">=",
+                "<="
+              ],
+              "correct": 1,
+              "explanation": "!= operatori teng emasligini tekshiradi. == esa tenglikni tekshiradi."
             }
-          ]
+          ],
+          "summary": "if, elif va else yordamida dastur qaror qabul qiladi. Taqqoslash operatorlari, mantiqiy amallar va Python'dagi chekinish qoidasini o'rganamiz.",
+          "key_points": [
+            "if → elif → else ketma-ketligi shartlarni tekshiradi.",
+            "==, !=, <, >, <=, >= — taqqoslash operatorlari.",
+            "and, or, not shartlarni birlashtiradi; chekinish 4 bo'sh joy."
+          ],
+          "level": "beginner",
+          "duration_min": 8
         }
       ]
     },
@@ -541,52 +1153,120 @@
         {
           "id": 1001,
           "title": "Dart asoslari",
-          "content": "Dart — Flutter ilovalarini yozishda ishlatiladigan dasturlash tili. Har qanday Dart dasturi main() funksiyasidan boshlanadi.\n\nO'zgaruvchilar var, final yoki const bilan e'lon qilinadi. final qiymati bir marta beriladi va keyin o'zgarmaydi; const esa kompilyatsiya vaqtida ma'lum bo'lgan doimiy qiymat uchun ishlatiladi.\n\nMisol:\nvoid main() {\n  var ism = 'UstozAI';\n  final yosh = 1;\n  print('Salom, $ism!');\n}\n\nDart'da asosiy turlar: int, double, String, bool. Funksiyalar void yoki qaytariladigan tur bilan e'lon qilinadi. Masalan, int qosh(int a, int b) { return a + b; }.",
+          "content": "🎯 Maqsad: Dart tilining asosiy sintaksisi va o'zgaruvchilarini o'rganish.\n\n1️⃣ Dart nima?\nDart — Flutter ilovalarini yozish uchun ishlatiladigan til. U toza sintaksisga ega va bir vaqtda Android, iOS, web va desktop uchun kod yozish imkonini beradi.\n\n2️⃣ O'zgaruvchilar\nvar ism = \"Ali\";        // tur avtomatik aniqlanadi\nint yosh = 15;          // butun son\ndouble narx = 9.99;     // kasr son\nString shahar = \"Toshkent\";\nbool tayyor = true;\nfinal — bir marta qiymat oladi. const — kompilyatsiya vaqtida ma'lum bo'lgan doimiy qiymat.\n\n3️⃣ null xavfsizligi\nDart'da o'zgaruvchi odatda null bo'lishi mumkin emas. Agar null kerak bo'lsa, turga ? qo'shiladi:\nString? taxallus;\nQiymat borligiga ishonch bo'lsa, ! ishlatiladi, lekin undan ehtiyotkorlik bilan foydalaning.\n\n4️⃣ Matn va interpolatsiya\n\"Salom, $ism!\" — o'zgaruvchini matnga qo'shadi.\nHisob uchun ${yosh + 1} yoziladi. Bu usul matnni qurishni ancha qulay qiladi.\n\n5️⃣ Hayotiy misol\nFlutter'da tugma bosilganda hisoblagichni oshirish uchun int counter = 0; e'lon qilinadi va setState ichida counter++ bajariladi.\n\n✍️ Mini mashq\nIsm, yosh va shahar uchun uchta o'zgaruvchi yarating va ularni bitta matnda chiqaring.\n\n✅ Xulosa\nDart — Flutter tili. var/final/const, int/double/String/bool va null xavfsizligi asosiy tushunchalar.",
           "questions": [
             {
               "text": "Dart dasturi qaysi funksiyadan boshlanadi?",
-              "options": ["start()", "main()", "run()", "init()"],
+              "options": [
+                "start()",
+                "main()",
+                "run()",
+                "init()"
+              ],
               "correct": 1,
               "explanation": "Dart dasturi main() funksiyasidan boshlanadi."
             },
             {
               "text": "Dart'da bir marta qiymat beriladigan o'zgaruvchi qaysi kalit so'z bilan e'lon qilinadi?",
-              "options": ["var", "final", "dynamic", "late"],
+              "options": [
+                "var",
+                "final",
+                "dynamic",
+                "late"
+              ],
               "correct": 1,
               "explanation": "final bilan e'lon qilingan o'zgaruvchi qiymati keyin o'zgarmaydi."
             },
             {
               "text": "Flutter qaysi dasturlash tilidan foydalanadi?",
-              "options": ["Python", "Java", "Dart", "C#"],
+              "options": [
+                "Python",
+                "Java",
+                "Dart",
+                "C#"
+              ],
               "correct": 2,
               "explanation": "Flutter Dart tilida yoziladi."
+            },
+            {
+              "text": "Dart'da matn qaysi tur bilan ifodalanadi?",
+              "options": [
+                "int",
+                "double",
+                "String",
+                "bool"
+              ],
+              "correct": 2,
+              "explanation": "Matnlar String turida saqlanadi, masalan String ism = \"Ali\"."
             }
-          ]
+          ],
+          "summary": "Dart — Flutter ilovalarining asosiy tili. O'zgaruvchilar, asosiy turlar, null xavfsizligi va matn interpolatsiyasini sodda misollarda ko'ramiz.",
+          "key_points": [
+            "var, final va const o'zgaruvchilar uchun ishlatiladi.",
+            "Asosiy turlar: int, double, String, bool.",
+            "Null xavfsizligi: nullable turga ? qo'shiladi."
+          ],
+          "level": "beginner",
+          "duration_min": 8
         },
         {
           "id": 1002,
           "title": "Flutter va widget",
-          "content": "Flutter — Google tomonidan yaratilgan mobil ilova yaratish freymvorki. Unda foydalanuvchi interfeysi widgetlardan quriladi va ular daraxt (widget tree) shaklida joylashadi.\n\nStatelessWidget o'zgarmas interfeys uchun ishlatiladi. StatefulWidget ichida o'zgaruvchi holat bo'lsa, setState() chaqirilganda interfeys qayta chiziladi.\n\nOddiy ilova tuzilishi: MaterialApp ichida Scaffold, Scaffold ichida AppBar va body bo'ladi. Text, Container, Row, Column kabi widgetlar interfeys elementlarini yaratadi.\n\nFlutter'ning qulayligi — hot reload: kod o'zgarganda ilovani qayta ishga tushirmasdan yangilanishni ko'rish mumkin.",
+          "content": "🎯 Maqsad: Flutter'ning widget tushunchasi va asosiy tuzilmasini bilish.\n\n1️⃣ Widget nima?\nFlutter'da ekrandagi har bir element — widget: matn, tugma, rasm, hatto butun sahifa. Ilova widgetlar daraxtidan tuziladi. Har bir widget o'z vazifasini bajaradi.\n\n2️⃣ Stateless va Stateful\nStatelessWidget — holati o'zgarmaydigan widget. Masalan, sarlavha yoki ikonka.\nStatefulWidget — ichki holati o'zgaradigan widget. Holat setState() orqali yangilanadi va UI qayta chiziladi.\n\n3️⃣ Scaffold\nScaffold — sahifaning asosiy tuzilmasi:\n• appBar — yuqori panel.\n• body — asosiy kontent.\n• floatingActionButton — suzuvchi tugma.\n\n4️⃣ Oddiy tuzilma\nMaterialApp → Scaffold → Column yoki Row → Text yoki Button.\nColumn elementlarni vertikal, Row gorizontal joylashtiradi.\n\n5️⃣ Hayotiy misol\nHisoblagich:\n• int counter = 0; — boshlang'ich qiymat.\n• Tugma bosilganda setState(() { counter++; }); chaqiriladi.\n• Text(counter.toString()) yangilanadi.\nShu tarzda StatefulWidget holat o'zgarishini ko'rsatadi.\n\n✍️ Mini mashq\nSarlavha va bitta tugmadan iborat StatelessWidget yozing.\n\n✅ Xulosa\nFlutter UI widgetlardan quriladi. StatelessWidget holatsiz, StatefulWidget setState bilan yangilanadi. Scaffold sahifa asosi.",
           "questions": [
             {
               "text": "Flutter'da foydalanuvchi interfeysi nimadan quriladi?",
-              "options": ["Fayllardan", "Widgetlardan", "Ma'lumotlar bazasidan", "Rasmlardan"],
+              "options": [
+                "Fayllardan",
+                "Widgetlardan",
+                "Ma'lumotlar bazasidan",
+                "Rasmlardan"
+              ],
               "correct": 1,
               "explanation": "Flutter interfeysi widgetlar daraxtidan quriladi."
             },
             {
               "text": "Holat o'zgaradigan interfeys uchun qaysi widget turi ishlatiladi?",
-              "options": ["StatelessWidget", "StatefulWidget", "MaterialApp", "Text"],
+              "options": [
+                "StatelessWidget",
+                "StatefulWidget",
+                "MaterialApp",
+                "Text"
+              ],
               "correct": 1,
               "explanation": "O'zgaruvchi holat uchun StatefulWidget ishlatiladi."
             },
             {
               "text": "Flutter'dagi hot reload nima qiladi?",
-              "options": ["Ilovani o'chiradi", "Kod o'zgarishini tez ko'rsatadi", "Serverga yuboradi", "Faylni saqlaydi"],
+              "options": [
+                "Ilovani o'chiradi",
+                "Kod o'zgarishini tez ko'rsatadi",
+                "Serverga yuboradi",
+                "Faylni saqlaydi"
+              ],
               "correct": 1,
               "explanation": "Hot reload kod o'zgarishlarini ilovani qayta ishga tushirmasdan ko'rsatadi."
+            },
+            {
+              "text": "Scaffold'ning asosiy vazifasi nima?",
+              "options": [
+                "Ma'lumot saqlash",
+                "Sahifa tuzilmasini berish",
+                "Tarmoqqa ulanish",
+                "Rasmni siqish"
+              ],
+              "correct": 1,
+              "explanation": "Scaffold sahifaning asosiy tuzilmasini beradi: AppBar, body va boshqa elementlar."
             }
-          ]
+          ],
+          "summary": "Flutter'da interfeys widgetlardan quriladi. StatelessWidget va StatefulWidget farqi, Scaffold tuzilmasi va setState bilan yangilashni o'rganamiz.",
+          "key_points": [
+            "Widget — interfeysning asosiy qurilish bloki.",
+            "StatelessWidget holatsiz, StatefulWidget setState bilan yangilanadi.",
+            "Scaffold: AppBar, body va floatingActionButton."
+          ],
+          "level": "beginner",
+          "duration_min": 8
         }
       ]
     }

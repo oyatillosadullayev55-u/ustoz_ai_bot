@@ -1,7 +1,8 @@
 # `tests/test_offline.py` — ma'lumotlar qatlami testi
 
 **Yo'l:** [`tests/test_offline.py`](../../../tests/test_offline.py)
-**Vazifasi:** Telegramga ulanmasdan baza sxemasi, kontent, foydalanuvchilar, maqsadlar, test natijalari, AI zaxirasi va admin statistikasini tekshirish.
+**Vazifasi:** Telegramga ulanmasdan baza sxemasi, migratsiya, kontent, foydalanuvchilar,
+maqsadlar, test natijalari, AI zaxirasi, health server va admin statistikasini tekshirish.
 
 ## Ishga tushirish
 
@@ -18,7 +19,7 @@ Fayl import qilinishidan oldin:
 - `DATABASE_PATH` vaqtinchalik papkadagi test bazasiga o'rnatiladi;
 - `BOT_TOKEN` soxta qiymat bilan beriladi;
 - `ADMIN_IDS=999000001`;
-- `AI_ENABLED=false`, `AI_API_KEY=""`;
+- `AI_ENABLED=false`, `AI_API_KEY=""`, `AI_MIN_INTERVAL=0`;
 - `get_settings.cache_clear()` chaqiriladi.
 
 Test oxirida `TemporaryDirectory.cleanup()` baza faylini o'chiradi. Haqiqiy `.env`, token yoki foydalanuvchi bazasiga tegmaydi.
@@ -28,8 +29,11 @@ Test oxirida `TemporaryDirectory.cleanup()` baza faylini o'chiradi. Haqiqiy `.en
 | Bo'lim | Tekshiruvlar |
 |---|---|
 | Sxema | `init_db()` ikki marta chaqirilganda idempotentligi |
-| Kontent | 10 fan, 60 savol, har bir savolda 4 variant, `correct_option` 0–3 |
+| Migratsiya | Eski `lessons` jadvaliga `summary`, `key_points`, `level`, `duration_min` qo'shilishi |
+| Kontent | 10 fan, 20 dars, 80 savol; har bir darsda 4 savol |
+| Dars sifati | Har bir darsda 80+ belgili `summary`, aynan 3 ta `key_points`, to'g'ri `level`, 1–120 `duration_min`, 900+ belgili `content` |
 | Savollar | `get_questions_by_ids` va bo'sh ro'yxat |
+| Health server | `PORT` bo'lmasa server ochilmaydi; `PORT` berilganda `/health` 200 va `status=ok` qaytaradi |
 | Vaqt | `seconds_until_local_time` bugun/ertaga hisobi |
 | Qidiruv | `search_lessons("fotosintez nima")` natijasi |
 | Foydalanuvchi | Ro'yxatdan o'tish, dublikat yaratmaslik |
@@ -38,9 +42,9 @@ Test oxirida `TemporaryDirectory.cleanup()` baza faylini o'chiradi. Haqiqiy `.en
 | Test | 80% natija, statistika, so'nggi natija |
 | Faollik | Streak va faol kunlar |
 | Chat | Tarix tartibi, kunlik limit |
-| AI | AI o'chirilganda dars bazasidan javob |
+| AI | AI o'chirilganda dars bazasidan javob; dars konteksti bilan `Shu darsdan tushuntirish` javobi |
 | Sozlamalar | Bildirishnoma `0/1` va eslatma ro'yxati |
-| Admin | Jami foydalanuvchi, testlar, savollar, o'rtacha foiz |
+| Admin | Jami foydalanuvchi, testlar, 80 savol, o'rtacha foiz |
 
 ## Nima uchun skript ko'rinishida
 

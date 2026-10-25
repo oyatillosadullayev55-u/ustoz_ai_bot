@@ -48,17 +48,45 @@ So'rov uzunligi 2–100 belgi bo'lishi kerak.
 
 1. **📚 Darslar** tugmasini bosing.
 2. Fan tanlang — har bir fan yonida dars va savollar soni ko'rinadi.
-3. Darsni tanlang — u rasm, sarlavha, matn va tugmalar bilan kartochka bo'lib ochiladi.
-4. Kartochkadagi matnni o'qing. Rasm mavzuni vizual eslab qolishga yordam beradi.
-5. Darsni o'zlashtirgan bo'lsangiz, **✅ Darsni tugatdim** tugmasini bosing.
+3. Darsni tanlang — u 16:9 rasmli kartochka bo'lib ochiladi. Kartochkada fan nomi,
+   dars raqami, **qisqa mazmun**, **3 ta asosiy fikr**, davomiylik va daraja
+   (🟢 Boshlang'ich, 🟡 O'rta, 🔴 Yuqori) ko'rsatiladi.
+4. Qisqa mazmun bilan tanishib, **📖 Batafsil o'qish** tugmasini bosing. To'liq dars
+   quyidagi bo'limlardan iborat:
+   - 🎯 **Maqsad** — bu darsda nimani o'rganasiz;
+   - **Oddiy tilda tushuntirish** — murakkab atamalarsiz izoh;
+   - **Hayotiy misol** — mavzuni kundalik hayotga bog'lash;
+   - 🔑 **Asosiy fikrlar** — yodda qolishi kerak bo'lgan 3 ta fikr;
+   - 💡 **Eslab qolish siri** — mnemonika yoki qisqa qoida;
+   - ✍️ **Mini mashq** — o'zingiz bajarib ko'radigan kichik topshiriq;
+   - ✅ **Xulosa** — darsning eng muhim yakuni.
+5. **🖼️ Kartochkaga qaytish** rasmli ko'rinishga qaytaradi.
+6. **⬅️ Oldingi dars** va **➡️ Keyingi dars** bilan shu fan ichidagi mavzular orasida
+   yuring — darslar tartib bilan o'rganish uchun moslashgan.
+7. **🧠 AI Ustozga so'rash** tugmasi AI rejimini aynan shu dars konteksti bilan ochadi.
+   «Buni oddiyroq tushuntirib bering», «Hayotiy misol keltiring» yoki «Menga mini
+   mashq bering» deb yozishingiz mumkin.
+8. Darsni o'zlashtirgan bo'lsangiz, **✅ Darsni tugatdim** tugmasini bosing.
    Tugatilgan darslar ro'yxatda ✅ bilan belgilanadi.
-6. **📝 Test yechish** orqali shu fan bo'yicha testni boshlashingiz mumkin.
+9. **📝 Test yechish** orqali shu fan bo'yicha testni boshlashingiz mumkin.
 
 Darsni faqat bir marta tugatilgan deb belgilash mumkin — takroriy bosish kunlik
-rejani qayta oshirmaydi.
+rejani qayta oshirmaydi. Tugatish kartochkada ham, batafsil o'qish ekranida ham
+ishlaydi.
 
 Har bir dars uchun alohida rasm tayyorlangan. Agar rasm yuklanmasa yoki dars matni
 juda uzun bo'lsa, bot darsni matnli kartochka sifatida ochadi — mazmun yo'qolmaydi.
+
+### Darsni o'rganish tartibi
+
+1. Kartochkadagi qisqa mazmun va asosiy fikrlarni o'qing.
+2. **📖 Batafsil o'qish** da maqsad va oddiy tushuntirishni o'qing.
+3. Hayotiy misolni o'zingizga moslab qayta ayting.
+4. Mini mashqni daftarga yoki chatga yozib bajaring.
+5. Xulosani o'qib, **✅ Darsni tugatdim** ni bosing.
+6. **📝 Test yechish** bilan bilimingizni sinang; xato bo'lsa, tahlildagi izohni
+   o'qib, darsga qaytib takrorlang.
+7. Tushunmagan joyda **🧠 AI Ustozga so'rash** dan foydalaning.
 
 ### Fanlar
 
@@ -144,11 +172,25 @@ hali bajarilmagan foydalanuvchilarga yuboriladi.
 3. Javob kelguncha bot yozayotganini ko'rsatadi.
 4. **⬅️ Chiqish** tugmasi yoki menyu tugmasi rejimdan chiqaradi.
 
+### Dars bo'yicha AI
+
+Dars kartochkasi yoki batafsil o'qish ekranidagi **🧠 AI Ustozga so'rash** tugmasini
+bossangiz, AI shu dars mazmuni bilan tanishib javob beradi:
+
+- tushunarsiz joyni soddaroq qayta tushuntiradi;
+- darsga mos hayotiy misol keltiradi;
+- qisqa mini mashq beradi;
+- darsda yo'q ma'lumot bo'lsa, buni alohida aytadi.
+
+Savol-javob davomida dars konteksti saqlanadi. Boshqa mavzuga o'tish uchun
+**⬅️ Chiqish** ni bosing yoki istalgan menyu tugmasini tanlang.
+
 Cheklovlar:
 
 - kuniga **30 ta** savol (sozlamaga qarab o'zgaradi);
 - savollar orasida kamida **3 soniya**;
-- AI kaliti sozlanmagan bo'lsa, javob dars bazasidan olinadi.
+- AI kaliti sozlanmagan bo'lsa, javob dars bazasidan olinadi — dars konteksti
+  bo'lsa, aynan shu darsdan parcha ko'rsatiladi.
 
 AI javoblari umumiy ma'lumot uchun; muhim qarorlardan oldin darslik bilan
 tekshirib ko'ring.
@@ -206,10 +248,13 @@ tezlik limiti yuzaga kelsa, bot kutib qayta urinadi.
 
 - Profil, test natijalari, dars progressi va AI suhbat tarixi bot egasining
   serveridagi SQLite bazasida saqlanadi.
-- AI kaliti sozlangan bo'lsa, savol matni javob olish uchun tanlangan AI
-  provayderiga yuboriladi.
-- Bot tokeni va AI kaliti ochiq kodda saqlanmaydi; ular faqat `.env` faylida.
+- AI kaliti sozlangan bo'lsa, savol matni va dars konteksti javob olish uchun
+  tanlangan AI provayderiga yuboriladi.
+- Bot tokeni va AI kaliti ochiq kodda saqlanmaydi; ular faqat `.env` faylida yoki
+  hostingning environment o'zgaruvchilarida bo'ladi.
 - `.env` fayli va baza GitHub'ga yuborilmaydi.
+- Render bepul tarifida baza restartda yangilanishi mumkin; doimiy saqlash uchun
+  serverga joylash qo'llanmasidagi Oracle usulidan foydalaning.
 
 ## Ko'p uchraydigan savollar
 
@@ -239,5 +284,19 @@ bildirishnoma yoqilganini tekshiring. Serverda eslatmalar o'chirilgan bo'lishi h
 mumkin (`DAILY_REMINDERS_ENABLED=false`).
 
 **Dars yoki test qo'shmoqchiman.**
-`content/seed_data.json` faylini tahrirlab, botni qayta ishga tushiring. Batafsil:
+`content/seed_data.json` faylini tahrirlab, botni qayta ishga tushiring. Har bir
+darsda `summary`, `key_points`, `level` va `duration_min` bo'lishi kerak. Batafsil:
 [LOYIHA.md](LOYIHA.md).
+
+**Botni serverga qanday joylayman?**
+[Serverga joylash qo'llanmasi](SERVERGA_JOYLASH.md) dan foydalaning. Render bepul
+tarifi tez sinov uchun, Oracle Cloud Always Free esa doimiy baza uchun mos.
+
+**Render'da bot javob bermayapti yoki uxlab qolyapti.**
+Render bepul xizmati 15 daqiqa harakatsizlikdan keyin uxlaydi. UptimeRobot bilan
+`/health` manzilini har 5 daqiqada tekshirib turing. Birinchi xabar 30–60 soniya
+kechikishi mumkin.
+
+**Serverdan keyin natijalarim yo'qoldi.**
+Render bepul tarifida doimiy disk yo'q. Doimiy saqlash uchun Oracle Cloud Always
+Free + Docker usulini tanlang yoki bazani muntazam zaxiralang.

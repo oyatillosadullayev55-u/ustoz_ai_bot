@@ -58,23 +58,105 @@ def get_lessons_keyboard(
     return builder.as_markup()
 
 
+def _lesson_nav_row(
+    builder: InlineKeyboardBuilder,
+    *,
+    prev_lesson_id: int | None,
+    next_lesson_id: int | None,
+) -> None:
+    buttons = []
+    if prev_lesson_id is not None:
+        buttons.append(
+            InlineKeyboardButton(
+                text="⬅️ Oldingi dars",
+                callback_data=f"lesson:view:{prev_lesson_id}",
+            )
+        )
+    if next_lesson_id is not None:
+        buttons.append(
+            InlineKeyboardButton(
+                text="➡️ Keyingi dars",
+                callback_data=f"lesson:view:{next_lesson_id}",
+            )
+        )
+    if buttons:
+        builder.row(*buttons)
+
+
 def get_lesson_keyboard(
-    *, lesson_id: int, subject_id: int, is_completed: bool
+    *,
+    lesson_id: int,
+    subject_id: int,
+    is_completed: bool,
+    prev_lesson_id: int | None = None,
+    next_lesson_id: int | None = None,
 ) -> InlineKeyboardMarkup:
     builder = InlineKeyboardBuilder()
+    builder.button(
+        text="📖 Batafsil o'qish", callback_data=f"lesson:read:{lesson_id}"
+    )
     if not is_completed:
         builder.button(
             text="✅ Darsni tugatdim",
             callback_data=f"lesson:complete:{lesson_id}",
         )
     builder.button(
-        text="📝 Test yechish", callback_data=f"quiz:subject:{subject_id}"
+        text="🧠 AI Ustozga so'rash", callback_data=f"lesson:ask:{lesson_id}"
     )
     builder.button(
-        text="⬅️ Darslar", callback_data=f"lesson:subject:{subject_id}"
+        text="📝 Test yechish", callback_data=f"quiz:subject:{subject_id}"
     )
-    builder.button(text="🏠 Bosh menyu", callback_data="menu:home")
     builder.adjust(1)
+    _lesson_nav_row(
+        builder,
+        prev_lesson_id=prev_lesson_id,
+        next_lesson_id=next_lesson_id,
+    )
+    builder.row(
+        InlineKeyboardButton(
+            text="⬅️ Darslar", callback_data=f"lesson:subject:{subject_id}"
+        ),
+        InlineKeyboardButton(text="🏠 Menyu", callback_data="menu:home"),
+    )
+    return builder.as_markup()
+
+
+def get_lesson_details_keyboard(
+    *,
+    lesson_id: int,
+    subject_id: int,
+    is_completed: bool,
+    prev_lesson_id: int | None = None,
+    next_lesson_id: int | None = None,
+) -> InlineKeyboardMarkup:
+    builder = InlineKeyboardBuilder()
+    builder.button(
+        text="🖼️ Kartochkaga qaytish",
+        callback_data=f"lesson:view:{lesson_id}",
+    )
+    if not is_completed:
+        builder.button(
+            text="✅ Darsni tugatdim",
+            callback_data=f"lesson:complete:{lesson_id}",
+        )
+    builder.button(
+        text="🧠 AI Ustozga so'rash", callback_data=f"lesson:ask:{lesson_id}"
+    )
+    builder.button(
+        text="📝 Test yechish", callback_data=f"quiz:subject:{subject_id}"
+    )
+    builder.adjust(1)
+    _lesson_nav_row(
+        builder,
+        prev_lesson_id=prev_lesson_id,
+        next_lesson_id=next_lesson_id,
+    )
+    builder.row(
+        InlineKeyboardButton(
+            text="⬅️ Darslar", callback_data=f"lesson:subject:{subject_id}"
+        ),
+        InlineKeyboardButton(text="🏠 Menyu", callback_data="menu:home"),
+    )
     return builder.as_markup()
 
 

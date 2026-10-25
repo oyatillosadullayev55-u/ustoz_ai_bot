@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: ustozai-bot
+    runtime: docker
+    plan: free
+    region: frankfurt
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+      - key: ADMIN_IDS
+        sync: false
+      - key: AI_ENABLED
+        value: "false"
+      - key: AI_API_KEY
+        sync: false
+      - key: AI_BASE_URL
+        value: https://api.openai.com/v1
+      - key: AI_MODEL
+        value: gpt-4o-mini
+      - key: DATABASE_PATH
+        value: /app/data/ustoz_ai.db
+      - key: DAILY_REMINDERS_ENABLED
+        value: "true"
+      - key: DAILY_REMINDER_HOUR
+        value: "19"

@@ -28,6 +28,7 @@ from handlers import (
     start,
 )
 from handlers import settings as user_settings
+from services.health_server import start_health_server, stop_health_server
 from services.reminders import run_daily_reminders
 
 logger = logging.getLogger(__name__)
@@ -111,27 +112,29 @@ async def on_error(event: ErrorEvent) -> None:
 
 
 async def run_bot(settings: Settings) -> None:
-    await init_db()
-
-    bot = Bot(
-        token=settings.bot_token,
-        default=DefaultBotProperties(parse_mode=ParseMode.HTML),
-    )
-    dispatcher = Dispatcher(storage=MemoryStorage())
-    dispatcher.errors.register(on_error)
-    dispatcher.include_router(start.router)
-    dispatcher.include_router(ai_tutor.router)
-    dispatcher.include_router(lessons.router)
-    dispatcher.include_router(quizzes.router)
-    dispatcher.include_router(progress.router)
-    dispatcher.include_router(daily_plan.router)
-    dispatcher.include_router(user_settings.router)
-    dispatcher.include_router(admin.router)
-    dispatcher.include_router(menu.router)
-
+    health_runner = await start_health_server()
+    bot: Bot | None = None
     reminder_task: asyncio.Task[None] | None = None
 
     try:
+        await init_db()
+
+        bot = Bot(
+            token=settings.bot_token,
+            default=DefaultBotProperties(parse_mode=ParseMode.HTML),
+        )
+        dispatcher = Dispatcher(storage=MemoryStorage())
+        dispatcher.errors.register(on_error)
+        dispatcher.include_router(start.router)
+        dispatcher.include_router(ai_tutor.router)
+        dispatcher.include_router(lessons.router)
+        dispatcher.include_router(quizzes.router)
+        dispatcher.include_router(progress.router)
+        dispatcher.include_router(daily_plan.router)
+        dispatcher.include_router(user_settings.router)
+        dispatcher.include_router(admin.router)
+        dispatcher.include_router(menu.router)
+
         bot_info = await bot.get_me()
         logger.info("UstozAI ishga tushdi: @%s", bot_info.username)
 
@@ -151,7 +154,9 @@ async def run_bot(settings: Settings) -> None:
             reminder_task.cancel()
             with suppress(asyncio.CancelledError):
                 await reminder_task
-        await bot.session.close()
+        if bot is not None:
+            await bot.session.close()
+        await stop_health_server(health_runner)
 
 
 def main() -> None:

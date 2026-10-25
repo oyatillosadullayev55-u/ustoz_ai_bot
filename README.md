@@ -6,8 +6,9 @@ O'zbek tilida ishlaydigan to'liq ta'lim Telegram boti. **Python 3**, **aiogram 3
 **SQLite** va **aiosqlite** asosida qurilgan.
 
 > **Holat: barcha asosiy bo'limlar tayyor.** Ro'yxatdan o'tish, AI Ustoz, 10 fan
-> bo'yicha rasmli darslar, 4 variantli testlar, natijalar statistikasi, kunlik reja,
-> sozlamalar, admin panel, dars qidiruvi va kunlik eslatmalar ishlaydi.
+> bo'yicha rasmli darslar (qisqa mazmun, asosiy fikrlar, batafsil izoh va mini mashq),
+> 80 savol, natijalar statistikasi, kunlik reja, sozlamalar, admin panel, dars qidiruvi,
+> kunlik eslatmalar va bepul serverga joylash tayyor.
 
 ## Hujjatlar
 
@@ -15,6 +16,8 @@ O'zbek tilida ishlaydigan to'liq ta'lim Telegram boti. **Python 3**, **aiogram 3
   AI cheklovlari, testlar va xavfsizlik.
 - [Foydalanuvchi qo'llanmasi](docs/FOYDALANISH.md) — botdan foydalanish, buyruqlar,
   admin panelni sozlash va ko'p uchraydigan savollar.
+- [Serverga joylash](docs/SERVERGA_JOYLASH.md) — Render bepul tarifi, Oracle Cloud
+  Always Free, Docker, health-check va ma'lumotni saqlash bo'yicha qo'llanma.
 - [Kod fayllari hujjati](docs/kod/README.md) — har bir Python fayli, kontent, test va
   infratuzilma fayli uchun alohida markdown hujjat.
 - [Dars kartochkalari dizayni](docs/DARS_DIZAYNI.md) — 20 rasm, kartochka tuzilishi,
@@ -24,11 +27,13 @@ O'zbek tilida ishlaydigan to'liq ta'lim Telegram boti. **Python 3**, **aiogram 3
 
 - `/start` — yangi foydalanuvchini ism va bilim darajasi orqali ro'yxatdan o'tkazadi.
 - **AI Ustoz** — savol-javob rejimi. AI kaliti ulangan bo'lsa provayderdan javob oladi;
-  kalit bo'lmasa dars bazasidan mos javob qidiradi. Kunlik limit va so'rovlar orasidagi
-  tanaffus amal qiladi.
-- **Darslar** — 10 fan, 20 dars. Har bir dars 16:9 rasm, sarlavha, matn va tugmalar
-  bilan kartochka ko'rinishida ochiladi; "Tugatdim" belgisi va shu darsdan testga
-  o'tish mavjud.
+  kalit bo'lmasa dars bazasidan mos javob qidiradi. Darsdagi **🧠 AI Ustozga so'rash**
+  tugmasi AI ga shu dars mazmunini beradi va tushunarsiz joyni dars asosida tushuntiradi.
+  Kunlik limit va so'rovlar orasidagi tanaffus amal qiladi.
+- **Darslar** — 10 fan, 20 dars. Har bir dars 16:9 rasmli kartochkada qisqa mazmun,
+  3 ta asosiy fikr, davomiylik va daraja bilan ochiladi. **📖 Batafsil o'qish** to'liq
+  izoh, hayotiy misol va mini mashqni ko'rsatadi; oldingi/keyingi darsga o'tish,
+  **✅ Darsni tugatdim**, **🧠 AI Ustozga so'rash** va **📝 Test yechish** tugmalari bor.
 - **Dars qidiruvi** — `/qidiruv fotosintez` yoki `/search fotosintez` orqali sarlavha
   va matn bo'yicha 5 tagacha natija.
 - **Testlar** — har bir urinishda 5 ta tasodifiy savol, 4 ta variant. To'g'ri javob
@@ -41,8 +46,11 @@ O'zbek tilida ishlaydigan to'liq ta'lim Telegram boti. **Python 3**, **aiogram 3
   bajarilmagan va bildirishnomasi yoqilgan foydalanuvchilarga eslatma.
 - **Sozlamalar** — bilim darajasi, bildirishnomalar, joriy til va AI holati.
 - **Admin panel** — `/admin`: statistika va barcha foydalanuvchilarga xabar yuborish.
+- **Bepul server** — Render uchun `render.yaml`, Docker uchun `Dockerfile` va
+  `docker-compose.yml`, `/health` tekshiruvi. Batafsil: [serverga joylash](docs/SERVERGA_JOYLASH.md).
 - Xatolar `logs/bot.log` fayliga yoziladi; bot kutilmagan xatodan qulab tushmaydi.
-- Bot tokeni va AI kaliti faqat `.env` faylidan o'qiladi.
+- Bot tokeni va AI kaliti faqat `.env` yoki hostingdagi environment o'zgaruvchilaridan
+  o'qiladi.
 - Ruff lint va GitHub Actions CI har bir push'da tekshiriladi.
 
 ### O'quv kontenti
@@ -60,7 +68,8 @@ O'zbek tilida ishlaydigan to'liq ta'lim Telegram boti. **Python 3**, **aiogram 3
 | Python | 2 |
 | Dart va Flutter | 2 |
 
-Jami **10 fan**, **20 dars**, **60 savol**. Har bir dars uchun 16:9 rasm, har bir
+Jami **10 fan**, **20 dars**, **80 savol**. Har bir darsda 16:9 rasm, qisqa mazmun,
+3 ta asosiy fikr, batafsil izoh va mini mashq; har bir darsda 4 tadan savol, har bir
 savolda 4 ta variant va izoh bor.
 
 ## Muhim: Python versiyasi
@@ -71,7 +80,8 @@ Python 3.14 va 3.15 hozircha ishlatilmasin: aiogram 3.22 talab qiladigan
 `pydantic` va `aiohttp` paketlarining bu versiyalar uchun tayyor o'rnatish fayllari
 yo'q. Natijada Windows'da "Microsoft Visual C++ 14.0 is required" xatosi chiqadi.
 
-Loyiha **Python 3.13.15**, **aiogram 3.22.0** va **aiosqlite 0.22.1** bilan tekshirilgan.
+Loyiha **Python 3.13.15**, **aiogram 3.22.0**, **aiohttp 3.12.15** va
+**aiosqlite 0.22.1** bilan tekshirilgan.
 
 ```powershell
 py -0p
@@ -188,6 +198,7 @@ DAILY_REMINDER_HOUR=19
 | `AI_HISTORY_LIMIT` | Suhbat tarixidan yuboriladigan xabarlar soni (0–20) |
 | `DAILY_REMINDERS_ENABLED` | Kunlik eslatmalarni yoqish (true/false) |
 | `DAILY_REMINDER_HOUR` | Eslatma soati, UTC+5 (0–23) |
+| `PORT` | Health-check HTTP serveri porti; Render o'zi beradi, lokalda bo'sh qoladi |
 
 `.env` faylini GitHub'ga **hech qachon** yubormang — u `.gitignore` ichida.
 
@@ -226,7 +237,7 @@ Kutilgan natija:
 
 ```text
 INFO | database.db | Ma'lumotlar bazasi tayyor: ...\ustoz_ai.db
-INFO | database.seed | Kontent yuklandi: 10 fan, 20 dars, 60 savol.
+INFO | database.seed | Kontent yuklandi: 10 fan, 20 dars, 80 savol.
 INFO | bot | UstozAI ishga tushdi: @ustoz_ai_2026_bot
 ```
 
@@ -236,12 +247,54 @@ Birinchi ishga tushishda avtomatik yaratiladi:
 
 - `ustoz_ai.db` — 8 jadval bilan SQLite bazasi;
 - `logs/bot.log` — xatolar jurnali;
-- 10 fan, 20 dars va 60 savol bazaga yuklanadi.
+- 10 fan, 20 dars va 80 savol bazaga yuklanadi.
+
+## Bepul serverga joylash
+
+### 1-usul: Render (eng tez, bepul)
+
+[![Deploy to Render](https://render.com/images/deploy-to-render.png)](https://render.com/deploy?repo=https://github.com/oyatillosadullayev55-u/ustoz_ai_bot)
+
+1. Havolani oching → GitHub hisobingiz bilan kiring → **Apply**.
+2. `BOT_TOKEN` va `ADMIN_IDS` qiymatlarini kiriting (`AI_API_KEY` ixtiyoriy).
+3. Render `Dockerfile` asosida botni quradi va `/health` ni tekshiradi.
+4. Deploy tugagach, Telegramda botni ochib `/start` yuboring.
+
+Muhim cheklovlar:
+
+- Render bepul web-service 15 daqiqa harakatsizlikdan keyin uxlaydi; birinchi javob
+  30–60 soniya kutishi mumkin. **UptimeRobot** yoki **cron-job.org** bilan har 5
+  daqiqada `https://<xizmat-nomi>.onrender.com/health` manzilini chaqirib turing.
+- Bepul tarifda doimiy disk yo'q: qayta ishga tushish yoki yangi deployda SQLite
+  bazasi (foydalanuvchilar, natijalar, rejalar) nolga tushadi. Bu faqat sinov uchun
+  qulay.
+- Telegram polling rejimida bir vaqtda faqat bitta bot nusxasi ishlashi kerak.
+
+### 2-usul: Oracle Cloud Always Free (doimiy baza)
+
+Oracle Cloud'ning Always Free VM'ida `docker compose` ishlating — baza `data/`
+papkasida saqlanadi va qayta ishga tushishda yo'qolmaydi. To'liq qadam-baqadam
+qo'llanma: [docs/SERVERGA_JOYLASH.md](docs/SERVERGA_JOYLASH.md).
+
+Lokal Docker sinovi:
+
+```powershell
+Copy-Item .env.example .env
+notepad .env
+docker compose up -d --build
+docker compose logs -f
+```
+
+`http://localhost:8080/health` manzili `{"status": "ok", ...}` qaytarishi kerak.
+`.env` Docker image ichiga ko'chirilmaydi — u `.dockerignore` da.
 
 ## Telegram'da tekshirish
 
 1. `/start` → ism → daraja → asosiy menyu.
-2. **📚 Darslar** → fan → dars → rasmli kartochkadagi matnni o'qing → **✅ Tugatdim**.
+2. **📚 Darslar** → fan → dars → rasmli kartochkadagi qisqa mazmun va asosiy fikrlarni
+   o'qing → **📖 Batafsil o'qish** → to'liq izoh va mini mashq → **✅ Darsni tugatdim**.
+   Kartochkadagi **⬅️ Oldingi dars** / **➡️ Keyingi dars** bilan mavzular orasida
+   yuring, **🧠 AI Ustozga so'rash** bilan shu dars bo'yicha savol bering.
 3. `/qidiruv fotosintez` → qidiruv natijasidan darsni oching.
 4. **📝 Testlar** → fan → 5 ta savolga javob bering → natija, foiz va xatolar tahlili.
 5. **📊 Mening natijalarim** → darslar, testlar, o'rtacha natija va streak.
@@ -285,6 +338,14 @@ Fanlar, darslar va savollar `content/seed_data.json` faylida saqlanadi. Format:
         {
           "id": 101,
           "title": "Salomlashish",
+          "summary": "Darsning bir-ikki gapdagi qisqa mazmuni.",
+          "key_points": [
+            "Birinchi asosiy fikr",
+            "Ikkinchi asosiy fikr",
+            "Uchinchi asosiy fikr"
+          ],
+          "level": "beginner",
+          "duration_min": 7,
           "content": "Dars matni...",
           "questions": [
             {
@@ -301,6 +362,8 @@ Fanlar, darslar va savollar `content/seed_data.json` faylida saqlanadi. Format:
 }
 ```
 
+- Har bir darsda `summary`, 1–5 ta `key_points`, `level` (`beginner`, `intermediate`
+  yoki `advanced`) va `duration_min` (1–120) bo'lishi shart.
 - Har bir savolda aynan 4 ta variant va `0`–`3` oralig'idagi `correct` bo'lishi shart.
 - Savol ID'si avtomatik `dars_id * 10 + tartib` sifatida yaratiladi.
 - JSON'ni tahrirlab, botni qayta ishga tushiring — kontent yangilanadi. JSON'dan
@@ -316,10 +379,12 @@ python tests\test_offline.py
 python tests\test_handlers_offline.py
 ```
 
-- `test_offline.py` — baza, kontent, qidiruv, natijalar, streak, AI fallback,
-  bildirishnomalar, eslatma ro'yxati va admin statistikasi. Natija: `OFFLINE_TESTS_OK`.
+- `test_offline.py` — baza, 80 savol, dars maydonlari, eski baza migratsiyasi, health
+  server, qidiruv, natijalar, streak, AI fallback va dars konteksti, bildirishnomalar,
+  eslatma ro'yxati va admin statistikasi. Natija: `OFFLINE_TESTS_OK`.
 - `test_handlers_offline.py` — to'liq handler oqimi: ro'yxatdan o'tish, 20 ta rasmning
-  mavjudligi, caption limiti, rasmli dars kartochkasi, foto xabarni yangilash, qidiruv,
+  mavjudligi, caption limiti, rasmli dars kartochkasi, asosiy fikrlar, batafsil o'qish,
+  oldingi/keyingi dars, darsni batafsil ekranda tugatish, dars bo'yicha AI, qidiruv,
   5 savolli test (bitta xato javob va tahlil), statistika, kunlik reja, sozlamalar,
   AI, `/id`, admin, xabar yuborish va kunlik eslatma. Natija: `HANDLER_FLOW_OK`.
 
@@ -353,15 +418,19 @@ ustoz_ai_bot/
 ├── requirements.txt
 ├── requirements-dev.txt
 ├── pyproject.toml            # Ruff sozlamalari
+├── Dockerfile                # Python 3.13 image
+├── docker-compose.yml        # Doimiy baza bilan lokal/server ishga tushirish
+├── render.yaml               # Render bepul web-service blueprint
+├── .dockerignore
 ├── .env.example
 ├── README.md
 ├── .github/workflows/ci.yml  # Ruff + offline testlar
 ├── assets/
 │   └── lesson_images/        # 20 ta 1280x720 dars rasmi
 ├── content/
-│   └── seed_data.json        # 10 fan, 20 dars, 60 savol
+│   └── seed_data.json        # 10 fan, 20 dars, 80 savol
 ├── database/
-│   ├── db.py                 # 8 jadval sxemasi, ulanish
+│   ├── db.py                 # 8 jadval sxemasi, ulanish va migratsiya
 │   ├── seed.py               # Kontentni yuklash
 │   ├── users.py              # Foydalanuvchilar
 │   ├── content.py            # Fanlar, darslar, qidiruv
@@ -372,8 +441,8 @@ ustoz_ai_bot/
 │   └── admin.py              # Admin statistikasi va qabul qiluvchilar
 ├── handlers/
 │   ├── start.py              # /start va ro'yxatdan o'tish
-│   ├── ai_tutor.py           # AI Ustoz rejimi
-│   ├── lessons.py            # Darslar va /qidiruv
+│   ├── ai_tutor.py           # AI Ustoz rejimi va dars konteksti
+│   ├── lessons.py            # Kartochka, batafsil o'qish, navigatsiya, /qidiruv
 │   ├── quizzes.py            # Testlar va xatolar tahlili
 │   ├── progress.py           # Natijalar
 │   ├── daily_plan.py         # Kunlik reja
@@ -386,6 +455,7 @@ ustoz_ai_bot/
 │   └── inline_buttons.py     # Barcha inline tugmalar
 ├── services/
 │   ├── ai_service.py         # AI provayderi va lokal fallback
+│   ├── health_server.py      # Render uchun /health HTTP serveri
 │   ├── lesson_media.py       # Dars rasmlari va file_id kesh
 │   └── reminders.py          # Kunlik eslatma scheduler'i
 ├── tests/
@@ -394,9 +464,11 @@ ustoz_ai_bot/
 ├── docs/
 │   ├── LOYIHA.md
 │   ├── FOYDALANISH.md
+│   ├── SERVERGA_JOYLASH.md   # Render va Oracle Cloud qo'llanmasi
 │   ├── DARS_DIZAYNI.md       # Rasmli kartochkalar dizayni
 │   └── kod/                  # Har bir kod fayli uchun hujjat
-└── logs/bot.log
+├── logs/bot.log
+└── data/                     # Docker'da doimiy SQLite bazasi (git'ga kirmaydi)
 ```
 
 ### Ma'lumotlar bazasi jadvallari
@@ -417,13 +489,18 @@ ustoz_ai_bot/
 | `database is locked` | Boshqa jarayon bazani ushlab turibdi | Bitta bot nusxasi ishlashiga ishonch hosil qiling |
 | AI javob bermayapti | Kalit yo'q yoki limit tugagan | `.env` dagi AI sozlamalarini tekshiring; limit ertaga yangilanadi |
 | Admin panel ko'rinmayapti | `ADMIN_IDS` bo'sh yoki bot qayta ishga tushirilmagan | `/id` orqali ID oling, `.env` ga yozing, botni qayta ishga tushiring |
+| Render'da bot uxlab qolyapti | Bepul tarif 15 daqiqadan keyin to'xtaydi | UptimeRobot bilan `/health` ni har 5 daqiqada chaqiring |
+| Render'dan keyin natijalar yo'qoldi | Bepul tarifda doimiy disk yo'q | Doimiy baza uchun Oracle Always Free + `docker compose` ishlating |
+| Render'da `PORT` xatosi | Health server porti band yoki noto'g'ri | `PORT` ni qo'lda yozmang; Render o'zi beradi |
 
 Batafsil ma'lumot: `logs/bot.log`.
 
 ## Xavfsizlik qoidalari
 
-- Token va API kalitlarini faqat `.env` da saqlang.
-- `.env`, baza va loglarni GitHub'ga yubormang — ular `.gitignore` da.
+- Token va API kalitlarini faqat `.env` da yoki hostingning **Environment Variables**
+  bo'limida saqlang; kodga, README'ga yoki skrinshotga yozmang.
+- `.env`, baza va loglarni GitHub'ga yubormang — ular `.gitignore` da. Docker image'ga
+  ham `.env` kirmaydi (`.dockerignore`).
 - Token oshkor bo'lsa, darhol BotFather'da `/revoke` qiling.
 - Foydalanuvchi matni uzunligi tekshiriladi; HTML matn ekranlanadi.
 - AI so'rovlarida timeout, kunlik limit va minimal tanaffus qo'llanadi.

@@ -43,6 +43,12 @@ CREATE TABLE IF NOT EXISTS lessons (
     subject_id INTEGER NOT NULL REFERENCES subjects(id) ON DELETE CASCADE,
     title TEXT NOT NULL,
     content TEXT NOT NULL,
+    summary TEXT NOT NULL DEFAULT '',
+    key_points TEXT NOT NULL DEFAULT '',
+    level TEXT NOT NULL DEFAULT 'beginner'
+        CHECK (level IN ('beginner', 'intermediate', 'advanced')),
+    duration_min INTEGER NOT NULL DEFAULT 7
+        CHECK (duration_min BETWEEN 1 AND 120),
     order_index INTEGER NOT NULL DEFAULT 0,
     is_active INTEGER NOT NULL DEFAULT 1 CHECK (is_active IN (0, 1)),
     created_at TEXT NOT NULL
@@ -136,11 +142,34 @@ async def get_connection() -> AsyncIterator[aiosqlite.Connection]:
             raise
 
 
+async def _ensure_lesson_columns(db: aiosqlite.Connection) -> None:
+    """Eski bazaga yangi dars ustunlarini qo'shadi."""
+    cursor = await db.execute("PRAGMA table_info(lessons)")
+    columns = {str(row["name"]) for row in await cursor.fetchall()}
+    additions = {
+        "summary": "TEXT NOT NULL DEFAULT ''",
+        "key_points": "TEXT NOT NULL DEFAULT ''",
+        "level": (
+            "TEXT NOT NULL DEFAULT 'beginner' "
+            "CHECK (level IN ('beginner', 'intermediate', 'advanced'))"
+        ),
+        "duration_min": (
+            "INTEGER NOT NULL DEFAULT 7 "
+            "CHECK (duration_min BETWEEN 1 AND 120)"
+        ),
+    }
+    for name, definition in additions.items():
+        if name not in columns:
+            await db.execute(f"ALTER TABLE lessons ADD COLUMN {name} {definition}")
+            logger.info("Migratsiya: lessons.%s ustuni qo'shildi.", name)
+
+
 async def init_db() -> None:
     """Jadvallarni yaratadi, kontentni yuklaydi va mavjud ma'lumotni saqlaydi."""
     async with get_connection() as db:
         await db.execute("PRAGMA journal_mode = WAL")
         await db.executescript(SCHEMA_SQL)
+        await _ensure_lesson_columns(db)
         await db.commit()
 
     from database.seed import seed_content
