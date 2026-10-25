@@ -5,7 +5,7 @@ from __future__ import annotations
 import html
 import logging
 import math
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 from aiogram import F, Router
 from aiogram.enums import ChatAction
@@ -148,8 +148,8 @@ async def ai_chat(message: Message, state: FSMContext) -> None:
         try:
             last_time = datetime.fromisoformat(last_at)
             if last_time.tzinfo is None:
-                last_time = last_time.replace(tzinfo=timezone.utc)
-            elapsed = (datetime.now(timezone.utc) - last_time).total_seconds()
+                last_time = last_time.replace(tzinfo=UTC)
+            elapsed = (datetime.now(UTC) - last_time).total_seconds()
             seconds_left = settings.ai_min_interval - elapsed
         except ValueError:
             seconds_left = 0.0

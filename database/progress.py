@@ -136,8 +136,12 @@ async def get_activity_stats(user_id: int) -> dict[str, int]:
             SELECT DISTINCT date(completed_at, '+5 hours') AS day
             FROM study_progress
             WHERE user_id = ? AND status = 'completed' AND completed_at IS NOT NULL
+            UNION
+            SELECT DISTINCT date(created_at, '+5 hours') AS day
+            FROM chat_history
+            WHERE user_id = ? AND role = 'user'
             """,
-            (user_id, user_id),
+            (user_id, user_id, user_id),
         )
         days = {row["day"] for row in await cursor.fetchall() if row["day"]}
 

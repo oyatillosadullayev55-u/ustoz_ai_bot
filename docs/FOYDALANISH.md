@@ -26,16 +26,23 @@ Qayta `/start` yuborsangiz, bot sizdan ismni yana so'ramaydi.
 | 📅 Kunlik reja | Kunlik maqsad va progress |
 | ⚙️ Sozlamalar | Daraja va bildirishnomalar |
 
+Darslarni tez topish uchun `/qidiruv so'z` buyrug'idan foydalanishingiz mumkin.
+
 ## Buyruqlar
 
 | Buyruq | Vazifasi |
 | --- | --- |
 | `/start` | Botni ishga tushirish yoki ro'yxatdan o'tish |
 | `/menu` | Bosh menyuni ochish |
+| `/qidiruv` | Darslarni nomi yoki mazmuni bo'yicha qidirish |
+| `/search` | `/qidiruv` buyrug'ining inglizcha nomi |
 | `/help` | Yordam xabari |
 | `/id` | Telegram ID raqamingizni ko'rsatish |
 | `/admin` | Admin panel (faqat adminlar uchun) |
 | `/cancel` | Admin xabar yuborish jarayonini bekor qilish |
+
+`/qidiruv` dan keyin so'zni bo'sh joy bilan yozing, masalan `/qidiruv fotosintez`.
+So'rov uzunligi 2–100 belgi bo'lishi kerak.
 
 ## Darslar
 
@@ -54,6 +61,18 @@ rejani qayta oshirmaydi.
 Ingliz tili, Matematika, Fizika, Kimyo, Biologiya, Tarix, Ona tili va adabiyot,
 Informatika, Python, Dart va Flutter. Har bir fanda 2 tadan dars bor.
 
+## Dars qidiruvi
+
+1. `/qidiruv fotosintez` kabi buyruq yuboring yoki **📚 Darslar** bo'limidagi
+   qidiruv haqidagi eslatmadan foydalaning.
+2. Bot dars nomi va matni bo'yicha mos keladigan darslarni topadi.
+3. Natijalar ro'yxatidan darsni tanlasangiz, u darhol ochiladi.
+4. Mos dars topilmasa, bot qisqaroq yoki boshqacha kalit so'z bilan urinishni
+   taklif qiladi.
+
+Qidiruvda faqat faol darslar qatnashadi va ko'pi bilan 5 ta natija ko'rsatiladi.
+So'rov 2–100 belgi oralig'ida bo'lishi shart.
+
 ## Testlar
 
 1. **📝 Testlar** tugmasini bosing yoki dars ichidan **📝 Test yechish** ni tanlang.
@@ -61,7 +80,10 @@ Informatika, Python, Dart va Flutter. Har bir fanda 2 tadan dars bor.
 3. Har bir savolda 4 ta variant bor; bittasini bosing.
 4. Savollar orasida to'g'ri javob ko'rsatilmaydi — natija test oxirida chiqadi.
 5. 5 ta savoldan so'ng foiz va tavsiya ko'rsatiladi.
-6. **🔁 Qayta yechish**, **📚 Boshqa fanlar** yoki **🏠 Bosh menyu** orqali davom eting.
+6. Xato javoblar bo'lsa, alohida xabarda qaysi savolda xato qilganingiz, siz tanlagan
+   variant va to'g'ri javob izohi ko'rsatiladi. Barcha javob to'g'ri bo'lsa, tahlil
+   xabari yuborilmaydi.
+7. **🔁 Qayta yechish**, **📚 Boshqa fanlar** yoki **🏠 Bosh menyu** orqali davom eting.
 
 Test natijasi avtomatik saqlanadi va kunlik rejaga +1 test qo'shiladi.
 
@@ -77,6 +99,10 @@ Test natijasi avtomatik saqlanadi va kunlik rejaga +1 test qo'shiladi.
 - berilgan AI savollari soni;
 - oxirgi 5 ta test natijasi.
 
+Faol kunlar hisobida testlar, tugatilgan darslar va AI Ustozga yozilgan savollar
+hisobga olinadi. Shu sababli faqat AI bilan suhbatlashgan kun ham streakni davom
+ettiradi.
+
 **🔄 Yangilash** tugmasi ma'lumotlarni qayta yuklaydi.
 
 ## Kunlik reja
@@ -90,6 +116,19 @@ Test natijasi avtomatik saqlanadi va kunlik rejaga +1 test qo'shiladi.
 4. **🔄 Yangilash** joriy holatni ko'rsatadi.
 
 Kunlik reja har kuni yangidan boshlanadi; standart maqsad 1 dars + 1 test.
+
+### Eslatmalar
+
+Agar reja kun oxirigacha bajarilmasa, bot sizga eslatma yuborishi mumkin.
+Eslatma faqat shu kun uchun reja ochilgan, bildirishnomalar yoqilgan va maqsad
+hali bajarilmagan foydalanuvchilarga yuboriladi.
+
+- Yuborish vaqti odatda **19:00** (O'zbekiston vaqti, UTC+5).
+- Eslatmada bajarilgan va rejalashtirilgan dars/test soni ko'rsatiladi.
+- Bildirishnomalarni **⚙️ Sozlamalar → 🔔 Bildirishnomalar** orqali o'chirsangiz,
+  eslatma ham yuborilmaydi.
+- Admin serverda vaqtni `DAILY_REMINDER_HOUR` orqali o'zgartiradi; butunlay
+  o'chirish uchun `DAILY_REMINDERS_ENABLED=false` qo'yiladi.
 
 ## AI Ustoz
 
@@ -114,8 +153,8 @@ tekshirib ko'ring.
 
 - **Daraja** — boshlang'ich, o'rta yoki yuqori. Tanlangan daraja AI javoblarining
   murakkabligiga ta'sir qiladi.
-- **Bildirishnomalar** — yoqing yoki o'chiring. O'chirilganda admin xabarlari
-  yuborilmaydi.
+- **Bildirishnomalar** — yoqing yoki o'chiring. O'chirilganda admin xabarlari va
+  kunlik reja eslatmalari yuborilmaydi.
 - **Til** — joriy interfeys tili (hozircha o'zbekcha).
 - **AI holati** — provayder ulangan yoki dars bazasidan ishlayotgani ko'rsatiladi.
 
@@ -188,6 +227,12 @@ yangilanadi; kalitsiz rejimda dars bazasidan javob beriladi.
 **Admin panel ko'rinmayapti.**
 `ADMIN_IDS` to'g'ri to'ldirilganini va bot qayta ishga tushirilganini tekshiring.
 `/id` orqali ID'ni aniqlang.
+
+**Kunlik eslatma kelmayapti.**
+Eslatma faqat o'sha kuni **📅 Kunlik reja** ochilgan, maqsad bajarilmagan va
+bildirishnomalar yoqilgan foydalanuvchilarga yuboriladi. Sozlamalarda
+bildirishnoma yoqilganini tekshiring. Serverda eslatmalar o'chirilgan bo'lishi ham
+mumkin (`DAILY_REMINDERS_ENABLED=false`).
 
 **Dars yoki test qo'shmoqchiman.**
 `content/seed_data.json` faylini tahrirlab, botni qayta ishga tushiring. Batafsil:

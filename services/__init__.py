@@ -1,1 +1,1 @@
-"""Loyiha servislari (AI va o'quv mantiqi keyingi bosqichlarda qo'shiladi)."""
+"""Loyiha servislari: AI Ustoz va kunlik eslatmalar."""

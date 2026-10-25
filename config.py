@@ -38,6 +38,8 @@ class Settings:
     ai_min_interval: int
     ai_max_tokens: int
     ai_history_limit: int
+    daily_reminders_enabled: bool
+    daily_reminder_hour: int
 
     def is_admin(self, telegram_id: int) -> bool:
         return telegram_id in self.admin_ids
@@ -150,4 +152,6 @@ def get_settings() -> Settings:
         ai_min_interval=_read_int("AI_MIN_INTERVAL", 3, 0, 60),
         ai_max_tokens=_read_int("AI_MAX_TOKENS", 700, 100, 4000),
         ai_history_limit=_read_int("AI_HISTORY_LIMIT", 8, 0, 20),
+        daily_reminders_enabled=_read_bool("DAILY_REMINDERS_ENABLED", True),
+        daily_reminder_hour=_read_int("DAILY_REMINDER_HOUR", 19, 0, 23),
     )

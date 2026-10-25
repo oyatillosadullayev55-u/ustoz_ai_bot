@@ -16,9 +16,11 @@ oqimlari va texnik qarorlarini tavsiflaydi.
 | Ro'yxatdan o'tish | Ism, bilim darajasi (boshlang'ich / o'rta / yuqori), ma'lumotlarni saqlash |
 | AI Ustoz | Savol-javob, AI provayderi yoki dars bazasidan fallback, kunlik limit |
 | Darslar | 10 fan, 20 dars, darsni tugatish va natijani kuzatish |
-| Testlar | Har urinishda 5 ta tasodifiy savol, 4 variant, yakuniy natija |
+| Qidiruv | Darslarni nomi va mazmuni bo'yicha topish (`/qidiruv`) |
+| Testlar | Har urinishda 5 ta tasodifiy savol, 4 variant, yakuniy natija va xato javoblar tahlili |
 | Natijalar | Testlar, o'rtacha va eng yaxshi natija, faol kunlar, streak |
 | Kunlik reja | Dars va test maqsadi, progress ko'rsatkichlari |
+| Eslatmalar | Reja bajarilmagan foydalanuvchilarga kunlik eslatma |
 | Sozlamalar | Daraja, bildirishnomalar, til va AI holati |
 | Admin panel | Statistika, foydalanuvchilarga xabar yuborish |
 | Kontent | JSON orqali fan, dars va savollarni boshqarish |
@@ -40,6 +42,7 @@ handlers/  ── FSM, validatsiya, foydalanuvchi oqimlari
    │
    ├── keyboards/  ── reply va inline tugmalar
    ├── services/ai_service.py ── AI provayderi + lokal fallback
+   ├── services/reminders.py ── kunlik eslatmalar
    ▼
 database/  ── SQL so'rovlar qatlami
    │
@@ -48,7 +51,8 @@ SQLite (WAL, foreign keys, busy_timeout)
 ```
 
 - **bot.py** — logging, Dispatcher, routerlarni ulash, xatolarni markaziy ushlash,
-  bot buyruqlarini o'rnatish va pollingni boshlash.
+  bot buyruqlarini o'rnatish, kunlik eslatma vazifasini ishga tushirish va pollingni
+  boshlash.
 - **config.py** — `.env` dan sozlamalarni o'qiydi, qiymatlarni tekshiradi.
   Sozlamalar `lru_cache` bilan bir marta o'qiladi.
 - **handlerlar** — har bir bo'lim alohida router. Har bir handler avval
@@ -56,6 +60,8 @@ SQLite (WAL, foreign keys, busy_timeout)
 - **database/** — har bir jadval uchun alohida modul; SQL faqat shu qatlamda.
 - **services/ai_service.py** — tashqi AI bilan ishlash; handler AI provayderining
   detallarini bilmaydi.
+- **services/reminders.py** — kunlik reja bo'yicha eslatmalarni yuboradi; Telegram
+  limitlarini hisobga oladi va faqat ruxsat bergan foydalanuvchilarga yozadi.
 - **time_utils.py** — UTC saqlash, UTC+5 bo'yicha kun va streak hisoblash.
 
 Routerlar tartibi muhim: `menu` routeri eng oxirida turadi, chunki unda noma'lum
@@ -119,6 +125,8 @@ va savollar o'chadi.
 4. «✅ Darsni tugatdim» birinchi bosishda `completed` holatiga o'tadi va kunlik
    rejaga +1 dars qo'shadi. Takroriy bosish qayta hisoblanmaydi.
 5. Darsdan to'g'ridan-to'g'ri shu fan testiga o'tish mumkin.
+6. `/qidiruv so'z` buyrug'i dars nomi va mazmuni bo'yicha izlaydi. So'rov 2–100
+   belgi, natijalar soni 5 ta bilan cheklangan; natijadan darsni darhol ochish mumkin.
 
 ### 3. Testlar
 
@@ -131,6 +139,9 @@ va savollar o'chadi.
    callback rad etiladi. Bir foydalanuvchi uchun `asyncio.Lock` ishlatiladi.
 6. Test yakunida natija `quiz_results` ga yoziladi, foiz hisoblanadi va kunlik
    rejaga +1 test qo'shiladi.
+7. Yakunda faqat xato javoblar bo'yicha alohida tahlil xabari yuboriladi: savol,
+   tanlangan variant, to'g'ri variant va izoh. Barcha javob to'g'ri bo'lsa, tahlil
+   yuborilmaydi. Bu to'g'ri javoblarni test davomida oshkor qilmaydi.
 
 ### 4. Statistika va streak
 
@@ -150,7 +161,8 @@ va savollar o'chadi.
 ### 6. Sozlamalar
 
 - Bilim darajasini o'zgartirish keyingi AI javoblarining uslubiga ta'sir qiladi.
-- Bildirishnomalar o'chirilgan foydalanuvchilarga admin broadcast yuborilmaydi.
+- Bildirishnomalar o'chirilgan foydalanuvchilarga admin broadcast va kunlik
+  eslatmalar yuborilmaydi.
 - Til hozircha ko'rsatiladi; interfeys matnlari o'zbek tilida.
 
 ### 7. AI Ustoz
@@ -171,6 +183,19 @@ va savollar o'chadi.
 - Broadcast: matn (1–3000 belgi) → tasdiqlash → yuborish.
 - Telegram `retry after` limiti hisobga olinadi; yakunda muvaffaqiyat va xatolar soni
   ko'rsatiladi.
+
+### 9. Kunlik eslatmalar
+
+1. `bot.py` ishga tushganda `DAILY_REMINDERS_ENABLED=true` bo'lsa, fon vazifasi
+   yaratiladi.
+2. Vazifa `DAILY_REMINDER_HOUR` (UTC+5) gacha kutadi, so'ng bugungi rejani tekshiradi.
+3. Faqat bugun `daily_goals` yozuvi bor, maqsad bajarilmagan va bildirishnomalari
+   yoqilgan foydalanuvchilar tanlanadi.
+4. Har bir foydalanuvchiga bajarilgan/rejalashtirilgan dars va test soni yuboriladi.
+5. Xabarlar orasida qisqa tanaffus qo'llanadi; `retry after` bo'lsa bir marta
+   qayta uriniladi. Xatolar logga yoziladi, keyingi foydalanuvchiga o'tiladi.
+6. Keyingi eslatma vaqti logga mahalliy vaqtda yoziladi; bot to'xtatilganda vazifa
+   bekor qilinadi.
 
 ## AI xizmati
 
@@ -198,12 +223,13 @@ status kodi qayd etiladi, kalit yoki so'rov matni emas.
 
 - Token va AI kaliti faqat `.env` da; `.env`, baza, loglar `.gitignore` da.
 - Foydalanuvchi ismi va AI javoblari HTML sifatida ekranlanadi.
-- Kiritilgan matn uzunligi tekshiriladi (ism, savol, broadcast).
+- Kiritilgan matn uzunligi tekshiriladi (ism, savol, qidiruv so'rovi, broadcast).
 - Testda to'g'ri javob yakuniy natijagacha oshkor qilinmaydi.
 - Callback ma'lumotlari qayta tekshiriladi; eskirgan holat rad etiladi.
 - Bir foydalanuvchining test javoblari `asyncio.Lock` bilan ketma-ket qayta ishlanadi.
 - AI uchun timeout, kunlik limit va minimal interval qo'llanadi.
 - Admin amallari `ADMIN_IDS` bilan cheklangan.
+- Kunlik eslatmalar faqat bildirishnomalarga ruxsat bergan foydalanuvchilarga yuboriladi.
 - Kutilmagan xatolar markaziy handler orqali logga yoziladi.
 
 ## Testlar
@@ -212,8 +238,8 @@ Loyihada Telegram'ga ulanmasdan ishlaydigan ikkita test to'plami bor:
 
 | Test | Qamrov | Natija |
 | --- | --- | --- |
-| `tests/test_offline.py` | Baza sxemasi, kontent, qidiruv, natijalar, streak, AI fallback, admin statistikasi | `OFFLINE_TESTS_OK` |
-| `tests/test_handlers_offline.py` | Ro'yxatdan o'tish, dars, 5 savolli test, statistika, reja, sozlamalar, AI, `/id`, admin, broadcast | `HANDLER_FLOW_OK` |
+| `tests/test_offline.py` | Baza sxemasi, kontent, qidiruv, savollarni ID bo'yicha olish, natijalar, streak, vaqt yordamchilari, eslatmalar, AI fallback, admin statistikasi | `OFFLINE_TESTS_OK` |
+| `tests/test_handlers_offline.py` | Ro'yxatdan o'tish, dars, qidiruv, 5 savolli test va xato tahlili, statistika, reja, sozlamalar, AI, `/id`, admin, broadcast, eslatma | `HANDLER_FLOW_OK` |
 
 Testlar vaqtinchalik SQLite faylidan foydalanadi va haqiqiy bazaga tegmaydi.
 Handler testi aiogram `FakeSession` orqali chiquvchi so'rovlarni ushlaydi; bu
@@ -222,6 +248,19 @@ tarmoqqa ulanmasdan to'liq foydalanuvchi oqimini tekshirish imkonini beradi.
 ```powershell
 python tests\test_offline.py
 python tests\test_handlers_offline.py
+```
+
+### Kod sifati va CI
+
+- `pyproject.toml` Ruff sozlamalarini saqlaydi (`E`, `F`, `W`, `I`, `UP`, `B`).
+- `requirements-dev.txt` test va lint uchun qo'shimcha paketlarni beradi.
+- `.github/workflows/ci.yml` har push va pull request'da Python 3.13 muhitida
+  Ruff va ikkala offline testni ishga tushiradi.
+
+```powershell
+pip install -r requirements-dev.txt
+ruff check .
+python -m compileall -q .
 ```
 
 ## Kontentni boshqarish
@@ -241,23 +280,31 @@ Manba: `content/seed_data.json`.
 
 ```text
 ustoz_ai_bot/
-├── bot.py                 # Kirish nuqtasi, Dispatcher, routerlar
-├── config.py              # .env sozlamalari va validatsiya
-├── time_utils.py          # UTC+5 vaqt va streak
-├── content/seed_data.json # O'quv kontenti
-├── database/              # Sxema, seed va jadval modullari
-├── handlers/              # Bo'limlar bo'yicha routerlar
-├── keyboards/             # Reply va inline klaviaturalar
-├── services/ai_service.py # AI provayderi va fallback
-├── tests/                 # Offline testlar
-└── docs/                  # Ushbu hujjat va foydalanuvchi qo'llanmasi
+├── bot.py                    # Kirish nuqtasi, Dispatcher, routerlar
+├── config.py                 # .env sozlamalari va validatsiya
+├── time_utils.py             # UTC+5 vaqt va streak
+├── pyproject.toml            # Ruff sozlamalari
+├── requirements.txt          # Ish vaqti kutubxonalari
+├── requirements-dev.txt      # Ruff va testlar uchun
+├── .github/workflows/ci.yml  # GitHub Actions CI
+├── content/seed_data.json    # O'quv kontenti
+├── database/                 # Sxema, seed va jadval modullari
+├── handlers/                 # Bo'limlar bo'yicha routerlar
+├── keyboards/                # Reply va inline klaviaturalar
+├── services/                 # AI provayderi va kunlik eslatmalar
+├── tests/                    # Offline testlar
+└── docs/                     # Hujjatlar va har bir kod fayli uchun tavsif
 ```
 
 ## Cheklovlar
 
 - FSM holati `MemoryStorage` da — bot qayta ishga tushsa, tugallanmagan test yoki
   AI suhbati holati yo'qoladi (natijalar bazada saqlanadi).
-- Eslatmalar uchun scheduler hali yo'q; kunlik reja faqat qo'lda ochiladi.
+- Eslatmalar kuniga bir marta yuboriladi va faqat shu kuni kunlik reja ochilgan,
+  maqsad bajarilmagan hamda bildirishnomalari yoqilgan foydalanuvchilarni qamrab
+  oladi; alohida vaqt tanlash imkoniyati hozircha yo'q.
+- Qidiruv SQLite `LIKE` bo'yicha ishlaydi; katta hajmdagi kontent uchun to'liq
+  matnli indeks (FTS) keyinroq qo'shilishi mumkin.
 - Interfeys faqat o'zbek tilida.
 - SQLite bitta bot nusxasi uchun mo'ljallangan; bir vaqtda bir nechta polling
   jarayoni ishlatilmasligi kerak.
@@ -265,8 +312,9 @@ ustoz_ai_bot/
 
 ## Kelgusi ishlar
 
-- Eslatmalar va kunlik reja bo'yicha avtomatik bildirishnomalar.
+- Foydalanuvchi o'zi eslatma vaqtini tanlashi.
 - Ko'proq dars, savol va fan qo'shish.
 - Natijalar bo'yicha batafsil tahlil (mavzular kesimida).
+- Qidiruvni FTS bilan tezlashtirish va filtrlar qo'shish.
 - Ko'p tilli interfeys.
 - Docker yoki server uchun deployment qo'llanmasi.

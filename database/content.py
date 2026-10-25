@@ -143,6 +143,28 @@ async def get_question(question_id: int) -> aiosqlite.Row | None:
         return await cursor.fetchone()
 
 
+async def get_questions_by_ids(
+    question_ids: list[int],
+) -> dict[int, aiosqlite.Row]:
+    """Savollarni bitta so'rovda olib, id bo'yicha lug'at qaytaradi."""
+    if not question_ids:
+        return {}
+
+    placeholders = ", ".join("?" for _ in question_ids)
+    async with get_connection() as db:
+        cursor = await db.execute(
+            f"""
+            SELECT q.id, q.lesson_id, q.question_text, q.option_a, q.option_b,
+                   q.option_c, q.option_d, q.correct_option, q.explanation
+            FROM questions AS q
+            WHERE q.id IN ({placeholders})
+            """,
+            tuple(question_ids),
+        )
+        rows = await cursor.fetchall()
+    return {int(row["id"]): row for row in rows}
+
+
 def extract_tokens(text: str, limit: int = 5) -> list[str]:
     words = re.findall(r"[0-9a-zA-Zа-яА-ЯёЁʻ'’]+", text.lower())
     tokens: list[str] = []

@@ -102,6 +102,23 @@ def get_quiz_result_keyboard(subject_id: int) -> InlineKeyboardMarkup:
     return builder.as_markup()
 
 
+def get_search_results_keyboard(lessons: Sequence) -> InlineKeyboardMarkup:
+    builder = InlineKeyboardBuilder()
+    for lesson in lessons:
+        label = f"📖 {lesson['title']}"
+        if len(label) > 60:
+            label = f"{label[:57]}..."
+        builder.button(
+            text=label, callback_data=f"lesson:view:{lesson['id']}"
+        )
+    builder.adjust(1)
+    builder.row(
+        InlineKeyboardButton(text="📚 Darslar", callback_data="lesson:subjects"),
+        InlineKeyboardButton(text="🏠 Menyu", callback_data="menu:home"),
+    )
+    return builder.as_markup()
+
+
 def get_progress_keyboard() -> InlineKeyboardMarkup:
     builder = InlineKeyboardBuilder()
     builder.button(text="🔄 Yangilash", callback_data="stats:refresh")

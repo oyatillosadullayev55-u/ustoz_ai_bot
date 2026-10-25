@@ -89,3 +89,26 @@ async def increment_goal(
             """,
             (user_id, today, lessons, quizzes, now, now),
         )
+
+
+async def get_pending_reminders(goal_date: str) -> list[aiosqlite.Row]:
+    """Bugungi rejasi bajarilmagan va bildirishnoma yoqilgan foydalanuvchilar."""
+    async with get_connection() as db:
+        cursor = await db.execute(
+            """
+            SELECT dg.user_id, u.full_name,
+                   dg.target_lessons, dg.target_quizzes,
+                   dg.completed_lessons, dg.completed_quizzes
+            FROM daily_goals AS dg
+            JOIN users AS u ON u.telegram_id = dg.user_id
+            WHERE dg.goal_date = ?
+              AND u.notifications_enabled = 1
+              AND (
+                  dg.completed_lessons < dg.target_lessons
+                  OR dg.completed_quizzes < dg.target_quizzes
+              )
+            ORDER BY dg.user_id
+            """,
+            (goal_date,),
+        )
+        return list(await cursor.fetchall())

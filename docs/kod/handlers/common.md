@@ -1,0 +1,31 @@
+# `handlers/common.py` — umumiy yordamchilar
+
+**Yo'l:** [`handlers/common.py`](../../../handlers/common.py)
+**Vazifasi:** barcha handlerlar ishlatadigan tekshiruv va xabar tahrirlash yordamchilari.
+
+## Funksiyalar
+
+| Funksiya | Vazifasi |
+|---|---|
+| `require_user(message)` | `from_user` va bazadagi foydalanuvchini tekshiradi; yo'q bo'lsa `/start` ga yo'naltiradi |
+| `require_user_callback(callback)` | Callback uchun xuddi shu tekshiruv, `show_alert` bilan |
+| `safe_edit(callback, text, markup)` | Xabarni tahrirlaydi; eskirgan xabarda yangi xabar yuboradi |
+| `progress_bar(done, target, width=8)` | `▓` va `░` belgilaridan progress bar yasaydi |
+
+## `require_user` mantiqi
+
+- `message.from_user is None` bo'lsa `None`.
+- `get_user(telegram_id)` `None` qaytarsa, foydalanuvchiga ro'yxatdan o'tish eslatmasi va bosh menyu yuboriladi.
+- Aks holda foydalanuvchi qatori qaytariladi.
+
+## `safe_edit` nima uchun kerak
+
+Telegram eski inline xabarni tahrirlashga ruxsat bermasligi mumkin (xabar o'chirilgan, juda eski yoki matn o'zgarmagan). Bunday holatda `TelegramBadRequest` tutiladi va foydalanuvchiga yangi xabar yuboriladi — handler ishdan chiqmaydi.
+
+## `progress_bar`
+
+```text
+progress_bar(1, 2) → "▓▓▓▓░░░░"
+```
+
+`target <= 0` bo'lsa bo'sh bar qaytariladi. Qiymat 1.0 dan oshmaydi.

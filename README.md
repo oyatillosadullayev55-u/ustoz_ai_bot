@@ -1,11 +1,13 @@
 # UstozAI — Bilim olish endi oson!
 
+[![CI](https://github.com/oyatillosadullayev55-u/ustoz_ai_bot/actions/workflows/ci.yml/badge.svg)](https://github.com/oyatillosadullayev55-u/ustoz_ai_bot/actions/workflows/ci.yml)
+
 O'zbek tilida ishlaydigan to'liq ta'lim Telegram boti. **Python 3**, **aiogram 3**,
 **SQLite** va **aiosqlite** asosida qurilgan.
 
 > **Holat: barcha asosiy bo'limlar tayyor.** Ro'yxatdan o'tish, AI Ustoz, 10 fan
 > bo'yicha darslar, 4 variantli testlar, natijalar statistikasi, kunlik reja,
-> sozlamalar va admin panel ishlaydi.
+> sozlamalar, admin panel, dars qidiruvi va kunlik eslatmalar ishlaydi.
 
 ## Hujjatlar
 
@@ -13,6 +15,8 @@ O'zbek tilida ishlaydigan to'liq ta'lim Telegram boti. **Python 3**, **aiogram 3
   AI cheklovlari, testlar va xavfsizlik.
 - [Foydalanuvchi qo'llanmasi](docs/FOYDALANISH.md) — botdan foydalanish, buyruqlar,
   admin panelni sozlash va ko'p uchraydigan savollar.
+- [Kod fayllari hujjati](docs/kod/README.md) — har bir Python fayli, kontent, test va
+  infratuzilma fayli uchun alohida markdown hujjat.
 
 ## Nimalar ishlaydi
 
@@ -22,15 +26,21 @@ O'zbek tilida ishlaydigan to'liq ta'lim Telegram boti. **Python 3**, **aiogram 3
   tanaffus amal qiladi.
 - **Darslar** — 10 fan, 20 dars. Dars matni, "Tugatdim" belgisi va shu darsdan testga
   o'tish.
+- **Dars qidiruvi** — `/qidiruv fotosintez` yoki `/search fotosintez` orqali sarlavha
+  va matn bo'yicha 5 tagacha natija.
 - **Testlar** — har bir urinishda 5 ta tasodifiy savol, 4 ta variant. To'g'ri javob
-  test yakunlanguncha ko'rsatilmaydi.
+  test yakunlanguncha ko'rsatilmaydi. Yakunda xato javoblar tahlili (tanlangan variant,
+  to'g'ri variant va izoh) yuboriladi.
 - **Mening natijalarim** — o'tilgan darslar, testlar soni, o'rtacha va eng yaxshi natija,
   faol kunlar, ketma-ket kunlar (streak), oxirgi 5 natija.
 - **Kunlik reja** — dars va test maqsadi, bajarilish progressi, tayyor shablonlar.
+- **Kunlik eslatmalar** — har kuni belgilangan vaqtda (UTC+5, standart 19:00) rejasi
+  bajarilmagan va bildirishnomasi yoqilgan foydalanuvchilarga eslatma.
 - **Sozlamalar** — bilim darajasi, bildirishnomalar, joriy til va AI holati.
 - **Admin panel** — `/admin`: statistika va barcha foydalanuvchilarga xabar yuborish.
 - Xatolar `logs/bot.log` fayliga yoziladi; bot kutilmagan xatodan qulab tushmaydi.
 - Bot tokeni va AI kaliti faqat `.env` faylidan o'qiladi.
+- Ruff lint va GitHub Actions CI har bir push'da tekshiriladi.
 
 ### O'quv kontenti
 
@@ -151,6 +161,9 @@ AI_DAILY_LIMIT=30
 AI_MIN_INTERVAL=3
 AI_MAX_TOKENS=700
 AI_HISTORY_LIMIT=8
+
+DAILY_REMINDERS_ENABLED=true
+DAILY_REMINDER_HOUR=19
 ```
 
 | O'zgaruvchi | Ma'nosi |
@@ -169,6 +182,8 @@ AI_HISTORY_LIMIT=8
 | `AI_MIN_INTERVAL` | So'rovlar orasidagi minimal tanaffus, soniya (0–60) |
 | `AI_MAX_TOKENS` | Bitta javob uchun maksimal token (100–4000) |
 | `AI_HISTORY_LIMIT` | Suhbat tarixidan yuboriladigan xabarlar soni (0–20) |
+| `DAILY_REMINDERS_ENABLED` | Kunlik eslatmalarni yoqish (true/false) |
+| `DAILY_REMINDER_HOUR` | Eslatma soati, UTC+5 (0–23) |
 
 `.env` faylini GitHub'ga **hech qachon** yubormang — u `.gitignore` ichida.
 
@@ -223,16 +238,21 @@ Birinchi ishga tushishda avtomatik yaratiladi:
 
 1. `/start` → ism → daraja → asosiy menyu.
 2. **📚 Darslar** → fan → dars → matnni o'qing → **✅ Tugatdim**.
-3. **📝 Testlar** → fan → 5 ta savolga javob bering → natija va foiz.
-4. **📊 Mening natijalarim** → darslar, testlar, o'rtacha natija va streak.
-5. **📅 Kunlik reja** → maqsadni tanlang (1/1, 2/2, 3/3) → bajarilish yangilanadi.
-6. **⚙️ Sozlamalar** → darajani va bildirishnomalarni o'zgartiring.
-7. **🧠 AI Ustoz** → savol yozing (2–1000 belgi) → javob oling → **⬅️ Chiqish**.
-8. `/id` → ID raqamingiz. `/help` → buyruqlar ro'yxati.
-9. Admin sifatida `/admin` → statistika va xabar yuborish.
+3. `/qidiruv fotosintez` → qidiruv natijasidan darsni oching.
+4. **📝 Testlar** → fan → 5 ta savolga javob bering → natija, foiz va xatolar tahlili.
+5. **📊 Mening natijalarim** → darslar, testlar, o'rtacha natija va streak.
+6. **📅 Kunlik reja** → maqsadni tanlang (1/1, 2/2, 3/3) → bajarilish yangilanadi.
+7. **⚙️ Sozlamalar** → darajani va bildirishnomalarni o'zgartiring.
+8. **🧠 AI Ustoz** → savol yozing (2–1000 belgi) → javob oling → **⬅️ Chiqish**.
+9. `/id` → ID raqamingiz. `/help` → buyruqlar ro'yxati.
+10. Admin sifatida `/admin` → statistika va xabar yuborish.
 
 Test paytida to'g'ri javob faqat test yakunlangandan keyin hisoblanadi; har bir
-javobdan keyin to'g'riligi oshkor qilinmaydi.
+javobdan keyin to'g'riligi oshkor qilinmaydi. Yakunda faqat xato qilingan savollar
+uchun tahlil yuboriladi.
+
+Kunlik eslatma faqat quyidagi holatda keladi: bugun kunlik reja ochilgan,
+bildirishnomalar yoqilgan va maqsad hali bajarilmagan. Standart vaqt — 19:00 (UTC+5).
 
 ## Admin panel
 
@@ -293,12 +313,23 @@ python tests\test_handlers_offline.py
 ```
 
 - `test_offline.py` — baza, kontent, qidiruv, natijalar, streak, AI fallback,
-  bildirishnomalar va admin statistikasi. Natija: `OFFLINE_TESTS_OK`.
-- `test_handlers_offline.py` — to'liq handler oqimi: ro'yxatdan o'tish, dars, 5 savolli
-  test, statistika, kunlik reja, sozlamalar, AI, `/id`, admin va xabar yuborish.
-  Natija: `HANDLER_FLOW_OK`.
+  bildirishnomalar, eslatma ro'yxati va admin statistikasi. Natija: `OFFLINE_TESTS_OK`.
+- `test_handlers_offline.py` — to'liq handler oqimi: ro'yxatdan o'tish, dars, qidiruv,
+  5 savolli test (bitta xato javob va tahlil), statistika, kunlik reja, sozlamalar,
+  AI, `/id`, admin, xabar yuborish va kunlik eslatma. Natija: `HANDLER_FLOW_OK`.
 
 Testlar vaqtinchalik bazadan foydalanadi va haqiqiy `ustoz_ai.db` ga tegmaydi.
+
+### Ruff va CI
+
+```powershell
+python -m pip install -r requirements-dev.txt
+python -m ruff check .
+```
+
+GitHub Actions workflow (`.github/workflows/ci.yml`) har bir push va pull request'da
+Ruff tekshiruvi va ikkala offline testni ishga tushiradi. CI uchun token yoki boshqa
+secret kerak emas.
 
 Boshqa foydali buyruqlar:
 
@@ -315,8 +346,11 @@ ustoz_ai_bot/
 ├── config.py                 # .env'dan sozlamalar
 ├── time_utils.py             # UTC+5 vaqt, streak hisoblash
 ├── requirements.txt
+├── requirements-dev.txt
+├── pyproject.toml            # Ruff sozlamalari
 ├── .env.example
 ├── README.md
+├── .github/workflows/ci.yml  # Ruff + offline testlar
 ├── content/
 │   └── seed_data.json        # 10 fan, 20 dars, 60 savol
 ├── database/
@@ -326,14 +360,14 @@ ustoz_ai_bot/
 │   ├── content.py            # Fanlar, darslar, qidiruv
 │   ├── progress.py           # Darslar, statistika, streak
 │   ├── quizzes.py            # Test natijalari
-│   ├── goals.py              # Kunlik maqsadlar
+│   ├── goals.py              # Kunlik maqsadlar va eslatma ro'yxati
 │   ├── chat.py               # AI suhbat tarixi va limitlar
 │   └── admin.py              # Admin statistikasi va qabul qiluvchilar
 ├── handlers/
 │   ├── start.py              # /start va ro'yxatdan o'tish
 │   ├── ai_tutor.py           # AI Ustoz rejimi
-│   ├── lessons.py            # Darslar
-│   ├── quizzes.py            # Testlar
+│   ├── lessons.py            # Darslar va /qidiruv
+│   ├── quizzes.py            # Testlar va xatolar tahlili
 │   ├── progress.py           # Natijalar
 │   ├── daily_plan.py         # Kunlik reja
 │   ├── settings.py           # Sozlamalar
@@ -344,10 +378,15 @@ ustoz_ai_bot/
 │   ├── main_menu.py          # Bosh menyu
 │   └── inline_buttons.py     # Barcha inline tugmalar
 ├── services/
-│   └── ai_service.py         # AI provayderi va lokal fallback
+│   ├── ai_service.py         # AI provayderi va lokal fallback
+│   └── reminders.py          # Kunlik eslatma scheduler'i
 ├── tests/
 │   ├── test_offline.py
 │   └── test_handlers_offline.py
+├── docs/
+│   ├── LOYIHA.md
+│   ├── FOYDALANISH.md
+│   └── kod/                  # Har bir kod fayli uchun hujjat
 └── logs/bot.log
 ```
 
@@ -380,6 +419,8 @@ Batafsil ma'lumot: `logs/bot.log`.
 - Foydalanuvchi matni uzunligi tekshiriladi; HTML matn ekranlanadi.
 - AI so'rovlarida timeout, kunlik limit va minimal tanaffus qo'llanadi.
 - Test javoblari yakuniy natijagacha oshkor qilinmaydi.
+- Kunlik eslatmalar faqat bildirishnomasi yoqilgan foydalanuvchilarga yuboriladi;
+  loglarga xabar matni emas, faqat foydalanuvchi ID'si yoziladi.
 
 ## GitHub'ga joylash
 

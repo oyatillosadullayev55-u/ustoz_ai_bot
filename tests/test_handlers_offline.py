@@ -11,7 +11,7 @@ import os
 import pathlib
 import sys
 import tempfile
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 PROJECT_ROOT = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(PROJECT_ROOT))
@@ -61,6 +61,8 @@ from handlers import (  # noqa: E402
     start,
 )
 from handlers import settings as user_settings  # noqa: E402
+from services.reminders import send_due_reminders  # noqa: E402
+from time_utils import local_today  # noqa: E402
 
 USER_ID = 999000001
 BOT_ID = 123456789
@@ -162,7 +164,7 @@ async def main() -> None:
         update_id += 1
         message = Message(
             message_id=update_id,
-            date=datetime.now(timezone.utc),
+            date=datetime.now(UTC),
             chat=chat,
             from_user=user,
             text=text,
@@ -173,7 +175,7 @@ async def main() -> None:
 
     callback_message = Message(
         message_id=9000,
-        date=datetime.now(timezone.utc),
+        date=datetime.now(UTC),
         chat=chat,
         from_user=bot_user,
         text="inline",
@@ -206,7 +208,11 @@ async def main() -> None:
     fake.calls.clear()
     await send_callback("level:intermediate")
     row = await get_user(USER_ID)
-    check(row is not None and row["level"] == "intermediate", "foydalanuvchi bazaga saqlandi", errors)
+    check(
+        row is not None and row["level"] == "intermediate",
+        "foydalanuvchi bazaga saqlandi",
+        errors,
+    )
     check(
         any("Ro'yxatdan o'tish yakunlandi" in text for text in sent_texts(fake)),
         "ro'yxatdan o'tish tasdiqlandi",
@@ -234,16 +240,48 @@ async def main() -> None:
     fake.calls.clear()
     await send_callback("lesson:view:501")
     check("Hujayra tuzilishi" in last_text(fake), "dars matni ochildi", errors)
-    check("lesson:complete:501" in last_inline_callbacks(fake), "darsni tugatish tugmasi bor", errors)
+    check(
+        "lesson:complete:501" in last_inline_callbacks(fake),
+        "darsni tugatish tugmasi bor",
+        errors,
+    )
 
     fake.calls.clear()
     await send_callback("lesson:complete:501")
     check("Bu dars tugatilgan" in last_text(fake), "dars tugatilgan deb belgilandi", errors)
-    check("lesson:complete:501" not in last_inline_callbacks(fake), "tugatish tugmasi olib tashlandi", errors)
+    check(
+        "lesson:complete:501" not in last_inline_callbacks(fake),
+        "tugatish tugmasi olib tashlandi",
+        errors,
+    )
     goal = await get_today_goal(USER_ID)
     check(int(goal["completed_lessons"]) == 1, "kunlik reja darsni sanadi", errors)
 
-    # 3. Test oqimi: har bir savolga to'g'ri javob beriladi
+    # 2b. Dars qidiruvi
+    fake.calls.clear()
+    await send_text("/qidiruv fotosintez")
+    check("Qidiruv natijalari" in last_text(fake), "qidiruv natijalari chiqdi", errors)
+    check("Fotosintez" in last_text(fake), "qidiruvda fotosintez darsi topildi", errors)
+    search_callbacks = [
+        item
+        for item in last_inline_callbacks(fake)
+        if item.startswith("lesson:view:")
+    ]
+    check(bool(search_callbacks), "qidiruv natijasida dars tugmasi bor", errors)
+
+    fake.calls.clear()
+    await send_callback(search_callbacks[0])
+    check("Fotosintez" in last_text(fake), "qidiruvdan dars ochildi", errors)
+
+    fake.calls.clear()
+    await send_text("/qidiruv")
+    check("Dars qidiruvi" in last_text(fake), "qidiruv bo'sh bo'lsa yo'riqnoma chiqdi", errors)
+
+    fake.calls.clear()
+    await send_text("/qidiruv zzzzz")
+    check("topilmadi" in last_text(fake).lower(), "natijasiz qidiruv xabari chiqdi", errors)
+
+    # 3. Test oqimi: birinchi savolga xato, qolganlariga to'g'ri javob beriladi
     fake.calls.clear()
     await send_text("📝 Testlar")
     check("quiz:subject:5" in last_inline_callbacks(fake), "test fanlari ro'yxati chiqdi", errors)
@@ -261,9 +299,10 @@ async def main() -> None:
         question = await get_question(int(question_raw))
         assert question is not None
         correct = int(question["correct_option"])
+        option = correct if question_number > 1 else (correct + 1) % 4
 
         fake.calls.clear()
-        await send_callback(f"quiz:answer:{question['id']}:{correct}")
+        await send_callback(f"quiz:answer:{question['id']}:{option}")
 
         if question_number < 5:
             check(
@@ -272,8 +311,28 @@ async def main() -> None:
                 errors,
             )
 
-    check("Test yakunlandi" in last_text(fake), "test yakunlandi xabari chiqdi", errors)
-    check("5/5" in last_text(fake) and "100%" in last_text(fake), "natija 100% hisoblandi", errors)
+    texts = sent_texts(fake)
+    check(
+        any("Test yakunlandi" in text for text in texts),
+        "test yakunlandi xabari chiqdi",
+        errors,
+    )
+    check(
+        any("4/5" in text and "80%" in text for text in texts),
+        "natija 4/5 va 80% hisoblandi",
+        errors,
+    )
+    check(
+        any("Xatolar tahlili" in text for text in texts),
+        "xato javoblar tahlili yuborildi",
+        errors,
+    )
+    review = next((text for text in texts if "Xatolar tahlili" in text), "")
+    check(
+        "To'g'ri javob" in review and "Siz tanladingiz" in review,
+        "tahlilda tanlangan va to'g'ri javob ko'rsatildi",
+        errors,
+    )
 
     async with get_connection() as db:
         cursor = await db.execute("SELECT COUNT(*) AS total FROM quiz_results")
@@ -305,7 +364,11 @@ async def main() -> None:
     await send_callback("settings:notify")
     check("O'chirilgan" in last_text(fake), "bildirishnoma o'chirildi", errors)
     row = await get_user(USER_ID)
-    check(row is not None and int(row["notifications_enabled"]) == 0, "sozlama bazada saqlandi", errors)
+    check(
+        row is not None and int(row["notifications_enabled"]) == 0,
+        "sozlama bazada saqlandi",
+        errors,
+    )
 
     fake.calls.clear()
     await send_callback("settings:notify")
@@ -357,7 +420,11 @@ async def main() -> None:
     fake.calls.clear()
     await send_text("Sinov e'loni")
     check("Xabar ko'rinishi" in last_text(fake), "xabar ko'rinishi ko'rsatildi", errors)
-    check("admin:broadcast_confirm" in last_inline_callbacks(fake), "tasdiqlash tugmasi bor", errors)
+    check(
+        "admin:broadcast_confirm" in last_inline_callbacks(fake),
+        "tasdiqlash tugmasi bor",
+        errors,
+    )
 
     fake.calls.clear()
     await send_callback("admin:broadcast_confirm")
@@ -374,6 +441,27 @@ async def main() -> None:
     )
 
     check(not errors, "barcha handlerlar xatosiz ishladi", errors)
+
+    # 7. Kunlik eslatma (reja 2/2, bajarilgan 1 dars + 1 test)
+    fake.calls.clear()
+    sent, failed = await send_due_reminders(bot, goal_date=local_today())
+    check(
+        sent == 1 and failed == 0,
+        "kunlik eslatma bitta foydalanuvchiga yuborildi",
+        errors,
+    )
+    check(
+        any(
+            isinstance(method, SendMessage)
+            and method.chat_id == USER_ID
+            and "Kunlik eslatma" in (method.text or "")
+            and "1/2" in (method.text or "")
+            for method in fake.calls
+        ),
+        "eslatma matni foydalanuvchiga yetib bordi",
+        errors,
+    )
+
     print("\nHANDLER_FLOW_OK")
     await bot.session.close()
 

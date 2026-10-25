@@ -13,6 +13,7 @@ from aiogram.types import CallbackQuery, Message
 
 from database.content import (
     get_question,
+    get_questions_by_ids,
     get_quiz_questions,
     get_subject,
     get_subjects_with_counts,
@@ -21,6 +22,7 @@ from database.goals import increment_goal
 from database.quizzes import save_quiz_result
 from handlers.common import require_user, require_user_callback, safe_edit
 from keyboards.inline_buttons import (
+    OPTION_LETTERS,
     get_quiz_options_keyboard,
     get_quiz_result_keyboard,
     get_subjects_keyboard,
@@ -31,6 +33,7 @@ router = Router(name="quizzes")
 logger = logging.getLogger(__name__)
 
 QUIZ_SIZE = 5
+OPTION_FIELDS = ("option_a", "option_b", "option_c", "option_d")
 
 _locks: dict[int, asyncio.Lock] = {}
 
@@ -64,6 +67,41 @@ def _question_text(subject_name: str, question, index: int, total: int) -> str:
     )
 
 
+def _short(text: str, limit: int) -> str:
+    value = " ".join(str(text).split())
+    if len(value) <= limit:
+        return value
+    return f"{value[: limit - 1].rstrip()}…"
+
+
+def _option_label(question, index: int, limit: int = 80) -> str:
+    return f"{OPTION_LETTERS[index]}) {_short(question[OPTION_FIELDS[index]], limit)}"
+
+
+def _review_text(wrong_answers: list[tuple]) -> str:
+    lines = ["🔍 <b>Xatolar tahlili</b>", ""]
+    for number, (question, selected) in enumerate(wrong_answers, 1):
+        correct = int(question["correct_option"])
+        lines.append(
+            f"{number}. <b>{html.escape(_short(question['question_text'], 160))}</b>"
+        )
+        lines.append(
+            f"❌ Siz tanladingiz: <b>{html.escape(_option_label(question, selected))}</b>"
+        )
+        lines.append(
+            f"✅ To'g'ri javob: <b>{html.escape(_option_label(question, correct))}</b>"
+        )
+        explanation = _short(question["explanation"] or "", 180)
+        if explanation:
+            lines.append(f"💡 {html.escape(explanation)}")
+        lines.append("")
+
+    lines.append(
+        "Xato qilgan mavzularni darslarda takrorlab, testni qayta yeching."
+    )
+    return "\n".join(lines)
+
+
 def _result_text(
     *, subject_name: str, emoji: str, correct: int, total: int, percent: int
 ) -> str:
@@ -76,12 +114,18 @@ def _result_text(
     else:
         message = "Mashq qilishda davom eting. 💪 Darslarni o'qib, testni qayta yeching."
 
+    if correct == total:
+        review_note = "🎯 Barcha javoblar to'g'ri — xatolar yo'q!"
+    else:
+        review_note = "🔍 Xato javoblar tahlili alohida xabarda yuborildi."
+
     return (
         "🏁 <b>Test yakunlandi!</b>\n\n"
         f"{emoji} {html.escape(subject_name)}\n"
         f"✅ To'g'ri javoblar: <b>{correct}/{total}</b>\n"
         f"📊 Natija: <b>{percent}%</b>\n\n"
-        f"{message}\n\n"
+        f"{message}\n"
+        f"{review_note}\n\n"
         "📅 Natija kunlik rejaga qo'shildi."
     )
 
@@ -147,6 +191,7 @@ async def start_quiz(
         question_ids=[question["id"] for question in questions],
         index=0,
         correct=0,
+        answers=[],
         current_id=first["id"],
     )
 
@@ -194,6 +239,7 @@ async def answer_question(callback: CallbackQuery, state: FSMContext) -> None:
             return
 
         question_ids: list[int] = list(data.get("question_ids", []))
+        answers: list[dict[str, int]] = list(data.get("answers", []))
         index = int(data.get("index", 0))
         correct_total = int(data.get("correct", 0))
         subject_id = int(data["subject_id"])
@@ -213,6 +259,7 @@ async def answer_question(callback: CallbackQuery, state: FSMContext) -> None:
 
         if option == question["correct_option"]:
             correct_total += 1
+        answers.append({"question_id": question_id, "selected": option})
 
         next_index = index + 1
         if next_index >= len(question_ids):
@@ -236,6 +283,17 @@ async def answer_question(callback: CallbackQuery, state: FSMContext) -> None:
                 ),
                 get_quiz_result_keyboard(subject_id),
             )
+
+            questions = await get_questions_by_ids(question_ids)
+            wrong_answers = [
+                (questions[item["question_id"]], item["selected"])
+                for item in answers
+                if item["question_id"] in questions
+                and item["selected"] != int(questions[item["question_id"]]["correct_option"])
+            ]
+            if wrong_answers and isinstance(callback.message, Message):
+                await callback.message.answer(_review_text(wrong_answers))
+
             await callback.answer("Test yakunlandi! 🏁")
             logger.info(
                 "Test yakunlandi: user=%s, fan=%s, natija=%s/%s",
@@ -255,6 +313,7 @@ async def answer_question(callback: CallbackQuery, state: FSMContext) -> None:
         await state.update_data(
             index=next_index,
             correct=correct_total,
+            answers=answers,
             current_id=next_question["id"],
         )
         await safe_edit(

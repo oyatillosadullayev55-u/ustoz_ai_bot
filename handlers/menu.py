@@ -46,6 +46,7 @@ async def help_command(message: Message, state: FSMContext) -> None:
         "ℹ️ <b>Yordam</b>\n\n"
         "/start — botni ishga tushirish va ro'yxatdan o'tish\n"
         "/menu — bosh menyuni ochish\n"
+        "/qidiruv — darslardan mavzu bo'yicha qidirish\n"
         "/help — ushbu yordam xabari\n"
         "/id — Telegram ID raqamingiz\n\n"
         "<b>Bo'limlar:</b>\n"

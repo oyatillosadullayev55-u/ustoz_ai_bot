@@ -2,13 +2,13 @@
 
 from __future__ import annotations
 
-from datetime import date, datetime, timedelta, timezone
+from datetime import UTC, date, datetime, timedelta, timezone
 
 LOCAL_TZ = timezone(timedelta(hours=5))
 
 
 def utc_now() -> str:
-    return datetime.now(timezone.utc).isoformat(timespec="seconds")
+    return datetime.now(UTC).isoformat(timespec="seconds")
 
 
 def local_now() -> datetime:
@@ -27,7 +27,7 @@ def local_date_of(value: str | None) -> date | None:
     except ValueError:
         return None
     if parsed.tzinfo is None:
-        parsed = parsed.replace(tzinfo=timezone.utc)
+        parsed = parsed.replace(tzinfo=UTC)
     return parsed.astimezone(LOCAL_TZ).date()
 
 
@@ -50,3 +50,21 @@ def calculate_streak(days: set[str]) -> int:
         streak += 1
         cursor -= timedelta(days=1)
     return streak
+
+
+def seconds_until_local_time(
+    hour: int, minute: int = 0, *, now: datetime | None = None
+) -> float:
+    """Mahalliy vaqt bo'yicha keyingi belgilangan vaqtgacha soniyalar."""
+    if not 0 <= hour <= 23 or not 0 <= minute <= 59:
+        raise ValueError("Vaqt qiymati noto'g'ri.")
+
+    current = now or local_now()
+    if current.tzinfo is None:
+        current = current.replace(tzinfo=LOCAL_TZ)
+    current = current.astimezone(LOCAL_TZ)
+
+    target = current.replace(hour=hour, minute=minute, second=0, microsecond=0)
+    if target <= current:
+        target += timedelta(days=1)
+    return (target - current).total_seconds()

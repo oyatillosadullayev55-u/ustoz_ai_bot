@@ -6,6 +6,7 @@ import html
 import logging
 
 from aiogram import F, Router
+from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
 from aiogram.types import CallbackQuery, Message
 
@@ -14,6 +15,7 @@ from database.content import (
     get_lessons,
     get_subject,
     get_subjects_with_counts,
+    search_lessons,
 )
 from database.goals import increment_goal
 from database.progress import (
@@ -25,19 +27,25 @@ from handlers.common import require_user, require_user_callback, safe_edit
 from keyboards.inline_buttons import (
     get_lesson_keyboard,
     get_lessons_keyboard,
+    get_search_results_keyboard,
     get_subjects_keyboard,
 )
-from keyboards.main_menu import BTN_LESSONS
+from keyboards.main_menu import BTN_LESSONS, get_main_menu_keyboard
 
 router = Router(name="lessons")
 logger = logging.getLogger(__name__)
+
+SEARCH_MIN_LENGTH = 2
+SEARCH_MAX_LENGTH = 100
+SEARCH_RESULTS_LIMIT = 5
 
 
 def _subjects_text() -> str:
     return (
         "📚 <b>Darslar</b>\n\n"
         "Fan tanlang va mavzularni bosqichma-bosqich o'rganing.\n"
-        "Har bir dars oxirida test yechish tugmasi mavjud."
+        "Har bir dars oxirida test yechish tugmasi mavjud.\n\n"
+        "🔎 Mavzuni nomi bo'yicha topish: <code>/qidiruv mavzu</code>"
     )
 
 
@@ -50,6 +58,73 @@ def _lesson_text(lesson, *, completed: bool) -> str:
     if completed:
         text += "\n\n✅ <b>Bu dars tugatilgan.</b>"
     return text
+
+
+def _search_results_text(query: str, lessons) -> str:
+    lines = [
+        "🔎 <b>Qidiruv natijalari</b>",
+        "",
+        f"So'rov: <i>{html.escape(query)}</i>",
+        "",
+    ]
+    for number, lesson in enumerate(lessons, 1):
+        lines.append(
+            f"{number}. {lesson['subject_emoji']} "
+            f"<b>{html.escape(lesson['title'])}</b> — "
+            f"{html.escape(lesson['subject_name'])}"
+        )
+    lines.extend(["", "Mavzuni ochish uchun tugmani bosing:"])
+    return "\n".join(lines)
+
+
+@router.message(Command("qidiruv", "search"))
+async def search_command(message: Message, state: FSMContext) -> None:
+    await state.clear()
+    if message.from_user is None:
+        return
+    if await require_user(message) is None:
+        return
+
+    parts = (message.text or "").split(maxsplit=1)
+    query = parts[1].strip() if len(parts) == 2 else ""
+
+    if not query:
+        await message.answer(
+            "🔎 <b>Dars qidiruvi</b>\n\n"
+            "Mavzu nomini yozing: <code>/qidiruv fotosintez</code>"
+        )
+        return
+
+    if len(query) < SEARCH_MIN_LENGTH:
+        await message.answer(
+            "Qidiruv so'zi juda qisqa. Kamida 2 ta belgi kiriting."
+        )
+        return
+
+    if len(query) > SEARCH_MAX_LENGTH:
+        await message.answer(
+            f"Qidiruv matni juda uzun. {SEARCH_MAX_LENGTH} belgidan oshirmang."
+        )
+        return
+
+    results = await search_lessons(query, limit=SEARCH_RESULTS_LIMIT)
+    if not results:
+        await message.answer(
+            f"🔎 «{html.escape(query)}» bo'yicha dars topilmadi.\n\n"
+            "Boshqa so'z bilan urinib ko'ring yoki fanlar ro'yxatidan tanlang.",
+            reply_markup=get_main_menu_keyboard(),
+        )
+        return
+
+    await message.answer(
+        _search_results_text(query, results),
+        reply_markup=get_search_results_keyboard(results),
+    )
+    logger.info(
+        "Dars qidiruvi: user=%s, natija=%s",
+        message.from_user.id,
+        len(results),
+    )
 
 
 @router.message(F.text == BTN_LESSONS)

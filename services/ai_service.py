@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import asyncio
 import html
 import logging
 
@@ -153,7 +152,7 @@ async def _call_provider(
                         f"AI provayderi HTTP {response.status} qaytardi."
                     )
                 data = await response.json()
-    except asyncio.TimeoutError:
+    except TimeoutError:
         logger.warning("AI provayderi javobi timeout bilan tugadi.")
         raise AIServiceError("AI provayderi javob bermadi.") from None
     except aiohttp.ClientError:

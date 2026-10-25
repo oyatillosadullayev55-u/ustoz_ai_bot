@@ -5,6 +5,7 @@ from __future__ import annotations
 import asyncio
 import logging
 import sys
+from contextlib import suppress
 from logging.handlers import RotatingFileHandler
 
 from aiogram import Bot, Dispatcher
@@ -27,6 +28,7 @@ from handlers import (
     start,
 )
 from handlers import settings as user_settings
+from services.reminders import run_daily_reminders
 
 logger = logging.getLogger(__name__)
 
@@ -66,6 +68,7 @@ async def set_bot_commands(bot: Bot, settings: Settings) -> None:
     base_commands = [
         BotCommand(command="start", description="Botni ishga tushirish"),
         BotCommand(command="menu", description="Bosh menyuni ochish"),
+        BotCommand(command="qidiruv", description="Darslardan qidirish"),
         BotCommand(command="help", description="Yordam"),
         BotCommand(command="id", description="Telegram ID raqamingiz"),
     ]
@@ -126,14 +129,28 @@ async def run_bot(settings: Settings) -> None:
     dispatcher.include_router(admin.router)
     dispatcher.include_router(menu.router)
 
+    reminder_task: asyncio.Task[None] | None = None
+
     try:
         bot_info = await bot.get_me()
         logger.info("UstozAI ishga tushdi: @%s", bot_info.username)
 
         await set_bot_commands(bot, settings)
         await bot.delete_webhook(drop_pending_updates=False)
+
+        if settings.daily_reminders_enabled:
+            reminder_task = asyncio.create_task(run_daily_reminders(bot))
+            logger.info(
+                "Kunlik eslatmalar yoqilgan: har kuni %02d:00 (UTC+5)",
+                settings.daily_reminder_hour,
+            )
+
         await dispatcher.start_polling(bot)
     finally:
+        if reminder_task is not None:
+            reminder_task.cancel()
+            with suppress(asyncio.CancelledError):
+                await reminder_task
         await bot.session.close()
 
 

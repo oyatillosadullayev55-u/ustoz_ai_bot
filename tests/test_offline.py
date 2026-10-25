@@ -11,6 +11,7 @@ import os
 import pathlib
 import sys
 import tempfile
+from datetime import datetime
 
 PROJECT_ROOT = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(PROJECT_ROOT))
@@ -29,12 +30,14 @@ get_settings.cache_clear()
 from database.admin import get_admin_stats, get_all_user_ids  # noqa: E402
 from database.chat import add_message, get_ai_usage, get_history  # noqa: E402
 from database.content import (  # noqa: E402
+    get_questions_by_ids,
     get_quiz_questions,
     get_subjects_with_counts,
     search_lessons,
 )
 from database.db import get_connection, init_db  # noqa: E402
 from database.goals import (  # noqa: E402
+    get_pending_reminders,
     get_today_goal,
     increment_goal,
     set_goal_targets,
@@ -54,6 +57,12 @@ from database.users import (  # noqa: E402
     update_notifications,
 )
 from services.ai_service import ask_tutor  # noqa: E402
+from services.reminders import format_reminder  # noqa: E402
+from time_utils import (  # noqa: E402
+    LOCAL_TZ,
+    local_today,
+    seconds_until_local_time,
+)
 
 USER_ID = 999000001
 
@@ -90,6 +99,27 @@ async def run_tests() -> None:
     check(
         all(0 <= int(question["correct_option"]) <= 3 for question in questions),
         "to'g'ri javoblar 0-3 oralig'ida",
+    )
+
+    question_map = await get_questions_by_ids(
+        [questions[0]["id"], questions[1]["id"]]
+    )
+    check(len(question_map) == 2, "savollar ID bo'yicha bitta so'rovda olindi")
+    check(
+        question_map[questions[0]["id"]]["question_text"]
+        == questions[0]["question_text"],
+        "ID bo'yicha olingan savol matni mos keldi",
+    )
+    check(await get_questions_by_ids([]) == {}, "bo'sh ro'yxat uchun lug'at bo'sh")
+
+    noon = datetime(2026, 10, 25, 12, 0, tzinfo=LOCAL_TZ)
+    check(
+        seconds_until_local_time(19, now=noon) == 7 * 3600,
+        "keyingi eslatmagacha vaqt to'g'ri hisoblandi",
+    )
+    check(
+        seconds_until_local_time(9, now=noon) == 21 * 3600,
+        "o'tib ketgan vaqt ertangi kunga surildi",
     )
 
     hits = await search_lessons("fotosintez nima")
@@ -154,6 +184,17 @@ async def run_tests() -> None:
     check(percent == 80, "test natijasi 80% hisoblandi")
     await increment_goal(USER_ID, quizzes=1)
 
+    pending = await get_pending_reminders(local_today())
+    check(
+        len(pending) == 1 and int(pending[0]["user_id"]) == USER_ID,
+        "bajarilmagan reja uchun eslatma ro'yxati topildi",
+    )
+    reminder_text = format_reminder(str(pending[0]["full_name"]), 2, 2, 1, 1)
+    check(
+        "Kunlik eslatma" in reminder_text and reminder_text.count("1/2") == 2,
+        "eslatma matni to'g'ri shakllandi",
+    )
+
     stats = await get_user_stats(USER_ID)
     check(int(stats["quizzes"]) == 1, "statistikada 1 test bor")
     check(round(float(stats["average"])) == 80, "o'rtacha natija 80%")
@@ -192,6 +233,10 @@ async def run_tests() -> None:
     check(await update_notifications(USER_ID, False), "bildirishnoma o'chirildi")
     user = await get_user(USER_ID)
     check(int(user["notifications_enabled"]) == 0, "sozlama bazada saqlandi")
+    check(
+        await get_pending_reminders(local_today()) == [],
+        "bildirishnoma o'chirilganda eslatma ro'yxati bo'sh",
+    )
     check(await update_notifications(USER_ID, True), "bildirishnoma yoqildi")
 
     ids = await get_all_user_ids(notifications_only=True)
@@ -201,7 +246,10 @@ async def run_tests() -> None:
     check(int(admin_stats["total_users"]) == 1, "admin statistikasi foydalanuvchini ko'rsatdi")
     check(int(admin_stats["quizzes"]) == 1, "admin statistikasi testni ko'rsatdi")
     check(int(admin_stats["questions"]) == 60, "admin statistikasi 60 savolni ko'rsatdi")
-    check(round(float(admin_stats["average_score"])) == 80, "admin statistikasi o'rtachani ko'rsatdi")
+    check(
+        round(float(admin_stats["average_score"])) == 80,
+        "admin statistikasi o'rtachani ko'rsatdi",
+    )
 
     async with get_connection() as db:
         cursor = await db.execute("SELECT COUNT(*) AS total FROM users")
