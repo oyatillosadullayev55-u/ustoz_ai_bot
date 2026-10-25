@@ -6,7 +6,7 @@ O'zbek tilida ishlaydigan to'liq ta'lim Telegram boti. **Python 3**, **aiogram 3
 **SQLite** va **aiosqlite** asosida qurilgan.
 
 > **Holat: barcha asosiy bo'limlar tayyor.** Ro'yxatdan o'tish, AI Ustoz, 10 fan
-> bo'yicha darslar, 4 variantli testlar, natijalar statistikasi, kunlik reja,
+> bo'yicha rasmli darslar, 4 variantli testlar, natijalar statistikasi, kunlik reja,
 > sozlamalar, admin panel, dars qidiruvi va kunlik eslatmalar ishlaydi.
 
 ## Hujjatlar
@@ -17,6 +17,8 @@ O'zbek tilida ishlaydigan to'liq ta'lim Telegram boti. **Python 3**, **aiogram 3
   admin panelni sozlash va ko'p uchraydigan savollar.
 - [Kod fayllari hujjati](docs/kod/README.md) — har bir Python fayli, kontent, test va
   infratuzilma fayli uchun alohida markdown hujjat.
+- [Dars kartochkalari dizayni](docs/DARS_DIZAYNI.md) — 20 rasm, kartochka tuzilishi,
+  ranglar tizimi, kod oqimi va rasm almashtirish yo'riqnomasi.
 
 ## Nimalar ishlaydi
 
@@ -24,8 +26,9 @@ O'zbek tilida ishlaydigan to'liq ta'lim Telegram boti. **Python 3**, **aiogram 3
 - **AI Ustoz** — savol-javob rejimi. AI kaliti ulangan bo'lsa provayderdan javob oladi;
   kalit bo'lmasa dars bazasidan mos javob qidiradi. Kunlik limit va so'rovlar orasidagi
   tanaffus amal qiladi.
-- **Darslar** — 10 fan, 20 dars. Dars matni, "Tugatdim" belgisi va shu darsdan testga
-  o'tish.
+- **Darslar** — 10 fan, 20 dars. Har bir dars 16:9 rasm, sarlavha, matn va tugmalar
+  bilan kartochka ko'rinishida ochiladi; "Tugatdim" belgisi va shu darsdan testga
+  o'tish mavjud.
 - **Dars qidiruvi** — `/qidiruv fotosintez` yoki `/search fotosintez` orqali sarlavha
   va matn bo'yicha 5 tagacha natija.
 - **Testlar** — har bir urinishda 5 ta tasodifiy savol, 4 ta variant. To'g'ri javob
@@ -57,7 +60,8 @@ O'zbek tilida ishlaydigan to'liq ta'lim Telegram boti. **Python 3**, **aiogram 3
 | Python | 2 |
 | Dart va Flutter | 2 |
 
-Jami **10 fan**, **20 dars**, **60 savol**. Har bir savolda 4 ta variant va izoh bor.
+Jami **10 fan**, **20 dars**, **60 savol**. Har bir dars uchun 16:9 rasm, har bir
+savolda 4 ta variant va izoh bor.
 
 ## Muhim: Python versiyasi
 
@@ -237,7 +241,7 @@ Birinchi ishga tushishda avtomatik yaratiladi:
 ## Telegram'da tekshirish
 
 1. `/start` → ism → daraja → asosiy menyu.
-2. **📚 Darslar** → fan → dars → matnni o'qing → **✅ Tugatdim**.
+2. **📚 Darslar** → fan → dars → rasmli kartochkadagi matnni o'qing → **✅ Tugatdim**.
 3. `/qidiruv fotosintez` → qidiruv natijasidan darsni oching.
 4. **📝 Testlar** → fan → 5 ta savolga javob bering → natija, foiz va xatolar tahlili.
 5. **📊 Mening natijalarim** → darslar, testlar, o'rtacha natija va streak.
@@ -314,7 +318,8 @@ python tests\test_handlers_offline.py
 
 - `test_offline.py` — baza, kontent, qidiruv, natijalar, streak, AI fallback,
   bildirishnomalar, eslatma ro'yxati va admin statistikasi. Natija: `OFFLINE_TESTS_OK`.
-- `test_handlers_offline.py` — to'liq handler oqimi: ro'yxatdan o'tish, dars, qidiruv,
+- `test_handlers_offline.py` — to'liq handler oqimi: ro'yxatdan o'tish, 20 ta rasmning
+  mavjudligi, caption limiti, rasmli dars kartochkasi, foto xabarni yangilash, qidiruv,
   5 savolli test (bitta xato javob va tahlil), statistika, kunlik reja, sozlamalar,
   AI, `/id`, admin, xabar yuborish va kunlik eslatma. Natija: `HANDLER_FLOW_OK`.
 
@@ -351,6 +356,8 @@ ustoz_ai_bot/
 ├── .env.example
 ├── README.md
 ├── .github/workflows/ci.yml  # Ruff + offline testlar
+├── assets/
+│   └── lesson_images/        # 20 ta 1280x720 dars rasmi
 ├── content/
 │   └── seed_data.json        # 10 fan, 20 dars, 60 savol
 ├── database/
@@ -379,6 +386,7 @@ ustoz_ai_bot/
 │   └── inline_buttons.py     # Barcha inline tugmalar
 ├── services/
 │   ├── ai_service.py         # AI provayderi va lokal fallback
+│   ├── lesson_media.py       # Dars rasmlari va file_id kesh
 │   └── reminders.py          # Kunlik eslatma scheduler'i
 ├── tests/
 │   ├── test_offline.py
@@ -386,6 +394,7 @@ ustoz_ai_bot/
 ├── docs/
 │   ├── LOYIHA.md
 │   ├── FOYDALANISH.md
+│   ├── DARS_DIZAYNI.md       # Rasmli kartochkalar dizayni
 │   └── kod/                  # Har bir kod fayli uchun hujjat
 └── logs/bot.log
 ```

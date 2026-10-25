@@ -6,6 +6,7 @@ import html
 import logging
 
 from aiogram import F, Router
+from aiogram.exceptions import TelegramBadRequest
 from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
 from aiogram.types import CallbackQuery, Message
@@ -23,7 +24,12 @@ from database.progress import (
     get_completed_lesson_ids,
     mark_lesson_started,
 )
-from handlers.common import require_user, require_user_callback, safe_edit
+from handlers.common import (
+    progress_bar,
+    require_user,
+    require_user_callback,
+    safe_edit,
+)
 from keyboards.inline_buttons import (
     get_lesson_keyboard,
     get_lessons_keyboard,
@@ -31,6 +37,7 @@ from keyboards.inline_buttons import (
     get_subjects_keyboard,
 )
 from keyboards.main_menu import BTN_LESSONS, get_main_menu_keyboard
+from services.lesson_media import get_lesson_photo, remember_lesson_file_id
 
 router = Router(name="lessons")
 logger = logging.getLogger(__name__)
@@ -38,33 +45,105 @@ logger = logging.getLogger(__name__)
 SEARCH_MIN_LENGTH = 2
 SEARCH_MAX_LENGTH = 100
 SEARCH_RESULTS_LIMIT = 5
+LESSON_CAPTION_LIMIT = 1024
 
 
-def _subjects_text() -> str:
+def _subjects_text(subjects) -> str:
+    total_lessons = sum(int(subject["lesson_count"]) for subject in subjects)
     return (
-        "📚 <b>Darslar</b>\n\n"
-        "Fan tanlang va mavzularni bosqichma-bosqich o'rganing.\n"
-        "Har bir dars oxirida test yechish tugmasi mavjud.\n\n"
-        "🔎 Mavzuni nomi bo'yicha topish: <code>/qidiruv mavzu</code>"
+        "📚 <b>Darslar</b>\n"
+        "━━━━━━━━━━━━━━\n\n"
+        "🖼️ Har bir dars rasmli kartochka ko'rinishida ochiladi.\n"
+        f"📖 {len(subjects)} fan · {total_lessons} dars\n\n"
+        "Fan tanlang:"
     )
 
 
-def _lesson_text(lesson, *, completed: bool) -> str:
-    text = (
-        f"{lesson['subject_emoji']} <b>{html.escape(lesson['subject_name'])}</b>\n\n"
-        f"<b>{lesson['order_index']}. {html.escape(lesson['title'])}</b>\n\n"
-        f"{html.escape(lesson['content'])}"
+def _lessons_text(subject, lessons, completed_ids: set[int]) -> str:
+    completed_count = sum(
+        1 for lesson in lessons if int(lesson["id"]) in completed_ids
     )
-    if completed:
-        text += "\n\n✅ <b>Bu dars tugatilgan.</b>"
-    return text
+    return (
+        f"{subject['emoji']} "
+        f"<b>{html.escape(str(subject['name']).upper())}</b>\n"
+        "━━━━━━━━━━━━━━\n\n"
+        f"{html.escape(subject['description'])}\n\n"
+        f"📊 {completed_count}/{len(lessons)} dars · "
+        f"{progress_bar(completed_count, len(lessons))}\n\n"
+        "Mavzuni tanlang:"
+    )
+
+
+def build_lesson_card(lesson, *, completed: bool) -> str:
+    status = (
+        "✅ <b>Tugatilgan.</b> Natijangizda saqlandi."
+        if completed
+        else "💡 <b>Maslahat:</b> Matnni o'qib, «Darsni tugatdim» tugmasini bosing."
+    )
+    return (
+        f"{lesson['subject_emoji']} "
+        f"<b>{html.escape(str(lesson['subject_name']).upper())}</b>"
+        f" · <b>{lesson['order_index']}-DARS</b>\n"
+        "━━━━━━━━━━━━━━\n"
+        f"📖 <b>{html.escape(lesson['title'])}</b>\n\n"
+        f"{html.escape(str(lesson['content']).strip())}\n\n"
+        "━━━━━━━━━━━━━━\n"
+        f"{status}"
+    )
+
+
+async def _send_lesson_card(
+    callback: CallbackQuery, lesson, *, completed: bool
+) -> None:
+    message = callback.message
+    if not isinstance(message, Message):
+        return
+
+    text = build_lesson_card(lesson, completed=completed)
+    lesson_id = int(lesson["id"])
+    keyboard = get_lesson_keyboard(
+        lesson_id=lesson_id,
+        subject_id=int(lesson["subject_id"]),
+        is_completed=completed,
+    )
+    photo = get_lesson_photo(lesson_id)
+
+    if photo is None or len(text) > LESSON_CAPTION_LIMIT:
+        await safe_edit(callback, text, keyboard)
+        return
+
+    if message.photo:
+        try:
+            await message.edit_caption(caption=text, reply_markup=keyboard)
+            return
+        except TelegramBadRequest:
+            pass
+
+    try:
+        await message.delete()
+    except TelegramBadRequest:
+        pass
+
+    try:
+        sent = await message.answer_photo(
+            photo=photo, caption=text, reply_markup=keyboard
+        )
+    except TelegramBadRequest:
+        logger.warning("Dars rasmini yuborib bo'lmadi: dars=%s", lesson_id)
+        await message.answer(text, reply_markup=keyboard)
+        return
+
+    if isinstance(sent, Message) and sent.photo:
+        remember_lesson_file_id(lesson_id, sent.photo[-1].file_id)
 
 
 def _search_results_text(query: str, lessons) -> str:
     lines = [
         "🔎 <b>Qidiruv natijalari</b>",
+        "━━━━━━━━━━━━━━",
         "",
         f"So'rov: <i>{html.escape(query)}</i>",
+        f"Topildi: <b>{len(lessons)}</b> ta dars",
         "",
     ]
     for number, lesson in enumerate(lessons, 1):
@@ -135,7 +214,7 @@ async def lessons_entry(message: Message, state: FSMContext) -> None:
 
     subjects = await get_subjects_with_counts()
     await message.answer(
-        _subjects_text(),
+        _subjects_text(subjects),
         reply_markup=get_subjects_keyboard(subjects, "lesson"),
     )
 
@@ -147,7 +226,9 @@ async def show_subjects(callback: CallbackQuery) -> None:
 
     subjects = await get_subjects_with_counts()
     await safe_edit(
-        callback, _subjects_text(), get_subjects_keyboard(subjects, "lesson")
+        callback,
+        _subjects_text(subjects),
+        get_subjects_keyboard(subjects, "lesson"),
     )
     await callback.answer()
 
@@ -171,14 +252,9 @@ async def show_lessons(callback: CallbackQuery) -> None:
 
     lessons = await get_lessons(subject_id)
     completed_ids = await get_completed_lesson_ids(user["telegram_id"], subject_id)
-    text = (
-        f"{subject['emoji']} <b>{html.escape(subject['name'])}</b>\n\n"
-        f"{html.escape(subject['description'])}\n\n"
-        "Mavzuni tanlang:"
-    )
     await safe_edit(
         callback,
-        text,
+        _lessons_text(subject, lessons, completed_ids),
         get_lessons_keyboard(lessons, completed_ids, subject_id),
     )
     await callback.answer()
@@ -206,15 +282,7 @@ async def view_lesson(callback: CallbackQuery) -> None:
     completed_ids = await get_completed_lesson_ids(user_id, lesson["subject_id"])
     is_completed = lesson_id in completed_ids
 
-    await safe_edit(
-        callback,
-        _lesson_text(lesson, completed=is_completed),
-        get_lesson_keyboard(
-            lesson_id=lesson_id,
-            subject_id=lesson["subject_id"],
-            is_completed=is_completed,
-        ),
-    )
+    await _send_lesson_card(callback, lesson, completed=is_completed)
     await callback.answer()
 
 
@@ -244,14 +312,6 @@ async def mark_completed(callback: CallbackQuery) -> None:
         return
 
     await increment_goal(user_id, lessons=1)
-    await safe_edit(
-        callback,
-        _lesson_text(lesson, completed=True),
-        get_lesson_keyboard(
-            lesson_id=lesson_id,
-            subject_id=lesson["subject_id"],
-            is_completed=True,
-        ),
-    )
+    await _send_lesson_card(callback, lesson, completed=True)
     await callback.answer("Dars tugatildi ✅ Kunlik rejaga qo'shildi.")
     logger.info("Foydalanuvchi darsni tugatdi: id=%s, dars=%s", user_id, lesson_id)

@@ -56,6 +56,7 @@ Bu papkada UstozAI loyihasining **har bir kod fayli** uchun alohida markdown huj
 |---|---|
 | `services/__init__.py` | [services/index.md](services/index.md) |
 | `services/ai_service.py` | [services/ai_service.md](services/ai_service.md) |
+| `services/lesson_media.py` | [services/lesson_media.md](services/lesson_media.md) |
 | `services/reminders.py` | [services/reminders.md](services/reminders.md) |
 
 ## Testlar va kontent

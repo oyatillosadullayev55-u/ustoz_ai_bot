@@ -48,13 +48,17 @@ So'rov uzunligi 2–100 belgi bo'lishi kerak.
 
 1. **📚 Darslar** tugmasini bosing.
 2. Fan tanlang — har bir fan yonida dars va savollar soni ko'rinadi.
-3. Darsni tanlang va matnni o'qing.
-4. Darsni o'zlashtirgan bo'lsangiz, **✅ Darsni tugatdim** tugmasini bosing.
+3. Darsni tanlang — u rasm, sarlavha, matn va tugmalar bilan kartochka bo'lib ochiladi.
+4. Kartochkadagi matnni o'qing. Rasm mavzuni vizual eslab qolishga yordam beradi.
+5. Darsni o'zlashtirgan bo'lsangiz, **✅ Darsni tugatdim** tugmasini bosing.
    Tugatilgan darslar ro'yxatda ✅ bilan belgilanadi.
-5. **📝 Test yechish** orqali shu fan bo'yicha testni boshlashingiz mumkin.
+6. **📝 Test yechish** orqali shu fan bo'yicha testni boshlashingiz mumkin.
 
 Darsni faqat bir marta tugatilgan deb belgilash mumkin — takroriy bosish kunlik
 rejani qayta oshirmaydi.
+
+Har bir dars uchun alohida rasm tayyorlangan. Agar rasm yuklanmasa yoki dars matni
+juda uzun bo'lsa, bot darsni matnli kartochka sifatida ochadi — mazmun yo'qolmaydi.
 
 ### Fanlar
 

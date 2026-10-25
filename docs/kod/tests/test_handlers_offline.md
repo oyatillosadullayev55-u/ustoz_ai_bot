@@ -13,7 +13,7 @@ Muvaffaqiyatli yakun: `HANDLER_FLOW_OK`.
 
 ## Qanday ishlaydi
 
-- `FakeSession` — `Bot` sessiyasining o'rnini bosadi; yuborilgan `SendMessage`, `EditMessageText` kabi metodlarni ro'yxatga yozadi va `True` qaytaradi.
+- `FakeSession` — `Bot` sessiyasining o'rnini bosadi; yuborilgan `SendMessage`, `SendPhoto`, `EditMessageText`, `EditMessageCaption` kabi metodlarni ro'yxatga yozadi va `True` qaytaradi.
 - `Message(...).as_(bot)` va `CallbackQuery(...).as_(bot)` bilan sintetik yangilanishlar yaratiladi.
 - `Dispatcher.feed_update()` orqali handlerlar haqiqiy aiogram mantiqi bo'yicha ishlaydi.
 - `dispatcher.errors.register(record_error)` barcha handler xatolarini yig'adi; test oxirida ro'yxat bo'sh bo'lishi shart.
@@ -21,7 +21,8 @@ Muvaffaqiyatli yakun: `HANDLER_FLOW_OK`.
 ## Qamrov
 
 1. Ro'yxatdan o'tish: `/start` → ism → daraja callback → baza va menyu.
-2. Darslar: fanlar → darslar → darsni ochish → tugatish → kunlik reja.
+2. Rasmli darslar: 20 ta rasm mavjudligi, caption limiti, `SendPhoto`,
+   `EditMessageCaption`, foto kartochkadan orqaga qaytish va kunlik reja.
 3. Qidiruv: `/qidiruv fotosintez`, natijadan dars ochish, bo'sh va natijasiz so'rov.
 4. Test: 5 savol, birinchi javob ataylab xato, qolganlari to'g'ri:
    - natija `4/5` va `80%`;

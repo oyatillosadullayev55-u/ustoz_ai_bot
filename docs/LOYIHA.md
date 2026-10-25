@@ -42,6 +42,7 @@ handlers/  ── FSM, validatsiya, foydalanuvchi oqimlari
    │
    ├── keyboards/  ── reply va inline tugmalar
    ├── services/ai_service.py ── AI provayderi + lokal fallback
+   ├── services/lesson_media.py ── dars rasmlari + file_id kesh
    ├── services/reminders.py ── kunlik eslatmalar
    ▼
 database/  ── SQL so'rovlar qatlami
@@ -60,6 +61,9 @@ SQLite (WAL, foreign keys, busy_timeout)
 - **database/** — har bir jadval uchun alohida modul; SQL faqat shu qatlamda.
 - **services/ai_service.py** — tashqi AI bilan ishlash; handler AI provayderining
   detallarini bilmaydi.
+- **services/lesson_media.py** — dars rasmlarini `assets/lesson_images/` dan topadi,
+  birinchi yuborishdan keyin Telegram `file_id` sini keshlaydi. Dizayn tafsilotlari:
+  [`DARS_DIZAYNI.md`](DARS_DIZAYNI.md).
 - **services/reminders.py** — kunlik reja bo'yicha eslatmalarni yuboradi; Telegram
   limitlarini hisobga oladi va faqat ruxsat bergan foydalanuvchilarga yozadi.
 - **time_utils.py** — UTC saqlash, UTC+5 bo'yicha kun va streak hisoblash.
@@ -120,13 +124,16 @@ va savollar o'chadi.
 ### 2. Darslar
 
 1. Fanlar ro'yxati dars va savollar soni bilan chiqadi.
-2. Fan tanlanganda darslar ro'yxati ochiladi; tugatilgan darslar ✅ bilan belgilanadi.
-3. Dars ochilganda `study_progress` ga `started` holati yoziladi.
-4. «✅ Darsni tugatdim» birinchi bosishda `completed` holatiga o'tadi va kunlik
-   rejaga +1 dars qo'shadi. Takroriy bosish qayta hisoblanmaydi.
+2. Fan tanlanganda darslar ro'yxati, tugatilgan darslar hisobi va progress bar ochiladi.
+3. Dars 16:9 rasm, sarlavha, matn va tugmalar bilan kartochka bo'lib ochiladi;
+   `study_progress` ga `started` holati yoziladi.
+4. «✅ Darsni tugatdim» birinchi bosishda `completed` holatiga o'tadi, kartochka caption'i
+   yangilanadi va kunlik rejaga +1 dars qo'shiladi. Takroriy bosish qayta hisoblanmaydi.
 5. Darsdan to'g'ridan-to'g'ri shu fan testiga o'tish mumkin.
 6. `/qidiruv so'z` buyrug'i dars nomi va mazmuni bo'yicha izlaydi. So'rov 2–100
    belgi, natijalar soni 5 ta bilan cheklangan; natijadan darsni darhol ochish mumkin.
+7. Rasm topilmasa yoki caption 1024 belgidan oshsa, dars matnli kartochka sifatida
+   ochiladi — mazmun yo'qolmaydi.
 
 ### 3. Testlar
 
@@ -287,11 +294,12 @@ ustoz_ai_bot/
 ├── requirements.txt          # Ish vaqti kutubxonalari
 ├── requirements-dev.txt      # Ruff va testlar uchun
 ├── .github/workflows/ci.yml  # GitHub Actions CI
+├── assets/lesson_images/     # 20 ta dars rasmi (1280x720 JPEG)
 ├── content/seed_data.json    # O'quv kontenti
 ├── database/                 # Sxema, seed va jadval modullari
 ├── handlers/                 # Bo'limlar bo'yicha routerlar
 ├── keyboards/                # Reply va inline klaviaturalar
-├── services/                 # AI provayderi va kunlik eslatmalar
+├── services/                 # AI, dars rasmlari va kunlik eslatmalar
 ├── tests/                    # Offline testlar
 └── docs/                     # Hujjatlar va har bir kod fayli uchun tavsif
 ```

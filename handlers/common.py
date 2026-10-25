@@ -40,13 +40,23 @@ async def safe_edit(
     text: str,
     reply_markup: InlineKeyboardMarkup | None = None,
 ) -> None:
-    """Xabarni tahrirlaydi; xabar eskirgan bo'lsa yangi xabar yuboradi."""
-    if callback.message is None:
+    """Xabarni tahrirlaydi; foto yoki eskirgan xabarda yangisini yuboradi."""
+    if not isinstance(callback.message, Message):
         return
+
+    message = callback.message
+    if message.photo:
+        try:
+            await message.delete()
+        except TelegramBadRequest:
+            pass
+        await message.answer(text, reply_markup=reply_markup)
+        return
+
     try:
-        await callback.message.edit_text(text, reply_markup=reply_markup)
+        await message.edit_text(text, reply_markup=reply_markup)
     except TelegramBadRequest:
-        await callback.message.answer(text, reply_markup=reply_markup)
+        await message.answer(text, reply_markup=reply_markup)
 
 
 def progress_bar(done: int, target: int, width: int = 8) -> str:

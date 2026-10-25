@@ -28,14 +28,17 @@ from aiogram.client.default import DefaultBotProperties  # noqa: E402
 from aiogram.enums import ChatType, ParseMode  # noqa: E402
 from aiogram.fsm.storage.memory import MemoryStorage  # noqa: E402
 from aiogram.methods import (  # noqa: E402
+    EditMessageCaption,
     EditMessageText,
     SendMessage,
+    SendPhoto,
 )
 from aiogram.types import (  # noqa: E402
     CallbackQuery,
     Chat,
     InlineKeyboardMarkup,
     Message,
+    PhotoSize,
     ReplyKeyboardMarkup,
     Update,
     User,
@@ -46,7 +49,7 @@ from config import get_settings  # noqa: E402
 get_settings.cache_clear()
 
 from database.chat import get_history  # noqa: E402
-from database.content import get_question  # noqa: E402
+from database.content import get_lesson, get_question  # noqa: E402
 from database.db import get_connection, init_db  # noqa: E402
 from database.goals import get_today_goal  # noqa: E402
 from database.users import get_user  # noqa: E402
@@ -61,6 +64,7 @@ from handlers import (  # noqa: E402
     start,
 )
 from handlers import settings as user_settings  # noqa: E402
+from services.lesson_media import get_lesson_image_path  # noqa: E402
 from services.reminders import send_due_reminders  # noqa: E402
 from time_utils import local_today  # noqa: E402
 
@@ -103,10 +107,26 @@ def last_text(session: FakeSession) -> str:
     return texts[-1] if texts else ""
 
 
+def sent_captions(session: FakeSession) -> list[str]:
+    captions: list[str] = []
+    for method in session.calls:
+        if isinstance(method, (SendPhoto, EditMessageCaption)) and method.caption:
+            captions.append(method.caption)
+    return captions
+
+
+def last_caption(session: FakeSession) -> str:
+    captions = sent_captions(session)
+    return captions[-1] if captions else ""
+
+
 def last_inline_callbacks(session: FakeSession) -> list[str]:
     callbacks: list[str] = []
     for method in session.calls:
-        if isinstance(method, (SendMessage, EditMessageText)):
+        if isinstance(
+            method,
+            (SendMessage, EditMessageText, SendPhoto, EditMessageCaption),
+        ):
             markup = method.reply_markup
             if isinstance(markup, InlineKeyboardMarkup):
                 callbacks = [
@@ -154,6 +174,35 @@ async def main() -> None:
     dispatcher.include_router(admin.router)
     dispatcher.include_router(menu.router)
 
+    async with get_connection() as db:
+        cursor = await db.execute("SELECT id FROM lessons WHERE is_active = 1")
+        lesson_ids = [int(row["id"]) for row in await cursor.fetchall()]
+
+    check(len(lesson_ids) == 20, "bazada 20 ta dars bor", errors)
+    check(
+        all(
+            get_lesson_image_path(lesson_id) is not None
+            for lesson_id in lesson_ids
+        ),
+        "har bir dars uchun rasm fayli mavjud",
+        errors,
+    )
+
+    captions_fit = True
+    for lesson_id in lesson_ids:
+        lesson = await get_lesson(lesson_id)
+        if lesson is None or any(
+            len(lessons.build_lesson_card(lesson, completed=completed)) > 1024
+            for completed in (False, True)
+        ):
+            captions_fit = False
+            break
+    check(
+        captions_fit,
+        "dars kartochkalari Telegram caption limitiga sig'adi",
+        errors,
+    )
+
     user = User(id=USER_ID, is_bot=False, first_name="Test")
     bot_user = User(id=BOT_ID, is_bot=True, first_name="UstozAI", username="ustoz_bot")
     chat = Chat(id=USER_ID, type=ChatType.PRIVATE)
@@ -181,14 +230,30 @@ async def main() -> None:
         text="inline",
     ).as_(bot)
 
-    async def send_callback(data: str) -> None:
+    photo_message = Message(
+        message_id=9001,
+        date=datetime.now(UTC),
+        chat=chat,
+        from_user=bot_user,
+        photo=[
+            PhotoSize(
+                file_id="test-photo-id",
+                file_unique_id="test-photo-unique",
+                width=1280,
+                height=720,
+            )
+        ],
+        caption="Dars kartochkasi",
+    ).as_(bot)
+
+    async def send_callback(data: str, message: Message | None = None) -> None:
         nonlocal update_id
         update_id += 1
         callback = CallbackQuery(
             id=f"cb-{update_id}",
             from_user=user,
             chat_instance="test-chat-instance",
-            message=callback_message,
+            message=message or callback_message,
             data=data,
         ).as_(bot)
         await dispatcher.feed_update(
@@ -232,6 +297,7 @@ async def main() -> None:
     fake.calls.clear()
     await send_text("📚 Darslar")
     check("lesson:subject:5" in last_inline_callbacks(fake), "fanlar ro'yxati chiqdi", errors)
+    check("🖼️" in last_text(fake), "darslar bo'limi rasmli kartani tanishtirdi", errors)
 
     fake.calls.clear()
     await send_callback("lesson:subject:5")
@@ -239,7 +305,16 @@ async def main() -> None:
 
     fake.calls.clear()
     await send_callback("lesson:view:501")
-    check("Hujayra tuzilishi" in last_text(fake), "dars matni ochildi", errors)
+    check(
+        "Hujayra tuzilishi" in last_caption(fake),
+        "dars rasmli kartochka bilan ochildi",
+        errors,
+    )
+    check(
+        any(isinstance(method, SendPhoto) for method in fake.calls),
+        "dars rasmi yuborildi",
+        errors,
+    )
     check(
         "lesson:complete:501" in last_inline_callbacks(fake),
         "darsni tugatish tugmasi bor",
@@ -247,8 +322,12 @@ async def main() -> None:
     )
 
     fake.calls.clear()
-    await send_callback("lesson:complete:501")
-    check("Bu dars tugatilgan" in last_text(fake), "dars tugatilgan deb belgilandi", errors)
+    await send_callback("lesson:complete:501", message=photo_message)
+    check(
+        "Tugatilgan" in last_caption(fake),
+        "dars tugatilgan deb belgilandi",
+        errors,
+    )
     check(
         "lesson:complete:501" not in last_inline_callbacks(fake),
         "tugatish tugmasi olib tashlandi",
@@ -256,6 +335,14 @@ async def main() -> None:
     )
     goal = await get_today_goal(USER_ID)
     check(int(goal["completed_lessons"]) == 1, "kunlik reja darsni sanadi", errors)
+
+    fake.calls.clear()
+    await send_callback("lesson:subject:5", message=photo_message)
+    check(
+        "BIOLOGIYA" in last_text(fake),
+        "foto kartochkadan darslar ro'yxatiga qaytildi",
+        errors,
+    )
 
     # 2b. Dars qidiruvi
     fake.calls.clear()
@@ -271,7 +358,11 @@ async def main() -> None:
 
     fake.calls.clear()
     await send_callback(search_callbacks[0])
-    check("Fotosintez" in last_text(fake), "qidiruvdan dars ochildi", errors)
+    check(
+        "Fotosintez" in last_caption(fake),
+        "qidiruvdan dars rasmli ochildi",
+        errors,
+    )
 
     fake.calls.clear()
     await send_text("/qidiruv")
