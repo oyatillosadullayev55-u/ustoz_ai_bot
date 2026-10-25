@@ -28,7 +28,7 @@ os.environ["ADMIN_IDS"] = "999000001"
 os.environ["AI_ENABLED"] = "false"
 os.environ["AI_API_KEY"] = ""
 
-from config import get_settings  # noqa: E402
+from config import ConfigError, get_settings  # noqa: E402
 
 get_settings.cache_clear()
 
@@ -86,6 +86,37 @@ def check(condition: bool, message: str) -> None:
     if not condition:
         raise AssertionError(message)
     print(f"OK - {message}")
+
+
+def check_config_cleaning() -> None:
+    valid_token = "123456789:TEST_TOKEN_FOR_OFFLINE_TESTS"
+
+    os.environ["BOT_TOKEN"] = f'"{valid_token}"'
+    os.environ["ADMIN_IDS"] = '"999000001"'
+    get_settings.cache_clear()
+    settings = get_settings()
+    check(settings.bot_token == valid_token, "BOT_TOKEN qo'shtirnoqlardan tozalandi")
+    check(
+        settings.admin_ids == frozenset({999000001}),
+        "ADMIN_IDS qo'shtirnoqlardan tozalandi",
+    )
+
+    os.environ["BOT_TOKEN"] = f"BOT_TOKEN={valid_token}"
+    get_settings.cache_clear()
+    check(get_settings().bot_token == valid_token, "BOT_TOKEN= prefiksi tozalandi")
+
+    os.environ["BOT_TOKEN"] = "not-a-token"
+    get_settings.cache_clear()
+    rejected = False
+    try:
+        get_settings()
+    except ConfigError:
+        rejected = True
+    check(rejected, "noto'g'ri formatdagi BOT_TOKEN rad etildi")
+
+    os.environ["BOT_TOKEN"] = valid_token
+    os.environ["ADMIN_IDS"] = "999000001"
+    get_settings.cache_clear()
 
 
 async def run_tests() -> None:
@@ -385,6 +416,7 @@ async def run_tests() -> None:
 
 def main() -> None:
     try:
+        check_config_cleaning()
         asyncio.run(run_tests())
     finally:
         TEMP_DIR.cleanup()

@@ -8,7 +8,7 @@
 | Qadam | Nima qilinadi |
 |---|---|
 | Asos | `python:3.13-slim` |
-| Muhit | `PYTHONDONTWRITEBYTECODE=1`, `PYTHONUNBUFFERED=1`, `PIP_NO_CACHE_DIR=1` |
+| Muhit | `PYTHONDONTWRITEBYTECODE=1`, `PYTHONUNBUFFERED=1`, `PYTHONUTF8=1`, `PIP_NO_CACHE_DIR=1` |
 | Baza yo'li | `DATABASE_PATH=/app/data/ustoz_ai.db` |
 | Foydalanuvchi | `ustozai` (UID/GID 10001), root emas |
 | Bog'liqliklar | `requirements.txt` nusxalanadi va `pip install` qilinadi |
@@ -16,6 +16,13 @@
 | Papkalar | `/app/data` va `/app/logs` yaratilib, egasi `ustozai` qilinadi |
 | Port | `EXPOSE 8080` |
 | Ishga tushirish | `CMD ["python", "bot.py"]` |
+
+## Nega `PYTHONUTF8=1`
+
+Bot loglarida o'zbekcha apostrof, emoji va boshqa Unicode belgilar bor. Ba'zi
+konteyner muhitlarida standart konsol kodlash UTF-8 bo'lmasligi mumkin; u holda
+`print()` yoki logging `UnicodeEncodeError` bilan yiqilishi mumkin. `PYTHONUTF8=1`
+Python'ning stdin/stdout/stderr oqimlarini UTF-8 rejimida ishlatishni kafolatlaydi.
 
 ## Nega non-root
 

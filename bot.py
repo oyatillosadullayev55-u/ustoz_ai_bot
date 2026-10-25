@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import asyncio
 import logging
+import os
 import sys
 from contextlib import suppress
 from logging.handlers import RotatingFileHandler
@@ -11,7 +12,7 @@ from logging.handlers import RotatingFileHandler
 from aiogram import Bot, Dispatcher
 from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
-from aiogram.exceptions import TelegramBadRequest
+from aiogram.exceptions import TelegramBadRequest, TelegramUnauthorizedError
 from aiogram.fsm.storage.memory import MemoryStorage
 from aiogram.types import BotCommand, BotCommandScopeChat, ErrorEvent
 
@@ -34,6 +35,18 @@ from services.reminders import run_daily_reminders
 logger = logging.getLogger(__name__)
 
 LOG_DIR = BASE_DIR / "logs"
+
+
+def log_start_environment() -> None:
+    """Muhit o'zgaruvchilari bor-yo'qligini qiymatlarini ko'rsatmasdan yozadi."""
+    token_state = "bor" if os.getenv("BOT_TOKEN", "").strip() else "YO'Q"
+    admin_state = "bor" if os.getenv("ADMIN_IDS", "").strip() else "yo'q"
+    port_state = os.getenv("PORT", "").strip() or "lokal"
+    print(
+        f"[START] BOT_TOKEN: {token_state} | ADMIN_IDS: {admin_state} | "
+        f"PORT: {port_state}",
+        flush=True,
+    )
 
 
 def setup_logging(level: str) -> None:
@@ -160,6 +173,8 @@ async def run_bot(settings: Settings) -> None:
 
 
 def main() -> None:
+    log_start_environment()
+
     try:
         settings = get_settings()
     except ConfigError as exc:
@@ -167,6 +182,12 @@ def main() -> None:
         raise SystemExit(1) from None
 
     setup_logging(settings.log_level)
+    logger.info(
+        "Sozlamalar: baza=%s, adminlar=%d ta, eslatmalar=%s",
+        settings.database_path,
+        len(settings.admin_ids),
+        "yoqilgan" if settings.daily_reminders_enabled else "o'chirilgan",
+    )
 
     if not settings.admin_ids:
         logger.warning(
@@ -188,6 +209,13 @@ def main() -> None:
         asyncio.run(run_bot(settings))
     except KeyboardInterrupt:
         logger.info("Bot foydalanuvchi tomonidan to'xtatildi.")
+    except TelegramUnauthorizedError:
+        logger.error(
+            "[XATO] Telegram BOT_TOKEN ni rad etdi (401 Unauthorized). "
+            "BotFather'da tokenni tekshiring yoki /revoke qilib yangisini oling, "
+            "so'ng hosting panelidagi BOT_TOKEN qiymatini yangilang."
+        )
+        raise SystemExit(1) from None
     except Exception:
         logger.exception("Bot xatolik bilan to'xtadi.")
         raise SystemExit(1) from None

@@ -44,6 +44,21 @@ Quyidagi havola `render.yaml` faylini o'qib, web-service yaratadi:
    Brauzerda `/health` ni oching — `{"status": "ok", ...}` ko'rinishi kerak.
 6. Telegramda botni ochib `/start` yuboring.
 
+> **Muhim:** agar xizmat `render.yaml` orqali emas, **New Web Service** tugmasi bilan
+> qo'lda yaratilgan bo'lsa, environment o'zgaruvchilari avtomatik qo'shilmaydi.
+> **Settings → Environment** bo'limida quyidagilarni qo'lda kiriting:
+>
+> | Kalit | Qiymat |
+> | --- | --- |
+> | `BOT_TOKEN` | BotFather bergan token (majburiy) |
+> | `ADMIN_IDS` | Telegram ID, faqat raqamlar (ixtiyoriy) |
+> | `DATABASE_PATH` | `/app/data/ustoz_ai.db` |
+> | `AI_ENABLED` | `false` (AI kaliti bo'lsa `true`) |
+> | `DAILY_REMINDERS_ENABLED` | `true` |
+>
+> **Runtime: Docker** bo'lishi kerak; start command bo'sh qoladi, chunki buyruq
+> `Dockerfile` ichidagi `CMD ["python", "bot.py"]` dan olinadi.
+
 ### 1.3. Render sozlamalari
 
 `render.yaml` quyidagilarni avtomatik sozlaydi:
@@ -90,6 +105,38 @@ Bepul UptimeRobot odatda 50 tagacha monitor va 5 daqiqalik intervalni beradi.
   keyin **Manual Deploy → Deploy latest commit** qiling.
 - Token yoki AI kaliti o'zgarsa, faqat Render'dagi environment qiymatini yangilang.
   Kodga yozmang.
+
+### 1.6.1. `Deploy failed` — `Exited with status 1`
+
+Bu xabar bot ishga tushish paytida to'xtaganini bildiradi. Deploy sahifasidagi
+loglarni **eng pastga** aylantirib, quyidagi qatorlarni toping:
+
+1. `[START] BOT_TOKEN: ...` — birinchi qator. Token qiymati emas, faqat bor-yo'qligi
+   ko'rsatiladi.
+   - `BOT_TOKEN: YO'Q` → **Settings → Environment** bo'limida `BOT_TOKEN` qo'shing.
+   - `BOT_TOKEN: bor`, lekin keyin `401 Unauthorized` → token noto'g'ri yoki
+     BotFather'da `/revoke` qilingan. Yangi tokenni environment'ga yozing.
+2. `[XATO] BOT_TOKEN topilmadi...` → token kiritilmagan.
+3. `ADMIN_IDS ...` xatosi → `ADMIN_IDS` faqat raqamlardan iborat bo'lsin
+   (masalan `123456789`, vergul bilan bir nechta).
+4. `Permission denied` yoki baza xatosi → `DATABASE_PATH=/app/data/ustoz_ai.db`
+   ekanini tekshiring; bu papka `Dockerfile` ichida yaratiladi.
+5. `Conflict: terminated by other getUpdates request` → bot ikkinchi joyda ham
+   ishlayapti. Lokal PyCharm'dagi botni to'xtating.
+6. Xizmat **Runtime: Docker** ekanini tekshiring. Python runtime tanlangan bo'lsa,
+   qo'lda `pip install`/start command sozlash kerak bo'ladi — Docker'ga o'tish osonroq.
+
+So'ng **Manual Deploy → Deploy latest commit** ni bosing. Logda quyidagilar
+ko'rinishi kerak:
+
+```text
+[START] BOT_TOKEN: bor | ADMIN_IDS: bor | PORT: 10000
+Health server 0.0.0.0:10000 manzilida ishga tushdi.
+UstozAI ishga tushdi: @FlutterProBot
+```
+
+Oxirgi qatorda bot username'i chiqsa, deploy muvaffaqiyatli. `/health` manzili
+`{"status":"ok"}` qaytaradi.
 
 ### 1.7. Render'da tekshirish
 
@@ -294,7 +341,10 @@ serverda yuqoridagi `chown 10001:10001` qadamini unutmang.
 | Xato / holat | Sababi | Yechim |
 | --- | --- | --- |
 | `Conflict: terminated by other getUpdates request` | Bot ikki joyda ishlayapti | Lokal PyCharm'dagi botni to'xtating yoki eski Render instansiyasini o'chiring |
-| `Unauthorized` | Token noto'g'ri yoki bekor qilingan | BotFather'dan yangi token oling, environment'ni yangilang |
+| `Unauthorized` / `401` | Token noto'g'ri yoki bekor qilingan | BotFather'dan yangi token oling, environment'ni yangilang |
+| Render: `Exited with status 1` | Token yo'q, noto'g'ri yoki ishga tushishda xato | Log oxiridagi `[START]` va `[XATO]` qatorlarini o'qing; 1.6.1 bo'limiga amal qiling |
+| `[START] BOT_TOKEN: YO'Q` | Render environment'da token berilmagan | Settings → Environment → `BOT_TOKEN` qo'shing va qayta deploy qiling |
+| `BOT_TOKEN ni rad etdi (401 Unauthorized)` | Token bekor qilingan yoki xato ko'chirilgan | BotFather'da `/revoke` qilib yangi token oling va environment'ni yangilang |
 | Render'da `Application failed to respond` | `PORT` tinglanmayapti yoki health server ishlamadi | `PORT` ni qo'lda yozmang; loglarda `Health server ... ishga tushdi` borligini tekshiring |
 | `/health` 502 | Konteyner hali ko'tarilmagan yoki qulagan | `docker compose logs --tail 100`; `docker compose ps` |
 | `Permission denied` bazaga yozishda (Linux) | `data/` papkasi UID 10001 ga tegishli emas | `sudo chown -R 10001:10001 data logs` |

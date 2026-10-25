@@ -22,12 +22,17 @@ Fayl import qilinishidan oldin:
 - `AI_ENABLED=false`, `AI_API_KEY=""`, `AI_MIN_INTERVAL=0`;
 - `get_settings.cache_clear()` chaqiriladi.
 
+`check_config_cleaning()` test boshida tokenni vaqtincha qo'shtirnoq ichida va
+`BOT_TOKEN=` prefiksi bilan beradi, noto'g'ri formatni tekshiradi, so'ng haqiqiy
+test qiymatlarini qaytaradi.
+
 Test oxirida `TemporaryDirectory.cleanup()` baza faylini o'chiradi. Haqiqiy `.env`, token yoki foydalanuvchi bazasiga tegmaydi.
 
 ## Qamrov
 
 | Bo'lim | Tekshiruvlar |
 |---|---|
+| Konfiguratsiya | `BOT_TOKEN` va `ADMIN_IDS` qo'shtirnoqlardan tozalanadi; `BOT_TOKEN=` prefiksi olib tashlanadi; noto'g'ri token rad etiladi |
 | Sxema | `init_db()` ikki marta chaqirilganda idempotentligi |
 | Migratsiya | Eski `lessons` jadvaliga `summary`, `key_points`, `level`, `duration_min` qo'shilishi |
 | Kontent | 10 fan, 20 dars, 80 savol; har bir darsda 4 savol |

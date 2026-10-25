@@ -22,6 +22,43 @@ class ConfigError(RuntimeError):
     """Konfiguratsiya noto'g'ri bo'lganda ko'tariladigan xato."""
 
 
+def _clean_env_value(raw: str) -> str:
+    """Hosting panelidan yopishtirilgan ortiqcha qo'shtirnoq va bo'shliqlarni olib tashlaydi."""
+    value = raw.strip()
+    if len(value) >= 2 and value[0] == value[-1] and value[0] in {'"', "'"}:
+        value = value[1:-1].strip()
+    return value
+
+
+def _read_bot_token() -> str:
+    token = _clean_env_value(os.getenv("BOT_TOKEN", ""))
+    if token.lower().startswith("bot_token="):
+        token = _clean_env_value(token.split("=", 1)[1])
+
+    if not token:
+        hint = (
+            "Render'da Settings -> Environment bo'limiga BOT_TOKEN qo'shing."
+            if os.getenv("RENDER")
+            else ".env.example faylidan .env nusxa oling va tokenni yozing."
+        )
+        raise ConfigError(f"BOT_TOKEN topilmadi. {hint}")
+
+    if any(char.isspace() for char in token):
+        raise ConfigError(
+            "BOT_TOKEN ichida bo'sh joy yoki qator ko'chirilgan. "
+            "Tokenni qaytadan, to'liq ko'chiring."
+        )
+
+    token_id, separator, secret = token.partition(":")
+    if separator != ":" or not token_id.isdigit() or not secret:
+        raise ConfigError(
+            "BOT_TOKEN formati noto'g'ri. BotFather bergan tokenni to'liq "
+            "ko'chiring (ko'rinishi: 123456789:AA...)."
+        )
+
+    return token
+
+
 @dataclass(frozen=True, slots=True)
 class Settings:
     bot_token: str
@@ -55,12 +92,13 @@ class Settings:
 
 
 def _parse_admin_ids(raw: str) -> frozenset[int]:
-    if not raw.strip():
+    raw = _clean_env_value(raw)
+    if not raw:
         return frozenset()
 
     admin_ids: set[int] = set()
     for part in raw.replace(";", ",").split(","):
-        part = part.strip()
+        part = _clean_env_value(part)
         if not part:
             continue
         try:
@@ -78,7 +116,7 @@ def _parse_admin_ids(raw: str) -> frozenset[int]:
 
 
 def _read_bool(name: str, default: bool) -> bool:
-    raw = os.getenv(name, str(default)).strip().lower()
+    raw = _clean_env_value(os.getenv(name, str(default))).lower()
     if raw in {"1", "true", "yes", "on"}:
         return True
     if raw in {"0", "false", "no", "off"}:
@@ -87,7 +125,7 @@ def _read_bool(name: str, default: bool) -> bool:
 
 
 def _read_int(name: str, default: int, minimum: int, maximum: int) -> int:
-    raw = os.getenv(name, str(default)).strip() or str(default)
+    raw = _clean_env_value(os.getenv(name, str(default))) or str(default)
     try:
         value = int(raw)
     except ValueError:
@@ -103,35 +141,28 @@ def _read_int(name: str, default: int, minimum: int, maximum: int) -> int:
 
 @lru_cache(maxsize=1)
 def get_settings() -> Settings:
-    bot_token = os.getenv("BOT_TOKEN", "").strip()
-    if not bot_token:
-        raise ConfigError(
-            "BOT_TOKEN topilmadi. .env.example faylidan .env nusxa oling va "
-            "BotFather bergan tokenni BOT_TOKEN= qatoriga yozing."
-        )
-    if ":" not in bot_token or bot_token.startswith(":"):
-        raise ConfigError(
-            "BOT_TOKEN formati noto'g'ri. BotFather bergan tokenni to'liq ko'chiring."
-        )
+    bot_token = _read_bot_token()
 
-    language = os.getenv("DEFAULT_LANGUAGE", "uz").strip().lower() or "uz"
+    language = _clean_env_value(os.getenv("DEFAULT_LANGUAGE", "uz")).lower() or "uz"
     if language not in SUPPORTED_LANGUAGES:
         raise ConfigError(
             "DEFAULT_LANGUAGE faqat uz, ru yoki en bo'lishi mumkin."
         )
 
-    log_level = os.getenv("LOG_LEVEL", "INFO").strip().upper() or "INFO"
+    log_level = _clean_env_value(os.getenv("LOG_LEVEL", "INFO")).upper() or "INFO"
     if log_level not in LOG_LEVELS:
         raise ConfigError(
             "LOG_LEVEL qiymatlari: DEBUG, INFO, WARNING, ERROR, CRITICAL."
         )
 
-    database_raw = os.getenv("DATABASE_PATH", "ustoz_ai.db").strip() or "ustoz_ai.db"
+    database_raw = _clean_env_value(os.getenv("DATABASE_PATH", "ustoz_ai.db")) or "ustoz_ai.db"
     database_path = Path(database_raw).expanduser()
     if not database_path.is_absolute():
         database_path = BASE_DIR / database_path
 
-    ai_base_url = os.getenv("AI_BASE_URL", "https://api.openai.com/v1").strip().rstrip("/")
+    ai_base_url = _clean_env_value(
+        os.getenv("AI_BASE_URL", "https://api.openai.com/v1")
+    ).rstrip("/") or "https://api.openai.com/v1"
     if not ai_base_url.startswith(("https://", "http://")):
         raise ConfigError(
             "AI_BASE_URL http:// yoki https:// bilan boshlanishi kerak."
@@ -144,9 +175,10 @@ def get_settings() -> Settings:
         log_level=log_level,
         default_language=language,
         ai_enabled=_read_bool("AI_ENABLED", False),
-        ai_api_key=os.getenv("AI_API_KEY", "").strip(),
+        ai_api_key=_clean_env_value(os.getenv("AI_API_KEY", "")),
         ai_base_url=ai_base_url,
-        ai_model=os.getenv("AI_MODEL", "gpt-4o-mini").strip() or "gpt-4o-mini",
+        ai_model=_clean_env_value(os.getenv("AI_MODEL", "gpt-4o-mini"))
+        or "gpt-4o-mini",
         ai_timeout=_read_int("AI_TIMEOUT", 30, 5, 120),
         ai_daily_limit=_read_int("AI_DAILY_LIMIT", 30, 1, 500),
         ai_min_interval=_read_int("AI_MIN_INTERVAL", 3, 0, 60),
