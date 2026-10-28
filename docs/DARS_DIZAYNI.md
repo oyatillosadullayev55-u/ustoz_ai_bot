@@ -27,7 +27,7 @@ Har bir dars endi matnli xabar emas, balki **rasmli kartochka** ko'rinishida och
 ━━━━━━━━━━━━━━
 📖 Alifbo va tovushlar
 
-🎯 Ingliz alifbosida 26 ta harf bor: 5 ta unli va 21 ta undosh...
+🎯 Ingliz alifbosida 35 ta harf bor: 5 ta unli va 21 ta undosh...
 
 🔑 Asosiy fikrlar
 • Harflar va tovushlar bir xil emas.
@@ -113,7 +113,7 @@ Barcha 20 rasm bitta uslubda tayyorlangan:
 Rasmlarda harflar, raqamlar va logotiplar ataylab ishlatilmagan: Telegram shrifti va
 tarjima qilish imkoniyati captionda qoladi, rasm esa faqat mavzuni vizual ochib beradi.
 
-## 20 ta rasm
+## 35 ta rasm
 
 Fayllar `assets/lesson_images/` papkasida, nomi `lesson_<dars_id>.jpg`.
 
@@ -272,7 +272,7 @@ almashtirib, botni qayta ishga tushiring.
 
 `tests/test_offline.py` va `tests/test_handlers_offline.py` quyidagilarni tekshiradi:
 
-- bazada 20 ta dars va 80 ta savol bor;
+- bazada 35 ta dars va 140 ta savol bor;
 - har bir darsda `summary`, 3 ta `key_points`, `level`, `duration_min` va kamida 900
   belgili `content` mavjud;
 - har bir dars uchun rasm fayli mavjud;

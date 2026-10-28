@@ -15,7 +15,7 @@ oqimlari va texnik qarorlarini tavsiflaydi.
 | --- | --- |
 | Ro'yxatdan o'tish | Ism, bilim darajasi (boshlang'ich / o'rta / yuqori), ma'lumotlarni saqlash |
 | AI Ustoz | Savol-javob, AI provayderi yoki dars bazasidan fallback, dars konteksti, kunlik limit |
-| Darslar | 10 fan, 20 dars; qisqa mazmun, 3 asosiy fikr, batafsil izoh, mini mashq, oldingi/keyingi dars |
+| Darslar | 11 fan, 35 dars; qisqa mazmun, 3 asosiy fikr, batafsil izoh, mini mashq, oldingi/keyingi dars |
 | Qidiruv | Darslarni nomi va mazmuni bo'yicha topish (`/qidiruv`) |
 | Testlar | Har urinishda 5 ta tasodifiy savol, 4 variant, yakuniy natija va xato javoblar tahlili |
 | Natijalar | Testlar, o'rtacha va eng yaxshi natija, faol kunlar, streak |
@@ -26,7 +26,7 @@ oqimlari va texnik qarorlarini tavsiflaydi.
 | Kontent | JSON orqali fan, dars va savollarni boshqarish |
 | Joylash | Render bepul tarifi, Docker/Compose, Oracle Always Free, `/health` |
 
-Jami: **10 fan**, **20 dars**, **80 savol** (har bir darsda 4 tadan). Har bir
+Jami: **11 fan**, **35 dars**, **140 savol** (har bir darsda 4 tadan). Har bir
 savolda 4 ta variant va izoh bor.
 
 ## Arxitektura
@@ -274,7 +274,7 @@ Loyihada Telegram'ga ulanmasdan ishlaydigan ikkita test to'plami bor:
 
 | Test | Qamrov | Natija |
 | --- | --- | --- |
-| `tests/test_offline.py` | Baza sxemasi va migratsiya, 80 savol, dars maydonlari, qidiruv, savollarni ID bo'yicha olish, natijalar, streak, vaqt yordamchilari, eslatmalar, AI fallback va dars konteksti, health server, admin statistikasi | `OFFLINE_TESTS_OK` |
+| `tests/test_offline.py` | Baza sxemasi va migratsiya, 140 savol, dars maydonlari, qidiruv, savollarni ID bo'yicha olish, natijalar, streak, vaqt yordamchilari, eslatmalar, AI fallback va dars konteksti, health server, admin statistikasi | `OFFLINE_TESTS_OK` |
 | `tests/test_handlers_offline.py` | Ro'yxatdan o'tish, rasmli kartochka, asosiy fikrlar, batafsil o'qish, oldingi/keyingi dars, batafsil ekranda tugatish, dars AI konteksti, qidiruv, 5 savolli test va xato tahlili, statistika, reja, sozlamalar, AI, `/id`, admin, broadcast, eslatma | `HANDLER_FLOW_OK` |
 
 Testlar vaqtinchalik SQLite faylidan foydalanadi va haqiqiy bazaga tegmaydi.
@@ -331,8 +331,8 @@ ustoz_ai_bot/
 ├── render.yaml               # Render bepul web-service blueprint
 ├── .dockerignore
 ├── .github/workflows/ci.yml  # GitHub Actions CI
-├── assets/lesson_images/     # 20 ta dars rasmi (1280x720 JPEG)
-├── content/seed_data.json    # O'quv kontenti (80 savol)
+├── assets/lesson_images/     # 35 ta dars rasmi (1280x720 JPEG)
+├── content/seed_data.json    # O'quv kontenti (140 savol)
 ├── database/                 # Sxema, seed va jadval modullari
 ├── handlers/                 # Bo'limlar bo'yicha routerlar
 ├── keyboards/                # Reply va inline klaviaturalar

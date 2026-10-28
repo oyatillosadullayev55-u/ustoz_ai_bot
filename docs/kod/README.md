@@ -93,7 +93,7 @@ Bu papkada UstozAI loyihasining **har bir kod fayli** uchun alohida markdown huj
 - Darslar qisqa kartochka + batafsil o'qish ekrani + oldingi/keyingi navigatsiya bilan.
 - Har bir darsda qisqa mazmun, 3 ta asosiy fikr, daraja, davomiylik va mini mashq.
 - Dars kontekstida AI Ustoz (`🧠 AI Ustozga so'rash`).
-- 20 ta dars uchun 80 ta savol; test yakunida xato javoblar tahlili.
+- 35 ta dars uchun 140 ta savol; test yakunida xato javoblar tahlili.
 - `/qidiruv` va `/search` orqali darslardan matnli qidiruv.
 - Har kuni belgilangan vaqtda kunlik reja eslatmasi (UTC+5).
 - Render, Docker va Oracle uchun health-check serveri va joylash fayllari.

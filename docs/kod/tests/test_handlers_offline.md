@@ -24,7 +24,7 @@ Muvaffaqiyatli yakun: `HANDLER_FLOW_OK`.
 
 1. Ro'yxatdan o'tish: `/start` → ism → daraja callback → baza va menyu.
 2. Rasmli darslar:
-   - 20 ta rasm mavjudligi va caption limiti;
+   - 35 ta rasm mavjudligi va caption limiti;
    - `SendPhoto` va kartochkadagi `Asosiy fikrlar`;
    - `lesson:read` va `lesson:ask` tugmalari;
    - `lesson:view:502` orqali keyingi darsga o'tish va `lesson:view:501` bilan qaytish;
@@ -42,7 +42,7 @@ Muvaffaqiyatli yakun: `HANDLER_FLOW_OK`.
 6. Sozlamalar: bildirishnoma va daraja.
 7. AI Ustoz: AI o'chirilganda dars bazasidan javob, tarix bazaga yozilishi; `lesson:ask:501`
    orqali dars kontekstida `Shu darsdan tushuntirish` javobi.
-8. Admin: panel, statistika (80 savol), broadcast tasdiqlash va yuborilgan xabar.
+8. Admin: panel, statistika (140 savol), broadcast tasdiqlash va yuborilgan xabar.
 9. Kunlik eslatma: `send_due_reminders()` bitta foydalanuvchiga "Kunlik eslatma" yuborishi.
 
 ## Izolyatsiya

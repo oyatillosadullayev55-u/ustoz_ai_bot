@@ -191,7 +191,7 @@ async def main() -> None:
         cursor = await db.execute("SELECT id FROM lessons WHERE is_active = 1")
         lesson_ids = [int(row["id"]) for row in await cursor.fetchall()]
 
-    check(len(lesson_ids) == 20, "bazada 20 ta dars bor", errors)
+    check(len(lesson_ids) == 35, "bazada 35 ta dars bor", errors)
     check(
         all(
             get_lesson_image_path(lesson_id) is not None
@@ -614,7 +614,7 @@ async def main() -> None:
     fake.calls.clear()
     await send_callback("admin:stats")
     check("Bot statistikasi" in last_text(fake), "admin statistikasi chiqdi", errors)
-    check("80</b> savol" in last_text(fake), "statistikada savollar soni bor", errors)
+    check("140</b> savol" in last_text(fake), "statistikada savollar soni bor", errors)
 
     fake.calls.clear()
     await send_callback("admin:broadcast")

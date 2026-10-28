@@ -8,7 +8,7 @@ lesson_<dars_id>.jpg
 
 Masalan, `lesson_502.jpg` — 502-ID li "Fotosintez" darsi.
 
-- 20 ta dars, 20 ta rasm.
+- 35 ta dars, 35 ta rasm (1101-1115 Oson Studio kurslari rasmlari qo'shilgan).
 - Nisbat: 16:9.
 - Fon: to'q yashil-ko'k; urg'u: feruza va amber.
 - Rasmlarda matn, raqam va logotip yo'q.

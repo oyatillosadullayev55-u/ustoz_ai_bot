@@ -90,8 +90,13 @@ def get_lesson_keyboard(
     is_completed: bool,
     prev_lesson_id: int | None = None,
     next_lesson_id: int | None = None,
+    url: str | None = None,
 ) -> InlineKeyboardMarkup:
     builder = InlineKeyboardBuilder()
+    if url:
+        builder.button(
+            text="🌐 OsonStudio'da bepul o'rganish", url=url
+        )
     builder.button(
         text="📖 Batafsil o'qish", callback_data=f"lesson:read:{lesson_id}"
     )
@@ -128,8 +133,13 @@ def get_lesson_details_keyboard(
     is_completed: bool,
     prev_lesson_id: int | None = None,
     next_lesson_id: int | None = None,
+    url: str | None = None,
 ) -> InlineKeyboardMarkup:
     builder = InlineKeyboardBuilder()
+    if url:
+        builder.button(
+            text="🌐 OsonStudio'da bepul o'rganish", url=url
+        )
     builder.button(
         text="🖼️ Kartochkaga qaytish",
         callback_data=f"lesson:view:{lesson_id}",

@@ -49,6 +49,25 @@ SEARCH_MAX_LENGTH = 100
 SEARCH_RESULTS_LIMIT = 5
 LESSON_CAPTION_LIMIT = 1024
 LESSON_TEXT_LIMIT = 4000
+
+COURSE_URLS: dict[int, str] = {
+    1101: "https://osonstudio.uz/prompt-kurs",
+    1102: "https://osonstudio.uz/airasm-kurs",
+    1103: "https://osonstudio.uz/aivideo-kurs",
+    1104: "https://osonstudio.uz/agent-kurs",
+    1105: "https://osonstudio.uz/loop-kurs",
+    1106: "https://osonstudio.uz/excel-kurs",
+    1107: "https://osonstudio.uz/buxgalteriya-kurs",
+    1108: "https://osonstudio.uz/xavfsizlik-kurs",
+    1109: "https://osonstudio.uz/windows-buyruqlari-kurs",
+    1110: "https://osonstudio.uz/kompyuter-arxitekturasi-kurs",
+    1111: "https://osonstudio.uz/operatsion-tizimlar-kurs",
+    1112: "https://osonstudio.uz/algoritmlar-kurs",
+    1113: "https://osonstudio.uz/malumotlar-tuzilmasi-kurs",
+    1114: "https://osonstudio.uz/malumotlar-bazasi-kurs",
+    1115: "https://osonstudio.uz/kompyuter-tarmoqlari-kurs",
+}
+
 LESSON_LEVEL_LABELS = {
     "beginner": "🟢 Boshlang'ich",
     "intermediate": "🟡 O'rta",
@@ -77,15 +96,19 @@ def _lessons_text(subject, lessons, completed_ids: set[int]) -> str:
     if durations:
         duration_note = f"⏱️ Har bir dars {min(durations)}–{max(durations)} daqiqa.\n"
 
+    is_prog = (subject["code"] == "programming") if "code" in subject.keys() else False
+    title_suffix = " YO'NALISHLARI" if is_prog else ""
+    choose_prompt = "Yo'nalishni tanlang:" if is_prog else "Mavzuni tanlang:"
+
     return (
         f"{subject['emoji']} "
-        f"<b>{html.escape(str(subject['name']).upper())}</b>\n"
+        f"<b>{html.escape(str(subject['name']).upper())}{title_suffix}</b>\n"
         "━━━━━━━━━━━━━━\n\n"
         f"{html.escape(subject['description'])}\n\n"
         f"📊 {completed_count}/{len(lessons)} dars · "
         f"{progress_bar(completed_count, len(lessons))}\n"
         f"{duration_note}\n"
-        "Mavzuni tanlang:"
+        f"{choose_prompt}"
     )
 
 
@@ -195,6 +218,7 @@ async def _send_lesson_card(
         is_completed=completed,
         prev_lesson_id=previous_id,
         next_lesson_id=next_id,
+        url=COURSE_URLS.get(lesson_id),
     )
     photo = get_lesson_photo(lesson_id)
 
@@ -240,6 +264,7 @@ async def _send_lesson_details(
             is_completed=completed,
             prev_lesson_id=previous_id,
             next_lesson_id=next_id,
+            url=COURSE_URLS.get(int(lesson["id"])),
         ),
     )
 

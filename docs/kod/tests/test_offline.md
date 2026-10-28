@@ -35,7 +35,7 @@ Test oxirida `TemporaryDirectory.cleanup()` baza faylini o'chiradi. Haqiqiy `.en
 | Konfiguratsiya | `BOT_TOKEN` va `ADMIN_IDS` qo'shtirnoqlardan tozalanadi; `BOT_TOKEN=` prefiksi olib tashlanadi; noto'g'ri token rad etiladi |
 | Sxema | `init_db()` ikki marta chaqirilganda idempotentligi |
 | Migratsiya | Eski `lessons` jadvaliga `summary`, `key_points`, `level`, `duration_min` qo'shilishi |
-| Kontent | 10 fan, 20 dars, 80 savol; har bir darsda 4 savol |
+| Kontent | 11 fan, 35 dars, 140 savol; har bir darsda 4 savol |
 | Dars sifati | Har bir darsda 80+ belgili `summary`, aynan 3 ta `key_points`, to'g'ri `level`, 1–120 `duration_min`, 900+ belgili `content` |
 | Savollar | `get_questions_by_ids` va bo'sh ro'yxat |
 | Health server | `PORT` bo'lmasa server ochilmaydi; `PORT` berilganda `/health` 200 va `status=ok` qaytaradi |
@@ -49,7 +49,7 @@ Test oxirida `TemporaryDirectory.cleanup()` baza faylini o'chiradi. Haqiqiy `.en
 | Chat | Tarix tartibi, kunlik limit |
 | AI | AI o'chirilganda dars bazasidan javob; dars konteksti bilan `Shu darsdan tushuntirish` javobi |
 | Sozlamalar | Bildirishnoma `0/1` va eslatma ro'yxati |
-| Admin | Jami foydalanuvchi, testlar, 80 savol, o'rtacha foiz |
+| Admin | Jami foydalanuvchi, testlar, 140 savol, o'rtacha foiz |
 
 ## Nima uchun skript ko'rinishida
 

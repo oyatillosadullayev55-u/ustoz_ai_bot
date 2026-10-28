@@ -124,14 +124,14 @@ async def run_tests() -> None:
     await init_db()  # idempotent bo'lishi kerak
 
     subjects = await get_subjects_with_counts()
-    check(len(subjects) == 10, "10 ta fan yuklandi")
+    check(len(subjects) == 8, "8 ta fan yuklandi")
     total_questions = sum(int(item["question_count"]) for item in subjects)
-    check(total_questions == 80, "80 ta savol yuklandi")
+    check(total_questions == 140, "140 ta savol yuklandi")
 
     all_lessons = []
     for subject in subjects:
         all_lessons.extend(await get_lessons(int(subject["id"])))
-    check(len(all_lessons) == 20, "20 ta dars yuklandi")
+    check(len(all_lessons) == 35, "35 ta dars yuklandi")
 
     content_ok = True
     for item in all_lessons:
@@ -164,7 +164,7 @@ async def run_tests() -> None:
         )
         per_lesson = list(await cursor.fetchall())
     check(
-        len(per_lesson) == 20
+        len(per_lesson) == 35
         and all(int(row["total"]) == 4 for row in per_lesson),
         "har bir darsda 4 tadan savol bor",
     )
@@ -400,7 +400,7 @@ async def run_tests() -> None:
     admin_stats = await get_admin_stats()
     check(int(admin_stats["total_users"]) == 1, "admin statistikasi foydalanuvchini ko'rsatdi")
     check(int(admin_stats["quizzes"]) == 1, "admin statistikasi testni ko'rsatdi")
-    check(int(admin_stats["questions"]) == 80, "admin statistikasi 80 savolni ko'rsatdi")
+    check(int(admin_stats["questions"]) == 140, "admin statistikasi 140 savolni ko'rsatdi")
     check(
         round(float(admin_stats["average_score"])) == 80,
         "admin statistikasi o'rtachani ko'rsatdi",

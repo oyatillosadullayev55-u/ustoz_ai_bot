@@ -5,9 +5,9 @@
 O'zbek tilida ishlaydigan to'liq ta'lim Telegram boti. **Python 3**, **aiogram 3**,
 **SQLite** va **aiosqlite** asosida qurilgan.
 
-> **Holat: barcha asosiy bo'limlar tayyor.** Ro'yxatdan o'tish, AI Ustoz, 10 fan
+> **Holat: barcha asosiy bo'limlar tayyor.** Ro'yxatdan o'tish, AI Ustoz, 8 fan (Dasturlash yo'nalishlari birlashtirilgan)
 > bo'yicha rasmli darslar (qisqa mazmun, asosiy fikrlar, batafsil izoh va mini mashq),
-> 80 savol, natijalar statistikasi, kunlik reja, sozlamalar, admin panel, dars qidiruvi,
+> 140 savol, natijalar statistikasi, kunlik reja, sozlamalar, admin panel, dars qidiruvi,
 > kunlik eslatmalar va bepul serverga joylash tayyor.
 
 ## Hujjatlar
@@ -20,6 +20,7 @@ O'zbek tilida ishlaydigan to'liq ta'lim Telegram boti. **Python 3**, **aiogram 3
   Always Free, Docker, health-check va ma'lumotni saqlash bo'yicha qo'llanma.
 - [Kod fayllari hujjati](docs/kod/README.md) — har bir Python fayli, kontent, test va
   infratuzilma fayli uchun alohida markdown hujjat.
+- [Bepul darslar va Dasturlash](BEPUL_KURSLAR.md) — Oson Studio bepul kurslari va dasturlash yo'nalishlari to'liq ro'yxati.
 - [Dars kartochkalari dizayni](docs/DARS_DIZAYNI.md) — 20 rasm, kartochka tuzilishi,
   ranglar tizimi, kod oqimi va rasm almashtirish yo'riqnomasi.
 
@@ -30,7 +31,7 @@ O'zbek tilida ishlaydigan to'liq ta'lim Telegram boti. **Python 3**, **aiogram 3
   kalit bo'lmasa dars bazasidan mos javob qidiradi. Darsdagi **🧠 AI Ustozga so'rash**
   tugmasi AI ga shu dars mazmunini beradi va tushunarsiz joyni dars asosida tushuntiradi.
   Kunlik limit va so'rovlar orasidagi tanaffus amal qiladi.
-- **Darslar** — 10 fan, 20 dars. Har bir dars 16:9 rasmli kartochkada qisqa mazmun,
+- **Darslar** — 8 fan (Dasturlash yo'nalishlari birlashtirilgan), 35 dars. Har bir dars 16:9 rasmli kartochkada qisqa mazmun,
   3 ta asosiy fikr, davomiylik va daraja bilan ochiladi. **📖 Batafsil o'qish** to'liq
   izoh, hayotiy misol va mini mashqni ko'rsatadi; oldingi/keyingi darsga o'tish,
   **✅ Darsni tugatdim**, **🧠 AI Ustozga so'rash** va **📝 Test yechish** tugmalari bor.
@@ -68,7 +69,7 @@ O'zbek tilida ishlaydigan to'liq ta'lim Telegram boti. **Python 3**, **aiogram 3
 | Python | 2 |
 | Dart va Flutter | 2 |
 
-Jami **10 fan**, **20 dars**, **80 savol**. Har bir darsda 16:9 rasm, qisqa mazmun,
+Jami **8 fan (Dasturlash yo'nalishlari birlashtirilgan)**, **35 dars**, **140 savol**. Har bir darsda 16:9 rasm, qisqa mazmun,
 3 ta asosiy fikr, batafsil izoh va mini mashq; har bir darsda 4 tadan savol, har bir
 savolda 4 ta variant va izoh bor.
 
@@ -237,7 +238,7 @@ Kutilgan natija:
 
 ```text
 INFO | database.db | Ma'lumotlar bazasi tayyor: ...\ustoz_ai.db
-INFO | database.seed | Kontent yuklandi: 10 fan, 20 dars, 80 savol.
+INFO | database.seed | Kontent yuklandi: 8 fan (Dasturlash yo'nalishlari birlashtirilgan), 35 dars, 140 savol.
 INFO | bot | UstozAI ishga tushdi: @ustoz_ai_2026_bot
 ```
 
@@ -247,7 +248,7 @@ Birinchi ishga tushishda avtomatik yaratiladi:
 
 - `ustoz_ai.db` — 8 jadval bilan SQLite bazasi;
 - `logs/bot.log` — xatolar jurnali;
-- 10 fan, 20 dars va 80 savol bazaga yuklanadi.
+- 8 fan (Dasturlash yo'nalishlari birlashtirilgan), 35 dars va 140 savol bazaga yuklanadi.
 
 ## Bepul serverga joylash
 
@@ -379,10 +380,10 @@ python tests\test_offline.py
 python tests\test_handlers_offline.py
 ```
 
-- `test_offline.py` — baza, 80 savol, dars maydonlari, eski baza migratsiyasi, health
+- `test_offline.py` — baza, 140 savol, dars maydonlari, eski baza migratsiyasi, health
   server, qidiruv, natijalar, streak, AI fallback va dars konteksti, bildirishnomalar,
   eslatma ro'yxati va admin statistikasi. Natija: `OFFLINE_TESTS_OK`.
-- `test_handlers_offline.py` — to'liq handler oqimi: ro'yxatdan o'tish, 20 ta rasmning
+- `test_handlers_offline.py` — to'liq handler oqimi: ro'yxatdan o'tish, 35 ta rasmning
   mavjudligi, caption limiti, rasmli dars kartochkasi, asosiy fikrlar, batafsil o'qish,
   oldingi/keyingi dars, darsni batafsil ekranda tugatish, dars bo'yicha AI, qidiruv,
   5 savolli test (bitta xato javob va tahlil), statistika, kunlik reja, sozlamalar,
@@ -426,9 +427,9 @@ ustoz_ai_bot/
 ├── README.md
 ├── .github/workflows/ci.yml  # Ruff + offline testlar
 ├── assets/
-│   └── lesson_images/        # 20 ta 1280x720 dars rasmi
+│   └── lesson_images/        # 35 ta 1280x735 dars rasmi
 ├── content/
-│   └── seed_data.json        # 10 fan, 20 dars, 80 savol
+│   └── seed_data.json        # 8 fan (Dasturlash yo'nalishlari birlashtirilgan), 35 dars, 140 savol
 ├── database/
 │   ├── db.py                 # 8 jadval sxemasi, ulanish va migratsiya
 │   ├── seed.py               # Kontentni yuklash

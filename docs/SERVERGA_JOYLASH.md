@@ -237,7 +237,7 @@ docker compose logs -f
 Logda quyidagilar ko'rinishi kerak:
 
 ```text
-database.seed | Kontent yuklandi: 10 fan, 20 dars, 80 savol.
+database.seed | Kontent yuklandi: 11 fan, 35 dars, 140 savol.
 bot | UstozAI ishga tushdi: @...
 ```
 
