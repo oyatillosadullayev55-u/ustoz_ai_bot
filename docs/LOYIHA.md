@@ -15,7 +15,7 @@ oqimlari va texnik qarorlarini tavsiflaydi.
 | --- | --- |
 | Ro'yxatdan o'tish | Ism, bilim darajasi (boshlang'ich / o'rta / yuqori), ma'lumotlarni saqlash |
 | AI Ustoz | Savol-javob, AI provayderi yoki dars bazasidan fallback, dars konteksti, kunlik limit |
-| Darslar | 11 fan, 35 dars; qisqa mazmun, 3 asosiy fikr, batafsil izoh, mini mashq, oldingi/keyingi dars |
+| Darslar | 8 fan, 35 dars; qisqa mazmun, 3 asosiy fikr, batafsil izoh, mini mashq, oldingi/keyingi dars |
 | Qidiruv | Darslarni nomi va mazmuni bo'yicha topish (`/qidiruv`) |
 | Testlar | Har urinishda 5 ta tasodifiy savol, 4 variant, yakuniy natija va xato javoblar tahlili |
 | Natijalar | Testlar, o'rtacha va eng yaxshi natija, faol kunlar, streak |
@@ -26,7 +26,7 @@ oqimlari va texnik qarorlarini tavsiflaydi.
 | Kontent | JSON orqali fan, dars va savollarni boshqarish |
 | Joylash | Render bepul tarifi, Docker/Compose, Oracle Always Free, `/health` |
 
-Jami: **11 fan**, **35 dars**, **140 savol** (har bir darsda 4 tadan). Har bir
+Jami: **8 fan**, **35 dars**, **140 savol** (har bir darsda 4 tadan). Har bir
 savolda 4 ta variant va izoh bor.
 
 ## Arxitektura

@@ -94,7 +94,7 @@ batafsil ekran esa bosqichma-bosqich o'rgatadi.
 1. JSON'ni tahrirlang.
 2. JSON sintaksisini tekshiring.
 3. Botni qayta ishga tushiring — `seed_content()` kontentni upsert qiladi.
-4. `tests/test_offline.py` ni ishga tushiring: u 11 fan, 35 dars va 140 savolni tekshiradi.
+4. `tests/test_offline.py` ni ishga tushiring: u 8 fan, 35 dars va 140 savolni tekshiradi.
 
 ## Muhim jihatlar
 
