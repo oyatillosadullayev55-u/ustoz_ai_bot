@@ -20,7 +20,7 @@ O'zbek tilida ishlaydigan to'liq ta'lim Telegram boti. **Python 3**, **aiogram 3
   Always Free, Docker, health-check va ma'lumotni saqlash bo'yicha qo'llanma.
 - [Kod fayllari hujjati](docs/kod/README.md) — har bir Python fayli, kontent, test va
   infratuzilma fayli uchun alohida markdown hujjat.
-- [Bepul darslar va Dasturlash](BEPUL_KURSLAR.md) — Oson Studio bepul kurslari va dasturlash yo'nalishlari to'liq ro'yxati.
+- [Bepul darslar va Dasturlash](BEPUL_KURSLAR.md) — dasturlash yo'nalishlari va 15 ta bepul kurs ro'yxati.
 - [Dars kartochkalari dizayni](docs/DARS_DIZAYNI.md) — 20 rasm, kartochka tuzilishi,
   ranglar tizimi, kod oqimi va rasm almashtirish yo'riqnomasi.
 

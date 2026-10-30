@@ -1,6 +1,6 @@
-# 🎓 Oson Studio bepul kurslari — UstozAI bot darslari
+# 🎓 Bepul kurslar — UstozAI bot darslari
 
-Manba: [osonstudio.uz/kurslar](https://osonstudio.uz/kurslar). Botdagi «💻 Dasturlash» fanida 15 ta kurs alohida dars sifatida beriladi (60 ta test savoli bilan).
+Botdagi «💻 Dasturlash» fanida 15 ta bepul kurs alohida dars sifatida beriladi (60 ta test savoli bilan).
 
 ## Mundarija
 
@@ -35,7 +35,7 @@ Manba: [osonstudio.uz/kurslar](https://osonstudio.uz/kurslar). Botdagi «💻 Da
 🎯 Maqsad: sun'iy intellektdan eng yaxshi javobni olish uchun prompt (buyruq) yozishni professional darajada o'rganish.
 
 1️⃣ Kurs haqida
-Oson Studio'dagi Prompt Engineering kursi 37 ta darsdan iborat. AI bilan suhbatlash, prompt tuzish tamoyillari va RAG texnologiyasi o'rgatiladi. Manzil: osonstudio.uz/kurslar/prompt-kurs
+Prompt Engineering kursi 37 ta darsdan iborat. AI bilan suhbatlash, prompt tuzish tamoyillari va RAG texnologiyasi o'rgatiladi.
 
 2️⃣ Nimalarni o'rganasiz
 • Promptlarni qanday aniq va samarali yozish kerakligi.
@@ -80,7 +80,7 @@ Prompt Engineering kursida AI'ga aniq buyruq berish, RAG texnologiyasi, roll ber
 
 4. **Prompt Engineering kursi nechta darsdan iborat?**
    - To'g'ri javob: **37**
-   - Izoh: Oson Studio'dagi Prompt Engineering kursi 37 ta darsdan iborat.
+   - Izoh: Prompt Engineering kursi 37 ta darsdan iborat.
 
 
 ---
@@ -98,7 +98,7 @@ Prompt Engineering kursida AI'ga aniq buyruq berish, RAG texnologiyasi, roll ber
 🎯 Maqsad: matndan sifatli rasm yarish — AI Image Generation asoslarini o'rganish.
 
 1️⃣ Kurs haqida
-AI Image Gen kursi 40 ta darsdan iborat. Matndan rasm hosil qilish (text-to-image) va rasmni tahrirlash texnikalari o'rgatiladi. Manzil: osonstudio.uz/kurslar/airasm-kurs
+AI Image Gen kursi 40 ta darsdan iborat. Matndan rasm hosil qilish (text-to-image) va rasmni tahrirlash texnikalari o'rgatiladi.
 
 2️⃣ Nimalarni o'rganasiz
 • Rasm promptlarini tuzish: uslub, yorug'lik, kompozitsiya tavsifi.
@@ -161,7 +161,7 @@ AI Image Gen kursida matndan rasm yaratish, prompt yozish, inpainting va upscali
 🎯 Maqsad: matn yoki rasm asosida video yaratish — AI Video Generation asoslarini o'rganish.
 
 1️⃣ Kurs haqida
-AI Video Gen kursi 40 ta darsdan iborat. Video promptlari yozish, sahna yaratish va AI yordamida video montaj o'rgatiladi. Manzil: osonstudio.uz/kurslar/aivideo-kurs
+AI Video Gen kursi 40 ta darsdan iborat. Video promptlari yozish, sahna yaratish va AI yordamida video montaj o'rgatiladi.
 
 2️⃣ Nimalarni o'rganasiz
 • Video promptlari: harakat, kamera burchagi, sahna tavsifi.
@@ -224,7 +224,7 @@ AI Video Gen kursida video promptlari yozish, matn va rasmdan video yaratish ham
 🎯 Maqsad: sun'iy intellekt agentlarini yaratish va ularga vositalar ulashni o'rganish.
 
 1️⃣ Kurs haqida
-AI Agents kursida avtonom agentlar yaratish, ularga vazifa berish va vositalar (tools) ulash o'rgatiladi. Manzil: osonstudio.uz/kurslar/agent-kurs
+AI Agents kursida avtonom agentlar yaratish, ularga vazifa berish va vositalar (tools) ulash o'rgatiladi.
 
 2️⃣ Nimalarni o'rganasiz
 • Agent nima va oddiy chatdan qanday farq qiladi.
@@ -287,7 +287,7 @@ AI Agents kursida avtonom agentlar arxitekturasi, ularga vositalar ulash va amal
 🎯 Maqsad: Python yordamida AI agentlik tizimlar va avtomatlashtirish sikllarini qurish.
 
 1️⃣ Kurs haqida
-Loop Engineering kursi 40 ta darsdan iborat. Python tilida agentlik tizimlar, takrorlanuvchi jarayonlar va avtomatlashtirish sikllarini qurish o'rgatiladi. Manzil: osonstudio.uz/kurslar/loop-kurs
+Loop Engineering kursi 40 ta darsdan iborat. Python tilida agentlik tizimlar, takrorlanuvchi jarayonlar va avtomatlashtirish sikllarini qurish o'rgatiladi.
 
 2️⃣ Nimalarni o'rganasiz
 • Agent siklini kodlash: o'ylash, harakat qilish, tekshirish, takrorlash.
@@ -350,7 +350,7 @@ Loop Engineering kursida Python bilan agent sikllarini kodlash, avtomatlashtiris
 🎯 Maqsad: Excel'da professional darajada hisobot, tahlil va dashboard yaratishni o'rganish.
 
 1️⃣ Kurs haqida
-Pro Excel kursida formulalar, Pivot jadvallar va interaktiv dashboard'lar tuzish o'rgatiladi. Ofis va moliya sohasining eng talabgir ko'nikmalaridan biri. Manzil: osonstudio.uz/kurslar/excel-kurs
+Pro Excel kursida formulalar, Pivot jadvallar va interaktiv dashboard'lar tuzish o'rgatiladi. Ofis va moliya sohasining eng talabgir ko'nikmalaridan biri.
 
 2️⃣ Nimalarni o'rganasiz
 • Murakkab formulalar: VLOOKUP, INDEX, MATCH, SUMIFS.
@@ -413,7 +413,7 @@ Pro Excel kursida murakkab formulalar, Pivot jadvallar va interaktiv dashboard'l
 🎯 Maqsad: moliyaviy savodxonlik va buxgalteriya asoslarini noldan o'rganish.
 
 1️⃣ Kurs haqida
-Buxgalteriya kursida hisob varag'i, debet-kredit yozuvlari, soliq va balans tuzish o'rgatiladi. Manzil: osonstudio.uz/kurslar/buxgalteriya-kurs
+Buxgalteriya kursida hisob varag'i, debet-kredit yozuvlari, soliq va balans tuzish o'rgatiladi.
 
 2️⃣ Nimalarni o'rganasiz
 • Mol-mulk, majburiyat va kapital tushunchalari.
@@ -479,7 +479,7 @@ Buxgalteriya kursida hisob varag'i, debet-kredit, soliq va balans asoslarini ama
 🎯 Maqsad: internetdagi tahdidlardan himoyalanish va ma'lumotlaringizni xavfsiz saqlashni o'rganish.
 
 1️⃣ Kurs haqida
-Digital Security kursi 40 ta darsdan iborat. Fishing hujumlari, zaif parollar va shaxsiy ma'lumotlar himoyasi kabi zamonaviy tahdidlardan himoyalanish o'rgatiladi. Manzil: osonstudio.uz/kurslar/xavfsizlik-kurs
+Digital Security kursi 40 ta darsdan iborat. Fishing hujumlari, zaif parollar va shaxsiy ma'lumotlar himoyasi kabi zamonaviy tahdidlardan himoyalanish o'rgatiladi.
 
 2️⃣ Nimalarni o'rganasiz
 • Fishing xatlar va soxta saytlarni aniqlash belgilari.
@@ -542,7 +542,7 @@ Digital Security kursida fishing aniqlash, kuchli parollar, 2FA va shaxsiy ma'lu
 🎯 Maqsad: Windows kompyuterini buyruqlar qatori (CMD) orqali professional boshqarishni o'rganish.
 
 1️⃣ Kurs haqida
-Windows buyruqlari kursi 24 ta darsdan iborat. CMD orqali fayllarni boshqarish, tarmoqni tekshirish va jarayonlarni nazorat qilish o'rgatiladi. Manzil: osonstudio.uz/kurslar/windows-buyruqlari-kurs
+Windows buyruqlari kursi 24 ta darsdan iborat. CMD orqali fayllarni boshqarish, tarmoqni tekshirish va jarayonlarni nazorat qilish o'rgatiladi.
 
 2️⃣ Nimalarni o'rganasiz
 • Asosiy buyruqlar: dir, cd, copy, del, mkdir.
@@ -605,7 +605,7 @@ Windows CMD kursida asosiy buyruqlar, tarmoq diagnostikasi (ipconfig, ping) va j
 🎯 Maqsad: tranzistordan tortib protsessorgacha — kompyuter qanday ishlaydi degan savolga to'liq javob olish.
 
 1️⃣ Kurs haqida
-PC Architecture kursi 36 ta darsdan iborat. Elektronika asoslari, mantiqiy sxemalar, protsessor va xotira qanday birga ishlashi tushuntiriladi. Manzil: osonstudio.uz/kurslar/kompyuter-arxitekturasi-kurs
+PC Architecture kursi 36 ta darsdan iborat. Elektronika asoslari, mantiqiy sxemalar, protsessor va xotira qanday birga ishlashi tushuntiriladi.
 
 2️⃣ Nimalarni o'rganasiz
 • Tranzistor, gate va mantiqiy sxemalar asoslari.
@@ -668,7 +668,7 @@ Kompyuter arxitekturasi kursida tranzistor, mantiqiy sxemalar, protsessor (ALU, 
 🎯 Maqsad: Windows, Linux va boshqa operatsion tizimlar qanday boshqarishini chuqur tushunish.
 
 1️⃣ Kurs haqida
-Operatsion tizimlar kursida yadro (kernel), jarayonlar, xotira boshqaruvi va fayl tizimlari tushuntiriladi. Manzil: osonstudio.uz/kurslar/operatsion-tizimlar-kurs
+Operatsion tizimlar kursida yadro (kernel), jarayonlar, xotira boshqaruvi va fayl tizimlari tushuntiriladi.
 
 2️⃣ Nimalarni o'rganasiz
 • Kernel nima va u apparat bilan dastur orasida qanday vositachi bo'ladi.
@@ -731,7 +731,7 @@ Operatsion tizimlar kursida kernel, jarayonlar, xotira boshqaruvi va fayl tiziml
 🎯 Maqsad: masalalarni samarali yechadigan algoritmik fikrlashni shakllantirish.
 
 1️⃣ Kurs haqida
-Algoritmlar kursida saralash algoritmlari, rekursiya va graf bo'ylab yurish usullari o'rgatiladi. Dasturlash va texnik suhbatlarning asosi. Manzil: osonstudio.uz/kurslar/algoritmlar-kurs
+Algoritmlar kursida saralash algoritmlari, rekursiya va graf bo'ylab yurish usullari o'rgatiladi. Dasturlash va texnik suhbatlarning asosi.
 
 2️⃣ Nimalarni o'rganasiz
 • Saralash: bubble, selection, quick sort va ularning tezlik farqi.
@@ -794,7 +794,7 @@ Algoritmlar kursida saralash, rekursiya va graf algoritmlarini o'rganib, masalal
 🎯 Maqsad: ma'lumotlarni saqlash va qidirishning samarali usullarini o'rganish.
 
 1️⃣ Kurs haqida
-Ma'lumotlar tuzilmasi kursida massiv, bog'liq ro'yxat, daraxt va xesh-jadval kabi tuzilmalar o'rgatiladi. Manzil: osonstudio.uz/kurslar/malumotlar-tuzilmasi-kurs
+Ma'lumotlar tuzilmasi kursida massiv, bog'liq ro'yxat, daraxt va xesh-jadval kabi tuzilmalar o'rgatiladi.
 
 2️⃣ Nimalarni o'rganasiz
 • Massiv va bog'liq ro'yxat: qo'shish va o'chirish tezligi.
@@ -857,7 +857,7 @@ Ma'lumotlar tuzilmasi kursida massiv, bog'liq ro'yxat, daraxt va xesh-jadval tuz
 🎯 Maqsad: SQL orqali ma'lumotlarni saqlash, so'rash va tahlil qilishni professional darajada o'rganish.
 
 1️⃣ Kurs haqida
-Ma'lumotlar bazasi kursida SQL til, jadval birlashtirish (JOIN) va indekslash o'rgatiladi. Bank, Telegram va kutubxona — barchasi bazaga tayanadi. Manzil: osonstudio.uz/kurslar/malumotlar-bazasi-kurs
+Ma'lumotlar bazasi kursida SQL til, jadval birlashtirish (JOIN) va indekslash o'rgatiladi. Bank, Telegram va kutubxona — barchasi bazaga tayanadi.
 
 2️⃣ Nimalarni o'rganasiz
 • SELECT, WHERE, ORDER BY — ma'lumotni saralash va filtrlash.
@@ -920,7 +920,7 @@ Ma'lumotlar bazasi kursida SQL so'rovlar, JOIN birlashtirish va indekslash orqal
 🎯 Maqsad: internet va lokal tarmoqlar qanday ishlashini to'liq tushunish.
 
 1️⃣ Kurs haqida
-Kompyuter tarmoqlari kursida OSI modeli, TCP/IP protokollari va DNS tizimi o'rgatiladi. Manzil: osonstudio.uz/kurslar/kompyuter-tarmoqlari-kurs
+Kompyuter tarmoqlari kursida OSI modeli, TCP/IP protokollari va DNS tizimi o'rgatiladi.
 
 2️⃣ Nimalarni o'rganasiz
 • OSI 7 qatlami: signaldan ilova dasturigacha ma'lumot qanday sayohat qiladi.
@@ -937,7 +937,7 @@ cmd da ping va tracert buyruqlarini o'zingiz sinab ko'ring: saytga qanday yo'l b
 google.uz manzilini ping qilib, vaqt ko'rsatkichlarini yozing.
 
 ✅ Xulosa
-Tarmoqlar kursi internetning «ichki dunyosi»ni ochadi — har qanday zamonaviy kasb uchun foydali.
+Tarmoqlar kursi internetning «ichki dunyosi»ni ochadi — har qanday zamonaviy kasb uchun foydali. Shu bilimlar uy Wi-Fi muammolarini mustaqil hal qilishga yordam beradi.
 
 ### Asosiy fikrlar
 
