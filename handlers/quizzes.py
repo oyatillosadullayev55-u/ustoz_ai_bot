@@ -20,7 +20,7 @@ from database.content import (
 )
 from database.goals import increment_goal
 from database.quizzes import save_quiz_result
-from handlers.common import require_user, require_user_callback, safe_edit
+from handlers.common import react, require_user, require_user_callback, safe_edit
 from keyboards.inline_buttons import (
     OPTION_LETTERS,
     get_quiz_options_keyboard,
@@ -100,6 +100,16 @@ def _review_text(wrong_answers: list[tuple]) -> str:
         "Xato qilgan mavzularni darslarda takrorlab, testni qayta yeching."
     )
     return "\n".join(lines)
+
+
+def _result_reaction(percent: int) -> str:
+    if percent >= 90:
+        return "🏆"
+    if percent >= 70:
+        return "👏"
+    if percent >= 50:
+        return "👍"
+    return "💪"
 
 
 def _result_text(
@@ -209,6 +219,7 @@ async def start_quiz(
         ),
     )
     await callback.answer("Test boshlandi. Omad! 🍀")
+    await react(callback.message, "🚀")
 
 
 @router.callback_query(QuizStates.answering, F.data.startswith("quiz:answer:"))
@@ -257,9 +268,11 @@ async def answer_question(callback: CallbackQuery, state: FSMContext) -> None:
             await callback.answer("Savol topilmadi.", show_alert=True)
             return
 
-        if option == question["correct_option"]:
+        is_correct = option == question["correct_option"]
+        if is_correct:
             correct_total += 1
         answers.append({"question_id": question_id, "selected": option})
+        await react(callback.message, "✅" if is_correct else "❌")
 
         next_index = index + 1
         if next_index >= len(question_ids):
@@ -271,6 +284,7 @@ async def answer_question(callback: CallbackQuery, state: FSMContext) -> None:
             )
             await increment_goal(user_id, quizzes=1)
             await state.clear()
+            await react(callback.message, _result_reaction(percent))
 
             await safe_edit(
                 callback,

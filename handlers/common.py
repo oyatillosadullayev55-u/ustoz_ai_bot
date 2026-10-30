@@ -2,12 +2,43 @@
 
 from __future__ import annotations
 
+import logging
+
 import aiosqlite
-from aiogram.exceptions import TelegramBadRequest
-from aiogram.types import CallbackQuery, InlineKeyboardMarkup, Message
+from aiogram.enums import ChatAction
+from aiogram.exceptions import TelegramAPIError, TelegramBadRequest
+from aiogram.types import CallbackQuery, InlineKeyboardMarkup, Message, ReactionTypeEmoji
 
 from database.users import get_user
 from keyboards.main_menu import get_main_menu_keyboard
+
+logger = logging.getLogger(__name__)
+
+
+async def react(message: Message | None, emoji: str) -> None:
+    """Xabarga emoji reaksiya qo'yadi — jonli ko'rinish effekti."""
+    if not isinstance(message, Message) or message.bot is None:
+        return
+    try:
+        await message.bot.set_message_reaction(
+            chat_id=message.chat.id,
+            message_id=message.message_id,
+            reaction=[ReactionTypeEmoji(emoji=emoji)],
+        )
+    except TelegramAPIError:
+        logger.debug("Reaksiya qo'yib bo'lmadi: %s", emoji, exc_info=True)
+
+
+async def send_action(message: Message | None, action: ChatAction) -> None:
+    """«Yozmoqda»/«Rasm yuklanmoqda» holatini ko'rsatadi."""
+    if not isinstance(message, Message) or message.bot is None:
+        return
+    try:
+        await message.bot.send_chat_action(
+            chat_id=message.chat.id, action=action
+        )
+    except TelegramAPIError:
+        logger.debug("Chat action yuborib bo'lmadi: %s", action, exc_info=True)
 
 
 async def require_user(message: Message) -> aiosqlite.Row | None:

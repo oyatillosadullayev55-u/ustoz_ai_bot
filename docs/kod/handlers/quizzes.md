@@ -44,3 +44,9 @@ Matnlar `html.escape` qilinadi, uzun qiymatlar `_short()` bilan qisqartiriladi. 
 - To'g'ri javob callback ma'lumotida yoki tugma matnida yo'q — faqat savol ID'si va variant indeksi.
 - `correct_option` faqat javob qabul qilingandan keyin bazadan o'qiladi.
 - Foydalanuvchi matni emas, balki bazadagi savol matni chiqariladi; baribir HTML escape qo'llanadi.
+
+## Harakat effektlari
+
+- Test boshlanganda `🚀`, har bir javobda `✅` yoki `❌` reaksiyasi qo'yiladi.
+- Yakunda natijaga qarab `🏆` (≥90%), `👏` (≥70%), `👍` (≥50%), `💪` — `_result_reaction()`.
+

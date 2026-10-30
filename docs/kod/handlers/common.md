@@ -11,6 +11,8 @@
 | `require_user_callback(callback)` | Callback uchun xuddi shu tekshiruv, `show_alert` bilan |
 | `safe_edit(callback, text, markup)` | Xabarni tahrirlaydi; foto yoki eskirgan xabarda yangisini yuboradi |
 | `progress_bar(done, target, width=8)` | `▓` va `░` belgilaridan progress bar yasaydi |
+| `react(message, emoji)` | Xabarga emoji reaksiya qo'yadi (👋, 📖, 🎉, ✅/❌) — `TelegramAPIError` yutiladi |
+| `send_action(message, action)` | «yozmoqda»/«rasm yuklanmoqda» holatini ko'rsatadi; xatolar logga yozilib yutiladi |
 
 ## `require_user` mantiqi
 

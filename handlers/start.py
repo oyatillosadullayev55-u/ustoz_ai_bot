@@ -19,6 +19,7 @@ from database.users import (
     update_last_seen,
     update_level,
 )
+from handlers.common import react
 from keyboards.inline_buttons import LEVELS, get_levels_keyboard
 from keyboards.main_menu import MAIN_MENU_TEXTS, get_main_menu_keyboard
 
@@ -52,6 +53,7 @@ async def start_handler(message: Message, state: FSMContext) -> None:
     if tg_user is None:
         return
 
+    await react(message, "👋")
     user = await get_user(tg_user.id)
     if user is not None:
         await update_last_seen(tg_user.id)

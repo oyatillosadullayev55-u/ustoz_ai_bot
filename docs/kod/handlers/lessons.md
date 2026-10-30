@@ -120,3 +120,12 @@ Foydalanuvchi kiritgan qidiruv matni to'g'ridan-to'g'ri HTML'ga qo'yilmaydi; avv
 qilinadi. SQL so'rov parametrlangan. Rasm nomi faqat dars ID siga bog'langan, foydalanuvchi
 kiritgan yo'l ishlatilmaydi. Callback'dan kelgan dars ID si butun songa aylantiriladi va
 bazadan qayta tekshiriladi.
+
+## Harakat effektlari
+
+- `Darslar` tugmasi bosilganda `send_action(TYPING)` yuboriladi.
+- Rasmli kartochka yuborilishidan oldin `send_action(UPLOAD_PHOTO)` — «rasm yuklanmoqda».
+- Dars ochilganda `📖`, batafsil matnda `📘`, dars tugatilganda `🎉` reaksiyalari
+  `handlers.common.react()` orqali qo'yiladi.
+- Kartochka va batafsil ekranda tashqi havola tugmasi yo'q: barcha material bot ichida.
+

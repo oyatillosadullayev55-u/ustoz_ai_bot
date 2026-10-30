@@ -8,10 +8,10 @@ import math
 from datetime import UTC, datetime
 
 from aiogram import F, Router
-from aiogram.enums import ChatAction
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
 from aiogram.types import CallbackQuery, Message
+from aiogram.utils.chat_action import ChatActionSender
 
 from config import get_settings
 from database.chat import add_message, get_ai_usage, get_history
@@ -222,18 +222,19 @@ async def ai_chat(message: Message, state: FSMContext) -> None:
 
     await add_message(user_id, "user", text)
 
-    if message.bot is not None:
-        try:
-            await message.bot.send_chat_action(
-                chat_id=message.chat.id, action=ChatAction.TYPING
-            )
-        except Exception:
-            logger.debug("Typing xabarini yuborib bo'lmadi.", exc_info=True)
-
     try:
-        answer, source = await ask_tutor(
-            text, history, user["level"], lesson_context
-        )
+        if message.bot is None:
+            answer, source = await ask_tutor(
+                text, history, user["level"], lesson_context
+            )
+        else:
+            sender = ChatActionSender.typing(
+                bot=message.bot, chat_id=message.chat.id
+            )
+            async with sender:
+                answer, source = await ask_tutor(
+                    text, history, user["level"], lesson_context
+                )
         await add_message(user_id, "assistant", answer[:4000])
     except Exception:
         logger.exception("AI Ustoz javobini olishda xatolik")

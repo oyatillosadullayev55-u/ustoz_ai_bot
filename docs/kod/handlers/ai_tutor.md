@@ -73,3 +73,10 @@ lug'ati yoziladi:
   tozalanadi.
 - Eski `lesson_context` yangi dars tanlanganda yoki AI rejimidan chiqilganda qolib
   ketmaydi.
+
+## Harakat effekti
+
+`ask_tutor()` chaqiruvi `ChatActionSender.typing(...)` kontekstida bajariladi: AI javob
+tayyorlayotganda foydalanuvchi doimiy «yozmoqda» indikatorini ko'radi. AI o'chirilgan
+(rejim `plain`) holatda ham effekt ishlaydi; `message.bot` yo'q bo'lsa oddiy chaqiruv.
+

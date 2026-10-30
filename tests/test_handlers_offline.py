@@ -26,13 +26,15 @@ os.environ["AI_MIN_INTERVAL"] = "0"
 
 from aiogram import Bot, Dispatcher  # noqa: E402
 from aiogram.client.default import DefaultBotProperties  # noqa: E402
-from aiogram.enums import ChatType, ParseMode  # noqa: E402
+from aiogram.enums import ChatAction, ChatType, ParseMode  # noqa: E402
 from aiogram.fsm.storage.memory import MemoryStorage  # noqa: E402
 from aiogram.methods import (  # noqa: E402
     EditMessageCaption,
     EditMessageText,
+    SendChatAction,
     SendMessage,
     SendPhoto,
+    SetMessageReaction,
 )
 from aiogram.types import (  # noqa: E402
     CallbackQuery,
@@ -160,6 +162,26 @@ def last_reply_keyboard(session: FakeSession) -> list[str]:
     return []
 
 
+def reaction_emojis(session: FakeSession) -> list[str]:
+    emojis: list[str] = []
+    for method in session.calls:
+        if isinstance(method, SetMessageReaction) and method.reaction:
+            emojis.extend(
+                item.emoji
+                for item in method.reaction
+                if getattr(item, "emoji", None)
+            )
+    return emojis
+
+
+def sent_chat_actions(session: FakeSession) -> list[ChatAction]:
+    return [
+        method.action
+        for method in session.calls
+        if isinstance(method, SendChatAction)
+    ]
+
+
 async def main() -> None:
     await init_db()
 
@@ -277,6 +299,7 @@ async def main() -> None:
     fake.calls.clear()
     await send_text("/start")
     check("ismingizni" in last_text(fake).lower(), "ism so'rash xabari yuborildi", errors)
+    check("👋" in reaction_emojis(fake), "startda salomlashish reaksiyasi bor", errors)
 
     fake.calls.clear()
     await send_text("Ali")
@@ -311,6 +334,11 @@ async def main() -> None:
     await send_text("📚 Darslar")
     check("lesson:subject:5" in last_inline_callbacks(fake), "fanlar ro'yxati chiqdi", errors)
     check("🖼️" in last_text(fake), "darslar bo'limi rasmli kartani tanishtirdi", errors)
+    check(
+        ChatAction.TYPING in sent_chat_actions(fake),
+        "darslar ochilishida yozmoqda holati ko'rsatildi",
+        errors,
+    )
 
     fake.calls.clear()
     await send_callback("lesson:subject:5")
@@ -328,6 +356,12 @@ async def main() -> None:
         "dars rasmi yuborildi",
         errors,
     )
+    check(
+        ChatAction.UPLOAD_PHOTO in sent_chat_actions(fake),
+        "rasm yuborilishidan oldin yuklanmoqda holati ko'rsatildi",
+        errors,
+    )
+    check("📖" in reaction_emojis(fake), "dars ochilganda reaksiya qo'yildi", errors)
     check(
         "Asosiy fikrlar" in last_caption(fake),
         "kartochkada asosiy fikrlar ko'rsatildi",
@@ -393,6 +427,7 @@ async def main() -> None:
     )
     goal = await get_today_goal(USER_ID)
     check(int(goal["completed_lessons"]) == 1, "kunlik reja darsni sanadi", errors)
+    check("🎉" in reaction_emojis(fake), "dars tugatilganda tabrik reaksiyasi bor", errors)
 
     fake.calls.clear()
     await send_callback("lesson:view:501", message=details_message)
@@ -483,6 +518,11 @@ async def main() -> None:
     check(
         any("4/5" in text and "80%" in text for text in texts),
         "natija 4/5 va 80% hisoblandi",
+        errors,
+    )
+    check(
+        bool({"🏆", "👏", "👍", "💪"} & set(reaction_emojis(fake))),
+        "test yakunida natijaga mos reaksiya qo'yildi",
         errors,
     )
     check(

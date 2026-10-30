@@ -7,6 +7,7 @@ import json
 import logging
 
 from aiogram import F, Router
+from aiogram.enums import ChatAction
 from aiogram.exceptions import TelegramBadRequest
 from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
@@ -27,9 +28,11 @@ from database.progress import (
 )
 from handlers.common import (
     progress_bar,
+    react,
     require_user,
     require_user_callback,
     safe_edit,
+    send_action,
 )
 from keyboards.inline_buttons import (
     get_lesson_details_keyboard,
@@ -49,24 +52,6 @@ SEARCH_MAX_LENGTH = 100
 SEARCH_RESULTS_LIMIT = 5
 LESSON_CAPTION_LIMIT = 1024
 LESSON_TEXT_LIMIT = 4000
-
-COURSE_URLS: dict[int, str] = {
-    1101: "https://osonstudio.uz/prompt-kurs",
-    1102: "https://osonstudio.uz/airasm-kurs",
-    1103: "https://osonstudio.uz/aivideo-kurs",
-    1104: "https://osonstudio.uz/agent-kurs",
-    1105: "https://osonstudio.uz/loop-kurs",
-    1106: "https://osonstudio.uz/excel-kurs",
-    1107: "https://osonstudio.uz/buxgalteriya-kurs",
-    1108: "https://osonstudio.uz/xavfsizlik-kurs",
-    1109: "https://osonstudio.uz/windows-buyruqlari-kurs",
-    1110: "https://osonstudio.uz/kompyuter-arxitekturasi-kurs",
-    1111: "https://osonstudio.uz/operatsion-tizimlar-kurs",
-    1112: "https://osonstudio.uz/algoritmlar-kurs",
-    1113: "https://osonstudio.uz/malumotlar-tuzilmasi-kurs",
-    1114: "https://osonstudio.uz/malumotlar-bazasi-kurs",
-    1115: "https://osonstudio.uz/kompyuter-tarmoqlari-kurs",
-}
 
 LESSON_LEVEL_LABELS = {
     "beginner": "🟢 Boshlang'ich",
@@ -218,7 +203,6 @@ async def _send_lesson_card(
         is_completed=completed,
         prev_lesson_id=previous_id,
         next_lesson_id=next_id,
-        url=COURSE_URLS.get(lesson_id),
     )
     photo = get_lesson_photo(lesson_id)
 
@@ -238,6 +222,7 @@ async def _send_lesson_card(
     except TelegramBadRequest:
         pass
 
+    await send_action(message, ChatAction.UPLOAD_PHOTO)
     try:
         sent = await message.answer_photo(
             photo=photo, caption=text, reply_markup=keyboard
@@ -264,7 +249,6 @@ async def _send_lesson_details(
             is_completed=completed,
             prev_lesson_id=previous_id,
             next_lesson_id=next_id,
-            url=COURSE_URLS.get(int(lesson["id"])),
         ),
     )
 
@@ -356,6 +340,7 @@ async def lessons_entry(message: Message, state: FSMContext) -> None:
         return
 
     subjects = await get_subjects_with_counts()
+    await send_action(message, ChatAction.TYPING)
     await message.answer(
         _subjects_text(subjects),
         reply_markup=get_subjects_keyboard(subjects, "lesson"),
@@ -426,6 +411,7 @@ async def view_lesson(callback: CallbackQuery) -> None:
     is_completed = lesson_id in completed_ids
 
     await _send_lesson_card(callback, lesson, completed=is_completed)
+    await react(callback.message, "📖")
     await callback.answer()
 
 
@@ -452,6 +438,7 @@ async def read_lesson(callback: CallbackQuery) -> None:
     await _send_lesson_details(
         callback, lesson, completed=lesson_id in completed_ids
     )
+    await react(callback.message, "📘")
     await callback.answer("Batafsil izoh ochildi 📖")
 
 
@@ -481,6 +468,7 @@ async def mark_completed(callback: CallbackQuery) -> None:
         return
 
     await increment_goal(user_id, lessons=1)
+    await react(callback.message, "🎉")
     if isinstance(callback.message, Message) and _is_details_view(callback.message):
         await _send_lesson_details(callback, lesson, completed=True)
     else:

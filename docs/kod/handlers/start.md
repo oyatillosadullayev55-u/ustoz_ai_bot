@@ -32,3 +32,10 @@ RegistrationStates.waiting_name → RegistrationStates.waiting_level
 ## Callback ma'lumotlari
 
 `level:beginner`, `level:intermediate`, `level:advanced`.
+
+## Harakat effekti
+
+`start_handler()` boshida `react(message, "👋")` chaqiriladi — foydalanuvchi xabariga
+salomlashish reaksiyasi qo'yiladi. Reaksiya yuborilmasa (guruh, eski mijoz) xato
+yutiladi va oqim davom etadi.
+
