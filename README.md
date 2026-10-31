@@ -7,7 +7,8 @@ O'zbek tilida ishlaydigan to'liq ta'lim Telegram boti. **Python 3**, **aiogram 3
 
 > **Holat: barcha asosiy bo'limlar tayyor.** Ro'yxatdan o'tish, AI Ustoz, 8 fan (Dasturlash yo'nalishlari birlashtirilgan)
 > bo'yicha rasmli darslar (qisqa mazmun, asosiy fikrlar, batafsil izoh va mini mashq),
-> 140 savol, natijalar statistikasi, kunlik reja, sozlamalar, admin panel, dars qidiruvi,
+> 140 savol, natijalar statistikasi, XP va yutuqlar, haftalik reyting, sevimli darslar,
+> kunlik reja, sozlamalar, admin panel (baza zaxirasi va CSV eksport), dars qidiruvi,
 > kunlik eslatmalar va bepul serverga joylash tayyor.
 
 ## Hujjatlar
@@ -35,18 +36,26 @@ O'zbek tilida ishlaydigan to'liq ta'lim Telegram boti. **Python 3**, **aiogram 3
   3 ta asosiy fikr, davomiylik va daraja bilan ochiladi. **📖 Batafsil o'qish** to'liq
   izoh, hayotiy misol va mini mashqni ko'rsatadi; oldingi/keyingi darsga o'tish,
   **✅ Darsni tugatdim**, **🧠 AI Ustozga so'rash** va **📝 Test yechish** tugmalari bor.
+  Har bir fan tugmasida tugatilgan darslar soni (`2/5`) ko'rsatiladi.
+- **Sevimli darslar** — kartochkadagi **⭐ Sevimlilarga qo'shish** bilan dars saqlanadi;
+  **⭐ Sevimlilarim** ekranidan tez ochiladi.
 - **Dars qidiruvi** — `/qidiruv fotosintez` yoki `/search fotosintez` orqali sarlavha
   va matn bo'yicha 5 tagacha natija.
 - **Testlar** — har bir urinishda 5 ta tasodifiy savol, 4 ta variant. To'g'ri javob
   test yakunlanguncha ko'rsatilmaydi. Yakunda xato javoblar tahlili (tanlangan variant,
-  to'g'ri variant va izoh) yuboriladi.
+  to'g'ri variant va izoh) yuboriladi. Fan tugmasida eng yaxshi natija (`80%`) turadi,
+  yangi rekord alohida nishonlanadi.
+- **Gamifikatsiya** — har bir dars, test, to'g'ri javob, kunlik maqsad va AI savoli
+  uchun XP. 6 daraja (🌱 Yangi boshlovchi → 👑 Afsona), 12 ta yutuq va so'nggi 7 kunlik
+  **TOP-10 haftalik reyting**. Darajaga yetganda va yutuq ochilganda xabar keladi.
 - **Mening natijalarim** — o'tilgan darslar, testlar soni, o'rtacha va eng yaxshi natija,
-  faol kunlar, ketma-ket kunlar (streak), oxirgi 5 natija.
+  faol kunlar, ketma-ket kunlar (streak), oxirgi 5 natija, XP, daraja va yutuqlar.
 - **Kunlik reja** — dars va test maqsadi, bajarilish progressi, tayyor shablonlar.
 - **Kunlik eslatmalar** — har kuni belgilangan vaqtda (UTC+5, standart 19:00) rejasi
   bajarilmagan va bildirishnomasi yoqilgan foydalanuvchilarga eslatma.
 - **Sozlamalar** — bilim darajasi, bildirishnomalar, joriy til va AI holati.
-- **Admin panel** — `/admin`: statistika va barcha foydalanuvchilarga xabar yuborish.
+- **Admin panel** — `/admin`: statistika, barcha foydalanuvchilarga xabar yuborish,
+  **💾 Baza zaxirasi** (`/backup`) va **📤 CSV eksport** (`/export`).
 - **Bepul server** — Render uchun `render.yaml`, Docker uchun `Dockerfile` va
   `docker-compose.yml`, `/health` tekshiruvi. Batafsil: [serverga joylash](docs/SERVERGA_JOYLASH.md).
 - Xatolar `logs/bot.log` fayliga yoziladi; bot kutilmagan xatodan qulab tushmaydi.
@@ -199,6 +208,7 @@ DAILY_REMINDER_HOUR=19
 | `AI_HISTORY_LIMIT` | Suhbat tarixidan yuboriladigan xabarlar soni (0–20) |
 | `DAILY_REMINDERS_ENABLED` | Kunlik eslatmalarni yoqish (true/false) |
 | `DAILY_REMINDER_HOUR` | Eslatma soati, UTC+5 (0–23) |
+| `BACKUP_DIR` | Admin zaxira fayllari papkasi (standart: `backups/`; Render doimiy diskida `/data/backups`) |
 | `PORT` | Health-check HTTP serveri porti; Render o'zi beradi, lokalda bo'sh qoladi |
 
 `.env` faylini GitHub'ga **hech qachon** yubormang — u `.gitignore` ichida.
@@ -246,7 +256,7 @@ To'xtatish: `Ctrl + C`.
 
 Birinchi ishga tushishda avtomatik yaratiladi:
 
-- `ustoz_ai.db` — 8 jadval bilan SQLite bazasi;
+- `ustoz_ai.db` — 11 jadval bilan SQLite bazasi;
 - `logs/bot.log` — xatolar jurnali;
 - 8 fan (Dasturlash yo'nalishlari birlashtirilgan), 35 dars va 140 savol bazaga yuklanadi.
 
@@ -298,12 +308,14 @@ docker compose logs -f
    yuring, **🧠 AI Ustozga so'rash** bilan shu dars bo'yicha savol bering.
 3. `/qidiruv fotosintez` → qidiruv natijasidan darsni oching.
 4. **📝 Testlar** → fan → 5 ta savolga javob bering → natija, foiz va xatolar tahlili.
-5. **📊 Mening natijalarim** → darslar, testlar, o'rtacha natija va streak.
+5. **📊 Mening natijalarim** → darslar, testlar, o'rtacha natija, streak, XP, daraja va
+   yutuqlar; pastdagi **🏅 Yutuqlarim**, **🏆 Haftalik reyting** va **⭐ Sevimlilarim**
+   tugmalari.
 6. **📅 Kunlik reja** → maqsadni tanlang (1/1, 2/2, 3/3) → bajarilish yangilanadi.
 7. **⚙️ Sozlamalar** → darajani va bildirishnomalarni o'zgartiring.
 8. **🧠 AI Ustoz** → savol yozing (2–1000 belgi) → javob oling → **⬅️ Chiqish**.
 9. `/id` → ID raqamingiz. `/help` → buyruqlar ro'yxati.
-10. Admin sifatida `/admin` → statistika va xabar yuborish.
+10. Admin sifatida `/admin` → statistika, xabar yuborish, `/backup` va `/export`.
 
 Test paytida to'g'ri javob faqat test yakunlangandan keyin hisoblanadi; har bir
 javobdan keyin to'g'riligi oshkor qilinmaydi. Yakunda faqat xato qilingan savollar
@@ -320,6 +332,10 @@ bildirishnomalar yoqilgan va maqsad hali bajarilmagan. Standart vaqt — 19:00 (
   Bildirishnomalarni o'chirgan foydalanuvchilarga xabar yuborilmaydi.
 - Yuborish davomida Telegram limiti (`retry after`) hisobga olinadi; yakunda
   yuborilgan va xato bo'lgan xabarlar soni ko'rsatiladi.
+- **💾 Baza zaxirasi** (`/backup`) — SQLite'ning `backup` API'si bilan izchil nusxa
+  yaratib, `.db` fayl sifatida yuboradi. Oxirgi 5 nusxa `BACKUP_DIR` da saqlanadi.
+- **📤 CSV eksport** (`/export`) — foydalanuvchilar bo'yicha XP, darslar, testlar va
+  o'rtacha natijalarni `utf-8-sig` CSV qilib beradi (Excel'da ochiladi).
 - `/cancel` yoki bekor qilish tugmasi bilan jarayondan chiqish mumkin.
 
 ## O'quv kontentini tahrirlash
@@ -381,13 +397,15 @@ python tests\test_handlers_offline.py
 ```
 
 - `test_offline.py` — baza, 140 savol, dars maydonlari, eski baza migratsiyasi, health
-  server, qidiruv, natijalar, streak, AI fallback va dars konteksti, bildirishnomalar,
-  eslatma ro'yxati va admin statistikasi. Natija: `OFFLINE_TESTS_OK`.
+  server, qidiruv, natijalar, streak, XP va yutuqlar, haftalik reyting, sevimlilar,
+  fan progressi, baza zaxirasi va CSV eksport, AI fallback va dars konteksti,
+  bildirishnomalar, eslatma ro'yxati va admin statistikasi. Natija: `OFFLINE_TESTS_OK`.
 - `test_handlers_offline.py` — to'liq handler oqimi: ro'yxatdan o'tish, 35 ta rasmning
   mavjudligi, caption limiti, rasmli dars kartochkasi, asosiy fikrlar, batafsil o'qish,
-  oldingi/keyingi dars, darsni batafsil ekranda tugatish, dars bo'yicha AI, qidiruv,
-  5 savolli test (bitta xato javob va tahlil), statistika, kunlik reja, sozlamalar,
-  AI, `/id`, admin, xabar yuborish va kunlik eslatma. Natija: `HANDLER_FLOW_OK`.
+  oldingi/keyingi dars, darsni batafsil ekranda tugatish, sevimlilar, dars bo'yicha AI,
+  qidiruv, 5 savolli test (bitta xato javob va tahlil), XP, statistika, yutuqlar,
+  reyting, sevimlilar ekrani, kunlik reja, sozlamalar, AI, `/id`, admin, baza zaxirasi,
+  CSV eksport, xabar yuborish va kunlik eslatma. Natija: `HANDLER_FLOW_OK`.
 
 Testlar vaqtinchalik bazadan foydalanadi va haqiqiy `ustoz_ai.db` ga tegmaydi.
 
@@ -431,31 +449,36 @@ ustoz_ai_bot/
 ├── content/
 │   └── seed_data.json        # 8 fan (Dasturlash yo'nalishlari birlashtirilgan), 35 dars, 140 savol
 ├── database/
-│   ├── db.py                 # 8 jadval sxemasi, ulanish va migratsiya
+│   ├── db.py                 # 11 jadval sxemasi, ulanish va migratsiya
 │   ├── seed.py               # Kontentni yuklash
 │   ├── users.py              # Foydalanuvchilar
-│   ├── content.py            # Fanlar, darslar, qidiruv
+│   ├── content.py            # Fanlar, darslar, qidiruv, fan progressi
 │   ├── progress.py           # Darslar, statistika, streak
-│   ├── quizzes.py            # Test natijalari
+│   ├── quizzes.py            # Test natijalari va eng yaxshi ball
 │   ├── goals.py              # Kunlik maqsadlar va eslatma ro'yxati
 │   ├── chat.py               # AI suhbat tarixi va limitlar
-│   └── admin.py              # Admin statistikasi va qabul qiluvchilar
+│   ├── gamification.py       # XP jurnali, yutuqlar, reyting
+│   ├── favorites.py          # Sevimli darslar
+│   └── admin.py              # Admin statistikasi va CSV ma'lumoti
 ├── handlers/
 │   ├── start.py              # /start va ro'yxatdan o'tish
 │   ├── ai_tutor.py           # AI Ustoz rejimi va dars konteksti
-│   ├── lessons.py            # Kartochka, batafsil o'qish, navigatsiya, /qidiruv
-│   ├── quizzes.py            # Testlar va xatolar tahlili
-│   ├── progress.py           # Natijalar
+│   ├── lessons.py            # Kartochka, batafsil o'qish, navigatsiya, sevimlilar, /qidiruv
+│   ├── quizzes.py            # Testlar, natija va xatolar tahlili
+│   ├── progress.py           # Natijalar, daraja va yutuqlar
+│   ├── gamification.py       # Yutuqlar, reyting va sevimlilar ekranlari
 │   ├── daily_plan.py         # Kunlik reja
 │   ├── settings.py           # Sozlamalar
-│   ├── admin.py              # Admin panel
+│   ├── admin.py              # Admin panel, zaxira va CSV
 │   ├── menu.py               # Menyu, /help, /id, noma'lum xabarlar
-│   └── common.py             # Yordamchi funksiyalar
+│   └── common.py             # Yordamchi funksiyalar va mukofot xabari
 ├── keyboards/
 │   ├── main_menu.py          # Bosh menyu
 │   └── inline_buttons.py     # Barcha inline tugmalar
 ├── services/
 │   ├── ai_service.py         # AI provayderi va lokal fallback
+│   ├── gamification.py       # XP qiymatlari, darajalar va yutuqlar
+│   ├── backup.py             # Baza zaxirasi va CSV eksport
 │   ├── health_server.py      # Render uchun /health HTTP serveri
 │   ├── lesson_media.py       # Dars rasmlari va file_id kesh
 │   └── reminders.py          # Kunlik eslatma scheduler'i
@@ -469,13 +492,14 @@ ustoz_ai_bot/
 │   ├── DARS_DIZAYNI.md       # Rasmli kartochkalar dizayni
 │   └── kod/                  # Har bir kod fayli uchun hujjat
 ├── logs/bot.log
+├── backups/                  # Admin zaxira nusxalari (git'ga kirmaydi)
 └── data/                     # Docker'da doimiy SQLite bazasi (git'ga kirmaydi)
 ```
 
 ### Ma'lumotlar bazasi jadvallari
 
 `users`, `subjects`, `lessons`, `questions`, `quiz_results`, `study_progress`,
-`chat_history`, `daily_goals` — jami 8 ta jadval.
+`chat_history`, `daily_goals`, `xp_log`, `achievements`, `favorites` — jami 11 ta jadval.
 
 ## Tez-tez uchraydigan xatolar
 

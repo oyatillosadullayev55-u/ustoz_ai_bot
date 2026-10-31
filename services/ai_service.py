@@ -73,7 +73,7 @@ async def _fallback_reply(
     question: str,
     note: str,
     lesson_context: dict[str, str] | None = None,
-) -> str:
+) -> tuple[str, list[tuple[int, str]]]:
     tokens = extract_tokens(question)
 
     if lesson_context:
@@ -83,7 +83,13 @@ async def _fallback_reply(
             "summary", ""
         )
         excerpt = _excerpt(content, tokens, length=900)
-        return (
+        lesson_id = lesson_context.get("lesson_id")
+        related = (
+            [(int(lesson_id), str(title))]
+            if isinstance(lesson_id, int) and lesson_id > 0
+            else []
+        )
+        text = (
             "📚 <b>Shu darsdan tushuntirish</b>\n\n"
             f"{html.escape(subject)} — "
             f"<b>{html.escape(title)}</b>\n\n"
@@ -92,6 +98,7 @@ async def _fallback_reply(
             "yanada aniqroq yordam beraman.\n\n"
             f"{note}"
         )
+        return text, related
 
     lessons = await search_lessons(question, limit=2)
 
@@ -100,13 +107,14 @@ async def _fallback_reply(
         subject_names = ", ".join(
             f"{subject['emoji']} {subject['name']}" for subject in subjects
         )
-        return (
+        text = (
             "📚 <b>Dars bazasidan aniq javob topa olmadim.</b>\n\n"
             "Savolni aniqroq yozing yoki «📚 Darslar» bo'limidan kerakli "
             "mavzuni tanlang.\n\n"
             f"Mavjud fanlar: {html.escape(subject_names)}\n\n"
             f"{note}"
         )
+        return text, []
 
     parts = ["📚 <b>Darslarimizdan mos javob</b>", ""]
     for lesson in lessons:
@@ -121,7 +129,8 @@ async def _fallback_reply(
     parts.append("To'liq darsni «📚 Darslar» bo'limida o'qishingiz mumkin.")
     parts.append("")
     parts.append(note)
-    return "\n".join(parts)
+    related = [(int(lesson["id"]), str(lesson["title"])) for lesson in lessons]
+    return "\n".join(parts), related
 
 
 LESSON_CONTEXT_PROMPT = (
@@ -229,24 +238,30 @@ async def ask_tutor(
     history: list[dict[str, str]],
     level: str,
     lesson_context: dict[str, str] | None = None,
-) -> tuple[str, str]:
-    """(javob matni, manba) qaytaradi. Manba: ai, lessons yoki plain."""
+) -> tuple[str, str, list[tuple[int, str]]]:
+    """(javob matni, manba, aloqador darslar) qaytaradi."""
     settings = get_settings()
+
+    related: list[tuple[int, str]] = []
+    if lesson_context:
+        lesson_id = lesson_context.get("lesson_id")
+        if isinstance(lesson_id, int) and lesson_id > 0:
+            related = [(lesson_id, str(lesson_context.get("title", "")))]
 
     if settings.ai_configured:
         try:
             answer = await _call_provider(
                 question, history, level, lesson_context
             )
-            return answer, "ai"
+            return answer, "ai", related
         except AIServiceError:
             logger.warning("AI javob bera olmadi; dars bazasi ishlatiladi.")
-            return (
-                await _fallback_reply(question, FALLBACK_NOTE_ERROR, lesson_context),
-                "lessons",
+            text, related = await _fallback_reply(
+                question, FALLBACK_NOTE_ERROR, lesson_context
             )
+            return text, "lessons", related
 
-    return (
-        await _fallback_reply(question, FALLBACK_NOTE_DISABLED, lesson_context),
-        "lessons",
+    text, related = await _fallback_reply(
+        question, FALLBACK_NOTE_DISABLED, lesson_context
     )
+    return text, "lessons", related

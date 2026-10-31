@@ -16,11 +16,21 @@ from database.content import (
     get_questions_by_ids,
     get_quiz_questions,
     get_subject,
-    get_subjects_with_counts,
+    get_subjects_with_progress,
 )
 from database.goals import increment_goal
-from database.quizzes import save_quiz_result
-from handlers.common import react, require_user, require_user_callback, safe_edit
+from database.quizzes import (
+    get_subject_best_score,
+    get_subject_best_scores,
+    save_quiz_result,
+)
+from handlers.common import (
+    notify_rewards,
+    react,
+    require_user,
+    require_user_callback,
+    safe_edit,
+)
 from keyboards.inline_buttons import (
     OPTION_LETTERS,
     get_quiz_options_keyboard,
@@ -28,6 +38,15 @@ from keyboards.inline_buttons import (
     get_subjects_keyboard,
 )
 from keyboards.main_menu import BTN_QUIZZES
+from services.gamification import (
+    XP_GOAL_BONUS,
+    XP_PERFECT_BONUS,
+    XP_QUIZ_BASE,
+    XP_QUIZ_PER_CORRECT,
+    combine_rewards,
+    reward,
+)
+from time_utils import local_today
 
 router = Router(name="quizzes")
 logger = logging.getLogger(__name__)
@@ -55,6 +74,7 @@ def _subjects_text() -> str:
         "📝 <b>Testlar</b>\n\n"
         f"Har bir test {QUIZ_SIZE} ta savoldan iborat. Savolga 4 ta variantdan "
         "bittasini tanlang.\n\n"
+        "Fan tugmasidagi foiz — sizning eng yaxshi natijangiz.\n\n"
         "Fan tanlang:"
     )
 
@@ -113,7 +133,15 @@ def _result_reaction(percent: int) -> str:
 
 
 def _result_text(
-    *, subject_name: str, emoji: str, correct: int, total: int, percent: int
+    *,
+    subject_name: str,
+    emoji: str,
+    correct: int,
+    total: int,
+    percent: int,
+    best: int,
+    is_record: bool,
+    xp_amount: int,
 ) -> str:
     if percent >= 90:
         message = "Ajoyib natija! 🎉 Mavzuni juda yaxshi o'zlashtirgansiz."
@@ -129,11 +157,20 @@ def _result_text(
     else:
         review_note = "🔍 Xato javoblar tahlili alohida xabarda yuborildi."
 
+    if is_record:
+        best_line = "🎉 <b>Yangi rekord!</b> Bu sizning eng yaxshi natijangiz."
+    elif best > 0:
+        best_line = f"🏆 Fan bo'yicha eng yaxshi natijangiz: <b>{best}%</b>"
+    else:
+        best_line = "🏆 Bu fan bo'yicha birinchi natijangiz."
+
     return (
         "🏁 <b>Test yakunlandi!</b>\n\n"
         f"{emoji} {html.escape(subject_name)}\n"
         f"✅ To'g'ri javoblar: <b>{correct}/{total}</b>\n"
-        f"📊 Natija: <b>{percent}%</b>\n\n"
+        f"📊 Natija: <b>{percent}%</b>\n"
+        f"{best_line}\n"
+        f"⭐ Mukofot: <b>+{xp_amount} XP</b>\n\n"
         f"{message}\n"
         f"{review_note}\n\n"
         "📅 Natija kunlik rejaga qo'shildi."
@@ -143,24 +180,35 @@ def _result_text(
 @router.message(F.text == BTN_QUIZZES)
 async def quizzes_entry(message: Message, state: FSMContext) -> None:
     await state.clear()
-    if await require_user(message) is None:
+    user = await require_user(message)
+    if user is None:
         return
 
-    subjects = await get_subjects_with_counts()
+    user_id = user["telegram_id"]
+    subjects = await get_subjects_with_progress(user_id)
     await message.answer(
-        _subjects_text(), reply_markup=get_subjects_keyboard(subjects, "quiz")
+        _subjects_text(),
+        reply_markup=get_subjects_keyboard(
+            subjects, "quiz", await get_subject_best_scores(user_id)
+        ),
     )
 
 
 @router.callback_query(F.data == "quiz:subjects")
 async def show_quiz_subjects(callback: CallbackQuery, state: FSMContext) -> None:
-    if await require_user_callback(callback) is None:
+    user = await require_user_callback(callback)
+    if user is None:
         return
 
     await state.clear()
-    subjects = await get_subjects_with_counts()
+    user_id = user["telegram_id"]
+    subjects = await get_subjects_with_progress(user_id)
     await safe_edit(
-        callback, _subjects_text(), get_subjects_keyboard(subjects, "quiz")
+        callback,
+        _subjects_text(),
+        get_subjects_keyboard(
+            subjects, "quiz", await get_subject_best_scores(user_id)
+        ),
     )
     await callback.answer()
 
@@ -276,13 +324,33 @@ async def answer_question(callback: CallbackQuery, state: FSMContext) -> None:
 
         next_index = index + 1
         if next_index >= len(question_ids):
+            previous_best = await get_subject_best_score(user_id, subject_id)
             percent = await save_quiz_result(
                 user_id=user_id,
                 subject_id=subject_id,
                 total_questions=len(question_ids),
                 correct_answers=correct_total,
             )
-            await increment_goal(user_id, quizzes=1)
+            best = max(previous_best or 0, percent)
+            is_record = percent > (previous_best or 0)
+
+            xp_amount = XP_QUIZ_BASE + correct_total * XP_QUIZ_PER_CORRECT
+            if correct_total == len(question_ids):
+                xp_amount += XP_PERFECT_BONUS
+
+            goal_done = await increment_goal(user_id, quizzes=1)
+            reward_result = await reward(user_id, xp_amount, "quiz")
+            if goal_done:
+                reward_result = combine_rewards(
+                    reward_result,
+                    await reward(
+                        user_id,
+                        XP_GOAL_BONUS,
+                        "goal",
+                        once_key=f"goal:{local_today()}",
+                    ),
+                )
+
             await state.clear()
             await react(callback.message, _result_reaction(percent))
 
@@ -294,9 +362,13 @@ async def answer_question(callback: CallbackQuery, state: FSMContext) -> None:
                     correct=correct_total,
                     total=len(question_ids),
                     percent=percent,
+                    best=best,
+                    is_record=is_record,
+                    xp_amount=xp_amount,
                 ),
                 get_quiz_result_keyboard(subject_id),
             )
+            await notify_rewards(callback.message, reward_result)
 
             questions = await get_questions_by_ids(question_ids)
             wrong_answers = [

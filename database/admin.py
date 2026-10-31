@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import aiosqlite
+
 from database.db import get_connection
 from time_utils import local_today
 
@@ -81,3 +83,28 @@ async def get_all_user_ids(notifications_only: bool = False) -> list[int]:
     async with get_connection() as db:
         cursor = await db.execute(query)
         return [int(row["telegram_id"]) for row in await cursor.fetchall()]
+
+
+async def get_export_rows() -> list[aiosqlite.Row]:
+    """CSV eksport uchun foydalanuvchilar bo'yicha yig'ma jadval."""
+    async with get_connection() as db:
+        cursor = await db.execute(
+            """
+            SELECT u.telegram_id, u.full_name, u.username, u.level, u.xp,
+                   u.notifications_enabled, u.created_at, u.last_seen_at,
+                   (SELECT COUNT(*) FROM study_progress sp
+                    WHERE sp.user_id = u.telegram_id
+                      AND sp.status = 'completed') AS lessons_completed,
+                   (SELECT COUNT(*) FROM quiz_results qr
+                    WHERE qr.user_id = u.telegram_id) AS quizzes,
+                   (SELECT COALESCE(ROUND(AVG(qr.score_percent)), 0)
+                    FROM quiz_results qr
+                    WHERE qr.user_id = u.telegram_id) AS average_score,
+                   (SELECT COALESCE(MAX(qr.score_percent), 0)
+                    FROM quiz_results qr
+                    WHERE qr.user_id = u.telegram_id) AS best_score
+            FROM users AS u
+            ORDER BY u.xp DESC, u.telegram_id
+            """
+        )
+        return list(await cursor.fetchall())

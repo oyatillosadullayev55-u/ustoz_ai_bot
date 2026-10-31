@@ -25,6 +25,8 @@ Bu papkada UstozAI loyihasining **har bir kod fayli** uchun alohida markdown huj
 | `database/goals.py` | [database/goals.md](database/goals.md) |
 | `database/chat.py` | [database/chat.md](database/chat.md) |
 | `database/admin.py` | [database/admin.md](database/admin.md) |
+| `database/gamification.py` | [database/gamification.md](database/gamification.md) |
+| `database/favorites.py` | [database/favorites.md](database/favorites.md) |
 
 ## Handlerlar
 
@@ -39,6 +41,7 @@ Bu papkada UstozAI loyihasining **har bir kod fayli** uchun alohida markdown huj
 | `handlers/daily_plan.py` | [handlers/daily_plan.md](handlers/daily_plan.md) |
 | `handlers/settings.py` | [handlers/settings.md](handlers/settings.md) |
 | `handlers/admin.py` | [handlers/admin.md](handlers/admin.md) |
+| `handlers/gamification.py` | [handlers/gamification.md](handlers/gamification.md) |
 | `handlers/common.py` | [handlers/common.md](handlers/common.md) |
 | `handlers/menu.py` | [handlers/menu.md](handlers/menu.md) |
 
@@ -58,6 +61,8 @@ Bu papkada UstozAI loyihasining **har bir kod fayli** uchun alohida markdown huj
 | `services/ai_service.py` | [services/ai_service.md](services/ai_service.md) |
 | `services/lesson_media.py` | [services/lesson_media.md](services/lesson_media.md) |
 | `services/reminders.py` | [services/reminders.md](services/reminders.md) |
+| `services/gamification.py` | [services/gamification.md](services/gamification.md) |
+| `services/backup.py` | [services/backup.md](services/backup.md) |
 | `services/health_server.py` | [services/health_server.md](services/health_server.md) |
 
 ## Testlar va kontent
@@ -92,8 +97,12 @@ Bu papkada UstozAI loyihasining **har bir kod fayli** uchun alohida markdown huj
 
 - Darslar qisqa kartochka + batafsil o'qish ekrani + oldingi/keyingi navigatsiya bilan.
 - Har bir darsda qisqa mazmun, 3 ta asosiy fikr, daraja, davomiylik va mini mashq.
-- Dars kontekstida AI Ustoz (`🧠 AI Ustozga so'rash`).
+- Dars kontekstida AI Ustoz (`🧠 AI Ustozga so'rash`) va javob ostida dars havolalari.
+- Gamifikatsiya: XP, 6 daraja, 12 yutuq va haftalik TOP-10 reyting.
+- Sevimli darslar (⭐) va «Sevimlilarim» ekrani.
+- Har bir fan bo'yicha tugatilgan darslar progressi va testlarda eng yaxshi natija.
 - 35 ta dars uchun 140 ta savol; test yakunida xato javoblar tahlili.
+- Admin uchun `/backup` (baza nusxasi) va `/export` (CSV) buyruqlari.
 - `/qidiruv` va `/search` orqali darslardan matnli qidiruv.
 - Har kuni belgilangan vaqtda kunlik reja eslatmasi (UTC+5).
 - Render, Docker va Oracle uchun health-check serveri va joylash fayllari.

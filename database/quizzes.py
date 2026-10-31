@@ -6,6 +6,38 @@ from database.db import get_connection
 from time_utils import utc_now
 
 
+async def get_subject_best_scores(user_id: int) -> dict[int, int]:
+    """Foydalanuvchining har bir fan bo'yicha eng yaxshi natijasi."""
+    async with get_connection() as db:
+        cursor = await db.execute(
+            """
+            SELECT subject_id, MAX(score_percent) AS best
+            FROM quiz_results
+            WHERE user_id = ?
+            GROUP BY subject_id
+            """,
+            (user_id,),
+        )
+        rows = await cursor.fetchall()
+    return {int(row["subject_id"]): int(row["best"]) for row in rows}
+
+
+async def get_subject_best_score(user_id: int, subject_id: int) -> int | None:
+    async with get_connection() as db:
+        cursor = await db.execute(
+            """
+            SELECT MAX(score_percent) AS best
+            FROM quiz_results
+            WHERE user_id = ? AND subject_id = ?
+            """,
+            (user_id, subject_id),
+        )
+        row = await cursor.fetchone()
+    if row is None or row["best"] is None:
+        return None
+    return int(row["best"])
+
+
 async def save_quiz_result(
     *,
     user_id: int,

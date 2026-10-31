@@ -16,7 +16,8 @@ from aiogram.utils.chat_action import ChatActionSender
 from config import get_settings
 from database.chat import add_message, get_ai_usage, get_history
 from database.content import get_lesson
-from handlers.common import require_user, require_user_callback
+from handlers.common import require_user, require_user_callback, reward_notice
+from keyboards.inline_buttons import get_ai_answer_keyboard
 from keyboards.main_menu import (
     BTN_AI_EXIT,
     BTN_AI_TUTOR,
@@ -25,6 +26,7 @@ from keyboards.main_menu import (
     get_main_menu_keyboard,
 )
 from services.ai_service import ask_tutor
+from services.gamification import XP_AI, reward
 
 router = Router(name="ai_tutor")
 logger = logging.getLogger(__name__)
@@ -224,7 +226,7 @@ async def ai_chat(message: Message, state: FSMContext) -> None:
 
     try:
         if message.bot is None:
-            answer, source = await ask_tutor(
+            answer, source, related = await ask_tutor(
                 text, history, user["level"], lesson_context
             )
         else:
@@ -232,7 +234,7 @@ async def ai_chat(message: Message, state: FSMContext) -> None:
                 bot=message.bot, chat_id=message.chat.id
             )
             async with sender:
-                answer, source = await ask_tutor(
+                answer, source, related = await ask_tutor(
                     text, history, user["level"], lesson_context
                 )
         await add_message(user_id, "assistant", answer[:4000])
@@ -243,8 +245,15 @@ async def ai_chat(message: Message, state: FSMContext) -> None:
             "urinib ko'ring."
         )
         source = "plain"
+        related = []
 
+    reward_result = await reward(user_id, XP_AI, "ai")
+    notice = reward_notice(reward_result)
+    if notice:
+        answer = f"{answer}\n\n{notice}"
+
+    keyboard = get_ai_answer_keyboard(related) if related else get_ai_mode_keyboard()
     await message.answer(
         _prepare_reply(answer, source),
-        reply_markup=get_ai_mode_keyboard(),
+        reply_markup=keyboard,
     )

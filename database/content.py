@@ -66,6 +66,31 @@ async def get_subjects_with_counts() -> list[aiosqlite.Row]:
         return list(await cursor.fetchall())
 
 
+async def get_subjects_with_progress(user_id: int) -> list[aiosqlite.Row]:
+    """Fanlar va foydalanuvchining har bir fandagi tugatilgan darslari soni."""
+    async with get_connection() as db:
+        cursor = await db.execute(
+            """
+            SELECT s.id, s.code, s.name, s.emoji, s.description, s.order_index,
+                   COUNT(DISTINCT l.id) AS lesson_count,
+                   COUNT(DISTINCT CASE WHEN sp.status = 'completed' THEN l.id END)
+                       AS completed_count,
+                   COUNT(DISTINCT q.id) AS question_count
+            FROM subjects AS s
+            LEFT JOIN lessons AS l
+                ON l.subject_id = s.id AND l.is_active = 1
+            LEFT JOIN study_progress AS sp
+                ON sp.lesson_id = l.id AND sp.user_id = ?
+            LEFT JOIN questions AS q ON q.lesson_id = l.id
+            WHERE s.is_active = 1
+            GROUP BY s.id
+            ORDER BY s.order_index, s.id
+            """,
+            (user_id,),
+        )
+        return list(await cursor.fetchall())
+
+
 async def get_subject(subject_id: int) -> aiosqlite.Row | None:
     async with get_connection() as db:
         cursor = await db.execute(

@@ -12,6 +12,7 @@
 | [`lessons.py`](lessons.md) | `lessons` | Darslar, qisqa kartochka, batafsil matn, navigatsiya va `/qidiruv` |
 | [`quizzes.py`](quizzes.md) | `quizzes` | 4 variantli testlar |
 | [`progress.py`](progress.md) | `progress` | Statistika |
+| [`gamification.py`](gamification.md) | `gamification` | Yutuqlar, haftalik reyting, sevimlilar |
 | [`daily_plan.py`](daily_plan.md) | `daily_plan` | Kunlik reja |
 | [`settings.py`](settings.md) | `user_settings` | Daraja va bildirishnomalar |
 | [`admin.py`](admin.md) | `admin` | Admin panel va broadcast |
@@ -23,7 +24,7 @@
 `bot.py` routerlarni quyidagi tartibda ulaydi:
 
 ```text
-start → ai_tutor → lessons → quizzes → progress → daily_plan → settings → admin → menu
+start → ai_tutor → lessons → quizzes → progress → gamification → daily_plan → settings → admin → menu
 ```
 
 `menu` eng oxirida turadi, chunki uning `@router.message(F.text)` va `@router.callback_query()` handlerlari boshqa routerlar tanimagan yangilanishlarni ushlaydi.

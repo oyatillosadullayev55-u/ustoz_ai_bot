@@ -39,6 +39,8 @@ Darslarni tez topish uchun `/qidiruv so'z` buyrug'idan foydalanishingiz mumkin.
 | `/help` | Yordam xabari |
 | `/id` | Telegram ID raqamingizni ko'rsatish |
 | `/admin` | Admin panel (faqat adminlar uchun) |
+| `/backup` | Baza zaxira nusxasini yuborish (faqat adminlar uchun) |
+| `/export` | Foydalanuvchilar jadvalini CSV qilib yuborish (faqat adminlar uchun) |
 | `/cancel` | Admin xabar yuborish jarayonini bekor qilish |
 
 `/qidiruv` dan keyin so'zni bo'sh joy bilan yozing, masalan `/qidiruv fotosintez`.
@@ -47,7 +49,8 @@ So'rov uzunligi 2–100 belgi bo'lishi kerak.
 ## Darslar
 
 1. **📚 Darslar** tugmasini bosing.
-2. Fan tanlang — har bir fan yonida dars va savollar soni ko'rinadi.
+2. Fan tanlang — yuqorida umumiy progress ko'rsatiladi, har bir fan tugmasida
+   `tugatilgan/jami` dars soni (masalan, `2/5`) turadi.
 3. Darsni tanlang — u 16:9 rasmli kartochka bo'lib ochiladi. Kartochkada fan nomi,
    dars raqami, **qisqa mazmun**, **3 ta asosiy fikr**, davomiylik va daraja
    (🟢 Boshlang'ich, 🟡 O'rta, 🔴 Yuqori) ko'rsatiladi.
@@ -69,10 +72,14 @@ So'rov uzunligi 2–100 belgi bo'lishi kerak.
 8. Darsni o'zlashtirgan bo'lsangiz, **✅ Darsni tugatdim** tugmasini bosing.
    Tugatilgan darslar ro'yxatda ✅ bilan belgilanadi.
 9. **📝 Test yechish** orqali shu fan bo'yicha testni boshlashingiz mumkin.
+10. **⭐ Sevimlilarga qo'shish** tugmasi darsni saqlaydi (yana bosilsa — olib
+    tashlaydi). Saqlangan darslar «📊 Mening natijalarim → ⭐ Sevimlilarim» da
+    ko'rinadi.
 
 Darsni faqat bir marta tugatilgan deb belgilash mumkin — takroriy bosish kunlik
 rejani qayta oshirmaydi. Tugatish kartochkada ham, batafsil o'qish ekranida ham
-ishlaydi.
+ishlaydi. Har bir tugatilgan dars uchun **+20 XP** beriladi (bir dars uchun faqat
+bir marta).
 
 Har bir dars uchun alohida rasm tayyorlangan. Agar rasm yuklanmasa yoki dars matni
 juda uzun bo'lsa, bot darsni matnli kartochka sifatida ochadi — mazmun yo'qolmaydi.
@@ -111,25 +118,47 @@ So'rov 2–100 belgi oralig'ida bo'lishi shart.
 2. Fan tanlang.
 3. Har bir savolda 4 ta variant bor; bittasini bosing.
 4. Savollar orasida to'g'ri javob ko'rsatilmaydi — natija test oxirida chiqadi.
-5. 5 ta savoldan so'ng foiz va tavsiya ko'rsatiladi.
+5. 5 ta savoldan so'ng foiz va tavsiya ko'rsatiladi. Shu fan bo'yicha eng yaxshi
+   natijangiz ham chiqadi; rekordni yangilasangiz, bot buni alohida nishonlaydi.
 6. Xato javoblar bo'lsa, alohida xabarda qaysi savolda xato qilganingiz, siz tanlagan
    variant va to'g'ri javob izohi ko'rsatiladi. Barcha javob to'g'ri bo'lsa, tahlil
    xabari yuborilmaydi.
 7. **🔁 Qayta yechish**, **📚 Boshqa fanlar** yoki **🏠 Bosh menyu** orqali davom eting.
 
-Test natijasi avtomatik saqlanadi va kunlik rejaga +1 test qo'shiladi.
+Test natijasi avtomatik saqlanadi, kunlik rejaga +1 test qo'shiladi va XP beriladi:
+`5 + 2 × to'g'ri javob`, 100% natija uchun qo'shimcha `+10`.
 
 ## Mening natijalarim
 
 **📊 Mening natijalarim** bo'limida quyidagilar ko'rsatiladi:
 
 - ism va bilim darajasi;
+- darajangiz (XP bo'yicha) va jami XP;
 - tugatilgan darslar soni;
 - yechilgan testlar soni va o'rtacha natija;
 - eng yaxshi natija;
 - faol kunlar va ketma-ket kunlar (streak);
 - berilgan AI savollari soni;
 - oxirgi 5 ta test natijasi.
+
+Pastdagi tugmalar orqali qo'shimcha ekranlar ochiladi:
+
+- **🏆 Yutuqlarim** — 12 ta yutuq ro'yxati; ochilganlari yashil, qolganlari 🔒 bilan;
+- **📈 Haftalik reyting** — so'nggi 7 kunlik XP bo'yicha TOP-10 va o'z o'rningiz;
+- **⭐ Sevimlilarim** — saqlangan darslar; tanlansa, dars darhol ochiladi.
+
+### Darajalar va yutuqlar
+
+Umumiy XP bo'yicha 6 daraja bor: **🌱 Yangi boshlovchi → 📗 O'quvchi → 📘 Bilimdon →
+🎓 Tajribali → 🏅 Ustoz → 👑 Afsona**. XP dars tugatish, test yechish, kunlik rejani
+bajarish va AI savollari uchun beriladi.
+
+Yutuqlarga misollar: birinchi tugatilgan dars, 5 ta dars, 15 ta dars, barcha 35 ta
+dars, birinchi test, 10 ta test, 100% natija, 3 va 7 kunlik streak, 5 ta sevimli
+dars, 10 ta AI savol va 5 kunlik maqsad. Yangi yutuq ochilganda bot darhol tabriklaydi.
+
+Haftalik reytingda faqat so'nggi 7 kunda XP to'plagan foydalanuvchilar qatnashadi;
+ismlar maxfiylik uchun qisqartiriladi.
 
 Faol kunlar hisobida testlar, tugatilgan darslar va AI Ustozga yozilgan savollar
 hisobga olinadi. Shu sababli faqat AI bilan suhbatlashgan kun ham streakni davom
@@ -192,6 +221,9 @@ Cheklovlar:
 - AI kaliti sozlanmagan bo'lsa, javob dars bazasidan olinadi — dars konteksti
   bo'lsa, aynan shu darsdan parcha ko'rsatiladi.
 
+Javob ostida mavzuga mos **2 tagacha dars tugmasi** chiqadi — bosilsa, o'sha dars
+darhol ochiladi. Har bir AI savoli uchun `+1 XP` beriladi.
+
 AI javoblari umumiy ma'lumot uchun; muhim qarorlardan oldin darslik bilan
 tekshirib ko'ring.
 
@@ -244,6 +276,22 @@ ko'rsatadi.
 Bildirishnomalarni o'chirgan foydalanuvchilarga xabar yuborilmaydi. Telegram
 tezlik limiti yuzaga kelsa, bot kutib qayta urinadi.
 
+### Baza zaxirasi va CSV eksport
+
+- **💾 Baza zaxirasi** — `/backup` yoki admin paneldagi shu tugma. Bot SQLite
+  bazasining izchil nusxasini yaratib, `.db` fayl sifatida yuboradi. Nusxa WAL
+  rejimida ham to'g'ri olinadi.
+- **📤 CSV eksport** — `/export` yoki paneldagi tugma. Foydalanuvchilar jadvali
+  (ism, XP, tugatilgan darslar, testlar, o'rtacha va eng yaxshi natija) `CSV`
+  faylida yuboriladi; Excel va Google Sheets'da ochiladi.
+- Nusxalar `BACKUP_DIR` papkasida saqlanadi (standart: loyihadagi `backups/`).
+  So'nggi 5 ta fayl qoladi, eskilari avtomatik o'chiriladi. CSV fayl yuborilgach
+  serverdan o'chiriladi.
+- **Tiklash:** botni to'xtating, zaxira faylini `.env` dagi `DATABASE_PATH`
+  ko'rsatgan fayl o'rniga qo'ying va botni qayta ishga tushiring.
+- Zaxira faylida foydalanuvchilarning shaxsiy ma'lumotlari bor — uni ochiq joyda
+  saqlamang va uchinchi shaxslarga yubormang.
+
 ## Ma'lumotlar va maxfiylik
 
 - Profil, test natijalari, dars progressi va AI suhbat tarixi bot egasining
@@ -252,9 +300,10 @@ tezlik limiti yuzaga kelsa, bot kutib qayta urinadi.
   tanlangan AI provayderiga yuboriladi.
 - Bot tokeni va AI kaliti ochiq kodda saqlanmaydi; ular faqat `.env` faylida yoki
   hostingning environment o'zgaruvchilarida bo'ladi.
-- `.env` fayli va baza GitHub'ga yuborilmaydi.
+- `.env` fayli va baza GitHub'ga yuborilmaydi. Admin olgan zaxira nusxalari ham
+  shaxsiy ma'lumotni o'z ichiga oladi — ularni xavfsiz saqlash admin zimmasida.
 - Render bepul tarifida baza restartda yangilanishi mumkin; doimiy saqlash uchun
-  serverga joylash qo'llanmasidagi Oracle usulidan foydalaning.
+  serverga joylash qo'llanmasidagi Oracle usulidan yoki `/backup` dan foydalaning.
 
 ## Ko'p uchraydigan savollar
 
@@ -299,4 +348,5 @@ kechikishi mumkin.
 
 **Serverdan keyin natijalarim yo'qoldi.**
 Render bepul tarifida doimiy disk yo'q. Doimiy saqlash uchun Oracle Cloud Always
-Free + Docker usulini tanlang yoki bazani muntazam zaxiralang.
+Free + Docker usulini tanlang. Muvaqqat yechim sifatida admin `/backup` buyrug'i
+bilan bazani muntazam saqlab turing — restartdan keyin shu faylni tiklash mumkin.

@@ -15,14 +15,16 @@ oqimlari va texnik qarorlarini tavsiflaydi.
 | --- | --- |
 | Ro'yxatdan o'tish | Ism, bilim darajasi (boshlang'ich / o'rta / yuqori), ma'lumotlarni saqlash |
 | AI Ustoz | Savol-javob, AI provayderi yoki dars bazasidan fallback, dars konteksti, kunlik limit |
-| Darslar | 8 fan, 35 dars; qisqa mazmun, 3 asosiy fikr, batafsil izoh, mini mashq, oldingi/keyingi dars |
+| Darslar | 8 fan, 35 dars; qisqa mazmun, 3 asosiy fikr, batafsil izoh, mini mashq, oldingi/keyingi dars, fan progressi va sevimlilar |
 | Qidiruv | Darslarni nomi va mazmuni bo'yicha topish (`/qidiruv`) |
-| Testlar | Har urinishda 5 ta tasodifiy savol, 4 variant, yakuniy natija va xato javoblar tahlili |
-| Natijalar | Testlar, o'rtacha va eng yaxshi natija, faol kunlar, streak |
+| Testlar | Har urinishda 5 ta tasodifiy savol, 4 variant, yakuniy natija, eng yaxshi ball va xato javoblar tahlili |
+| Natijalar | Testlar, o'rtacha va eng yaxshi natija, faol kunlar, streak, daraja, yutuqlar va haftalik reyting |
+| Gamifikatsiya | XP, 6 daraja, 12 yutuq, so'nggi 7 kunlik TOP-10 reyting |
+| Sevimlilar | Darslarni ⭐ bilan saqlash va «Sevimlilarim» ekrani |
 | Kunlik reja | Dars va test maqsadi, progress ko'rsatkichlari |
 | Eslatmalar | Reja bajarilmagan foydalanuvchilarga kunlik eslatma |
 | Sozlamalar | Daraja, bildirishnomalar, til va AI holati |
-| Admin panel | Statistika, foydalanuvchilarga xabar yuborish |
+| Admin panel | Statistika, foydalanuvchilarga xabar yuborish, baza zaxirasi va CSV eksport |
 | Kontent | JSON orqali fan, dars va savollarni boshqarish |
 | Joylash | Render bepul tarifi, Docker/Compose, Oracle Always Free, `/health` |
 
@@ -38,12 +40,14 @@ Telegram
 aiogram Dispatcher (polling)
    │  routerlar tartibi:
    │  start → ai_tutor → lessons → quizzes → progress →
-   │  daily_plan → settings → admin → menu
+   │  gamification → daily_plan → settings → admin → menu
    ▼
 handlers/  ── FSM, validatsiya, foydalanuvchi oqimlari
    │
    ├── keyboards/  ── reply va inline tugmalar
    ├── services/ai_service.py ── AI provayderi + lokal fallback + dars konteksti
+   ├── services/gamification.py ── XP, darajalar, yutuqlar
+   ├── services/backup.py ── baza zaxirasi va CSV eksport
    ├── services/lesson_media.py ── dars rasmlari + file_id kesh
    ├── services/health_server.py ── Render uchun /health HTTP serveri
    ├── services/reminders.py ── kunlik eslatmalar
@@ -74,6 +78,10 @@ SQLite (WAL, foreign keys, busy_timeout)
   bo'sh bo'lsa, server ochilmaydi.
 - **services/reminders.py** — kunlik reja bo'yicha eslatmalarni yuboradi; Telegram
   limitlarini hisobga oladi va faqat ruxsat bergan foydalanuvchilarga yozadi.
+- **services/gamification.py** — XP jurnali, daraja pog'onalari, yutuqlar va haftalik
+  reytingni hisoblaydi; handlerlarga tayyor `RewardResult` qaytaradi.
+- **services/backup.py** — SQLite `backup()` orqali izchil zaxira nusxasi va CSV
+  eksport faylini yaratadi.
 - **time_utils.py** — UTC saqlash, UTC+5 bo'yicha kun va streak hisoblash.
 
 Serverga joylash: `Dockerfile`, `docker-compose.yml` va `render.yaml`. Bepul
@@ -94,7 +102,7 @@ Sxema idempotent: `CREATE TABLE IF NOT EXISTS`.
 
 | Jadval | Vazifasi | Muhim ustunlar |
 | --- | --- | --- |
-| `users` | Foydalanuvchi profili | `telegram_id` (PK), `full_name`, `language`, `level`, `notifications_enabled` |
+| `users` | Foydalanuvchi profili | `telegram_id` (PK), `full_name`, `language`, `level`, `notifications_enabled`, `xp` |
 | `subjects` | Fanlar | `id`, `code` (UNIQUE), `name`, `emoji`, `order_index`, `is_active` |
 | `lessons` | Darslar | `id`, `subject_id` (FK), `title`, `content`, `summary`, `key_points`, `level`, `duration_min`, `order_index`, `is_active` |
 | `questions` | Test savollari | `id`, `lesson_id` (FK), `question_text`, `option_a..d`, `correct_option` (0–3), `explanation` |
@@ -102,6 +110,9 @@ Sxema idempotent: `CREATE TABLE IF NOT EXISTS`.
 | `study_progress` | Dars progressi | PK (`user_id`, `lesson_id`), `status` (`started` / `completed`) |
 | `chat_history` | AI suhbati | `user_id` (FK), `role` (`user` / `assistant`), `message` |
 | `daily_goals` | Kunlik maqsad | UNIQUE (`user_id`, `goal_date`), maqsad va bajarilgan sonlar |
+| `xp_log` | XP jurnali | `user_id` (FK), `amount`, `reason`, `once_key` (bir martalik XP uchun) |
+| `achievements` | Ochilgan yutuqlar | PK (`user_id`, `code`), `unlocked_at` |
+| `favorites` | Sevimli darslar | PK (`user_id`, `lesson_id`), `created_at` |
 
 ### Bog'lanishlar
 
@@ -113,10 +124,23 @@ Sxema idempotent: `CREATE TABLE IF NOT EXISTS`.
 - `study_progress.lesson_id → lessons.id`
 - `chat_history.user_id → users.telegram_id`
 - `daily_goals.user_id → users.telegram_id`
+- `xp_log.user_id → users.telegram_id`
+- `achievements.user_id → users.telegram_id`
+- `favorites.user_id → users.telegram_id`, `favorites.lesson_id → lessons.id`
 
-Foydalanuvchi o'chirilsa, unga tegishli natijalar, progress, suhbat va maqsadlar
-ham o'chadi (`ON DELETE CASCADE`). Fan yoki dars o'chirilsa, unga tegishli darslar
-va savollar o'chadi.
+Foydalanuvchi o'chirilsa, unga tegishli natijalar, progress, suhbat, maqsadlar,
+XP jurnali, yutuqlar va sevimlilar ham o'chadi (`ON DELETE CASCADE`). Fan yoki
+dars o'chirilsa, unga tegishli darslar va savollar o'chadi.
+
+`xp_log.once_key` uchun qismiy unikal indeks bor:
+
+```sql
+CREATE UNIQUE INDEX idx_xp_log_once
+    ON xp_log (user_id, once_key) WHERE once_key IS NOT NULL;
+```
+
+Shu sababli bir dars yoki bir kunning maqsad bonusi ikki marta berilmaydi.
+Eski bazaga `users.xp` ustuni `ALTER TABLE` bilan qo'shiladi.
 
 ### Vaqt va kun
 
@@ -135,7 +159,8 @@ va savollar o'chadi.
 
 ### 2. Darslar
 
-1. Fanlar ro'yxati dars va savollar soni bilan chiqadi.
+1. Fanlar ro'yxati dars va savollar soni bilan chiqadi; yuqorida umumiy progress
+   ko'rsatiladi, har fan tugmasida `tugatilgan/jami` dars soni turadi.
 2. Fan tanlanganda darslar ro'yxati, tugatilgan darslar hisobi va progress bar ochiladi.
 3. Dars 16:9 rasmli kartochka bo'lib ochiladi: fan va dars raqami, sarlavha, qisqa
    mazmun, 3 ta asosiy fikr, davomiylik va daraja. `study_progress` ga `started`
@@ -147,13 +172,15 @@ va savollar o'chadi.
 5. **⬅️ Oldingi dars** va **➡️ Keyingi dars** tugmalari shu fan ichida navigatsiyani
    beradi; **🧠 AI Ustozga so'rash** shu dars konteksti bilan AI rejimini ochadi.
 6. «✅ Darsni tugatdim» birinchi bosishda `completed` holatiga o'tadi, joriy ekran
-   (kartochka yoki batafsil matn) yangilanadi va kunlik rejaga +1 dars qo'shiladi.
-   Takroriy bosish qayta hisoblanmaydi.
+   (kartochka yoki batafsil matn) yangilanadi, kunlik rejaga +1 dars qo'shiladi va
+   +20 XP beriladi (bir dars uchun faqat bir marta). Takroriy bosish qayta hisoblanmaydi.
 7. Darsdan to'g'ridan-to'g'ri shu fan testiga o'tish mumkin.
-8. `/qidiruv so'z` buyrug'i dars nomi va mazmuni bo'yicha izlaydi. So'rov 2–100
+8. **⭐ Sevimlilarga qo'shish** tugmasi darsni `favorites` jadvaliga yozadi yoki
+   olib tashlaydi; holat kartochka qayta chizilganda ko'rinadi.
+9. `/qidiruv so'z` buyrug'i dars nomi va mazmuni bo'yicha izlaydi. So'rov 2–100
    belgi, natijalar soni 5 ta bilan cheklangan; natijadan darsni darhol ochish mumkin.
-9. Rasm topilmasa yoki caption 1024 belgidan oshsa, dars matnli kartochka sifatida
-   ochiladi — mazmun yo'qolmaydi.
+10. Rasm topilmasa yoki caption 1024 belgidan oshsa, dars matnli kartochka sifatida
+    ochiladi — mazmun yo'qolmaydi.
 
 ### 3. Testlar
 
@@ -164,8 +191,10 @@ va savollar o'chadi.
    to'g'ri javob callback ichida yuborilmaydi.
 5. Savol ID'si va joriy holat FSM bilan solishtiriladi; eskirgan yoki takroriy
    callback rad etiladi. Bir foydalanuvchi uchun `asyncio.Lock` ishlatiladi.
-6. Test yakunida natija `quiz_results` ga yoziladi, foiz hisoblanadi va kunlik
-   rejaga +1 test qo'shiladi.
+6. Test yakunida natija `quiz_results` ga yoziladi, foiz hisoblanadi, kunlik
+   rejaga +1 test qo'shiladi va XP beriladi: `5 + 2 × to'g'ri javob`, 100% uchun
+   qo'shimcha `+10`. Fan bo'yicha oldingi eng yaxshi natija bilan solishtirilib,
+   rekord bo'lsa alohida nishonlanadi.
 7. Yakunda faqat xato javoblar bo'yicha alohida tahlil xabari yuboriladi: savol,
    tanlangan variant, to'g'ri variant va izoh. Barcha javob to'g'ri bo'lsa, tahlil
    yuborilmaydi. Bu to'g'ri javoblarni test davomida oshkor qilmaydi.
@@ -207,7 +236,28 @@ va savollar o'chadi.
 7. Javob HTML sifatida ekranlanadi va 3900 belgigacha qisqartiriladi.
 8. «⬅️ Chiqish» yoki menyu tugmasi rejimdan chiqaradi va dars kontekstini tozalaydi.
 
-### 8. Admin panel
+### 8. Gamifikatsiya, sevimlilar va reyting
+
+- **XP:** har bir tugatilgan dars uchun `+20`, test yakunida `5 + 2 × to'g'ri javob`,
+  100% natija uchun qo'shimcha `+10`, kunlik reja bajarilganda `+15`, har bir AI
+  savoli uchun `+1`. Bir martalik mukofotlar `xp_log.once_key` bilan himoyalangan —
+  sahifa qayta ochilsa ham XP ikki marta qo'shilmaydi.
+- **Darajalar:** umumiy XP bo'yicha 6 pog'ona (🌱 Yangi boshlovchi → 👑 Afsona,
+  0 / 100 / 300 / 700 / 1500 / 3000 XP chegaralari). Daraja «📊 Mening natijalarim»
+  yuqorisida ko'rsatiladi.
+- **Yutuqlar:** 12 ta yutuq (`achievements` jadvali): birinchi dars, 5, 15 va 35 ta
+  dars, birinchi test, 10 ta test, 100% natija, 3 va 7 kunlik streak, 5 ta sevimli,
+  10 ta AI savol, 5 kunlik maqsad. Yangi yutuq ochilganda alohida xabar yuboriladi
+  va `+15 XP` beriladi.
+- **Reyting:** so'nggi 7 kunda to'plangan XP bo'yicha TOP-10. Ishlatilgan ism
+  maxfiylik uchun qisqartiriladi; joriy foydalanuvchining o'rni alohida ko'rsatiladi.
+- **Sevimlilar:** dars kartochkasidagi ⭐ tugmasi `favorites` jadvaliga yozadi yoki
+  olib tashlaydi. «Sevimlilarim» ekrani (`stats:favorites`) saqlangan darslarni
+  ro'yxat qilib, ulardan darsni darhol ochish imkonini beradi.
+- Gamifikatsiya servisi `services/gamification.py` da: `reward()` XP beradi va
+  yutuqlarni tekshiradi, `combine_rewards()` bir nechta natijani birlashtiradi.
+
+### 9. Admin panel
 
 - Faqat `ADMIN_IDS` ro'yxatidagi Telegram ID'lar uchun.
 - Statistika: foydalanuvchilar, bugungi faollik, testlar, darslar, AI so'rovlari,
@@ -215,8 +265,14 @@ va savollar o'chadi.
 - Broadcast: matn (1–3000 belgi) → tasdiqlash → yuborish.
 - Telegram `retry after` limiti hisobga olinadi; yakunda muvaffaqiyat va xatolar soni
   ko'rsatiladi.
+- **💾 Baza zaxirasi** (`/backup` yoki panel tugmasi): SQLite `backup()` API orqali
+  WAL rejimida ham izchil nusxa yaratiladi va Telegram hujjati sifatida yuboriladi.
+  So'nggi 5 ta nusxa `BACKUP_DIR` da saqlanadi, qolganlari o'chiriladi.
+- **📤 CSV eksport** (`/export`): foydalanuvchilar jadvali (XP, tugatilgan darslar,
+  testlar, o'rtacha va eng yaxshi natija) `utf-8-sig` bilan yoziladi va Excel yoki
+  Google Sheets'da ochiladi. Fayl yuborilgach serverdan o'chiriladi.
 
-### 9. Kunlik eslatmalar
+### 10. Kunlik eslatmalar
 
 1. `bot.py` ishga tushganda `DAILY_REMINDERS_ENABLED=true` bo'lsa, fon vazifasi
    yaratiladi.
@@ -263,6 +319,8 @@ Xato loglarida HTTP status kodi qayd etiladi, kalit yoki so'rov matni emas.
 - Bir foydalanuvchining test javoblari `asyncio.Lock` bilan ketma-ket qayta ishlanadi.
 - AI uchun timeout, kunlik limit va minimal interval qo'llanadi.
 - Admin amallari `ADMIN_IDS` bilan cheklangan.
+- Zaxira faylida foydalanuvchilarning shaxsiy ma'lumotlari bor: uni faqat admin
+  oladi, ochiq joyda saqlanmaydi va uchinchi shaxslarga yuborilmaydi.
 - Kunlik eslatmalar faqat bildirishnomalarga ruxsat bergan foydalanuvchilarga yuboriladi.
 - Health server faqat `PORT` berilganda ochiladi va maxfiy ma'lumot qaytarmaydi.
 - Kutilmagan xatolar markaziy handler orqali logga yoziladi.
@@ -274,8 +332,8 @@ Loyihada Telegram'ga ulanmasdan ishlaydigan ikkita test to'plami bor:
 
 | Test | Qamrov | Natija |
 | --- | --- | --- |
-| `tests/test_offline.py` | Baza sxemasi va migratsiya, 140 savol, dars maydonlari, qidiruv, savollarni ID bo'yicha olish, natijalar, streak, vaqt yordamchilari, eslatmalar, AI fallback va dars konteksti, health server, admin statistikasi | `OFFLINE_TESTS_OK` |
-| `tests/test_handlers_offline.py` | Ro'yxatdan o'tish, rasmli kartochka, asosiy fikrlar, batafsil o'qish, oldingi/keyingi dars, batafsil ekranda tugatish, dars AI konteksti, qidiruv, 5 savolli test va xato tahlili, statistika, reja, sozlamalar, AI, `/id`, admin, broadcast, eslatma | `HANDLER_FLOW_OK` |
+| `tests/test_offline.py` | Baza sxemasi va migratsiya, 140 savol, dars maydonlari, qidiruv, savollarni ID bo'yicha olish, natijalar, eng yaxshi ball, streak, XP va yutuqlar, sevimlilar, fan progressi, zaxira va CSV, vaqt yordamchilari, eslatmalar, AI fallback va dars konteksti, health server, admin statistikasi | `OFFLINE_TESTS_OK` |
+| `tests/test_handlers_offline.py` | Ro'yxatdan o'tish, rasmli kartochka, asosiy fikrlar, batafsil o'qish, oldingi/keyingi dars, batafsil ekranda tugatish, sevimlilar, dars AI konteksti, qidiruv, 5 savolli test, xato tahlili va XP mukofoti, statistika (daraja, yutuqlar, reyting, sevimlilar), reja, sozlamalar, AI, `/id`, admin, broadcast, zaxira va CSV, eslatma | `HANDLER_FLOW_OK` |
 
 Testlar vaqtinchalik SQLite faylidan foydalanadi va haqiqiy bazaga tegmaydi.
 Handler testi aiogram `FakeSession` orqali chiquvchi so'rovlarni ushlaydi; bu
@@ -336,9 +394,10 @@ ustoz_ai_bot/
 ├── database/                 # Sxema, seed va jadval modullari
 ├── handlers/                 # Bo'limlar bo'yicha routerlar
 ├── keyboards/                # Reply va inline klaviaturalar
-├── services/                 # AI, rasm, health server va eslatmalar
+├── services/                 # AI, gamifikatsiya, zaxira, rasm, health, eslatmalar
 ├── tests/                    # Offline testlar
 ├── docs/                     # Hujjatlar va har bir kod fayli uchun tavsif
+├── backups/                  # Admin zaxiralari (git'ga kirmaydi)
 └── data/                     # Docker'dagi SQLite (git'ga kirmaydi)
 ```
 
@@ -356,7 +415,8 @@ ustoz_ai_bot/
   jarayoni ishlatilmasligi kerak.
 - Vaqt mintaqasi UTC+5 ga belgilangan.
 - Render bepul tarifida doimiy disk yo'q: restartda baza nolga tushadi. Doimiy
-  saqlash uchun Oracle Always Free + `docker compose` ishlatiladi.
+  saqlash uchun Oracle Always Free + `docker compose` ishlatiladi yoki admin panel
+  orqali `/backup` bilan muntazam nusxa olib turiladi.
 - `MemoryStorage` tufayli bir nechta server instansiyasida FSM umumiy emas; polling
   uchun bitta instansiya saqlanadi.
 

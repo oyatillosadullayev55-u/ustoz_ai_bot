@@ -15,7 +15,7 @@ async def get_user(telegram_id: int) -> aiosqlite.Row | None:
         cursor = await db.execute(
             """
             SELECT telegram_id, full_name, username, language, level,
-                   notifications_enabled, created_at, updated_at, last_seen_at
+                   notifications_enabled, xp, created_at, updated_at, last_seen_at
             FROM users
             WHERE telegram_id = ?
             """,

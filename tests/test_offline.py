@@ -23,6 +23,7 @@ sys.path.insert(0, str(PROJECT_ROOT))
 
 TEMP_DIR = tempfile.TemporaryDirectory(prefix="ustozai_test_")
 os.environ["DATABASE_PATH"] = str(pathlib.Path(TEMP_DIR.name) / "test.db")
+os.environ["BACKUP_DIR"] = str(pathlib.Path(TEMP_DIR.name) / "backups")
 os.environ["BOT_TOKEN"] = "123456789:TEST_TOKEN_FOR_OFFLINE_TESTS"
 os.environ["ADMIN_IDS"] = "999000001"
 os.environ["AI_ENABLED"] = "false"
@@ -40,12 +41,24 @@ from database.content import (  # noqa: E402
     get_questions_by_ids,
     get_quiz_questions,
     get_subjects_with_counts,
+    get_subjects_with_progress,
     search_lessons,
 )
 from database.db import (  # noqa: E402
     _ensure_lesson_columns,
     get_connection,
     init_db,
+)
+from database.favorites import (  # noqa: E402
+    count_favorites,
+    get_favorite_lessons,
+    is_favorite,
+    toggle_favorite,
+)
+from database.gamification import (  # noqa: E402
+    award_xp,
+    get_total_xp,
+    get_weekly_xp,
 )
 from database.goals import (  # noqa: E402
     get_pending_reminders,
@@ -61,13 +74,28 @@ from database.progress import (  # noqa: E402
     get_user_stats,
     mark_lesson_started,
 )
-from database.quizzes import save_quiz_result  # noqa: E402
+from database.quizzes import (  # noqa: E402
+    get_subject_best_score,
+    save_quiz_result,
+)
 from database.users import (  # noqa: E402
     create_user,
     get_user,
     update_notifications,
 )
 from services.ai_service import ask_tutor  # noqa: E402
+from services.backup import (  # noqa: E402
+    create_backup_copy,
+    create_export_csv,
+)
+from services.gamification import (  # noqa: E402
+    ACHIEVEMENTS,
+    XP_LESSON,
+    get_achievements_with_state,
+    get_leaderboard,
+    get_profile,
+    reward,
+)
 from services.health_server import (  # noqa: E402
     start_health_server,
     stop_health_server,
@@ -317,6 +345,10 @@ async def run_tests() -> None:
         correct_answers=4,
     )
     check(percent == 80, "test natijasi 80% hisoblandi")
+    check(
+        await get_subject_best_score(USER_ID, 5) == 80,
+        "fan bo'yicha eng yaxshi natija saqlandi",
+    )
     await increment_goal(USER_ID, quizzes=1)
 
     pending = await get_pending_reminders(local_today())
@@ -346,6 +378,107 @@ async def run_tests() -> None:
     check(int(activity["streak"]) == 1, "streak 1 kunga teng")
     check(int(activity["active_days"]) == 1, "bitta faol kun qayd etildi")
 
+    check(await get_total_xp(USER_ID) == 0, "yangi foydalanuvchining XP balansi 0")
+    lesson_reward = await reward(
+        USER_ID, XP_LESSON, "lesson", once_key="lesson:101"
+    )
+    check(lesson_reward.xp_gained >= XP_LESSON, "dars uchun XP qo'shildi")
+    check(
+        any(item.code == "first_lesson" for item in lesson_reward.achievements),
+        "birinchi dars yutug'i ochildi",
+    )
+    check(
+        lesson_reward.xp == await get_total_xp(USER_ID),
+        "XP balansi bazada saqlandi",
+    )
+    check(
+        await award_xp(USER_ID, XP_LESSON, "lesson", once_key="lesson:101")
+        is None,
+        "bir marta beriladigan XP qayta qo'shilmadi",
+    )
+
+    profile = await get_profile(USER_ID)
+    check(
+        profile["rank"].name == "Yangi boshlovchi"
+        and int(profile["xp"]) == lesson_reward.xp
+        and int(profile["total_achievements"]) == len(ACHIEVEMENTS),
+        "profil daraja va yutuqlar sonini ko'rsatdi",
+    )
+    check(
+        await get_weekly_xp(USER_ID) == lesson_reward.xp,
+        "haftalik XP hisoblandi",
+    )
+
+    achievement_states = {
+        item.code: state
+        for item, state in await get_achievements_with_state(USER_ID)
+    }
+    check(
+        achievement_states["first_lesson"] is True,
+        "birinchi dars yutug'i holati saqlandi",
+    )
+    check(
+        achievement_states["five_lessons"] is False,
+        "ochilmagan yutuq yopiq holatda",
+    )
+
+    board = await get_leaderboard(USER_ID)
+    check(
+        len(board["rows"]) == 1
+        and int(board["rows"][0]["week_xp"]) == lesson_reward.xp
+        and board["user_rank"] == 1,
+        "haftalik reyting foydalanuvchini ko'rsatdi",
+    )
+
+    check(await toggle_favorite(USER_ID, 501), "dars sevimlilarga qo'shildi")
+    check(await is_favorite(USER_ID, 501), "sevimli holati bazada saqlandi")
+    favorites = await get_favorite_lessons(USER_ID)
+    check(
+        len(favorites) == 1 and int(favorites[0]["id"]) == 501,
+        "sevimli darslar ro'yxati ishladi",
+    )
+    check(
+        await toggle_favorite(USER_ID, 501) is False,
+        "sevimli darslardan olib tashlandi",
+    )
+    for favorite_id in (101, 102, 201, 301, 501):
+        await toggle_favorite(USER_ID, favorite_id)
+    check(await count_favorites(USER_ID) == 5, "5 ta sevimli dars saqlandi")
+    favorite_reward = await reward(USER_ID, 0, "favorite")
+    check(
+        any(item.code == "favorite_5" for item in favorite_reward.achievements),
+        "sevimlilar yutug'i ochildi",
+    )
+
+    subjects_with_progress = await get_subjects_with_progress(USER_ID)
+    english = next(
+        item for item in subjects_with_progress if int(item["id"]) == 1
+    )
+    check(
+        int(english["completed_count"]) == 1
+        and int(english["lesson_count"]) == 2,
+        "fan progressi tugatilgan darsni sanadi",
+    )
+
+    backup_path = await create_backup_copy()
+    check(
+        backup_path.exists() and backup_path.stat().st_size > 0,
+        "baza zaxira nusxasi yaratildi",
+    )
+    backup_path.unlink()
+
+    csv_path, csv_rows = await create_export_csv()
+    try:
+        csv_text = csv_path.read_text(encoding="utf-8-sig")
+    finally:
+        csv_path.unlink()
+    check(
+        csv_rows == 1
+        and "Test O'quvchi" in csv_text
+        and csv_text.splitlines()[0].startswith("telegram_id"),
+        "CSV eksport foydalanuvchini o'z ichiga oldi",
+    )
+
     await add_message(USER_ID, "user", "Fotosintez nima?")
     await add_message(USER_ID, "assistant", "Fotosintez - yorug'lik yordamida...")
     usage_count, last_at = await get_ai_usage(USER_ID)
@@ -356,7 +489,7 @@ async def run_tests() -> None:
         "suhbat tarixi to'g'ri tartibda",
     )
 
-    answer, source = await ask_tutor(
+    answer, source, related = await ask_tutor(
         "fotosintez nima?",
         [{"role": item["role"], "content": item["message"]} for item in history],
         "beginner",
@@ -364,19 +497,28 @@ async def run_tests() -> None:
     check(source == "lessons", "AI o'chirilganda dars bazasi ishlatildi")
     check("Fotosintez" in answer, "zaxira javobda fotosintez darsi bor")
     check("AI kaliti" in answer, "foydalanuvchiga AI sozlamasi holati aytildi")
+    check(
+        any(lesson_id == 501 for lesson_id, _ in related),
+        "zaxira javob aloqador darsni qaytardi",
+    )
 
     lesson_501 = await get_lesson(501)
     check(lesson_501 is not None, "dars konteksti uchun 501-dars topildi")
-    context_answer, context_source = await ask_tutor(
+    context_answer, context_source, context_related = await ask_tutor(
         "hujayra nima?",
         [],
         "beginner",
         {
+            "lesson_id": 501,
             "subject": f"{lesson_501['subject_emoji']} {lesson_501['subject_name']}",
             "title": lesson_501["title"],
             "summary": lesson_501["summary"],
             "content": lesson_501["content"],
         },
+    )
+    check(
+        context_related == [(501, str(lesson_501["title"]))],
+        "dars konteksti aloqador darsni qaytardi",
     )
     check(
         context_source == "lessons"

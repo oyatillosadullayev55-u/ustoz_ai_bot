@@ -11,6 +11,8 @@ kunlik eslatmalar va health-check serveri.
 | [`ai_service.py`](ai_service.md) | AI provayderi, dars konteksti, fallback va prompt |
 | [`lesson_media.py`](lesson_media.md) | Dars rasmlari, fayl nomlari va `file_id` kesh |
 | [`reminders.py`](reminders.md) | Kunlik eslatma yuborish va scheduler |
+| [`gamification.py`](gamification.md) | XP qiymatlari, darajalar, yutuqlar va reyting |
+| [`backup.py`](backup.md) | Baza zaxirasi va CSV eksport |
 | [`health_server.py`](health_server.md) | Render uchun HTTP health-check serveri |
 
 ## Qatlam chegarasi

@@ -22,6 +22,7 @@ from handlers import (
     admin,
     ai_tutor,
     daily_plan,
+    gamification,
     lessons,
     menu,
     progress,
@@ -94,6 +95,8 @@ async def set_bot_commands(bot: Bot, settings: Settings) -> None:
                 [
                     *base_commands,
                     BotCommand(command="admin", description="Admin panel"),
+                    BotCommand(command="backup", description="Baza zaxirasi"),
+                    BotCommand(command="export", description="CSV eksport"),
                 ],
                 scope=BotCommandScopeChat(chat_id=admin_id),
             )
@@ -143,6 +146,7 @@ async def run_bot(settings: Settings) -> None:
         dispatcher.include_router(lessons.router)
         dispatcher.include_router(quizzes.router)
         dispatcher.include_router(progress.router)
+        dispatcher.include_router(gamification.router)
         dispatcher.include_router(daily_plan.router)
         dispatcher.include_router(user_settings.router)
         dispatcher.include_router(admin.router)

@@ -15,11 +15,13 @@
 | [`progress.py`](progress.md) | Dars jarayoni va statistika |
 | [`goals.py`](goals.md) | Kunlik maqsad va eslatma ro'yxati |
 | [`chat.py`](chat.md) | AI suhbat tarixi va kunlik limit |
-| [`admin.py`](admin.md) | Admin statistikasi va qabul qiluvchilar |
+| [`admin.py`](admin.md) | Admin statistikasi, qabul qiluvchilar va CSV ma'lumoti |
+| [`gamification.py`](gamification.md) | XP, yutuqlar va haftalik reyting |
+| [`favorites.py`](favorites.md) | Sevimli darslar |
 
 ## Ma'lumotlar bazasi sxemasi
 
-Loyihada **aynan 8 ta jadval** bor:
+Loyihada **11 ta jadval** bor:
 
 1. `users`
 2. `subjects`
@@ -29,6 +31,9 @@ Loyihada **aynan 8 ta jadval** bor:
 6. `study_progress`
 7. `chat_history`
 8. `daily_goals`
+9. `xp_log`
+10. `achievements`
+11. `favorites`
 
 ## Umumiy qoidalar
 

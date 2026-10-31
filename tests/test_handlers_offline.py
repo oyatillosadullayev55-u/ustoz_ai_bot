@@ -18,6 +18,7 @@ sys.path.insert(0, str(PROJECT_ROOT))
 
 TEMP_DIR = tempfile.TemporaryDirectory(prefix="ustozai_handlers_")
 os.environ["DATABASE_PATH"] = str(pathlib.Path(TEMP_DIR.name) / "handlers.db")
+os.environ["BACKUP_DIR"] = str(pathlib.Path(TEMP_DIR.name) / "backups")
 os.environ["BOT_TOKEN"] = "123456789:TEST_TOKEN_FOR_HANDLER_TESTS"
 os.environ["ADMIN_IDS"] = "999000001"
 os.environ["AI_ENABLED"] = "false"
@@ -32,6 +33,7 @@ from aiogram.methods import (  # noqa: E402
     EditMessageCaption,
     EditMessageText,
     SendChatAction,
+    SendDocument,
     SendMessage,
     SendPhoto,
     SetMessageReaction,
@@ -54,12 +56,15 @@ get_settings.cache_clear()
 from database.chat import get_history  # noqa: E402
 from database.content import get_lesson, get_question  # noqa: E402
 from database.db import get_connection, init_db  # noqa: E402
+from database.favorites import is_favorite  # noqa: E402
+from database.gamification import get_total_xp  # noqa: E402
 from database.goals import get_today_goal  # noqa: E402
 from database.users import get_user  # noqa: E402
 from handlers import (  # noqa: E402
     admin,
     ai_tutor,
     daily_plan,
+    gamification,
     lessons,
     menu,
     progress,
@@ -204,6 +209,7 @@ async def main() -> None:
     dispatcher.include_router(lessons.router)
     dispatcher.include_router(quizzes.router)
     dispatcher.include_router(progress.router)
+    dispatcher.include_router(gamification.router)
     dispatcher.include_router(daily_plan.router)
     dispatcher.include_router(user_settings.router)
     dispatcher.include_router(admin.router)
@@ -444,6 +450,16 @@ async def main() -> None:
     )
 
     fake.calls.clear()
+    await send_callback("lesson:fav:501", message=photo_message)
+    check(await is_favorite(USER_ID, 501), "dars sevimlilarga qo'shildi", errors)
+    check("⭐" in reaction_emojis(fake), "sevimli reaksiyasi qo'yildi", errors)
+    check(
+        "lesson:fav:501" in last_inline_callbacks(fake),
+        "sevimli tugmasi kartochkada saqlandi",
+        errors,
+    )
+
+    fake.calls.clear()
     await send_callback("lesson:subject:5", message=photo_message)
     check(
         "BIOLOGIYA" in last_text(fake),
@@ -545,11 +561,53 @@ async def main() -> None:
     goal = await get_today_goal(USER_ID)
     check(int(goal["completed_quizzes"]) == 1, "kunlik reja testni sanadi", errors)
 
+    check(await get_total_xp(USER_ID) > 0, "dars va test uchun XP yozildi", errors)
+    check(
+        any("Mukofot: <b>+13 XP</b>" in text for text in texts),
+        "test natijasida XP mukofoti ko'rsatildi",
+        errors,
+    )
+    async with get_connection() as db:
+        cursor = await db.execute(
+            "SELECT COUNT(*) AS total FROM achievements WHERE user_id = ?",
+            (USER_ID,),
+        )
+        achievement_count = int((await cursor.fetchone())["total"])
+    check(achievement_count >= 2, "dars va test yutuqlari ochildi", errors)
+
     # 4. Natijalar, reja, sozlamalar
     fake.calls.clear()
     await send_text("📊 Mening natijalarim")
     check("Yechilgan testlar: <b>1</b>" in last_text(fake), "statistika testni ko'rsatdi", errors)
     check("Biologiya" in last_text(fake), "so'nggi natijada fan nomi bor", errors)
+    check("Darajangiz:" in last_text(fake), "statistikada daraja ko'rsatildi", errors)
+
+    fake.calls.clear()
+    await send_callback("stats:achievements")
+    check("Yutuqlarim" in last_text(fake), "yutuqlar ekrani ochildi", errors)
+    check(
+        "Birinchi qadam" in last_text(fake) and "🔒" in last_text(fake),
+        "ochilgan va yopiq yutuqlar ko'rsatildi",
+        errors,
+    )
+
+    fake.calls.clear()
+    await send_callback("stats:leaderboard")
+    check("Haftalik reyting" in last_text(fake), "haftalik reyting ochildi", errors)
+    check(
+        "Ali" in last_text(fake) and "#1" in last_text(fake),
+        "reytingda foydalanuvchi va o'rni ko'rsatildi",
+        errors,
+    )
+
+    fake.calls.clear()
+    await send_callback("stats:favorites")
+    check("Sevimli darslarim" in last_text(fake), "sevimlilar ekrani ochildi", errors)
+    check(
+        "lesson:view:501" in last_inline_callbacks(fake),
+        "sevimli dars tugmasi ko'rsatildi",
+        errors,
+    )
 
     fake.calls.clear()
     await send_text("📅 Kunlik reja")
@@ -655,6 +713,26 @@ async def main() -> None:
     await send_callback("admin:stats")
     check("Bot statistikasi" in last_text(fake), "admin statistikasi chiqdi", errors)
     check("140</b> savol" in last_text(fake), "statistikada savollar soni bor", errors)
+
+    fake.calls.clear()
+    await send_callback("admin:backup")
+    check(
+        any(isinstance(method, SendDocument) for method in fake.calls),
+        "baza zaxirasi fayl sifatida yuborildi",
+        errors,
+    )
+
+    fake.calls.clear()
+    await send_text("/export")
+    check(
+        any(
+            isinstance(method, SendDocument)
+            and "CSV eksport" in (method.caption or "")
+            for method in fake.calls
+        ),
+        "CSV eksport buyrug'i fayl yubordi",
+        errors,
+    )
 
     fake.calls.clear()
     await send_callback("admin:broadcast")

@@ -3,15 +3,17 @@
 from __future__ import annotations
 
 import asyncio
+import contextlib
 import html
 import logging
+import sqlite3
 
 from aiogram import F, Router
 from aiogram.exceptions import TelegramAPIError, TelegramRetryAfter
 from aiogram.filters import BaseFilter, Command
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
-from aiogram.types import CallbackQuery, Message
+from aiogram.types import CallbackQuery, FSInputFile, Message
 
 from config import get_settings
 from database.admin import get_admin_stats, get_all_user_ids
@@ -22,6 +24,11 @@ from keyboards.inline_buttons import (
     get_broadcast_confirm_keyboard,
 )
 from keyboards.main_menu import get_main_menu_keyboard
+from services.backup import (
+    cleanup_old_backups,
+    create_backup_copy,
+    create_export_csv,
+)
 
 router = Router(name="admin")
 logger = logging.getLogger(__name__)
@@ -87,6 +94,78 @@ async def admin_stats(callback: CallbackQuery) -> None:
     stats = await get_admin_stats()
     await safe_edit(callback, _stats_text(stats), get_admin_keyboard())
     await callback.answer("Yangilandi ✅")
+
+
+async def _send_backup(message: Message) -> None:
+    try:
+        path = await create_backup_copy()
+    except (OSError, sqlite3.Error):
+        logger.exception("Baza zaxirasini yaratib bo'lmadi")
+        await message.answer("❌ Zaxira nusxasini yaratib bo'lmadi.")
+        return
+
+    size_kb = max(1, round(path.stat().st_size / 1024))
+    await message.answer_document(
+        FSInputFile(path, filename=path.name),
+        caption=(
+            "💾 <b>Baza zaxirasi</b>\n\n"
+            f"📦 Hajmi: <b>{size_kb} KB</b>\n"
+            "Faylni saqlab qo'ying. Tiklash uchun uni serverdagi baza fayli "
+            "(<code>DATABASE_PATH</code>) o'rniga qo'ying."
+        ),
+    )
+    cleanup_old_backups()
+
+
+async def _send_export(message: Message) -> None:
+    try:
+        path, total = await create_export_csv()
+    except (OSError, sqlite3.Error):
+        logger.exception("CSV eksport faylini yaratib bo'lmadi")
+        await message.answer("❌ CSV faylni yaratib bo'lmadi.")
+        return
+
+    try:
+        await message.answer_document(
+            FSInputFile(path, filename=path.name),
+            caption=(
+                "📤 <b>CSV eksport</b>\n\n"
+                f"👥 Foydalanuvchilar: <b>{total}</b>\n"
+                "Jadvalda XP, tugatilgan darslar, testlar va o'rtacha "
+                "natijalar bor. Fayl Excel yoki Google Sheets'da ochiladi."
+            ),
+        )
+    finally:
+        with contextlib.suppress(OSError):
+            path.unlink()
+
+
+@router.callback_query(F.data == "admin:backup", IsAdmin())
+async def backup_from_panel(callback: CallbackQuery) -> None:
+    if not isinstance(callback.message, Message):
+        await callback.answer("Xabar topilmadi.", show_alert=True)
+        return
+    await callback.answer("Zaxira tayyorlanmoqda...")
+    await _send_backup(callback.message)
+
+
+@router.callback_query(F.data == "admin:export", IsAdmin())
+async def export_from_panel(callback: CallbackQuery) -> None:
+    if not isinstance(callback.message, Message):
+        await callback.answer("Xabar topilmadi.", show_alert=True)
+        return
+    await callback.answer("CSV tayyorlanmoqda...")
+    await _send_export(callback.message)
+
+
+@router.message(Command("backup"), IsAdmin())
+async def backup_command(message: Message) -> None:
+    await _send_backup(message)
+
+
+@router.message(Command("export"), IsAdmin())
+async def export_command(message: Message) -> None:
+    await _send_export(message)
 
 
 @router.callback_query(F.data == "admin:broadcast", IsAdmin())

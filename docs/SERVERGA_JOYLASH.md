@@ -68,6 +68,8 @@ Quyidagi havola `render.yaml` faylini o'qib, web-service yaratadi:
 - `autoDeploy: true` — `main` branch'ga har push'da qayta deploy qiladi.
 - `DATABASE_PATH=/app/data/ustoz_ai.db`.
 - `AI_ENABLED=false` — AI kaliti kiritilsa, dashboard'da `true` qiling.
+- `BACKUP_DIR` — ixtiyoriy. Admin `/backup` qilganda nusxalar shu papkaga yoziladi;
+  berilmasa, loyiha ichidagi `backups/` ishlatiladi.
 
 `PORT` ni **qo'lda kiritmang**: Render uni o'zi beradi, `services/health_server.py`
 shu portni tinglaydi. Lokal ishda `PORT` bo'sh bo'lsa, HTTP server umuman ochilmaydi.
@@ -85,6 +87,30 @@ shu portni tinglaydi. Lokal ishda `PORT` bo'sh bo'lsa, HTTP server umuman ochilm
 
 Tarif shartlari vaqt o'tishi bilan o'zgarishi mumkin — joriy ma'lumotni Render
 dashboard'ida tekshiring.
+
+### 1.4.1. Ma'lumotni saqlash: zaxira va doimiy disk
+
+Bepul tarifda baza restartda nolga tushadi. Uch xil yechim bor:
+
+1. **Admin zaxirasi (bepul).** Admin sifatida `/backup` yuboring — bot SQLite
+   bazasining izchil nusxasini `.db` fayl sifatida Telegram orqali beradi. Faylni
+   kompyuteringizda xavfsiz saqlang. `/export` esa foydalanuvchilar jadvalini CSV
+   qilib beradi. Bu usul doimiy diskni almashtirmaydi, lekin restartdan keyin
+   yo'qotishni kamaytiradi.
+   - Zaxira faylida shaxsiy ma'lumot bor: uni ochiq joyda saqlamang.
+   - Bepul tarifda `backups/` papkasi ham restartda o'chadi — shuning uchun faylni
+     darhol yuklab oling.
+2. **Render persistent disk (pullik).** Dashboard → **Disks** → **Add Disk**:
+   mount path `/var/data`, hajm kamida 1 GB. Keyin environment'ga
+   `DATABASE_PATH=/var/data/ustoz_ai.db` va ixtiyoriy
+   `BACKUP_DIR=/var/data/backups` qo'shing, so'ng qayta deploy qiling. Disk
+   tarifga qo'shimcha to'lov qilinadi.
+3. **Oracle Cloud Always Free** — doimiy baza bilan bepul variant; quyidagi
+   2-bo'limga qarang.
+
+Zaxira faylini tiklash: botni to'xtating, `.db` faylni `DATABASE_PATH` ko'rsatgan
+manzilga qo'ying (persistent disk bo'lsa — o'sha diskka), botni qayta ishga
+tushiring.
 
 ### 1.5. Uyqu rejimini kamaytirish (UptimeRobot)
 
@@ -270,6 +296,12 @@ Baza `data/` papkasida bo'lgani uchun yangilanishda saqlanadi.
 
 ### 2.7. Zaxira nusxa
 
+Eng oddiy yo'l: botga admin sifatida `/backup` yuboring — nusxa Telegram hujjati
+bo'lib keladi va uni istalgan joyda saqlash mumkin. `/export` foydalanuvchilar
+jadvalini CSV qilib beradi.
+
+Serverda qo'lda nusxa olish:
+
 ```bash
 cd ustoz_ai_bot
 docker compose exec bot python -c "import sqlite3; c=sqlite3.connect('/app/data/ustoz_ai.db'); c.execute(\"VACUUM INTO '/app/data/backup.db'\"); c.close()"
@@ -348,7 +380,7 @@ serverda yuqoridagi `chown 10001:10001` qadamini unutmang.
 | Render'da `Application failed to respond` | `PORT` tinglanmayapti yoki health server ishlamadi | `PORT` ni qo'lda yozmang; loglarda `Health server ... ishga tushdi` borligini tekshiring |
 | `/health` 502 | Konteyner hali ko'tarilmagan yoki qulagan | `docker compose logs --tail 100`; `docker compose ps` |
 | `Permission denied` bazaga yozishda (Linux) | `data/` papkasi UID 10001 ga tegishli emas | `sudo chown -R 10001:10001 data logs` |
-| Render restartdan keyin ma'lumot yo'q | Bepul tarifda doimiy disk yo'q | Oracle + Docker'ga o'ting yoki tashqi bazadan foydalaning |
+| Render restartdan keyin ma'lumot yo'q | Bepul tarifda doimiy disk yo'q | Oracle + Docker'ga o'ting, persistent disk ulang yoki muntazam `/backup` oling |
 | Bot uxlab qolyapti (Render) | Free web-service spin-down | UptimeRobot bilan `/health` ni har 5 daqiqada chaqiring |
 | `database is locked` | Bir vaqtda bir nechta bot nusxasi | Faqat bitta konteyner ishlashiga ishonch qiling |
 | Docker build'da `pip install` xatosi | Python yoki paket versiyasi mos emas | `docker compose build --no-cache`; `requirements.txt` versiyalarini tekshiring |
@@ -382,5 +414,6 @@ docker compose exec bot ls -la /app/data /app/logs
 - [ ] `/health` 200 qaytaradi.
 - [ ] Telegramda `/start`, dars, test va AI ishlaydi.
 - [ ] Render bo'lsa: UptimeRobot monitori qo'shilgan.
+- [ ] Render bepul bo'lsa: `/backup` zaxira rejasi belgilangan (masalan, kuniga bir marta).
 - [ ] Oracle bo'lsa: `data/` papkasi UID 10001 ga tegishli va zaxira rejasi bor.
-- [ ] `.env`, `data/`, `logs/` GitHub'ga tushmagan.
+- [ ] `.env`, `data/`, `logs/`, `backups/` GitHub'ga tushmagan.

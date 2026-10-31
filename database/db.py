@@ -23,6 +23,7 @@ CREATE TABLE IF NOT EXISTS users (
         CHECK (level IN ('beginner', 'intermediate', 'advanced')),
     notifications_enabled INTEGER NOT NULL DEFAULT 1
         CHECK (notifications_enabled IN (0, 1)),
+    xp INTEGER NOT NULL DEFAULT 0 CHECK (xp >= 0),
     created_at TEXT NOT NULL,
     updated_at TEXT NOT NULL,
     last_seen_at TEXT NOT NULL
@@ -110,6 +111,29 @@ CREATE TABLE IF NOT EXISTS daily_goals (
     UNIQUE (user_id, goal_date)
 );
 
+CREATE TABLE IF NOT EXISTS xp_log (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER NOT NULL REFERENCES users(telegram_id) ON DELETE CASCADE,
+    amount INTEGER NOT NULL CHECK (amount > 0),
+    reason TEXT NOT NULL,
+    once_key TEXT,
+    created_at TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS achievements (
+    user_id INTEGER NOT NULL REFERENCES users(telegram_id) ON DELETE CASCADE,
+    code TEXT NOT NULL,
+    unlocked_at TEXT NOT NULL,
+    PRIMARY KEY (user_id, code)
+);
+
+CREATE TABLE IF NOT EXISTS favorites (
+    user_id INTEGER NOT NULL REFERENCES users(telegram_id) ON DELETE CASCADE,
+    lesson_id INTEGER NOT NULL REFERENCES lessons(id) ON DELETE CASCADE,
+    created_at TEXT NOT NULL,
+    PRIMARY KEY (user_id, lesson_id)
+);
+
 CREATE INDEX IF NOT EXISTS idx_lessons_subject
     ON lessons (subject_id, order_index);
 CREATE INDEX IF NOT EXISTS idx_questions_lesson
@@ -122,6 +146,14 @@ CREATE INDEX IF NOT EXISTS idx_chat_history_user
     ON chat_history (user_id, created_at);
 CREATE INDEX IF NOT EXISTS idx_daily_goals_user_date
     ON daily_goals (user_id, goal_date);
+CREATE INDEX IF NOT EXISTS idx_xp_log_user
+    ON xp_log (user_id, created_at);
+CREATE INDEX IF NOT EXISTS idx_xp_log_created
+    ON xp_log (created_at);
+CREATE UNIQUE INDEX IF NOT EXISTS idx_xp_log_once
+    ON xp_log (user_id, once_key) WHERE once_key IS NOT NULL;
+CREATE INDEX IF NOT EXISTS idx_favorites_user
+    ON favorites (user_id, created_at);
 """
 
 
@@ -164,12 +196,24 @@ async def _ensure_lesson_columns(db: aiosqlite.Connection) -> None:
             logger.info("Migratsiya: lessons.%s ustuni qo'shildi.", name)
 
 
+async def _ensure_user_columns(db: aiosqlite.Connection) -> None:
+    """Eski bazaga XP ustunini qo'shadi."""
+    cursor = await db.execute("PRAGMA table_info(users)")
+    columns = {str(row["name"]) for row in await cursor.fetchall()}
+    if "xp" not in columns:
+        await db.execute(
+            "ALTER TABLE users ADD COLUMN xp INTEGER NOT NULL DEFAULT 0"
+        )
+        logger.info("Migratsiya: users.xp ustuni qo'shildi.")
+
+
 async def init_db() -> None:
     """Jadvallarni yaratadi, kontentni yuklaydi va mavjud ma'lumotni saqlaydi."""
     async with get_connection() as db:
         await db.execute("PRAGMA journal_mode = WAL")
         await db.executescript(SCHEMA_SQL)
         await _ensure_lesson_columns(db)
+        await _ensure_user_columns(db)
         await db.commit()
 
     from database.seed import seed_content
