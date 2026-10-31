@@ -13,6 +13,8 @@ O'zbek tilida ishlaydigan to'liq ta'lim Telegram boti. **Python 3**, **aiogram 3
 
 ## Hujjatlar
 
+- [Yangilanish (2026-10-31)](docs/YANGILANISH.md) — gamifikatsiya, sevimlilar,
+  zaxira, test va AI UX o'zgarishlari, tekshiruv natijalari.
 - [Loyiha hujjati](docs/LOYIHA.md) — arxitektura, baza sxemasi, asosiy oqimlar,
   AI cheklovlari, testlar va xavfsizlik.
 - [Foydalanuvchi qo'llanmasi](docs/FOYDALANISH.md) — botdan foydalanish, buyruqlar,
