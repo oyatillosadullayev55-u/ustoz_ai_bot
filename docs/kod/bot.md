@@ -26,8 +26,8 @@
 4. `start_health_server()` chaqiriladi. `PORT` berilgan bo'lsa (Render yoki Docker), HTTP
    server `/`, `/health`, `/healthz` manzillarida javob beradi; lokal ishda `PORT` bo'sh
    bo'lsa, server ochilmaydi.
-5. `init_db()` 8 ta jadvalni yaratadi, migratsiyani bajaradi va kontentni yuklaydi.
-6. Routerlar tartib bilan ulanadi: `start → ai_tutor → lessons → quizzes → progress → daily_plan → settings → admin → menu`.
+5. `init_db()` 12 ta jadvalni yaratadi, migratsiyani bajaradi va kontentni yuklaydi.
+6. Routerlar tartib bilan ulanadi: `start → ai_tutor → lessons → quizzes → progress → gamification → daily → daily_plan → settings → admin → menu`.
 7. `DAILY_REMINDERS_ENABLED=true` bo'lsa `run_daily_reminders(bot)` fon vazifasi sifatida ishga tushadi.
 8. `dispatcher.start_polling(bot)` Telegramdan yangilanishlarni qabul qiladi.
 9. Dastur to'xtaganda eslatma vazifasi bekor qilinadi, bot sessiyasi va health server yopiladi (`finally`).

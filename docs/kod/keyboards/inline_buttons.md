@@ -26,6 +26,10 @@
 | `get_admin_keyboard()` | `admin:stats`, `admin:broadcast` |
 | `get_broadcast_confirm_keyboard()` | `admin:broadcast_confirm`, `admin:broadcast_cancel` |
 | `get_broadcast_cancel_keyboard()` | `admin:broadcast_cancel` |
+| `get_daily_question_keyboard(question_id, options)` | `daily:answer:<question_id>:<0-3>`, `menu:home` |
+| `get_daily_result_keyboard(lesson_id)` | `lesson:view:<id>`, `missions:show`, `menu:home` |
+| `get_gift_keyboard()` | `daily:question`, `missions:show`, `menu:home` |
+| `get_missions_keyboard(states)` | `mission:claim:<code>`, `daily:question`, `menu:home` |
 
 ## Xavfsizlik va limitlar
 
@@ -45,3 +49,6 @@
   ko'rsatadi.
 - Qo'shni darslar va qidiruv natijalari doim kartochka orqali ochiladi, shuning uchun
   har bir dars bir xil ko'rinishda boshlanadi.
+- Kunlik savol tugmalari javobni faqat savol ID'si va variant indeksi bilan yuboradi;
+  missiyalar klaviaturasi faqat bajarilgan va hali olinmagan mukofotlar uchun tugma
+  chiqaradi.

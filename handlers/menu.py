@@ -55,7 +55,10 @@ async def help_command(message: Message, state: FSMContext) -> None:
         "📝 Testlar — 4 variantli testlar\n"
         "📊 Mening natijalarim — statistika\n"
         "📅 Kunlik reja — kunlik maqsadlar\n"
-        "⚙️ Sozlamalar — daraja va bildirishnomalar\n\n"
+        "⚙️ Sozlamalar — daraja va bildirishnomalar\n"
+        "🎁 Sovg'a — kunlik tasodifiy XP\n"
+        "❓ Kunlik savol — har kuni bitta savol\n"
+        "🎯 Missiyalar — haftalik maqsadlar va mukofotlar\n\n"
         "Bo'limlarni pastdagi tugmalar orqali tanlang."
     )
 

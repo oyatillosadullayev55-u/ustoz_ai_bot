@@ -134,6 +134,16 @@ CREATE TABLE IF NOT EXISTS favorites (
     PRIMARY KEY (user_id, lesson_id)
 );
 
+CREATE TABLE IF NOT EXISTS daily_answers (
+    user_id INTEGER NOT NULL REFERENCES users(telegram_id) ON DELETE CASCADE,
+    answer_date TEXT NOT NULL,
+    question_id INTEGER NOT NULL,
+    selected_option INTEGER NOT NULL CHECK (selected_option BETWEEN 0 AND 3),
+    is_correct INTEGER NOT NULL CHECK (is_correct IN (0, 1)),
+    answered_at TEXT NOT NULL,
+    PRIMARY KEY (user_id, answer_date)
+);
+
 CREATE INDEX IF NOT EXISTS idx_lessons_subject
     ON lessons (subject_id, order_index);
 CREATE INDEX IF NOT EXISTS idx_questions_lesson
@@ -154,6 +164,8 @@ CREATE UNIQUE INDEX IF NOT EXISTS idx_xp_log_once
     ON xp_log (user_id, once_key) WHERE once_key IS NOT NULL;
 CREATE INDEX IF NOT EXISTS idx_favorites_user
     ON favorites (user_id, created_at);
+CREATE INDEX IF NOT EXISTS idx_daily_answers_user
+    ON daily_answers (user_id, answer_date);
 """
 
 

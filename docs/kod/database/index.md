@@ -18,10 +18,11 @@
 | [`admin.py`](admin.md) | Admin statistikasi, qabul qiluvchilar va CSV ma'lumoti |
 | [`gamification.py`](gamification.md) | XP, yutuqlar va haftalik reyting |
 | [`favorites.py`](favorites.md) | Sevimli darslar |
+| [`daily.py`](daily.md) | Kunlik sovg'a, savol javoblari va haftalik faollik |
 
 ## Ma'lumotlar bazasi sxemasi
 
-Loyihada **11 ta jadval** bor:
+Loyihada **12 ta jadval** bor:
 
 1. `users`
 2. `subjects`
@@ -34,6 +35,7 @@ Loyihada **11 ta jadval** bor:
 9. `xp_log`
 10. `achievements`
 11. `favorites`
+12. `daily_answers`
 
 ## Umumiy qoidalar
 

@@ -44,6 +44,17 @@ from database.content import (  # noqa: E402
     get_subjects_with_progress,
     search_lessons,
 )
+from database.daily import (  # noqa: E402
+    current_week_key,
+    get_claimed_missions,
+    get_daily_answer,
+    get_daily_answer_days,
+    get_daily_question,
+    get_gift_days,
+    get_weekly_activity,
+    has_daily_gift,
+    save_daily_answer,
+)
 from database.db import (  # noqa: E402
     _ensure_lesson_columns,
     get_connection,
@@ -87,6 +98,12 @@ from services.ai_service import ask_tutor  # noqa: E402
 from services.backup import (  # noqa: E402
     create_backup_copy,
     create_export_csv,
+)
+from services.daily import (  # noqa: E402
+    daily_streak,
+    get_mission_states,
+    gift_amount,
+    mission_once_key,
 )
 from services.gamification import (  # noqa: E402
     ACHIEVEMENTS,
@@ -477,6 +494,89 @@ async def run_tests() -> None:
         and "Test O'quvchi" in csv_text
         and csv_text.splitlines()[0].startswith("telegram_id"),
         "CSV eksport foydalanuvchini o'z ichiga oldi",
+    )
+
+    day = local_today()
+    daily_question = await get_daily_question(day)
+    check(daily_question is not None, "kunlik savol tanlandi")
+    repeat_question = await get_daily_question(day)
+    check(
+        repeat_question is not None
+        and int(repeat_question["id"]) == int(daily_question["id"]),
+        "kunlik savol kun davomida barqaror",
+    )
+    selected = int(daily_question["correct_option"])
+    check(
+        await save_daily_answer(
+            USER_ID, day, int(daily_question["id"]), selected, True
+        ),
+        "kunlik savolga javob saqlandi",
+    )
+    check(
+        await save_daily_answer(
+            USER_ID, day, int(daily_question["id"]), selected, True
+        )
+        is False,
+        "kunlik savolga ikkinchi marta javob berilmaydi",
+    )
+    saved_answer = await get_daily_answer(USER_ID, day)
+    check(
+        saved_answer is not None
+        and int(saved_answer["selected_option"]) == selected
+        and int(saved_answer["is_correct"]) == 1,
+        "kunlik javob holati bazada saqlandi",
+    )
+    check(
+        day in await get_daily_answer_days(USER_ID),
+        "kunlik javob sanasi hisoblandi",
+    )
+
+    check(
+        await has_daily_gift(USER_ID, day) is False,
+        "kunlik sovg'a hali olinmagan",
+    )
+    gift_reward = await reward(
+        USER_ID, gift_amount(), "gift", once_key=f"gift:{day}"
+    )
+    check(gift_reward.xp_gained > 0, "kunlik sovg'a XP berdi")
+    check(
+        await has_daily_gift(USER_ID, day) is True,
+        "kunlik sovg'a bir marta olinadi",
+    )
+    check(
+        await award_xp(USER_ID, 5, "gift", once_key=f"gift:{day}") is None,
+        "takroriy sovg'a XP qo'shmadi",
+    )
+    gift_days = await get_gift_days(USER_ID)
+    check(
+        day in gift_days and daily_streak(gift_days) == 1,
+        "sovg'a seriyasi hisoblandi",
+    )
+
+    weekly_activity = await get_weekly_activity(USER_ID)
+    check(
+        weekly_activity["lessons"] == 1 and weekly_activity["quizzes"] == 1,
+        "haftalik faollik dars va testni sanadi",
+    )
+    mission_states = {
+        state.mission.code: state for state in await get_mission_states(USER_ID)
+    }
+    check(
+        mission_states["lessons_3"].progress == 1
+        and mission_states["lessons_3"].done is False,
+        "dars missiyasi progressi hisoblandi",
+    )
+    check(
+        mission_states["ai_3"].progress == 0,
+        "AI missiyasi hali bajarilmagan",
+    )
+    check(
+        await get_claimed_missions(USER_ID) == set(),
+        "haftalik missiya hali olinmagan",
+    )
+    check(
+        mission_once_key("lessons_3").endswith(current_week_key()),
+        "missiya kaliti hafta bilan belgilanadi",
     )
 
     await add_message(USER_ID, "user", "Fotosintez nima?")

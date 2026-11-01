@@ -44,6 +44,13 @@ Muvaffaqiyatli yakun: `HANDLER_FLOW_OK`.
    orqali dars kontekstida `Shu darsdan tushuntirish` javobi.
 8. Admin: panel, statistika (140 savol), broadcast tasdiqlash va yuborilgan xabar.
 9. Kunlik eslatma: `send_due_reminders()` bitta foydalanuvchiga "Kunlik eslatma" yuborishi.
+10. Kunlik bo'limlar:
+    - menyuda `🎁 Sovg'a`, `❓ Kunlik savol`, `🎯 Missiyalar` tugmalari;
+    - sovg'a 5–25 XP beradi, ikkinchi urganda XP qo'shilmaydi va seriya 1 kun;
+    - kunlik savol 4 variant bilan chiqadi, to'g'ri javob `+10 XP`, takroriy javob
+      qabul qilinmaydi va baza o'zgarmaydi;
+    - haftalik faollik to'ldirilgach missiyalar `3/3`, `2/2` ko'rsatadi, mukofot
+      `+30 XP` beradi va takroriy olish XP qo'shmaydi.
 
 ## Izolyatsiya
 

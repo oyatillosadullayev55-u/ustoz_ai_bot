@@ -12,6 +12,7 @@ kunlik eslatmalar va health-check serveri.
 | [`lesson_media.py`](lesson_media.md) | Dars rasmlari, fayl nomlari va `file_id` kesh |
 | [`reminders.py`](reminders.md) | Kunlik eslatma yuborish va scheduler |
 | [`gamification.py`](gamification.md) | XP qiymatlari, darajalar, yutuqlar va reyting |
+| [`daily.py`](daily.md) | Sovg'a miqdori, seriya va haftalik missiyalar |
 | [`backup.py`](backup.md) | Baza zaxirasi va CSV eksport |
 | [`health_server.py`](health_server.md) | Render uchun HTTP health-check serveri |
 

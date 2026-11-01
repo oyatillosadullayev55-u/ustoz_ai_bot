@@ -27,6 +27,7 @@ Bu papkada UstozAI loyihasining **har bir kod fayli** uchun alohida markdown huj
 | `database/admin.py` | [database/admin.md](database/admin.md) |
 | `database/gamification.py` | [database/gamification.md](database/gamification.md) |
 | `database/favorites.py` | [database/favorites.md](database/favorites.md) |
+| `database/daily.py` | [database/daily.md](database/daily.md) |
 
 ## Handlerlar
 
@@ -42,6 +43,7 @@ Bu papkada UstozAI loyihasining **har bir kod fayli** uchun alohida markdown huj
 | `handlers/settings.py` | [handlers/settings.md](handlers/settings.md) |
 | `handlers/admin.py` | [handlers/admin.md](handlers/admin.md) |
 | `handlers/gamification.py` | [handlers/gamification.md](handlers/gamification.md) |
+| `handlers/daily.py` | [handlers/daily.md](handlers/daily.md) |
 | `handlers/common.py` | [handlers/common.md](handlers/common.md) |
 | `handlers/menu.py` | [handlers/menu.md](handlers/menu.md) |
 
@@ -62,6 +64,7 @@ Bu papkada UstozAI loyihasining **har bir kod fayli** uchun alohida markdown huj
 | `services/lesson_media.py` | [services/lesson_media.md](services/lesson_media.md) |
 | `services/reminders.py` | [services/reminders.md](services/reminders.md) |
 | `services/gamification.py` | [services/gamification.md](services/gamification.md) |
+| `services/daily.py` | [services/daily.md](services/daily.md) |
 | `services/backup.py` | [services/backup.md](services/backup.md) |
 | `services/health_server.py` | [services/health_server.md](services/health_server.md) |
 
@@ -99,6 +102,7 @@ Bu papkada UstozAI loyihasining **har bir kod fayli** uchun alohida markdown huj
 - Har bir darsda qisqa mazmun, 3 ta asosiy fikr, daraja, davomiylik va mini mashq.
 - Dars kontekstida AI Ustoz (`🧠 AI Ustozga so'rash`) va javob ostida dars havolalari.
 - Gamifikatsiya: XP, 6 daraja, 12 yutuq va haftalik TOP-10 reyting.
+- Kunlik sovg'a, kunlik savol va haftalik missiyalar (3 dars / 2 test / 3 AI savoli).
 - Sevimli darslar (⭐) va «Sevimlilarim» ekrani.
 - Har bir fan bo'yicha tugatilgan darslar progressi va testlarda eng yaxshi natija.
 - 35 ta dars uchun 140 ta savol; test yakunida xato javoblar tahlili.

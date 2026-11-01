@@ -207,6 +207,61 @@ def get_quiz_options_keyboard(question_id: int, options: Sequence[str]) -> Inlin
     return builder.as_markup()
 
 
+def get_daily_question_keyboard(
+    question_id: int, options: Sequence[str]
+) -> InlineKeyboardMarkup:
+    builder = InlineKeyboardBuilder()
+    for index, option in enumerate(options[:4]):
+        label = f"{OPTION_LETTERS[index]}) {option}"
+        if len(label) > 60:
+            label = f"{label[:57]}..."
+        builder.button(
+            text=label, callback_data=f"daily:answer:{question_id}:{index}"
+        )
+    builder.adjust(1)
+    builder.row(InlineKeyboardButton(text="🏠 Bosh menyu", callback_data="menu:home"))
+    return builder.as_markup()
+
+
+def get_daily_result_keyboard(lesson_id: int) -> InlineKeyboardMarkup:
+    builder = InlineKeyboardBuilder()
+    if lesson_id:
+        builder.button(
+            text="📖 Darsni ochish", callback_data=f"lesson:view:{lesson_id}"
+        )
+    builder.button(text="🎯 Missiyalar", callback_data="missions:show")
+    builder.button(text="🏠 Bosh menyu", callback_data="menu:home")
+    builder.adjust(1)
+    return builder.as_markup()
+
+
+def get_gift_keyboard() -> InlineKeyboardMarkup:
+    builder = InlineKeyboardBuilder()
+    builder.row(
+        InlineKeyboardButton(text="❓ Kunlik savol", callback_data="daily:question"),
+        InlineKeyboardButton(text="🎯 Missiyalar", callback_data="missions:show"),
+    )
+    builder.row(InlineKeyboardButton(text="🏠 Bosh menyu", callback_data="menu:home"))
+    return builder.as_markup()
+
+
+def get_missions_keyboard(states: Sequence) -> InlineKeyboardMarkup:
+    builder = InlineKeyboardBuilder()
+    for state in states:
+        if state.done and not state.claimed:
+            mission = state.mission
+            builder.button(
+                text=f"🎁 {mission.emoji} {mission.reward_xp} XP olish",
+                callback_data=f"mission:claim:{mission.code}",
+            )
+    builder.adjust(1)
+    builder.row(
+        InlineKeyboardButton(text="❓ Kunlik savol", callback_data="daily:question"),
+        InlineKeyboardButton(text="🏠 Bosh menyu", callback_data="menu:home"),
+    )
+    return builder.as_markup()
+
+
 def get_quiz_result_keyboard(subject_id: int) -> InlineKeyboardMarkup:
     builder = InlineKeyboardBuilder()
     builder.button(

@@ -11,7 +11,9 @@
 | `/help` | Bot imkoniyatlari va buyruqlar ro'yxati |
 | `/id` | Foydalanuvchining Telegram ID raqamini ko'rsatadi |
 
-`/help` matnida `/qidiruv` buyrug'i ham ko'rsatilgan. `/id` natijasidagi ID'ni admin `.env` faylidagi `ADMIN_IDS` ga qo'shishi mumkin.
+`/help` matnida `/qidiruv` buyrug'i, asosiy bo'limlar va `🎁 Sovg'a`,
+`❓ Kunlik savol`, `🎯 Missiyalar` ham ko'rsatilgan. `/id` natijasidagi ID'ni admin
+`.env` faylidagi `ADMIN_IDS` ga qo'shishi mumkin.
 
 ## Callback'lar
 

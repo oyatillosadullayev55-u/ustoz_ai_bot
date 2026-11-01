@@ -1,7 +1,7 @@
 # `database/db.py` — ulanish va sxema
 
 **Yo'l:** [`database/db.py`](../../../database/db.py)
-**Vazifasi:** SQLite ulanishini boshqarish, 8 ta jadvalni va indekslarni yaratish,
+**Vazifasi:** SQLite ulanishini boshqarish, 12 ta jadvalni va indekslarni yaratish,
 eski bazaga yangi dars ustunlarini migratsiya qilish.
 
 ## Tarkib

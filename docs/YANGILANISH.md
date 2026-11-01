@@ -1,7 +1,10 @@
-# UstozAI — 2026-10-31 yangilanishi
+# UstozAI — yangilanishlar tarixi
 
-Bu hujjat loyihaga qo'shilgan yangi imkoniyatlar, ularni qanday ishlatish va
-tekshiruv natijalarini jamlaydi.
+Bu hujjat loyihaga qo'shilgan imkoniyatlar, ularni qanday ishlatish va tekshiruv
+natijalarini jamlaydi. Eng so'nggi o'zgarishlar hujjat oxiridagi
+**2026-11-01** bo'limida.
+
+## 2026-10-31 yangilanishi
 
 **Commit:** `176b6d3` — *feat: gamifikatsiya, sevimlilar, zaxira va test UX yaxshilandi*
 
@@ -158,3 +161,85 @@ papkaga yoziladi va testdan keyin o'chiriladi.
 - Yutuqlar va reyting uchun qo'shimcha filtrlash.
 - Test natijalari bo'yicha mavzular kesimida tahlil.
 - Qidiruvni FTS bilan tezlashtirish.
+
+---
+
+## 2026-11-01 — Kunlik sovg'a, savol va missiyalar
+
+Bu yangilanish foydalanuvchini har kuni botga qaytib kelishga undaydigan uchta
+bo'limni qo'shadi. Barcha mukofotlar mavjud XP, daraja va yutuq tizimiga ulanadi.
+
+### Qisqa mazmun
+
+| Yo'nalish | Natija |
+| --- | --- |
+| 🎁 Kunlik sovg'a | Kuniga bir marta 5–25 XP va sovg'a seriyasi |
+| ❓ Kunlik savol | Har kuni bitta savol, izoh, dars havolasi, +10/+2 XP |
+| 🎯 Missiyalar | Haftalik 3 dars / 2 test / 3 AI savoli, +30/+25/+20 XP |
+| Menyu | Uchta yangi reply tugma |
+| Baza | Yangi `daily_answers` jadvali (jami 12 ta jadval) |
+
+### 🎁 Kunlik sovg'a
+
+- **🎁 Sovg'a** tugmasi bosilganda `secrets.randbelow` bilan 5–25 XP orasida
+  tasodifiy miqdor tanlanadi.
+- Mukofot `xp_log` ga `reason='gift'`, `once_key='gift:<sana>'` bilan yoziladi;
+  qayta bosilsa XP qo'shilmaydi.
+- Xabarda sovg'a seriyasi ko'rsatiladi. Seriya 3 kunga yetsa, qo'shimcha rag'bat
+  matni chiqadi.
+
+### ❓ Kunlik savol
+
+- Savol `zlib.crc32(sana) % savollar_soni` orqali tanlanadi, shuning uchun kun
+  davomida barcha foydalanuvchilar bir xil savolni ko'radi.
+- Javob `daily_answers` jadvaliga yoziladi; `PRIMARY KEY (user_id, answer_date)`
+  va `ON CONFLICT DO NOTHING` takroriy javobni to'sadi.
+- To'g'ri javob `+10 XP`, xato javob `+2 XP` beradi. Natijada tanlangan va to'g'ri
+  variant, izoh, kunlik seriya va **📖 Darsni ochish** tugmasi chiqadi.
+- Savol ID'si `question_id` sifatida saqlanadi, lekin tashqi kalit qo'yilmagan:
+  bot har ishga tushganda savollarni qayta yozadi va cascade tarixni o'chirardi.
+
+### 🎯 Haftalik missiyalar
+
+| Kod | Missiya | Maqsad | Mukofot |
+| --- | --- | --- | --- |
+| `lessons_3` | 📚 3 ta darsni tugatish | 3 | +30 XP |
+| `quizzes_2` | 📝 2 ta test yechish | 2 | +25 XP |
+| `ai_3` | 🤖 3 ta AI savol berish | 3 | +20 XP |
+
+- Faollik dushanba (UTC+5) boshidan `study_progress`, `quiz_results` va
+  `chat_history` bo'yicha hisoblanadi.
+- Progress `min(faollik, maqsad)` ko'rinishida bar bilan chiqadi.
+- Bajarilgan missiya uchun **🎁 … XP olish** tugmasi paydo bo'ladi; mukofot
+  `once_key='mission:<kod>:<hafta>'` bilan haftada bir marta olinadi.
+- Har dushanba missiyalar avtomatik yangilanadi, alohida sozlash kerak emas.
+
+### Menyu va fayllar
+
+- Bosh menyuga **🎁 Sovg'a**, **❓ Kunlik savol** va **🎯 Missiyalar** tugmalari
+  qo'shildi.
+- Yangi fayllar: `database/daily.py`, `services/daily.py`, `handlers/daily.py`.
+- `handlers/__init__.py` va `bot.py` routerlar ro'yxatiga `daily` qo'shildi
+  (`gamification → daily → daily_plan`).
+- `tests/test_offline.py` va `tests/test_handlers_offline.py` yangi oqimlarni
+  qamrab oladi.
+
+### Environment
+
+Yangi environment o'zgaruvchisi kerak emas. Barcha hisoblar UTC+5 bo'yicha
+`time_utils` orqali amalga oshiriladi.
+
+### Tekshiruv natijalari
+
+| Tekshiruv | Natija |
+| --- | --- |
+| `ruff check .` | All checks passed |
+| `tests/test_offline.py` | `OFFLINE_TESTS_OK` |
+| `tests/test_handlers_offline.py` | `HANDLER_FLOW_OK` |
+
+### Deploy holati
+
+- O'zgarishlar GitHub `main` branch'iga yuklanadi va Render avtomatik deploy qiladi.
+- Deploydan keyin `/health` manzili `{"status": "ok"}` qaytarishi kerak.
+- **Lokal `python bot.py` ni Render ishlab turganda ishga tushirmang** — polling
+  rejimida bitta nusxa ishlashi kerak.

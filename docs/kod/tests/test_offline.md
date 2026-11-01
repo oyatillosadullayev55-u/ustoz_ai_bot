@@ -49,6 +49,8 @@ Test oxirida `TemporaryDirectory.cleanup()` baza faylini o'chiradi. Haqiqiy `.en
 | Chat | Tarix tartibi, kunlik limit |
 | AI | AI o'chirilganda dars bazasidan javob; dars konteksti bilan `Shu darsdan tushuntirish` javobi |
 | Sozlamalar | Bildirishnoma `0/1` va eslatma ro'yxati |
+| Kunlik | Kunlik savol kun davomida barqaror; javob saqlanadi va takroriy javob rad etiladi; sovg'a bir marta olinadi va seriya hisoblanadi |
+| Missiyalar | Haftalik faollik dars/test/AI bo'yicha sanaladi; missiya progressi va hafta kaliti to'g'ri |
 | Admin | Jami foydalanuvchi, testlar, 140 savol, o'rtacha foiz |
 
 ## Nima uchun skript ko'rinishida

@@ -25,6 +25,9 @@ Qayta `/start` yuborsangiz, bot sizdan ismni yana so'ramaydi.
 | 📊 Mening natijalarim | Statistika va oxirgi natijalar |
 | 📅 Kunlik reja | Kunlik maqsad va progress |
 | ⚙️ Sozlamalar | Daraja va bildirishnomalar |
+| 🎁 Sovg'a | Kuniga bir marta tasodifiy XP olish |
+| ❓ Kunlik savol | Har kuni bitta savolga javob berish |
+| 🎯 Missiyalar | Haftalik maqsadlar va mukofotlar |
 
 Darslarni tez topish uchun `/qidiruv so'z` buyrug'idan foydalanishingiz mumkin.
 
@@ -191,6 +194,42 @@ hali bajarilmagan foydalanuvchilarga yuboriladi.
 - Admin serverda vaqtni `DAILY_REMINDER_HOUR` orqali o'zgartiradi; butunlay
   o'chirish uchun `DAILY_REMINDERS_ENABLED=false` qo'yiladi.
 
+## Sovg'a, kunlik savol va missiyalar
+
+### 🎁 Kunlik sovg'a
+
+1. **🎁 Sovg'a** tugmasini bosing.
+2. Bot kuniga bir marta **5–25 XP** oralig'ida tasodifiy sovg'a beradi.
+3. Xabarda sovg'a seriyasi — necha kun ketma-ket sovg'a olganingiz ko'rsatiladi.
+4. Kuniga faqat bir marta olinadi; takroriy bosish XP qo'shmaydi va ertaga
+   qaytishni taklif qiladi.
+
+### ❓ Kunlik savol
+
+1. **❓ Kunlik savol** tugmasini bosing (sovg'a yoki missiyalar ekranidan ham
+   ochish mumkin).
+2. Kun davomida barcha foydalanuvchilar uchun bir xil savol chiqadi; 4 ta variant
+   bor va faqat bitta urinish beriladi.
+3. To'g'ri javob **+10 XP**, xato javob **+2 XP** beradi.
+4. Natijada tanlagan variantingiz, to'g'ri javob, izoh va **📖 Darsni ochish**
+   tugmasi ko'rsatiladi. Kunlik seriya ham yangilanadi.
+5. Javobdan keyin o'sha kuni savolni qayta ochsangiz, natija ko'rsatiladi —
+   qayta javob berish mumkin emas.
+
+### 🎯 Haftalik missiyalar
+
+Hafta **dushanba** kuni (O'zbekiston vaqti, UTC+5) yangilanadi. Uchta maqsad bor:
+
+| Missiya | Maqsad | Mukofot |
+| --- | --- | --- |
+| 📚 Darslar | 3 ta darsni tugatish | +30 XP |
+| 📝 Testlar | 2 ta test yechish | +25 XP |
+| 🤖 AI savollari | 3 ta AI savol berish | +20 XP |
+
+Progress bar har bir missiya ostida ko'rsatiladi. Maqsad bajarilganda tugma
+**🎁 … XP olish** ko'rinishida chiqadi; mukofot haftada bir marta olinadi.
+Barcha missiyalar bajarilgach, yangilari keyingi dushanba keladi.
+
 ## AI Ustoz
 
 1. **🧠 AI Ustoz** tugmasini bosing.
@@ -325,6 +364,19 @@ yangilanadi; kalitsiz rejimda dars bazasidan javob beriladi.
 **Admin panel ko'rinmayapti.**
 `ADMIN_IDS` to'g'ri to'ldirilganini va bot qayta ishga tushirilganini tekshiring.
 `/id` orqali ID'ni aniqlang.
+
+**Sovg'ani ikkinchi marta olsam bo'ladimi?**
+Yo'q. Har bir kun uchun sovg'a bir marta beriladi; yangi sovg'a ertaga (UTC+5
+bo'yicha yangi kun boshlanganda) ochiladi.
+
+**Kunlik savolga xato javob berdim, qayta urinsam bo'ladimi?**
+Yo'q, kunlik savolda bitta urinish bor. To'g'ri javob va izoh natijada ko'rsatiladi;
+ertaga yangi savol keladi.
+
+**Missiya bajarildi, lekin mukofot tugmasi ko'rinmayapti.**
+Missiyalar ekranini qayta oching (**🎯 Missiyalar**). Agar mukofot allaqachon
+olingan bo'lsa, missiya ✅ bilan belgilanadi; yangi missiyalar dushanba kuni
+yangilanadi.
 
 **Kunlik eslatma kelmayapti.**
 Eslatma faqat o'sha kuni **📅 Kunlik reja** ochilgan, maqsad bajarilmagan va

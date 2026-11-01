@@ -8,6 +8,9 @@ BTN_QUIZZES = "📝 Testlar"
 BTN_PROGRESS = "📊 Mening natijalarim"
 BTN_DAILY_PLAN = "📅 Kunlik reja"
 BTN_SETTINGS = "⚙️ Sozlamalar"
+BTN_GIFT = "🎁 Sovg'a"
+BTN_DAILY_QUESTION = "❓ Kunlik savol"
+BTN_MISSIONS = "🎯 Missiyalar"
 
 BTN_AI_EXIT = "⬅️ Chiqish"
 
@@ -19,6 +22,9 @@ MAIN_MENU_TEXTS = frozenset(
         BTN_PROGRESS,
         BTN_DAILY_PLAN,
         BTN_SETTINGS,
+        BTN_GIFT,
+        BTN_DAILY_QUESTION,
+        BTN_MISSIONS,
     }
 )
 
@@ -29,6 +35,8 @@ def get_main_menu_keyboard() -> ReplyKeyboardMarkup:
             [KeyboardButton(text=BTN_AI_TUTOR), KeyboardButton(text=BTN_LESSONS)],
             [KeyboardButton(text=BTN_QUIZZES), KeyboardButton(text=BTN_PROGRESS)],
             [KeyboardButton(text=BTN_DAILY_PLAN), KeyboardButton(text=BTN_SETTINGS)],
+            [KeyboardButton(text=BTN_GIFT), KeyboardButton(text=BTN_DAILY_QUESTION)],
+            [KeyboardButton(text=BTN_MISSIONS)],
         ],
         resize_keyboard=True,
         input_field_placeholder="Bo'limni tanlang...",

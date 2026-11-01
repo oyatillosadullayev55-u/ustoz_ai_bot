@@ -20,6 +20,9 @@ oqimlari va texnik qarorlarini tavsiflaydi.
 | Testlar | Har urinishda 5 ta tasodifiy savol, 4 variant, yakuniy natija, eng yaxshi ball va xato javoblar tahlili |
 | Natijalar | Testlar, o'rtacha va eng yaxshi natija, faol kunlar, streak, daraja, yutuqlar va haftalik reyting |
 | Gamifikatsiya | XP, 6 daraja, 12 yutuq, so'nggi 7 kunlik TOP-10 reyting |
+| Kunlik sovg'a | Kuniga bir marta tasodifiy 5–25 XP va sovg'a seriyasi |
+| Kunlik savol | Har kuni bitta savol, javob izohi, dars havolasi va XP |
+| Missiyalar | Haftalik 3 dars / 2 test / 3 AI savoli maqsadlari va mukofotlari |
 | Sevimlilar | Darslarni ⭐ bilan saqlash va «Sevimlilarim» ekrani |
 | Kunlik reja | Dars va test maqsadi, progress ko'rsatkichlari |
 | Eslatmalar | Reja bajarilmagan foydalanuvchilarga kunlik eslatma |
@@ -40,13 +43,14 @@ Telegram
 aiogram Dispatcher (polling)
    │  routerlar tartibi:
    │  start → ai_tutor → lessons → quizzes → progress →
-   │  gamification → daily_plan → settings → admin → menu
+   │  gamification → daily → daily_plan → settings → admin → menu
    ▼
 handlers/  ── FSM, validatsiya, foydalanuvchi oqimlari
    │
    ├── keyboards/  ── reply va inline tugmalar
    ├── services/ai_service.py ── AI provayderi + lokal fallback + dars konteksti
    ├── services/gamification.py ── XP, darajalar, yutuqlar
+   ├── services/daily.py ── sovg'a, kunlik savol va missiya mantiqi
    ├── services/backup.py ── baza zaxirasi va CSV eksport
    ├── services/lesson_media.py ── dars rasmlari + file_id kesh
    ├── services/health_server.py ── Render uchun /health HTTP serveri
@@ -80,6 +84,8 @@ SQLite (WAL, foreign keys, busy_timeout)
   limitlarini hisobga oladi va faqat ruxsat bergan foydalanuvchilarga yozadi.
 - **services/gamification.py** — XP jurnali, daraja pog'onalari, yutuqlar va haftalik
   reytingni hisoblaydi; handlerlarga tayyor `RewardResult` qaytaradi.
+- **services/daily.py** — kunlik sovg'a miqdori, sovg'a/savol seriyasi va haftalik
+  missiya ta'riflari hamda holatini hisoblaydi.
 - **services/backup.py** — SQLite `backup()` orqali izchil zaxira nusxasi va CSV
   eksport faylini yaratadi.
 - **time_utils.py** — UTC saqlash, UTC+5 bo'yicha kun va streak hisoblash.
@@ -113,6 +119,7 @@ Sxema idempotent: `CREATE TABLE IF NOT EXISTS`.
 | `xp_log` | XP jurnali | `user_id` (FK), `amount`, `reason`, `once_key` (bir martalik XP uchun) |
 | `achievements` | Ochilgan yutuqlar | PK (`user_id`, `code`), `unlocked_at` |
 | `favorites` | Sevimli darslar | PK (`user_id`, `lesson_id`), `created_at` |
+| `daily_answers` | Kunlik savol javoblari | PK (`user_id`, `answer_date`), `question_id`, `selected_option`, `is_correct` |
 
 ### Bog'lanishlar
 
@@ -127,10 +134,16 @@ Sxema idempotent: `CREATE TABLE IF NOT EXISTS`.
 - `xp_log.user_id → users.telegram_id`
 - `achievements.user_id → users.telegram_id`
 - `favorites.user_id → users.telegram_id`, `favorites.lesson_id → lessons.id`
+- `daily_answers.user_id → users.telegram_id`
 
 Foydalanuvchi o'chirilsa, unga tegishli natijalar, progress, suhbat, maqsadlar,
-XP jurnali, yutuqlar va sevimlilar ham o'chadi (`ON DELETE CASCADE`). Fan yoki
-dars o'chirilsa, unga tegishli darslar va savollar o'chadi.
+XP jurnali, yutuqlar, sevimlilar va kunlik javoblar ham o'chadi (`ON DELETE CASCADE`).
+Fan yoki dars o'chirilsa, unga tegishli darslar va savollar o'chadi.
+
+`daily_answers.question_id` ataylab tashqi kalit bilan bog'lanmagan: bot har ishga
+tushganda savollarni qayta yozadi, `ON DELETE CASCADE` esa kunlik javoblar tarixini
+o'chirib yuborardi. Kunlik savol qayta ochilganda javob `question_id` bo'yicha
+tekshiriladi.
 
 `xp_log.once_key` uchun qismiy unikal indeks bor:
 
@@ -240,8 +253,10 @@ Eski bazaga `users.xp` ustuni `ALTER TABLE` bilan qo'shiladi.
 
 - **XP:** har bir tugatilgan dars uchun `+20`, test yakunida `5 + 2 × to'g'ri javob`,
   100% natija uchun qo'shimcha `+10`, kunlik reja bajarilganda `+15`, har bir AI
-  savoli uchun `+1`. Bir martalik mukofotlar `xp_log.once_key` bilan himoyalangan —
-  sahifa qayta ochilsa ham XP ikki marta qo'shilmaydi.
+  savoli uchun `+1`, kunlik savol uchun `+10` (xato javobda `+2`), kunlik sovg'a
+  uchun tasodifiy `5–25` va missiya mukofotlari `+30 / +25 / +20`. Bir martalik
+  mukofotlar `xp_log.once_key` bilan himoyalangan — sahifa qayta ochilsa ham XP
+  ikki marta qo'shilmaydi.
 - **Darajalar:** umumiy XP bo'yicha 6 pog'ona (🌱 Yangi boshlovchi → 👑 Afsona,
   0 / 100 / 300 / 700 / 1500 / 3000 XP chegaralari). Daraja «📊 Mening natijalarim»
   yuqorisida ko'rsatiladi.
@@ -257,7 +272,27 @@ Eski bazaga `users.xp` ustuni `ALTER TABLE` bilan qo'shiladi.
 - Gamifikatsiya servisi `services/gamification.py` da: `reward()` XP beradi va
   yutuqlarni tekshiradi, `combine_rewards()` bir nechta natijani birlashtiradi.
 
-### 9. Admin panel
+### 9. Kunlik sovg'a, kunlik savol va missiyalar
+
+- **Kunlik sovg'a** (`🎁 Sovg'a`): kuniga bir marta `5–25` oralig'ida tasodifiy XP
+  beriladi. Miqdor `secrets.randbelow` bilan olinadi. Takroriy so'rovda XP
+  qo'shilmaydi; `xp_log.once_key = gift:<sana>` yozuvi va oldindan tekshiruv
+  ishlatiladi. Sovg'a seriyasi — ketma-ket olingan kunlar soni.
+- **Kunlik savol** (`❓ Kunlik savol`): barcha foydalanuvchilar uchun bir xil savol
+  `zlib.crc32(sana) % savollar_soni` orqali `ORDER BY q.id LIMIT 1 OFFSET ?` bilan
+  tanlanadi. Javob `daily_answers` jadvaliga `PRIMARY KEY (user_id, answer_date)`
+  bilan yoziladi; `INSERT ... ON CONFLICT DO NOTHING` takroriy javobni to'sadi.
+  To'g'ri javob `+10 XP`, xato javob `+2 XP` beradi. Natijada tanlangan va to'g'ri
+  variant, izoh, kunlik seriya va `lesson:view` tugmasi ko'rsatiladi.
+- **Haftalik missiyalar** (`🎯 Missiyalar`): dushanba (UTC+5) boshidan hisoblangan
+  faollik bo'yicha 3 ta maqsad — 3 dars, 2 test, 3 AI savoli. Har bir maqsad
+  `min(faollik, maqsad)` progressi bilan ko'rsatiladi; bajarilganda tugma chiqadi.
+  Mukofot `xp_log.once_key = mission:<kod>:<hafta>` bilan haftada bir marta
+  olinadi. Missiyalar har dushanba yangilanadi.
+- Kunlik savol, sovg'a va missiya holatlari `services/daily.py` da, so'rovlar
+  `database/daily.py` da, handlerlar `handlers/daily.py` routerida.
+
+### 10. Admin panel
 
 - Faqat `ADMIN_IDS` ro'yxatidagi Telegram ID'lar uchun.
 - Statistika: foydalanuvchilar, bugungi faollik, testlar, darslar, AI so'rovlari,
@@ -272,7 +307,7 @@ Eski bazaga `users.xp` ustuni `ALTER TABLE` bilan qo'shiladi.
   testlar, o'rtacha va eng yaxshi natija) `utf-8-sig` bilan yoziladi va Excel yoki
   Google Sheets'da ochiladi. Fayl yuborilgach serverdan o'chiriladi.
 
-### 10. Kunlik eslatmalar
+### 11. Kunlik eslatmalar
 
 1. `bot.py` ishga tushganda `DAILY_REMINDERS_ENABLED=true` bo'lsa, fon vazifasi
    yaratiladi.
@@ -332,8 +367,8 @@ Loyihada Telegram'ga ulanmasdan ishlaydigan ikkita test to'plami bor:
 
 | Test | Qamrov | Natija |
 | --- | --- | --- |
-| `tests/test_offline.py` | Baza sxemasi va migratsiya, 140 savol, dars maydonlari, qidiruv, savollarni ID bo'yicha olish, natijalar, eng yaxshi ball, streak, XP va yutuqlar, sevimlilar, fan progressi, zaxira va CSV, vaqt yordamchilari, eslatmalar, AI fallback va dars konteksti, health server, admin statistikasi | `OFFLINE_TESTS_OK` |
-| `tests/test_handlers_offline.py` | Ro'yxatdan o'tish, rasmli kartochka, asosiy fikrlar, batafsil o'qish, oldingi/keyingi dars, batafsil ekranda tugatish, sevimlilar, dars AI konteksti, qidiruv, 5 savolli test, xato tahlili va XP mukofoti, statistika (daraja, yutuqlar, reyting, sevimlilar), reja, sozlamalar, AI, `/id`, admin, broadcast, zaxira va CSV, eslatma | `HANDLER_FLOW_OK` |
+| `tests/test_offline.py` | Baza sxemasi va migratsiya, 140 savol, dars maydonlari, qidiruv, savollarni ID bo'yicha olish, natijalar, eng yaxshi ball, streak, XP va yutuqlar, sevimlilar, fan progressi, zaxira va CSV, kunlik sovg'a va savol, haftalik faollik va missiyalar, vaqt yordamchilari, eslatmalar, AI fallback va dars konteksti, health server, admin statistikasi | `OFFLINE_TESTS_OK` |
+| `tests/test_handlers_offline.py` | Ro'yxatdan o'tish, menyu tugmalari, rasmli kartochka, asosiy fikrlar, batafsil o'qish, oldingi/keyingi dars, batafsil ekranda tugatish, sevimlilar, dars AI konteksti, qidiruv, 5 savolli test, xato tahlili va XP mukofoti, statistika (daraja, yutuqlar, reyting, sevimlilar), reja, sozlamalar, AI, `/id`, admin, broadcast, zaxira va CSV, eslatma, sovg'a, kunlik savol, missiya progressi va mukofot | `HANDLER_FLOW_OK` |
 
 Testlar vaqtinchalik SQLite faylidan foydalanadi va haqiqiy bazaga tegmaydi.
 Handler testi aiogram `FakeSession` orqali chiquvchi so'rovlarni ushlaydi; bu
@@ -394,7 +429,7 @@ ustoz_ai_bot/
 ├── database/                 # Sxema, seed va jadval modullari
 ├── handlers/                 # Bo'limlar bo'yicha routerlar
 ├── keyboards/                # Reply va inline klaviaturalar
-├── services/                 # AI, gamifikatsiya, zaxira, rasm, health, eslatmalar
+├── services/                 # AI, gamifikatsiya, kunlik, zaxira, rasm, health, eslatmalar
 ├── tests/                    # Offline testlar
 ├── docs/                     # Hujjatlar va har bir kod fayli uchun tavsif
 ├── backups/                  # Admin zaxiralari (git'ga kirmaydi)
@@ -413,7 +448,9 @@ ustoz_ai_bot/
 - Interfeys faqat o'zbek tilida.
 - SQLite bitta bot nusxasi uchun mo'ljallangan; bir vaqtda bir nechta polling
   jarayoni ishlatilmasligi kerak.
-- Vaqt mintaqasi UTC+5 ga belgilangan.
+- Vaqt mintaqasi UTC+5 ga belgilangan. Kunlik sovg'a, kunlik savol va haftalik
+  missiyalar ham shu mintaqa bo'yicha yangilanadi; kunlik savol javobi bir kunda
+  faqat bir marta qabul qilinadi.
 - Render bepul tarifida doimiy disk yo'q: restartda baza nolga tushadi. Doimiy
   saqlash uchun Oracle Always Free + `docker compose` ishlatiladi yoki admin panel
   orqali `/backup` bilan muntazam nusxa olib turiladi.

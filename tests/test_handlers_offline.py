@@ -9,6 +9,7 @@ from __future__ import annotations
 import asyncio
 import os
 import pathlib
+import re
 import sys
 import tempfile
 from datetime import UTC, datetime
@@ -53,16 +54,27 @@ from config import get_settings  # noqa: E402
 
 get_settings.cache_clear()
 
-from database.chat import get_history  # noqa: E402
+from database.chat import add_message, get_history  # noqa: E402
 from database.content import get_lesson, get_question  # noqa: E402
+from database.daily import (  # noqa: E402
+    get_claimed_missions,
+    get_daily_answer,
+    get_daily_answer_days,
+    get_daily_question,
+    get_gift_days,
+    get_weekly_activity,
+    has_daily_gift,
+)
 from database.db import get_connection, init_db  # noqa: E402
 from database.favorites import is_favorite  # noqa: E402
 from database.gamification import get_total_xp  # noqa: E402
 from database.goals import get_today_goal  # noqa: E402
+from database.quizzes import save_quiz_result  # noqa: E402
 from database.users import get_user  # noqa: E402
 from handlers import (  # noqa: E402
     admin,
     ai_tutor,
+    daily,
     daily_plan,
     gamification,
     lessons,
@@ -72,6 +84,12 @@ from handlers import (  # noqa: E402
     start,
 )
 from handlers import settings as user_settings  # noqa: E402
+from keyboards.main_menu import (  # noqa: E402
+    BTN_DAILY_QUESTION,
+    BTN_GIFT,
+    BTN_MISSIONS,
+)
+from services.daily import daily_streak, get_mission_states  # noqa: E402
 from services.lesson_media import get_lesson_image_path  # noqa: E402
 from services.reminders import send_due_reminders  # noqa: E402
 from time_utils import local_today  # noqa: E402
@@ -210,6 +228,7 @@ async def main() -> None:
     dispatcher.include_router(quizzes.router)
     dispatcher.include_router(progress.router)
     dispatcher.include_router(gamification.router)
+    dispatcher.include_router(daily.router)
     dispatcher.include_router(daily_plan.router)
     dispatcher.include_router(user_settings.router)
     dispatcher.include_router(admin.router)
@@ -325,9 +344,15 @@ async def main() -> None:
         "ro'yxatdan o'tish tasdiqlandi",
         errors,
     )
+    menu_buttons = last_reply_keyboard(fake)
     check(
-        "📚 Darslar" in last_reply_keyboard(fake),
+        "📚 Darslar" in menu_buttons,
         "bosh menyu klaviaturasi yuborildi",
+        errors,
+    )
+    check(
+        {BTN_GIFT, BTN_DAILY_QUESTION, BTN_MISSIONS} <= set(menu_buttons),
+        "menyuda kunlik sovg'a, savol va missiyalar bor",
         errors,
     )
 
@@ -782,6 +807,199 @@ async def main() -> None:
         "eslatma matni foydalanuvchiga yetib bordi",
         errors,
     )
+
+    # 8. Kunlik sovg'a, kunlik savol va haftalik missiyalar
+    fake.calls.clear()
+    xp_before_gift = await get_total_xp(USER_ID)
+    await send_text(BTN_GIFT)
+    gift_text = next(
+        (text for text in sent_texts(fake) if "Kunlik sovg'a ochildi" in text),
+        "",
+    )
+    check(bool(gift_text), "kunlik sovg'a ochildi", errors)
+    check(
+        "Sovg'a seriyasi: <b>1 kun</b>" in gift_text,
+        "sovg'a seriyasi hisoblandi",
+        errors,
+    )
+    check("🎁" in reaction_emojis(fake), "sovg'aga reaksiya qo'yildi", errors)
+    xp_after_gift = await get_total_xp(USER_ID)
+    gift_match = re.search(r"\+(\d+) XP", gift_text)
+    gift_gain = int(gift_match.group(1)) if gift_match else 0
+    check(
+        5 <= gift_gain <= 25
+        and xp_after_gift - xp_before_gift == gift_gain,
+        "sovg'a 5-25 XP orasida berildi",
+        errors,
+    )
+    check(
+        await has_daily_gift(USER_ID, local_today()),
+        "sovg'a bazada qayd etildi",
+        errors,
+    )
+    gift_days = await get_gift_days(USER_ID)
+    check(
+        local_today() in gift_days and daily_streak(gift_days) == 1,
+        "sovg'a seriyasi bir kundan boshlandi",
+        errors,
+    )
+
+    fake.calls.clear()
+    await send_text(BTN_GIFT)
+    check(
+        "allaqachon oldingiz" in last_text(fake),
+        "sovg'a kuniga bir marta olinadi",
+        errors,
+    )
+    check(
+        await get_total_xp(USER_ID) == xp_after_gift,
+        "takroriy sovg'a XP qo'shmadi",
+        errors,
+    )
+
+    fake.calls.clear()
+    await send_text(BTN_DAILY_QUESTION)
+    question = await get_daily_question(local_today())
+    assert question is not None
+    check("Kunlik savol" in last_text(fake), "kunlik savol yuborildi", errors)
+    daily_callbacks = [
+        item
+        for item in last_inline_callbacks(fake)
+        if item.startswith("daily:answer:")
+    ]
+    check(len(daily_callbacks) == 4, "kunlik savolda 4 ta variant bor", errors)
+    check(
+        "❓" in reaction_emojis(fake),
+        "kunlik savolga reaksiya qo'yildi",
+        errors,
+    )
+
+    fake.calls.clear()
+    correct = int(question["correct_option"])
+    xp_before_answer = await get_total_xp(USER_ID)
+    await send_callback(f"daily:answer:{question['id']}:{correct}")
+    answer_text = next(
+        (text for text in sent_texts(fake) if "To'g'ri javob!" in text),
+        "",
+    )
+    check(
+        bool(answer_text),
+        "kunlik savolga to'g'ri javob qabul qilindi",
+        errors,
+    )
+    check("+10 XP" in answer_text, "kunlik savol 10 XP berdi", errors)
+    check(
+        "✅" in reaction_emojis(fake),
+        "to'g'ri javobga reaksiya qo'yildi",
+        errors,
+    )
+    check(
+        await get_total_xp(USER_ID) == xp_before_answer + 10,
+        "kunlik savol XPsi hisoblandi",
+        errors,
+    )
+    stored_answer = await get_daily_answer(USER_ID, local_today())
+    check(
+        stored_answer is not None
+        and int(stored_answer["question_id"]) == int(question["id"])
+        and int(stored_answer["selected_option"]) == correct,
+        "kunlik javob bazaga saqlandi",
+        errors,
+    )
+    check(
+        daily_streak(await get_daily_answer_days(USER_ID)) == 1,
+        "kunlik javob seriyasi boshlandi",
+        errors,
+    )
+
+    fake.calls.clear()
+    duplicate_option = (correct + 1) % 4
+    xp_before_duplicate = await get_total_xp(USER_ID)
+    await send_callback(f"daily:answer:{question['id']}:{duplicate_option}")
+    check(
+        "allaqachon javob berdingiz" in last_text(fake),
+        "kunlik savolga ikkinchi marta javob berilmaydi",
+        errors,
+    )
+    stored_answer = await get_daily_answer(USER_ID, local_today())
+    check(
+        await get_total_xp(USER_ID) == xp_before_duplicate
+        and stored_answer is not None
+        and int(stored_answer["selected_option"]) == correct,
+        "takroriy javob XP va javobni o'zgartirmadi",
+        errors,
+    )
+
+    # Missiyalar uchun haftalik faollik to'ldiriladi
+    await send_callback("lesson:complete:502")
+    await send_callback("lesson:complete:101")
+    await save_quiz_result(
+        user_id=USER_ID,
+        subject_id=5,
+        total_questions=5,
+        correct_answers=4,
+    )
+    await add_message(USER_ID, "user", "Missiya uchun uchinchi savol")
+    activity = await get_weekly_activity(USER_ID)
+    check(
+        activity["lessons"] == 3
+        and activity["quizzes"] == 2
+        and activity["ai_messages"] == 3,
+        "haftalik faollik missiyalarni bajarishga yetdi",
+        errors,
+    )
+
+    fake.calls.clear()
+    await send_text(BTN_MISSIONS)
+    missions_text = last_text(fake)
+    check("Haftalik missiyalar" in missions_text, "haftalik missiyalar ochildi", errors)
+    check(
+        "3/3" in missions_text and "2/2" in missions_text,
+        "missiyalar progressi to'ldi",
+        errors,
+    )
+    check(
+        "mission:claim:lessons_3" in last_inline_callbacks(fake),
+        "bajarilgan missiya uchun mukofot tugmasi chiqdi",
+        errors,
+    )
+    states = await get_mission_states(USER_ID)
+    check(
+        all(state.done and not state.claimed for state in states),
+        "barcha missiyalar bajarilgan, mukofot olinmagan",
+        errors,
+    )
+
+    fake.calls.clear()
+    xp_before_claim = await get_total_xp(USER_ID)
+    await send_callback("mission:claim:lessons_3")
+    check(
+        await get_total_xp(USER_ID) == xp_before_claim + 30,
+        "missiya mukofoti 30 XP berdi",
+        errors,
+    )
+    check(
+        "mission:claim:lessons_3" not in last_inline_callbacks(fake)
+        and "✅" in last_text(fake),
+        "olingan missiya tugmasi olib tashlandi",
+        errors,
+    )
+    check(
+        "lessons_3" in await get_claimed_missions(USER_ID),
+        "missiya mukofoti bazada qayd etildi",
+        errors,
+    )
+
+    fake.calls.clear()
+    xp_before_repeat = await get_total_xp(USER_ID)
+    await send_callback("mission:claim:lessons_3")
+    check(
+        await get_total_xp(USER_ID) == xp_before_repeat,
+        "takroriy missiya mukofoti XP qo'shmadi",
+        errors,
+    )
+
+    check(not errors, "kunlik bo'limlar xatosiz ishladi", errors)
 
     print("\nHANDLER_FLOW_OK")
     await bot.session.close()
