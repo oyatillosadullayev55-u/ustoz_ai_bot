@@ -67,6 +67,8 @@ so'ngra holat va maslahat. Matn `LESSON_TEXT_LIMIT = 4000` belgiga sig'masa, oxi
    - `safe_edit()` bilan oddiy matnli xabar yuboriladi.
 4. Joriy xabar foto bo'lsa:
    - `edit_caption()` bilan caption va tugmalar yangilanadi.
+   - Caption o'zgarmagan bo'lsa Telegram `message is not modified` qaytaradi;
+     `is_not_modified_error()` buni aniqlab, dublikat xabar yubormaydi.
 5. Aks holda eski xabar o'chiriladi va `answer_photo()` bilan yangi kartochka yuboriladi.
 6. Yuborilgan rasmning `file_id` si keyingi ochishlar uchun keshlanadi.
 

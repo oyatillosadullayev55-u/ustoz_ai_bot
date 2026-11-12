@@ -23,21 +23,14 @@ async def mark_lesson_started(user_id: int, lesson_id: int) -> None:
 
 
 async def complete_lesson(user_id: int, lesson_id: int) -> bool:
-    """Darsni tugatilgan deb belgilaydi. Birinchi marta bo'lsa True qaytaradi."""
+    """Darsni tugatilgan deb belgilaydi. Birinchi marta bo'lsa True qaytaradi.
+
+    Shartli upsert bir vaqtda kelgan ikki so'rovdan faqat bittasiga ``True``
+    qaytaradi, shuning uchun kunlik reja va XP ikki marta sanalmaydi.
+    """
     now = utc_now()
     async with get_connection() as db:
         cursor = await db.execute(
-            """
-            SELECT status FROM study_progress
-            WHERE user_id = ? AND lesson_id = ?
-            """,
-            (user_id, lesson_id),
-        )
-        row = await cursor.fetchone()
-        if row is not None and row["status"] == "completed":
-            return False
-
-        await db.execute(
             """
             INSERT INTO study_progress (user_id, lesson_id, status, completed_at, updated_at)
             VALUES (?, ?, 'completed', ?, ?)
@@ -45,10 +38,11 @@ async def complete_lesson(user_id: int, lesson_id: int) -> bool:
                 status = 'completed',
                 completed_at = excluded.completed_at,
                 updated_at = excluded.updated_at
+            WHERE study_progress.status <> 'completed'
             """,
             (user_id, lesson_id, now, now),
         )
-        return True
+        return cursor.rowcount > 0
 
 
 async def get_completed_lesson_ids(user_id: int, subject_id: int) -> set[int]:

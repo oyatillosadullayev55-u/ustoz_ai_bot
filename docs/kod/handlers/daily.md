@@ -21,8 +21,11 @@
 1. `has_daily_gift` tekshiriladi; olingan bo'lsa seriya bilan eslatma yuboriladi.
 2. Aks holda `gift_amount()` miqdori `reward(..., once_key=f"gift:{day}")` orqali
    beriladi. `once_key` takroriy XP ni to'sadi.
-3. Bugungi sana sovg'a kunlari to'plamiga qo'shilib, seriya hisoblanadi.
-4. Xabar `🎁` reaksiyasi va yutuq bildirishnomalari bilan yuboriladi.
+3. Tekshiruv bilan yozish orasida ikkinchi bosish kelib qolsa, `reward()` natijasi
+   `awarded=False` bo'ladi; handler XP yozmasdan «allaqachon oldingiz» xabarini
+   qaytaradi.
+4. Bugungi sana sovg'a kunlari to'plamiga qo'shilib, seriya hisoblanadi.
+5. Xabar `🎁` reaksiyasi va yutuq bildirishnomalari bilan yuboriladi.
 
 ## Kunlik savol oqimi
 
@@ -45,7 +48,7 @@
   ⏳ bajarilmagan, 🎁 mukofotga tayyor, ✅ olingan.
 - `claim_mission` missiya kodini `MISSION_MAP` dan topadi, `done` va `claimed`
   holatini tekshiradi, so'ng `reward(..., once_key=mission_once_key(code))`
-  chaqiradi.
+  chaqiradi. `awarded=False` bo'lsa «Mukofot allaqachon olingan» xabari beriladi.
 - Mukofot olingach ekran qayta chiziladi va tugma yo'qoladi.
 
 ## Xavfsizlik

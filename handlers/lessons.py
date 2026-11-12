@@ -28,6 +28,7 @@ from database.progress import (
     mark_lesson_started,
 )
 from handlers.common import (
+    is_not_modified_error,
     notify_rewards,
     progress_bar,
     react,
@@ -231,8 +232,9 @@ async def _send_lesson_card(
         try:
             await message.edit_caption(caption=text, reply_markup=keyboard)
             return
-        except TelegramBadRequest:
-            pass
+        except TelegramBadRequest as exc:
+            if is_not_modified_error(exc):
+                return
 
     try:
         await message.delete()

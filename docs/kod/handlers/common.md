@@ -10,6 +10,7 @@
 | `require_user(message)` | `from_user` va bazadagi foydalanuvchini tekshiradi; yo'q bo'lsa `/start` ga yo'naltiradi |
 | `require_user_callback(callback)` | Callback uchun xuddi shu tekshiruv, `show_alert` bilan |
 | `safe_edit(callback, text, markup)` | Xabarni tahrirlaydi; foto yoki eskirgan xabarda yangisini yuboradi |
+| `is_not_modified_error(error)` | «message is not modified» xatosini boshqa `TelegramBadRequest` lardan ajratadi |
 | `progress_bar(done, target, width=8)` | `▓` va `░` belgilaridan progress bar yasaydi |
 | `react(message, emoji)` | Xabarga emoji reaksiya qo'yadi (👋, 📖, 🎉, ✅/❌) — `TelegramAPIError` yutiladi |
 | `send_action(message, action)` | «yozmoqda»/«rasm yuklanmoqda» holatini ko'rsatadi; xatolar logga yozilib yutiladi |
@@ -23,6 +24,11 @@
 ## `safe_edit` nima uchun kerak
 
 Telegram eski inline xabarni tahrirlashga ruxsat bermasligi mumkin (xabar o'chirilgan, juda eski yoki matn o'zgarmagan). Bunday holatda `TelegramBadRequest` tutiladi va foydalanuvchiga yangi xabar yuboriladi — handler ishdan chiqmaydi.
+
+Bitta istisno bor: agar matn va tugmalar avvalgidek qolgan bo'lsa, Telegram
+`message is not modified` xatosini qaytaradi. `is_not_modified_error()` shu holatni
+ajratadi va `safe_edit()` dublikat xabar yubormasdan jim qaytadi. `handlers/lessons.py`
+dagi `edit_caption` yo'li ham xuddi shu yordamchidan foydalanadi.
 
 Darslar endi foto kartochka bilan ochiladi. Foto xabarda `edit_text()` ishlamaydi, shuning
 uchun `safe_edit()` avval `message.photo` ni tekshiradi: foto bo'lsa eski xabarni o'chiradi

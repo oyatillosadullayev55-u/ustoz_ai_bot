@@ -26,6 +26,10 @@ Fayl import qilinishidan oldin:
 `BOT_TOKEN=` prefiksi bilan beradi, noto'g'ri formatni tekshiradi, so'ng haqiqiy
 test qiymatlarini qaytaradi.
 
+`check_helpers()` Telegramga ulanmasdan sof yordamchilarni tekshiradi:
+`is_not_modified_error()`, `ProviderGuard` holat o'tishlari va klaviatura
+qatorlarining saqlanishi.
+
 Test oxirida `TemporaryDirectory.cleanup()` baza faylini o'chiradi. Haqiqiy `.env`, token yoki foydalanuvchi bazasiga tegmaydi.
 
 ## Qamrov
@@ -33,6 +37,7 @@ Test oxirida `TemporaryDirectory.cleanup()` baza faylini o'chiradi. Haqiqiy `.en
 | Bo'lim | Tekshiruvlar |
 |---|---|
 | Konfiguratsiya | `BOT_TOKEN` va `ADMIN_IDS` qo'shtirnoqlardan tozalanadi; `BOT_TOKEN=` prefiksi olib tashlanadi; noto'g'ri token rad etiladi |
+| Yordamchilar | `message is not modified` ajratiladi; `ProviderGuard` 2 xatodan keyin bloklaydi va muddatdan so'ng ochadi; admin/dars klaviaturalari qatorlari saqlanadi |
 | Sxema | `init_db()` ikki marta chaqirilganda idempotentligi |
 | Migratsiya | Eski `lessons` jadvaliga `summary`, `key_points`, `level`, `duration_min` qo'shilishi |
 | Kontent | 8 fan, 35 dars, 140 savol; har bir darsda 4 savol |
@@ -43,7 +48,8 @@ Test oxirida `TemporaryDirectory.cleanup()` baza faylini o'chiradi. Haqiqiy `.en
 | Qidiruv | `search_lessons("fotosintez nima")` natijasi |
 | Foydalanuvchi | Ro'yxatdan o'tish, dublikat yaratmaslik |
 | Maqsad | Standart 1/1, yangilash, pending reminders |
-| Dars | Tugatish idempotentligi va kunlik hisob |
+| Dars | Tugatish idempotentligi, kunlik hisob va bir vaqtda kelgan ikki tugatishdan faqat bittasi `True` olishi |
+| Mukofot | `once_key` takrorlanganda `awarded=False` va `xp_gained=0` |
 | Test | 80% natija, statistika, so'nggi natija |
 | Faollik | Streak va faol kunlar |
 | Chat | Tarix tartibi, kunlik limit |

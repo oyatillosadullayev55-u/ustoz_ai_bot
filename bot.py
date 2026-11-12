@@ -31,6 +31,7 @@ from handlers import (
     start,
 )
 from handlers import settings as user_settings
+from services.ai_service import close_ai_session
 from services.health_server import start_health_server, stop_health_server
 from services.reminders import run_daily_reminders
 
@@ -175,6 +176,7 @@ async def run_bot(settings: Settings) -> None:
                 await reminder_task
         if bot is not None:
             await bot.session.close()
+        await close_ai_session()
         await stop_health_server(health_runner)
 
 

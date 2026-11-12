@@ -178,6 +178,9 @@ async def get_connection() -> AsyncIterator[aiosqlite.Connection]:
         db.row_factory = aiosqlite.Row
         await db.execute("PRAGMA foreign_keys = ON")
         await db.execute("PRAGMA busy_timeout = 5000")
+        # WAL rejimida NORMAL xavfsiz va yozishni sezilarli tezlashtiradi.
+        await db.execute("PRAGMA synchronous = NORMAL")
+        await db.execute("PRAGMA cache_size = -8000")
         try:
             yield db
             await db.commit()

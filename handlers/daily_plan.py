@@ -23,9 +23,8 @@ from time_utils import local_now
 router = Router(name="daily_plan")
 
 
-async def _build_plan_text(user) -> str:
+async def _build_plan_text(user, goal) -> str:
     user_id = user["telegram_id"]
-    goal = await get_today_goal(user_id)
     activity = await get_activity_stats(user_id)
 
     target_lessons = int(goal["target_lessons"])
@@ -71,7 +70,7 @@ async def daily_plan_entry(message: Message, state: FSMContext) -> None:
 
     goal = await get_today_goal(user["telegram_id"])
     await message.answer(
-        await _build_plan_text(user),
+        await _build_plan_text(user, goal),
         reply_markup=get_goal_keyboard(
             int(goal["target_lessons"]), int(goal["target_quizzes"])
         ),
@@ -87,7 +86,7 @@ async def refresh_plan(callback: CallbackQuery) -> None:
     goal = await get_today_goal(user["telegram_id"])
     await safe_edit(
         callback,
-        await _build_plan_text(user),
+        await _build_plan_text(user, goal),
         get_goal_keyboard(
             int(goal["target_lessons"]), int(goal["target_quizzes"])
         ),
@@ -122,9 +121,10 @@ async def update_plan(callback: CallbackQuery) -> None:
         return
 
     await set_goal_targets(user["telegram_id"], target_lessons, target_quizzes)
+    goal = await get_today_goal(user["telegram_id"])
     await safe_edit(
         callback,
-        await _build_plan_text(user),
+        await _build_plan_text(user, goal),
         get_goal_keyboard(target_lessons, target_quizzes),
     )
     await callback.answer("Maqsad yangilandi ✅")

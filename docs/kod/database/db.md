@@ -30,7 +30,9 @@ eski bazaga yangi dars ustunlarini migratsiya qilish.
 3. `row_factory = aiosqlite.Row` — natijalarni ustun nomi bo'yicha o'qish imkonini beradi.
 4. `PRAGMA foreign_keys = ON` — tashqi kalitlar majburiy.
 5. `PRAGMA busy_timeout = 5000` — band bo'lsa 5 soniya kutadi.
-6. `yield` dan keyin `commit`; istisno bo'lsa `rollback` va xatoni qayta ko'tarish.
+6. `PRAGMA synchronous = NORMAL` — WAL rejimida xavfsiz va yozishni tezlashtiradi.
+7. `PRAGMA cache_size = -8000` — ulanishga ~8 MB kesh ajratiladi.
+8. `yield` dan keyin `commit`; istisno bo'lsa `rollback` va xatoni qayta ko'tarish.
 
 ## Jadval cheklovlari
 

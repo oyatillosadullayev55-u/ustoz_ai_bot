@@ -127,6 +127,7 @@ class RewardResult:
     rank: Rank
     rank_up: bool
     achievements: list[Achievement]
+    awarded: bool = True
 
 
 async def reward(
@@ -136,10 +137,19 @@ async def reward(
     *,
     once_key: str | None = None,
 ) -> RewardResult:
-    """XP qo'shadi, yutuqlarni tekshiradi va natijani qaytaradi."""
+    """XP qo'shadi, yutuqlarni tekshiradi va natijani qaytaradi.
+
+    ``awarded=False`` — XP berilmadi, chunki ``once_key`` avval ishlatilgan.
+    """
     old_xp = await get_total_xp(user_id)
+    new_xp = old_xp
+    awarded = True
+
     if amount > 0:
-        await award_xp(user_id, amount, reason, once_key=once_key)
+        awarded_xp = await award_xp(user_id, amount, reason, once_key=once_key)
+        awarded = awarded_xp is not None
+        if awarded_xp is not None:
+            new_xp = awarded_xp
 
     stats = await get_achievement_stats(user_id)
     stats["streak"] = int((await get_activity_stats(user_id))["streak"])
@@ -152,9 +162,10 @@ async def reward(
     ]
     inserted = set(await unlock_achievements(user_id, [item.code for item in candidates]))
     if inserted:
-        await award_xp(user_id, XP_ACHIEVEMENT * len(inserted), "achievement")
+        bonus_xp = await award_xp(user_id, XP_ACHIEVEMENT * len(inserted), "achievement")
+        if bonus_xp is not None:
+            new_xp = bonus_xp
 
-    new_xp = await get_total_xp(user_id)
     new_rank = rank_for(new_xp)
     return RewardResult(
         xp=new_xp,
@@ -162,6 +173,7 @@ async def reward(
         rank=new_rank,
         rank_up=new_rank.min_xp > rank_for(old_xp).min_xp,
         achievements=[item for item in candidates if item.code in inserted],
+        awarded=awarded,
     )
 
 
@@ -185,6 +197,7 @@ def combine_rewards(*results: RewardResult) -> RewardResult:
         rank=last.rank,
         rank_up=any(result.rank_up for result in results),
         achievements=achievements,
+        awarded=all(result.awarded for result in results),
     )
 
 

@@ -58,10 +58,16 @@ result = await reward(user_id, XP_LESSON, "lesson", once_key=f"lesson:{id}")
 2. `amount > 0` bo'lsa XP yoziladi (bir marta beriladigan bo'lsa `once_key` bilan).
 3. Statistika + streak yuklanadi, shartga mos yangi yutuqlar ochiladi.
 4. Har bir yangi yutuq uchun `+15 XP` qo'shiladi.
-5. `RewardResult(xp, xp_gained, rank, rank_up, achievements)` qaytadi.
+5. `RewardResult(xp, xp_gained, rank, rank_up, achievements, awarded)` qaytadi.
+
+`awarded=False` — `once_key` avval ishlatilgani uchun XP berilmadi degani. Shu bilan
+ikki marta bosilgan sovg'a yoki missiya handleri foydalanuvchiga «allaqachon
+oldingiz» xabarini bera oladi. XP yozilmagan bo'lsa `xp_gained` 0 bo'ladi va
+qo'shimcha XP o'qish so'rovi bajarilmaydi.
 
 `combine_rewards(*results)` bir amaldagi bir nechta mukofotni (masalan, dars XP +
 kunlik maqsad bonusi) yagona natijaga birlashtiradi va yutuqlarni takrorlamaydi.
+Birlashgan natijada `awarded` barcha qismlar `True` bo'lsagina `True` qoladi.
 
 ## Ekranlar uchun
 

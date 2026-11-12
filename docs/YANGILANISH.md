@@ -2,7 +2,7 @@
 
 Bu hujjat loyihaga qo'shilgan imkoniyatlar, ularni qanday ishlatish va tekshiruv
 natijalarini jamlaydi. Eng so'nggi o'zgarishlar hujjat oxiridagi
-**2026-11-01** bo'limida.
+**2026-11-12** bo'limida.
 
 ## 2026-10-31 yangilanishi
 
@@ -243,3 +243,49 @@ Yangi environment o'zgaruvchisi kerak emas. Barcha hisoblar UTC+5 bo'yicha
 - Deploydan keyin `/health` manzili `{"status": "ok"}` qaytarishi kerak.
 - **Lokal `python bot.py` ni Render ishlab turganda ishga tushirmang** — polling
   rejimida bitta nusxa ishlashi kerak.
+
+## 2026-11-12 — Barqarorlik va kod sifati
+
+Funksiya qo'shilmadi: mavjud oqimlardagi real xatolar tuzatildi va testlar
+kengaytirildi.
+
+### Tuzatilgan xatolar
+
+| Muammo | Yechim |
+| --- | --- |
+| O'zgarmagan xabar tahrirlanganda Telegram `message is not modified` qaytarib, bot dublikat xabar yuborardi | `is_not_modified_error()` qo'shildi; `safe_edit()` va foto caption yo'li jim qaytadi |
+| Admin panelida **💾 Baza zaxirasi** va **📤 CSV eksport** alohida qatorlarga sochilib ketardi | `get_admin_keyboard()` da `adjust()` `row()` dan oldin chaqiriladi |
+| Bir vaqtda bosilgan «Darsni tugatdim» kunlik reja va XP ni ikki marta sanashi mumkin edi | `complete_lesson()` shartli upsert bilan atomar qilindi |
+| Sovg'a yoki missiya ikki marta bosilganda XP yozilmasa ham handler muvaffaqiyat ko'rsatardi | `RewardResult.awarded` qo'shildi, handlerlar «allaqachon oldingiz» xabarini beradi |
+| Har AI so'rovida yangi `aiohttp` sessiyasi ochilib, TLS handshake takrorlanardi | Sessiya modul darajasida qayta ishlatiladi, `bot.py` yopilishda tozalaydi |
+| AI provayderi ishlamasa har savolda qayta urinish davom etardi | `ProviderGuard`: 3 xatodan keyin 120 soniya cooldown |
+| Kunlik reja ekrani maqsadni ikki marta o'qirdi | `_build_plan_text(user, goal)` tayyor qatorni qabul qiladi |
+
+### Baza
+
+`get_connection()` har ulanishda `synchronous=NORMAL` va `cache_size=-8000`
+o'rnatadi. WAL rejimida bu xavfsiz va yozishni tezlashtiradi.
+
+### Testlar
+
+`tests/test_offline.py` ga qo'shildi:
+
+- `is_not_modified_error()` ijobiy va salbiy holati;
+- `ProviderGuard` bloklash/ochish o'tishlari;
+- admin va dars klaviaturalari qatorlarining saqlanishi;
+- takroriy mukofotda `awarded=False`, `xp_gained=0`;
+- `asyncio.gather` bilan bir vaqtda tugatilgan darsdan faqat bittasi `True`.
+
+### Tekshiruv natijalari
+
+| Tekshiruv | Natija |
+| --- | --- |
+| `ruff check .` | All checks passed |
+| `tests/test_offline.py` | `OFFLINE_TESTS_OK` |
+| `tests/test_handlers_offline.py` | `HANDLER_FLOW_OK` |
+
+### Deploy holati
+
+O'zgarishlar lokal commit qilindi. GitHub'ga push qilish va Render deploy alohida
+tasdiq bilan bajariladi. **Lokal `python bot.py` ni Render ishlab turganda ishga
+tushirmang** — polling rejimida bitta nusxa ishlashi kerak.

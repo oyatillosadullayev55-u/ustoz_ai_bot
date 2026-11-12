@@ -23,7 +23,7 @@
 | `get_progress_keyboard()` | `stats:refresh`, `quiz:subjects`, `menu:home` |
 | `get_goal_keyboard(...)` | `goal:set:<lessons>:<quizzes>`, `goal:refresh` |
 | `get_settings_keyboard(...)` | `settings:level:<code>`, `settings:notify` |
-| `get_admin_keyboard()` | `admin:stats`, `admin:broadcast` |
+| `get_admin_keyboard()` | `admin:stats`, `admin:broadcast`, `admin:backup`, `admin:export`, `menu:home` |
 | `get_broadcast_confirm_keyboard()` | `admin:broadcast_confirm`, `admin:broadcast_cancel` |
 | `get_broadcast_cancel_keyboard()` | `admin:broadcast_cancel` |
 | `get_daily_question_keyboard(question_id, options)` | `daily:answer:<question_id>:<0-3>`, `menu:home` |
@@ -52,3 +52,7 @@
 - Kunlik savol tugmalari javobni faqat savol ID'si va variant indeksi bilan yuboradi;
   missiyalar klaviaturasi faqat bajarilgan va hali olinmagan mukofotlar uchun tugma
   chiqaradi.
+- `get_admin_keyboard()` da `adjust(1)` yig'ishdan oldin chaqiriladi, so'ngra
+  `row()` bilan juftliklar qo'shiladi. Shu tufayli **💾 Baza zaxirasi** va
+  **📤 CSV eksport** bitta qatorda turadi; avval ular alohida qatorlarga sochilib
+  ketardi.

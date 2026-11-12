@@ -396,12 +396,12 @@ def get_admin_keyboard() -> InlineKeyboardMarkup:
     builder = InlineKeyboardBuilder()
     builder.button(text="📊 Statistika", callback_data="admin:stats")
     builder.button(text="📢 Xabar yuborish", callback_data="admin:broadcast")
+    builder.adjust(1)
     builder.row(
         InlineKeyboardButton(text="💾 Baza zaxirasi", callback_data="admin:backup"),
         InlineKeyboardButton(text="📤 CSV eksport", callback_data="admin:export"),
     )
     builder.row(InlineKeyboardButton(text="🏠 Bosh menyu", callback_data="menu:home"))
-    builder.adjust(1)
     return builder.as_markup()
 
 

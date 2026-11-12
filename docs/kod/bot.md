@@ -30,7 +30,8 @@
 6. Routerlar tartib bilan ulanadi: `start → ai_tutor → lessons → quizzes → progress → gamification → daily → daily_plan → settings → admin → menu`.
 7. `DAILY_REMINDERS_ENABLED=true` bo'lsa `run_daily_reminders(bot)` fon vazifasi sifatida ishga tushadi.
 8. `dispatcher.start_polling(bot)` Telegramdan yangilanishlarni qabul qiladi.
-9. Dastur to'xtaganda eslatma vazifasi bekor qilinadi, bot sessiyasi va health server yopiladi (`finally`).
+9. Dastur to'xtaganda eslatma vazifasi bekor qilinadi, AI HTTP sessiyasi
+   (`close_ai_session()`), bot sessiyasi va health server yopiladi (`finally`).
 
 ## Muhim jihatlar
 

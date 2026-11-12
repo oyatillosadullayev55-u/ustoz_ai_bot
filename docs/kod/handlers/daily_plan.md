@@ -24,6 +24,12 @@
 - Qiymatlar 0–20 oralig'ida va yig'indisi 0 dan katta bo'lishi kerak.
 - Noto'g'ri qiymatda `show_alert` bilan xabar beriladi.
 
+## Ichki tuzilma
+
+`_build_plan_text(user, goal)` matnni tayyorlaydi va tayyor `goal` qatorini qabul
+qiladi. Har bir handler maqsadni bir marta o'qiydi va shu qiymatni matn quruvchiga
+uzatadi — takroriy `get_today_goal()` so'rovi yo'q.
+
 ## Klaviatura
 
 `get_goal_keyboard()` uchta tayyor variantni beradi:

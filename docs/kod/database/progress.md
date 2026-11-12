@@ -26,6 +26,9 @@ Barcha sanalar `date(..., '+5 hours')` bilan UTC+5 ga o'tkaziladi, takrorlar `UN
 
 ## Muhim jihatlar
 
-- `complete_lesson` idempotent: kunlik maqsad faqat birinchi tugatishda oshiriladi (handler `True` qiymatiga qarab).
+- `complete_lesson` bitta shartli upsert bilan bajariladi:
+  `ON CONFLICT(user_id, lesson_id) DO UPDATE ... WHERE status <> 'completed'`.
+  Shu sababli bir vaqtda kelgan ikki so'rovdan faqat bittasi `True` oladi va
+  kunlik maqsad hamda XP ikki marta sanalmaydi.
 - Statistika `quiz_results` va `study_progress` bo'yicha indekslardan foydalanadi.
 - Foydalanuvchi matni statistika javobiga chiqarishdan oldin handlerda `html.escape` qilinadi.

@@ -15,6 +15,13 @@ from services.gamification import RewardResult
 
 logger = logging.getLogger(__name__)
 
+NOT_MODIFIED_MARKER = "message is not modified"
+
+
+def is_not_modified_error(error: TelegramBadRequest) -> bool:
+    """Xabar matni o'zgarmaganida Telegram qaytaradigan xatoni ajratadi."""
+    return NOT_MODIFIED_MARKER in str(error).lower()
+
 
 async def react(message: Message | None, emoji: str) -> None:
     """Xabarga emoji reaksiya qo'yadi — jonli ko'rinish effekti."""
@@ -87,7 +94,9 @@ async def safe_edit(
 
     try:
         await message.edit_text(text, reply_markup=reply_markup)
-    except TelegramBadRequest:
+    except TelegramBadRequest as exc:
+        if is_not_modified_error(exc):
+            return
         await message.answer(text, reply_markup=reply_markup)
 
 

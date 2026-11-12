@@ -151,26 +151,38 @@ async def gift_entry(message: Message, state: FSMContext) -> None:
     await _send_gift(message, int(user["telegram_id"]))
 
 
+def _gift_already_text(gift_days: set[str]) -> str:
+    return "\n".join(
+        [
+            "🎁 <b>Kunlik sovg'a</b>",
+            "",
+            "Bugungi sovg'angizni allaqachon oldingiz.",
+            f"🔥 Sovg'a seriyasi: <b>{daily_streak(gift_days)} kun</b>",
+            "",
+            "Ertaga yangi sovg'a sizni kutmoqda!",
+        ]
+    )
+
+
 async def _send_gift(target: Message, user_id: int) -> None:
     day = local_today()
     gift_days = await get_gift_days(user_id)
 
     if await has_daily_gift(user_id, day):
-        text = "\n".join(
-            [
-                "🎁 <b>Kunlik sovg'a</b>",
-                "",
-                "Bugungi sovg'angizni allaqachon oldingiz.",
-                f"🔥 Sovg'a seriyasi: <b>{daily_streak(gift_days)} kun</b>",
-                "",
-                "Ertaga yangi sovg'a sizni kutmoqda!",
-            ]
+        await target.answer(
+            _gift_already_text(gift_days), reply_markup=get_gift_keyboard()
         )
-        await target.answer(text, reply_markup=get_gift_keyboard())
         return
 
     amount = gift_amount()
     result = await reward(user_id, amount, "gift", once_key=f"gift:{day}")
+    if not result.awarded:
+        # Ikki marta bosilganda XP ikkinchi marta berilmaydi.
+        await target.answer(
+            _gift_already_text(await get_gift_days(user_id)),
+            reply_markup=get_gift_keyboard(),
+        )
+        return
 
     gift_days.add(day)
     streak = daily_streak(gift_days)
@@ -377,7 +389,7 @@ async def claim_mission(callback: CallbackQuery) -> None:
         "mission",
         once_key=mission_once_key(code),
     )
-    if result.xp_gained <= 0:
+    if not result.awarded:
         await callback.answer("Mukofot allaqachon olingan.", show_alert=True)
         return
 

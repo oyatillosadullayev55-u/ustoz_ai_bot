@@ -17,6 +17,7 @@ from datetime import datetime
 
 import aiohttp
 import aiosqlite
+from aiogram.exceptions import TelegramBadRequest
 
 PROJECT_ROOT = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(PROJECT_ROOT))
@@ -94,7 +95,12 @@ from database.users import (  # noqa: E402
     get_user,
     update_notifications,
 )
-from services.ai_service import ask_tutor  # noqa: E402
+from handlers.common import is_not_modified_error  # noqa: E402
+from keyboards.inline_buttons import (  # noqa: E402
+    get_admin_keyboard,
+    get_lesson_keyboard,
+)
+from services.ai_service import ProviderGuard, ask_tutor  # noqa: E402
 from services.backup import (  # noqa: E402
     create_backup_copy,
     create_export_csv,
@@ -162,6 +168,50 @@ def check_config_cleaning() -> None:
     os.environ["BOT_TOKEN"] = valid_token
     os.environ["ADMIN_IDS"] = "999000001"
     get_settings.cache_clear()
+
+
+def check_helpers() -> None:
+    not_modified = TelegramBadRequest(
+        method=object(), message="Bad Request: message is not modified"
+    )
+    check(is_not_modified_error(not_modified), "o'zgarmagan xabar xatosi aniqlandi")
+    check(
+        not is_not_modified_error(
+            TelegramBadRequest(method=object(), message="Bad Request: chat not found")
+        ),
+        "boshqa Telegram xatosi o'zgarmagan xabar deb hisoblanmaydi",
+    )
+
+    guard = ProviderGuard(failure_limit=2, cooldown_seconds=60)
+    check(guard.available(now=100.0), "provayder boshida ochiq")
+    guard.record_failure(now=100.0)
+    check(guard.available(now=100.0), "bitta xatodan keyin provayder ochiq")
+    guard.record_failure(now=100.0)
+    check(not guard.available(now=100.0), "ikki xatodan keyin provayder yopildi")
+    check(guard.available(now=1000.0), "muddat o'tgach provayder qayta ochildi")
+    guard.record_success()
+    check(
+        guard.failures == 0 and guard.available(now=1.0),
+        "muvaffaqiyatdan keyin provayder holati tozalandi",
+    )
+
+    admin_rows = [
+        [button.callback_data for button in row]
+        for row in get_admin_keyboard().inline_keyboard
+    ]
+    check(
+        ["admin:backup", "admin:export"] in admin_rows,
+        "zaxira va eksport tugmalari bitta qatorda",
+    )
+
+    lesson_rows = get_lesson_keyboard(
+        lesson_id=10, subject_id=5, is_completed=False
+    ).inline_keyboard
+    check(
+        [button.callback_data for button in lesson_rows[-1]]
+        == ["lesson:subject:5", "menu:home"],
+        "dars kartochkasining oxirgi qatori saqlanadi",
+    )
 
 
 async def run_tests() -> None:
@@ -413,6 +463,13 @@ async def run_tests() -> None:
         is None,
         "bir marta beriladigan XP qayta qo'shilmadi",
     )
+    duplicate_reward = await reward(
+        USER_ID, XP_LESSON, "lesson", once_key="lesson:101"
+    )
+    check(
+        duplicate_reward.awarded is False and duplicate_reward.xp_gained == 0,
+        "takroriy mukofot awarded=False qaytardi",
+    )
 
     profile = await get_profile(USER_ID)
     check(
@@ -653,12 +710,22 @@ async def run_tests() -> None:
         total = int((await cursor.fetchone())["total"])
     check(total == 1, "bazada faqat bitta test foydalanuvchisi bor")
 
+    concurrent = await asyncio.gather(
+        complete_lesson(USER_ID, 201),
+        complete_lesson(USER_ID, 201),
+    )
+    check(
+        concurrent.count(True) == 1,
+        "bir vaqtda tugatilgan dars faqat bir marta sanaldi",
+    )
+
     print("\nOFFLINE_TESTS_OK")
 
 
 def main() -> None:
     try:
         check_config_cleaning()
+        check_helpers()
         asyncio.run(run_tests())
     finally:
         TEMP_DIR.cleanup()
