@@ -51,6 +51,15 @@ Muvaffaqiyatli yakun: `HANDLER_FLOW_OK`.
       qabul qilinmaydi va baza o'zgarmaydi;
     - haftalik faollik to'ldirilgach missiyalar `3/3`, `2/2` ko'rsatadi, mukofot
       `+30 XP` beradi va takroriy olish XP qo'shmaydi.
+11. Anatomiya:
+    - Biologiya ro'yxatida `anatomy:menu` tugmasi;
+    - menyu banner rasmi va uch vaqtli rejim (`anatomy:start:10/20/50`);
+    - savolda `1/10`, vaqt hisoblagichi, A–D matni va 4 ta javob tugmasi;
+    - 10 savoldan keyin `9/10` va `90%`, XP va xatolar tahlili;
+    - natija `subject_id=900` yashirin faniga saqlanadi va kunlik reja oshadi;
+    - eski javob tugmasi "yakunlangan" ogohlantirishini qaytaradi;
+    - `ANATOMY_MODES[10]` vaqtincha qisqartirilib, taymer javob berilgan 1 savolni
+      baholashi tekshiriladi.
 
 ## Izolyatsiya
 

@@ -24,6 +24,9 @@
 6. Kartochkadagi `📝 Test yechish` shu fan testini boshlaydi.
 7. `🧠 AI Ustozga so'rash` (`lesson:ask:<id>`) darsni AI rejimiga kontekst sifatida
    uzatadi — handler `handlers/ai_tutor.py` da.
+8. **Biologiya** fanining darslar ro'yxatida `🫀 Anatomiya testlari · ⏱ vaqtli`
+   (`anatomy:menu`) tugmasi chiqadi; u `handlers/anatomy.py` oqimini ochadi. Ro'yxat
+   matnida ham 546 savollik test banki haqida eslatma ko'rsatiladi.
 
 ## Kartochka va batafsil ekran
 

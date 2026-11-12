@@ -1,0 +1,5462 @@
+[
+ {
+  "text": "Мiya pufaklarini uch bosqichli davrida qanday bo’limlardan iborat?",
+  "options": [
+   "prosencephalon, miyelencephalon",
+   "prosencephalon, miyelencephalon, miyacha",
+   "prosencephalon, metencephalon, rhombencephalon",
+   "prosencephalon, mesencephalon, rhombencephalon"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Kattalarda orqa miyani pastki chegarasi qaerga to’gri keladi?",
+  "options": [
+   "vertebra thoracica XII",
+   "vertebra lumbalis I",
+   "vertebra lumbalis III",
+   "vertebra lumbalis II"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "1 yoshgacha bo’lgan bolalarda orqa miyani pastki chegarasi qaerga to’gri keladi?",
+  "options": [
+   "vertebra lumbalis VI",
+   "vertebra thoracica XII",
+   "vertebra lumbalis I-II",
+   "vertebra lumbalis III"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Orqa miya kengaymalari qaysilar?",
+  "options": [
+   "intumescentia cervicalis et lumbosacralis",
+   "intumescentia coccygea et lumbosacralis",
+   "intumescentia rectalis",
+   "intumescentia coccygea"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Bo’yin kengaymasi qaysi sohaga to’gri keladi?",
+  "options": [
+   "vertebra lumbalis VI",
+   "vertebra cervicalis II - vertebra thoracica I",
+   "vertebrae cervicales I - VII",
+   "vertebra cervicalis II - vertebra thoracica II"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Orqa miya segmentlari nechta?",
+  "options": [
+   "30 ta segment",
+   "21 ta segment",
+   "31 ta segment",
+   "VI-XII segment"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Orqa miyani qaysi segmentlari sohasida yon shoxi bor?",
+  "options": [
+   "segmentum cervicale I - segmentum thoracicum V",
+   "segmentum cervicale I - segmentum thoracicum IV",
+   "segmentum cervicale VIII - segmentum lumbale II",
+   "segmenta cervicalia I - VIII"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Orqa miya yuzasida qaysi egat bor?",
+  "options": [
+   "sulcus medianus posterior",
+   "sulcus sigmoidea",
+   "sulcus medianus centralis",
+   "sulcus sagittalis"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Orqa miyani yon tizimchasidan o’tuvchi o’tkazuvchi yo’l?",
+  "options": [
+   "tractus vestibulospin alis",
+   "tractus corticospinalis anterior",
+   "tractus corticospinalis lateralis",
+   "tractus vestibulospinalis dorsalis"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Orqa miya tuguni qaerda joylashgan?",
+  "options": [
+   "cavitas epiduralis",
+   "canalis vertebralis",
+   "cavitas subduralis",
+   "foramen intervertebrale"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Оrqa miya tugunini hosil qiladi:",
+  "options": [
+   "yon ildizi",
+   "oldingi ildizi",
+   "orqa ildizi",
+   "yuqori ildizi"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Orqa miyaning yuqorigi va pastki chegarasi:",
+  "options": [
+   "L-I umurtqalari sohasi",
+   "katta ensa teshigi, I-II bel, ThXII- L-I umurtqalari sohasi",
+   "katta ensa teshigi va II bel umurtqalari sohasi",
+   "I-II bo’yin umurtqa sohasi"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Orqa miyaning massasi qancha?",
+  "options": [
+   "massasi 41-45 gr",
+   "massasi 60-65gr",
+   "massasi 75- 85 gramm",
+   "massasi 35-40 gr"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Suyaklarni o‘rganuvchi fan?",
+  "options": [
+   "miologiya",
+   "biologiya",
+   "osteologiya",
+   "angilogiya"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Orqa miyaning o’rtacha uzunligi qancha?",
+  "options": [
+   "o’rtacha uzunligi 75-85 sm",
+   "o’rtacha uzunligi 50- 51 sm",
+   "o’rtacha uzunligi 25-28 sm",
+   "o’rtacha uzunligi 43 sm"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Orqa miya markaziy kanalining aloqa sohasi:",
+  "options": [
+   "yon qorinchalar",
+   "subdural bo'shligi",
+   "IV qorincha",
+   "VI qorincha"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "orqa miya pastki chegarasi chaqaloqlarda:",
+  "options": [
+   "pastki chegarasi L- II- III",
+   "1 - II-bel umurtqalari oralig’i",
+   "pastki chegarasi S-III",
+   "pastki chegarasi L- IV"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Kattalarda orqa miya pastki chegarasi",
+  "options": [
+   "L-V- umurtqa tengligi",
+   "L-I-L-II umurtqalar oralig’i",
+   ". L –III – umurtqalar tengligi",
+   "Th-XII -L -I– umurtqa tengligi"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Orqa miyaning qaysi segmentlaridan oq qo’shuvchi tolalari chiqadi?",
+  "options": [
+   "Th-XII -L - I–umurtqa tengligi",
+   "C I- th1-IV",
+   "CVIII-ThI- ThXII-LIII",
+   "th I-XII-LI"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Orqa miya kengaymalari:",
+  "options": [
+   "oldingi va orqa",
+   "ichki va tashqi",
+   "medial va lateral",
+   "bo’yin va bel- dumg’aza"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Orqa miya kul rang moddasining shoxlari:",
+  "options": [
+   "ichki va tashqi",
+   "orqa, yon va old shoxlari",
+   "pastki yon",
+   "yon, yuqori"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "orqa miya kulrang moddasi markazida qanday tuzilma joylashgan?",
+  "options": [
+   "neyrogliya",
+   "markaziy kanal",
+   "orqa miya qorinchasi",
+   "miyani yumshoq pardasi"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Orqa miya segmenti nimadan hosil bo’ladi?",
+  "options": [
+   "bir juft aralash orqa miya nervlariga muvofiq keluvchi orqa miyaning oq va kulrang moddasi",
+   "aralash orqa miya nervlariga muvofiq keluvchi orqa miyaning oq moddasi",
+   "2 juft aralash orqa miya nervlariga muvofiq keluvchi orqa miyaning oq va kulrang moddasi",
+   "oldingi va orqa shoxlari orqa miyaning oq va kulrang moddasi"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "oldingi, orqa, yon tizimchalardan iborat anatomik tuzilma:",
+  "options": [
+   "orqa miyaning kulrang moddasi",
+   "orqa miyani oq moddasi",
+   "oraliq miyani to’rt tepaligi",
+   "markaziy kanal"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Orqa miya tuguni nima?",
+  "options": [
+   "oldingi miya orqa ildizi hosilasi va sezuvchi neyronlari joylashgan anatomik tuzilma",
+   "orqa miya orqa ildizi hosilasi",
+   "markaziy nerv tizimining sezuvchi neyronlari joylashgan anatomik tuzilma",
+   "periferik nerv tizimining sezuvchi neyronlari joylashgan anatomik tuzilma"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Orqa miyaning harakat ildizlari chiqadi:",
+  "options": [
+   "ichki va tashqi kanaldan",
+   "ventero lateral egatdan",
+   "oldingi medial egatdan",
+   "oldingi ko’ndalang egatdan"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Orqa miyani oq moddasi qaysi tizimchalardan iborat?",
+  "options": [
+   "ichki va tashqi",
+   "orqadagi, pastki",
+   "oldingi, orqa, yon",
+   "yuqorigi, orqadagi"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Orqa miya tuguni qaerda joylashgan va qanday hujayradan tuzilgan?",
+  "options": [
+   "orqa shoxda, psevdounipo lyar hujayra",
+   "ichki va tashqi xujayradan",
+   "oldingi ildizda, neyrogliya hujayralari",
+   "orqa ildizda, psevdounipoly ar hujayra"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Orqa miyani yon shoxlaridagi VIII bo’yin II-bel segmentlarida qanday markaz bor?",
+  "options": [
+   "parasimpatik markaz bor",
+   "sezgi markaz bor",
+   "simpatik markaz bor",
+   "yon tugun markaz bor"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Orqa miya kulrang moddasining old shoxining nechta xususiy o’zagi bor?",
+  "options": [
+   "11 ta o’zagi bor",
+   "6 ta o’zagi bor",
+   "2 ta o’zagi bor",
+   "7 ta o’zagi bor"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Epidural bo’shlig’I qaerda hosil bo’ladi?",
+  "options": [
+   "bosh miya qattiq pardasi bilan bosh suyagi orasida",
+   "ichki va tashqi suyagi orasida",
+   "bosh miya qattiq pardasi bilan bosh suyagi ustida",
+   "bosh miya to’r pardasi bilan bosh suyagi orasida"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Orqa miya tishsimon boylami subarahnoidal bo’shliqni qanday bo’limlarga bo’ladi?",
+  "options": [
+   "ichki va tashqi suyagi orasida",
+   "yuqori va pastki bo’limlarga",
+   "tashqi va pastki bo’limlarga",
+   "medial va pastki bo’limlarga"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Qaysi bez sekretsiyasi buzilishida gipertireoz, tireotoksikoz va gipoterioz uchraydi?",
+  "options": [
+   "glandulae suprarenalis",
+   "glandulae pancreas",
+   "glandulae thymus",
+   "glandulae thyroidea"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Orqa miyadagi egat va yoriqlar qaysilar?",
+  "options": [
+   "oldingi va orqa bo’ylama egatlar",
+   "to’g’ri egat",
+   "frontal egat",
+   "sagittal egat"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Orqa miya sezgi ildizlari qaerga kiradi?",
+  "options": [
+   "orqa ko’ndalang egatga",
+   "to’g’ri egat",
+   "oldingi lateral egatga",
+   "orqa lateral egatga"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "buyrakni og'irligi o'rta yoshli odamlarda og’irligi qancha?",
+  "options": [
+   "og’irligi 250gr",
+   "og’irligi 140- 150gr",
+   "og’irligi 100gr",
+   "og’irligi 180gr"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Lateral kortikospinal yo’l qaerda kesishadi?",
+  "options": [
+   "uzunchoq miyada",
+   "o’rta miyada",
+   "miyachada",
+   "oxirgi miyada"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Orqa miya orqa ildizda nima hosil bo’ladi?",
+  "options": [
+   "tugun",
+   "do’mboq",
+   "o’siq",
+   "chigal"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Umurtqa kanalida qaysi miya joylashadi?",
+  "options": [
+   "yzunchoq miya",
+   "orqa miya",
+   "o’rta miya",
+   "miyacha"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Orqa miyaga taa’luqli boylamni toping?",
+  "options": [
+   "tishli",
+   "yzunchoq",
+   "sariq boylam",
+   "yumaloq"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Ot dumi termini qaysi miyaga xos tuzilma?",
+  "options": [
+   "miyachaga",
+   "orqa miyaga",
+   "oxirgi miyaga",
+   "yzunchoq miyaga"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Orqa miya va bosh miya qo’shiladigan soha?",
+  "options": [
+   "katta ensa teshigi pastki cheti",
+   "yzunchoq miya",
+   "o’rta miya",
+   "nishab"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Kulrang moddani lotincha nomini ayting?",
+  "options": [
+   "substantsiya rubra",
+   "substantsiya flava",
+   "substantsiya grizea",
+   "substantsiya nigra"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Tizimchalar qanday moddadan iborat?",
+  "options": [
+   "oq modda",
+   "kulrang modda",
+   "tola",
+   "sariq modda"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Orqa miyani qon bilan taminlaydigan arteriyalar?",
+  "options": [
+   "a.lumbalis, a.ulnaris",
+   "a.vertebralis, a.lumbalis",
+   "a.vertebralis, a.radialis",
+   "a.lumbalis, a.thoroсalis"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Qizil ilik suyaklarning qaysi qismida joylashadi ?",
+  "options": [
+   "tashqi",
+   "Bunday ilik yo‘q",
+   "epifiz",
+   "diafiz"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Subdural bo’shlig’I qaerda hosil bo’ladi?",
+  "options": [
+   "ichki va tashqi suyagi orasida",
+   "bosh miya qattiq pardasi bilan bosh suyagi ustida",
+   "bosh miya to’r pardasi bilan bosh suyagi orasida",
+   "bosh miya qattiq pardasi bilan to’r pardasi orasida"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Orqa miya suyuqligi lotincha nomi nima?",
+  "options": [
+   "qon",
+   "hujayra",
+   "tromb",
+   "likvor"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Subarahnoidal bo’shliq qaerda joylashgan?",
+  "options": [
+   "ichki va tashqi suyagi orasida",
+   "yumshoq parda bilan to’r parda orasida",
+   "bosh miya qattiq pardasi bilan to’r pardasi orasida",
+   "bosh miya to’r pardasi bilan bosh suyagi orasida"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Orqa miyaning markazida nima joylashgan?",
+  "options": [
+   "oq modda",
+   "orqa miya qorinchasi",
+   "liqvor",
+   "markaziy kanal"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Piramida va oliva orasidan qaysi nerv chiqadi?",
+  "options": [
+   "Nervus vagus dextra",
+   "Nervus glossopharyng eus",
+   "Nervus vagus",
+   "Nervus hypoglossus"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Bosh miya qaerda joylashgan?",
+  "options": [
+   "bosh suyagining ichida",
+   "qon-tomir bo’shligida",
+   "qorin ichida",
+   "bo’yin ichida"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Bosh miya qismlari qaysilar?",
+  "options": [
+   "katta miya, miyacha, miya poyasi",
+   "kichik miya, miyacha, miya stvoli",
+   "katta miya, yarimsharlar, miya stvoli",
+   "katta miya, miyacha, uzunchoq miya"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Necha yoshdan keyin bosh miyani hajmi kichiklashadi?",
+  "options": [
+   "30 yoshdan keyin kichiklashadi",
+   "65 yoshdan keyin kichiklashadi",
+   "40 yoshdan keyin kichiklashadi",
+   "60 yoshdan keyin kichiklashadi"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Qaysi nerv miya stvolini orqa yuzasidan chiqadi?",
+  "options": [
+   "Nervus abducens",
+   "Nervus trochlearis",
+   "Nervus vagus",
+   "Nervus trigeminus"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Ko’prik va miyachani o’rta oyoqchalari orasidan qaysi nerv chiqadi?",
+  "options": [
+   "Nervus abducens",
+   "Nervus trigeminus",
+   "Nervus vagus",
+   "Nervus trochlearis"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Ko’prik va uzunchoq miya orasidan qaysi nerv chiqadi?",
+  "options": [
+   "Nervus vagus",
+   "Nervus trochlearis",
+   "Nervus abducens",
+   "Nervus trigeminus"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Bosh miya yarimsharlari pastki yuzasida qaysi egat bor?",
+  "options": [
+   "hidlov egati",
+   "markaz oldi egati",
+   "miyacha yarimsharlari egati",
+   "kollateral egati"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Limbik sistemaga nimalar kiradi?",
+  "options": [
+   "ko’z kosasi egati, hidlov piyozchasi",
+   "ko’z kosasi pushtasi, xidlov yuli",
+   "miyacha yarimsharlari",
+   "hidlov piyozchasi, hidlov yo'li"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Miya oyoqlarini medial yuzasidan qaysi nerv chiqadi?",
+  "options": [
+   "Nervus oculomotorius",
+   "Nervus vagus",
+   "Nervus trochlearis",
+   "Nervus trigeminus"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Miya oyoqchalararo chuquri nima bilan chegaralangan",
+  "options": [
+   "pedunculi cerebri et corpora mamillaria",
+   "pedunculi cerebellarisi et prosessus mamillaria",
+   "hypotalamus et thalamus",
+   "epiphisis et comissura habenularum"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Hiasma opticum orqasida joylashgan anatomik tuzilmalar:",
+  "options": [
+   "tuber cinereum, infundibulum, hypophisis",
+   "n trochlearis, hypophisis, substantia perforata posterior",
+   "corpora mamillaria, substantia perforata anterior",
+   "pons, n trigeminus, pedunculi cerebri"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Ko’prik bilan miyachaning qanday tuzilmasi birlashadi?",
+  "options": [
+   "miyachaning yuqori oyoqchalari",
+   "uzunchoq miya",
+   "miya oyoqlari bilan bilan o’tuvchi yo’l",
+   "miyachaning o’rta oyoqlari"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "o’rta miya bilan miyachaning qanday tuzilmalari birlashtiradi?",
+  "options": [
+   "miya oyoqlari bilan",
+   "miyachaning yuqori oyoqlari, miyachaning yuqori chodiri",
+   "uzunchoq miya bilan",
+   "ko’prik bilan o’tuvchi yo’l"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "IX-X juft bosh miya nervlari qaerdan chiqadi?",
+  "options": [
+   "orqa o’rta egatdan",
+   "oldingi yon egatdan",
+   "uzunchoq miyaning orqa yon egatidan",
+   "bosh miya chodiridan"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Yangi tug‘ilgan chaqaloqda nechta alohida suyak bo‘ladi?",
+  "options": [
+   "270 ta alohida suyak",
+   "286 ta alohida suyak",
+   "240 ta alohida suyak",
+   "140 ta alohida suyak"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "V juft nerv miyaning qaeridan chiqadi?",
+  "options": [
+   "uzunchoq miya va miyachaning yuqori oyqchasi o’rtasida",
+   "o’rta miya va miyachaning o’rta oyqchasi o’rtasida",
+   "ko’prik va miyachaning o’rta oyqchasi o’rtasida",
+   "miya ko’ndalang egatidan"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "VI juft nerv bosh miyaning qaeridan chiqadi?",
+  "options": [
+   "uzunchoq miya va miyachaning yuqori oyqchasi o’rtasida",
+   "ko’prik va uzunchoq miyaning o’rtasidagi egatdan",
+   "o’rta miya va miyachaning o’rta oyqchasi o’rtasida",
+   "miya ko’ndalang egatidan"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "VII juft nerv miyaning qaeridan chiqadi?",
+  "options": [
+   "o’rta miya va o’rta oyqchasi o’rtasida",
+   "ko’prikning orqa qirg’og’idan, olivadan lateral tomondan",
+   "uzunchoq miya va miyachaning yuqori oyqchasi o’rtasida",
+   "miya ko’ndalang egatidan"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "VIII juft nerv miyaning qaeridan chiqadi?",
+  "options": [
+   "uzunchoq miya va miyachaning yuqori oyqchasi o’rtasida",
+   "ko’prikning orqa qirg’og’idan, olivadan lateral",
+   "ko’prikning orqasidan, yuz nervi ildizidan lateralroq",
+   "ko’prikning oldidan, yuz nervi ildizidan"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "IX juft nerv miyaning qaeridan chiqadi?",
+  "options": [
+   "olivaning oldidan, uzunchoq miyadan",
+   "olivaning orqasidan, uzunchoq miyadan",
+   "ko’prikning orqasidan, yuz nerviildizida n lateralroq",
+   "ko’prikning orqa qirg’og’idan, olivadan lateral"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "X juft nerv miyaning qaeridan chiqadi?",
+  "options": [
+   "olivaning oldidan, uzunchoq miyadan",
+   "ko’prikning orqasidan, yuz nerviildizida n lateralroq",
+   "ko’prikning orqa qirg’og’idan, olivadan lateral",
+   "uzunchoq miyadan o’rqa yon egatdan"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "XI juft nerv miyaning qaeridan chiqadi?",
+  "options": [
+   "ko’prikning orqasidan, yuz nervi ildizidan lateralroq",
+   "uzunchoq miyadan o’rqa yon egatdan",
+   "uzunchoq miyadan piramida bilan oliva orasidagi egatdan",
+   "ko’prikning orqa qirg’og’idan, olivadan lateral"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "XII juft nerv miyaning qaeridan chiqadi?",
+  "options": [
+   "O’rta miyadan o’rqa yon egatdan",
+   "uzunchoq miyadan piramida bilan oliva orasidagi egatdan",
+   "ko’prikning orqasidan, yuz nervi ildizidan lateralroq",
+   "ko’prikning orqa qirg’og’idan, olivadan lateral"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Bosh miya asosida nima ko’rinadi?",
+  "options": [
+   "bulbi tractus",
+   "bulbi olfactorii",
+   "linea arcuta",
+   "inzula"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Corpora mamillariya qaerda ko’rinadi?",
+  "options": [
+   "miya tubida",
+   "miya medial asosida",
+   "miyani lateral yuzasida",
+   "miya asosida"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Chiazma opticum qaerda ko’rinadi?",
+  "options": [
+   "miya tubida",
+   "miya asosida",
+   "miya medial asosida",
+   "miyani lateral yuzasida"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Ko’ruv kesishmasini orqasida nima joylashgan?",
+  "options": [
+   "pedinculus serebri media",
+   "pedinculus serebellaris superoir",
+   "pedinculus serebellaris inferior",
+   "pedinculus serebri"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Miya asosida nima ko’rinadi?",
+  "options": [
+   "sulcus medialis",
+   "chiazma opticum",
+   "sulcus lateralis",
+   "liniya arcuta"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Miyachaning o’rta oyoqlari qaerda joylashgan?",
+  "options": [
+   "ko’prik bilan uzunchoq miyaning orasida",
+   "ko’prik bilan miyachaning orasida",
+   "miya asosi bilan miyachaning orasida",
+   "orolcha bilan miyachaning orasida"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Miya oyoqlari orasida joylashadi?",
+  "options": [
+   "orolcha",
+   "yoriq",
+   "chuqur",
+   "liniya arcuta"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Ko’prikning orqasidan, yuz nervi ildizidan lateralroq qaysi nerv chiqadi?",
+  "options": [
+   "VII juft nerv",
+   "V juft nerv",
+   "I juft nerv",
+   "VI juft nerv"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Til osti nervi ildizi qaerda ko’rinadi?",
+  "options": [
+   "miya tubida",
+   "miyachani tubida",
+   "miyani lateral yuzasida",
+   "miya asosida"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Miya asosida qaysi nervlar bor?",
+  "options": [
+   "o’rta miya nervlari",
+   "bosh miya nervlari",
+   "simpatik nervlar",
+   "orqa miya nervlari"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Trigonum olfactorium qanday tuzilma?",
+  "options": [
+   "parasimpatik markaz",
+   "hid bilish miyasini periferik qismi",
+   "hid bilish miyasini markaziy qismi",
+   "ta’m bilish miyasini periferik qismi"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Miyachaning o’rta oyoqlari miyani qaysi tuzilmasi bilan birlashtiradi?",
+  "options": [
+   "miya oyoqlari bilan",
+   "ko’prik bilan",
+   "eshituv bo’rtigi",
+   "uzunchoq miya bilan"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Miyachаning yuqori oyoqchаlаri miyani qаysi tuzilmаsi bilаn birlаshtirаdi?",
+  "options": [
+   "eshituv bo’rtigi",
+   "ko’prik bilаn",
+   "uzunchoq miya bilаn",
+   "o’rtа miya bilаn"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Olivaning orqasidan qaysi nerv chiqadi?",
+  "options": [
+   "X juft nerv",
+   "IX juft nerv",
+   "V juft",
+   "I juft nerv"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Miya asosida ko’rinadigan bez qaysi?",
+  "options": [
+   "tymus",
+   "glandula thyroidea",
+   "epifiz",
+   "gipofiz"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Uzunchoq miyani yuqori qismi qanday shaklda tuzilgan?",
+  "options": [
+   "yumaloq",
+   "yassi",
+   "piyozcha",
+   "to’gri"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Orqa miya bilan uzunchoq miya qo’shilgan joydagi tuzilma?",
+  "options": [
+   "piramida kesishmasi",
+   "tashqi kesishma",
+   "ichki kesishma",
+   "lateral kesishma"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "To’gri egat qaerda ko’rinadi?",
+  "options": [
+   "miya tubida",
+   "miyani old yuzasida",
+   "miya asosida",
+   "miyani lateral yuzasida"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Gipofiz bezi qaerda ko’rinadi?",
+  "options": [
+   "miya tubida",
+   "miya asosida",
+   "miyani old yuzasida",
+   "miyani lateral yuzasida"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Miya o’zani qaysi pufakdan rivojlanadi?",
+  "options": [
+   "1, 4, 5 miya pufaklaridan",
+   "3, 4, 5 miya pufaklaridan",
+   "1, 2, 3 miya pufaklaridan",
+   "2, 3, 4, 5 miya pufaklaridan"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Miyachaning nechta juft oyoqchalari bor?",
+  "options": [
+   "3 juft oyoqchalari bor",
+   "2 juft oyoqchalari bor",
+   "1 juft oyoqchalari bor",
+   "6 juft oyoqchalari bor"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Uzunchoq miyaning dorzal yuzasi miya qaysi qorinchasining hosil qilishda qatnashadi?",
+  "options": [
+   "oxirgi qorinchani hosil qilishda qatnashadi",
+   "IV qorinchani hosil qilishda qatnashadi",
+   "III qorinchani hosil qilishda qatnashadi",
+   "yon qorinchalarin i hosil qilishda qatnashadi"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "IX, X, XI va XII juft nervlar o’zaklari qaerda joylashadi?",
+  "options": [
+   "rombsimon chuqurchani yuqorigi uchburchagi da",
+   "ko’prikni dorsal yuzasida",
+   "rombsimon chuqurchani pastki uchburchagida",
+   "ko’prikni o’rtasida"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Ko’prik yuzalari qaysilar?",
+  "options": [
+   "medial, lateral",
+   "medial, ichki",
+   "ventral, dorzal",
+   "medial, ventral"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "To’rtinchi qorinchani aloqa qilish sohalari:",
+  "options": [
+   "subdural bo'shligi",
+   "miya oyoqlari orasidagi tsisterna bilan",
+   "subaraxnoidal",
+   "epidural bo’shliq"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Ventral, dorzal yuzalar qaysi miyaga oid?",
+  "options": [
+   "miyachaga",
+   "oxirgi miyaga",
+   "ko’ruv bo’rtig’iga",
+   "miya ko’prigiga"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Nucleus salivatorius superior qaerda joylashgan?",
+  "options": [
+   "o’rta miyada",
+   "stvolda",
+   "ko’prikni retikulyar formatsiyasida",
+   "uzunchoq miyani retikulyar formaciysida"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Miya oyoqchalari qaysi miya tarkibiy qismi hisoblanadi?",
+  "options": [
+   "o’rta miyani",
+   "ko’prikni",
+   "oraliq miyani",
+   "orqa miyani"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Uzunchoq miyaning tаshqi o’lchаmlаrini toping?",
+  "options": [
+   "uzunligi o’rtаchа- 18 mm, аsosidаgi eni 17 mm, qаlinligi 20 mm",
+   "uzunligi o’rtаchа -20 mm, аsosidаgi eni-15 mm, qаlinligi 9 mm",
+   "uzunligi o’rtаchа -25 mm, аsosidаgi eni-22mm, qаlinligi 14 mm",
+   "uzunligi o’rtаchа- 29 mm, аsosidаgi eni -17 mm, qаlinligi 10 mm"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Miya ko’prigining tаshqi o’lchаmlаrini toping?",
+  "options": [
+   "uzunligi 2,7 sm, eni 2,5- 3,0 sm, qаlinligi-2,0 sm",
+   "uzunligi 2,5 sm, eni-3-3,5 sm, qаlinligi - 2,5 sm",
+   "uzunligi 2,5 sm, eni 2,5 sm, qаlinligi 2,5 sm",
+   "uzunligi 3,0sm, eni 5,0-5,5 sm, qаlinligi 1,7 sm"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Ko’prikni ventrаl vа dorzаl qisimlаrini nima аjrаtаdi?",
+  "options": [
+   "gumbаz, qаdoq tаnа",
+   "lаterаl qovuzloq",
+   "olivа o'zаklаri",
+   "trаpetsiyasimon tаnа"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Miyachа o’zаklаri qaysilardan iborat?",
+  "options": [
+   "tishli, shаrsimon",
+   "dumli, ovalsimon",
+   "oq tanacha",
+   "tishli o’zаk, po’kaksimon, shаrsimon, chodir o’zаgi"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Miyachаni po’kaksimon vа shаrsimon o’zаklаri shikаstlаnsа qanday o’zgarish bo’ladi?",
+  "options": [
+   "tаnа vа bo’yin muskullаri ishi buzilаdi",
+   "oyoq vа qo’l muskullаri ishi buzilаdi",
+   "qorin muskullаri ishi buzilаdi",
+   "ko’krak muskullаri ishi buzilаdi"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Miyachа chodir o’zаgi nucleus fastigii qаndаy vаzifаnni bаjаrаdi?",
+  "options": [
+   "tаnа muskullаri tonusini nаzorаt qilаdi",
+   "qorin muskullаri ishini ta’minlaydi",
+   "bosh vа bo’yin muskullаri tonusini tа’minlaydi",
+   "tаnа muvozаnаtini nаzorаt qilаdi"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Nucleus emboliformisning vazifasi nima?",
+  "options": [
+   "tana muskullari tonusini nazorat qiladi",
+   "qorin muskullаri ishini ta’minlaydi",
+   "silliq muskullar ishini nazorat qiladi",
+   "bo’yin va bosh muskullari tonusini nazorat qiladi"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Uzunchoq miyaning orqa yuzasida qanday tuzilmalar bor?",
+  "options": [
+   "sayyor nerv uchburchagi",
+   "tilosti nervi uchburchagi",
+   "sayyor nerv uchburchagi, tilosti nervi uchburchagi, nozik va ponasimon do’mboqchalar",
+   "nozik tutam do’mbog’i"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "To’rtinchi qorinchani tubini hosil qiladi:",
+  "options": [
+   "uzunchoq miya va ko’prik",
+   "uzunchoq miya va miya ko’prigining dorsal yuzalari",
+   "ko’prik va miya oyoqchalari",
+   "oraliq miya va o’rta miya"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Decussatio piramidum qaerda joqlashgan?",
+  "options": [
+   "uzunchoq miyani ventral yuzasida",
+   "ko’prikda",
+   "uzunchoq miyani dorsal yuzasida",
+   "oraliq miyada"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Fossa romboidea qanday tuzilma?",
+  "options": [
+   "IV-qorinchani tubi",
+   "III- qorinchani tubi",
+   "recessus medialisni tubi",
+   "yon qorinchani tubi"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Fossa romboideani pastki qismida nima bor?",
+  "options": [
+   "trigonum nervus caroticum",
+   "recessus medialis",
+   "trigonum nervus vagi",
+   "area vestibularis"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Rombsimon chuqurchada nima bor?",
+  "options": [
+   "nervus vagus",
+   "fastigium",
+   "eminentia medialis",
+   "nervusglobusu s"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Rombsimon chuqurchani nima chegaralaydi?",
+  "options": [
+   "pedunculi cerebellaris superior et media",
+   "pedunculi cerebellaris superior et inferior",
+   "pedunculi cerebellaris inferior et media",
+   "pedunculi cerebelli"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Colliculus facialis qaerda joylashadi?",
+  "options": [
+   "orolchada",
+   "silviy suv yo’lida",
+   "rombsimon chuqurchada",
+   "III-qorinchani tubida"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Uzunchoq miya kulrang moddasida qaysi nervlarni o’zaklari bor?",
+  "options": [
+   "VI-VII- VIII juft bo’sh miya nervlari",
+   "IX, XI juft bo’sh miya nervlari",
+   "IX ,X, XI, XII juft bo’sh miya nervlari",
+   "III, X, XI, II juft bo’sh miya nervlari"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Eminentia medialis qaerda joylashadi?",
+  "options": [
+   "rombsimon chuqurchada",
+   "3-qorinchani tubida",
+   "recessus medialisda",
+   "yon qorinchani tubida"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Rombsimon chuqurchada joylashadi?",
+  "options": [
+   "pedunculi cerebelli",
+   "fissura",
+   "trigonum nervi gipoglossi",
+   "recessus"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "So’rg’ichsimon tanani vazifasi nima?",
+  "options": [
+   "po’stloq osti ko’ruv markazi",
+   "ta’m bilish",
+   "po’stloq hid bilish markazi",
+   "po’stloq osti hid bilish markazi"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Oliva tuzilmasi qaysi miyaga taa’luqli?",
+  "options": [
+   "uzunchoq miyani dorsal yuzasiga",
+   "uzunchoq miyaga",
+   "oraliq miyaga",
+   "ko’prikka"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Rombsimon chuqurchani yuqori uchburchagida nima joylashadi?",
+  "options": [
+   "V, VI, VII, VIII juft bosh miya nervlari o’zaklari",
+   "simpatik markazlar",
+   "orqa miya nervlari",
+   "IV, VI, II, VIII juft bosh miya nervlari o’zaklari"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Po’stloq osti hid bilish markazini toping?",
+  "options": [
+   "gipofiz",
+   "so’rg’ichsimon tana",
+   "qadoq tana",
+   "kulrang modda"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Dumg‘aza umurtqalari nechta ?",
+  "options": [
+   "7 ta umurtqa",
+   "4 ta umurtqa",
+   "8 ta umurtqa",
+   "5 ta umurtqa"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "O’rta miyadagi bosh miya nervlari o’zaklari:",
+  "options": [
+   "X va XI o’zaklar",
+   "III va IV o’zaklar",
+   "VII va VIII o’zaklar",
+   "I va II o’zaklar"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "O’rta miyaning bo’shligi nimadan tashkil topgan?",
+  "options": [
+   "bo’sh qorincha",
+   "III qorincha",
+   "suv yo'li",
+   "IV qorincha"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "III –qorinchani lateral devorini nima hosil qiladi?",
+  "options": [
+   "talamus",
+   "gipofiz",
+   "metatalamus",
+   "gipotalamus"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Ko’ruv bo’rtig’I qanday markaz?",
+  "options": [
+   "po’stloq osti harakat markazi",
+   "po’stloq osti ko’ruv markazi",
+   "po’stloq osti eshituv markazi",
+   "po’stloq usti ta’m bilish markazi"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "To’rt tepachani pastki tepachasining yelkalari qo’shiladi:",
+  "options": [
+   "ko'ruv bo'rtigi bilan",
+   "medial tizzali tana bilan",
+   "lateral tizzali tana bilan",
+   "po’stloq usti ta’m bilish markazi bilan"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "To’rt tepachani yuqorigi tepachasining yelkalari qo’shiladi:",
+  "options": [
+   "lateral tizzali tana bilan",
+   "bo'rtiq osti sohasi bilan",
+   "ko’ruv bo'rtig’i bilan",
+   "medial tizzali tana bilan"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Diyentsefalondan rivojlanadigan tuzilma nima?",
+  "options": [
+   "to’rt tepalik",
+   "ko’ruv do’mbogi",
+   "gumbaz",
+   "po’stloq usti ta’m bilish markazi"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Ko’prik, miyacha qaysi miya tuzilmalari?",
+  "options": [
+   "uzunchoq miya",
+   "ortqi miya",
+   "ko’ruv bo’rtig’i",
+   "orqa va oraliq miya"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Nucleus ruber qaysi sistemaga kiradi?",
+  "options": [
+   "nerv sistemaga",
+   "periferik sistemaga",
+   "piramida sistemaga",
+   "ekstrapiramida sistemaga"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Mezencepalonda joylashgan vegetativ o’zak qaysi?",
+  "options": [
+   "nucleus dorsalis",
+   "nucleus accessorius",
+   "nucleus ambiguus",
+   "nucleus ruber"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "O’rta miya yadrolari soni nechta?",
+  "options": [
+   "7 yadro",
+   "4 ta yadro",
+   "2 ta yadro",
+   "3 ta yadro"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Ko’zni harakatlantiruvchi nervning o’zagi qaerda joylashgan?",
+  "options": [
+   "uzunchoq miyada",
+   "oraliq miyada",
+   "o’rta miyada",
+   "orqa miyada"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Galtak nervining o’zagi qaerda joylashadi?",
+  "options": [
+   "o’rta miyada",
+   "uzunchoq miyada",
+   "oxirgi miyada",
+   "oraliq miyada"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Lateral tizzasimon tana qanday vazifani bajaradi?",
+  "options": [
+   "eshituv po’stloq osti markazi",
+   "ko’ruv po’stloq markazi",
+   "ko’ruv po’stloq osti markazi",
+   "ko’ruv po’stloq usti markazi"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Po’stloq osti eshituv markazi qaerda joylashadi?",
+  "options": [
+   "medial tizzasimon tana va o’rta miya tomi, pastki ikki tepaligi",
+   "medial tizzasimon tanada",
+   "lateral tizzasimon tanada",
+   "orqa tizzasimon tanada"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Miya tomi va yuqori ikki tepaligi kabi tuzilmalar qaysi miyaga tegishli?",
+  "options": [
+   "uzunchoq miyaga",
+   "o’rta miyaga",
+   "oraliq miyaga",
+   "yon qorinchalar ga"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "O’rta miyani xususiy o’zagi qaysi?",
+  "options": [
+   "tishli o’zak",
+   "po’kaksimon o’zak",
+   "qizil o’zak",
+   "cho’qqi o’zak"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Po’stloq osti ko’ruv markazi qaerda joylashadi?",
+  "options": [
+   "orqa ilma- teshik moddalar",
+   "lateral tizzasimon tana va o’rta miya tomi yuqori ikki tepaligida",
+   "miya oyoqchalarida",
+   "lateral tizzasimon tanadi"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Bosh miyani qon bilan taminlanishida qaysi arteriyalar ishtirok etadi?",
+  "options": [
+   "a.transversus colli",
+   "a.subclavia",
+   "a.caroticus externa",
+   "a.vertebralis va a. caroticus interna"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Bolalarda bosh miya 4 yoshgacha qanday o’sadi?",
+  "options": [
+   "faqat eniga bir xil",
+   "uzuniga tez o’sadi",
+   "bo’yiga bir xil",
+   "uzuniga, bo’yiga, eniga bir xil"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Substantia nigra – nega qoramtir?",
+  "options": [
+   "muskullarga boy",
+   "faqat vitaminga boy",
+   "melanin pigment ko’p",
+   "zich hujayralardan iborat"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Pigment melanin ko’p bo’lsa qanday rang boladi?",
+  "options": [
+   "qoramtir",
+   "qizg’ish",
+   "siyoh rang",
+   "ko’k"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Pedinculi cerebri qanday tuzilma?",
+  "options": [
+   "chuqur",
+   "gumbazsimo n",
+   "cho’zinchoq modda",
+   "oq qalin valiksimon"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "O’rta miya bo’shlig’ini nomi nima?",
+  "options": [
+   "Silviy suv yo’li",
+   "uzun yoriq",
+   "medial apertura",
+   "qirg’oq"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Oxirgi miya bo’shlig’i qanday nomlanadi?",
+  "options": [
+   "suv yo’li",
+   "bo’sh qorincha",
+   "3-qorincha",
+   "yon qorinchalar"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Miyaning tepa bo’lagida qanday pushtalar bor?",
+  "options": [
+   "markaziy oldi pushtasi",
+   "qirg’oq usti pushtasi",
+   "o’rta peshona pushtasi",
+   "bo’sh pushta"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Peshona va chakka bo’laklarini qaysi egat ajratadi?",
+  "options": [
+   "belbog egat",
+   "markaziy egat",
+   "lateral egat",
+   "qirg’oq egati"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Nutqning harakat markazi joylashadi:",
+  "options": [
+   "pastki peshona pushtasida",
+   "pastki tepa bo'lakchasida",
+   "o’rta peshona pushtasida",
+   "ichki va o’rta peshona pushtasida"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Nutq analizatorining o’zagi joylashadi:",
+  "options": [
+   "pastki peshona pushtasida",
+   "pastki tepa bo'lakchasida",
+   "o’rta peshona pushtasida",
+   "ichki va o’rta peshona pushtasida"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Bazal o’zaklarga nimalar kiradi?",
+  "options": [
+   "ichki va o’rta peshona pushtasi",
+   "targ’il tana, cloustrum o’zaklari",
+   "tishli o’zak",
+   "bodomsimon va tishli o’zak"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Bosh miya qattiq pardasi to’g’ri sinusi nimalarni birlashtiradi?",
+  "options": [
+   "yuqori va pastki sagittal sinuslarini",
+   "ichki va o’rta peshona pushtasi",
+   "pastki sagittal va ko’ndalang sinuslarini",
+   "ko’ndalang va pastki sagittal sinuslarini"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Gumbazni oyoqchalari qaerga boradi?",
+  "options": [
+   "yon qorinchalarni pastki shoxlariga",
+   "ichki va o’rta peshona pushtasi",
+   "yon qorinchalari orqa shoxlariga",
+   "yon qorinchalari oldingi shoxlariga"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Belbog’ pushtasi qaerda joylashadi?",
+  "options": [
+   "ichki va o’rta peshona pushtasi",
+   "yarimsharlar lateral yuzasida",
+   "yarimsharlar medial yuzasida",
+   "markaz oldi pushtasida"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Miyada vazifasi jixatdan yaqin a’zolarni ko’rsating?",
+  "options": [
+   "gumbaz va qadoq tana",
+   "ko’prik va orqa miya",
+   "ichki va o’rta peshona pushtasi",
+   "miya oyoqchalari vato’r formatsiya"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Po’stloq hid bilish markazi qaerda joylashgan?",
+  "options": [
+   "ichki va o’rta peshona pushtasi",
+   "ilmoq va paragipokampal pushtada",
+   "yuqorigi chakka pushtasida",
+   "dengiz oti pushtasida"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Yon qorincha markaziy qismining tomini nima hosil qiladi?",
+  "options": [
+   "qadoq tana",
+   "dumli o’zak",
+   "terminal chiziq",
+   "kulrang tana"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Qirg’oq usti pushtasi miyani qaysi qismida joylashgan?",
+  "options": [
+   "tepa bo’lagida",
+   "ichki va o’rta peshona pushtasi",
+   "uzunchoq miyada",
+   "peshona bo’lagida"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Qadoq tana ostida nima joylashadi?",
+  "options": [
+   "gipofiz",
+   "miya oyoqchalari",
+   "gumbaz va tiniq to’siq",
+   "epifiz"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Qadoq tana qanday tuzilma?",
+  "options": [
+   "komissural tola",
+   "muvozanatni buzuvchi",
+   "proektsion tola",
+   "oldingi bitishma"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Bosh miyani limbik sistemasi tuzilmalari asosan miyani qaysi yuzasida joylashgan?",
+  "options": [
+   "bazal va medial",
+   "ichki",
+   "pastki",
+   "asos"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Nutqning harakat markazi qaerda joylashadi?",
+  "options": [
+   "pastki tepa bo’lakchasid a",
+   "o’rta peshona pushtasida",
+   "ichki va o’rta peshona pushtasida",
+   "pastki peshona pushtasining orqa qismida 44-maydonda"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Og’zaki nutqni eshitish markazi qaysi pushta va maydonda joylashgan?",
+  "options": [
+   "pastki tepa bo'lakcha- sida",
+   "yuqori chakka pushtasida, 42 maydonida",
+   "yuqori peshona pushtasida",
+   "o’rta peshona pushtasida"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Miyani peshona bo’lagida qanday pushtalar bor?",
+  "options": [
+   "yuqori-tepa pushtasi",
+   "tilsimon pushta",
+   "markaz oldi pushtasi",
+   "orqa markaziy pushta"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Belbog’ pushtasi qaerda joylashgan?",
+  "options": [
+   "yarimsharlar lateral yuzasida",
+   "ichki va o’rta peshona pushtasida",
+   "yarimsharlar medial yuzasida, qadoq tanananing ustki yuzasi bo’ylab",
+   "markaz oldi pushtasida"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Yarimsharlar oq moddasiga nimalar kiradi?",
+  "options": [
+   "komissural tolalar",
+   "assotsiativ, komissural va proektsion tolalar",
+   "proektsion tolalar",
+   "po’stloqni bog’laydigan tolalar"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Bosh miyaning bazal o’zaklari qaysilardan iborat?",
+  "options": [
+   "ixota, yasmiqsimon o’zak",
+   "qora o'zak",
+   "qizil o'zak",
+   "Bodomsimon o'zak"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Bosh miyaning bazal o’zagi putamen quyi tuzilmalarga qanday ta'sir qiladi?",
+  "options": [
+   "ekstrapiramida tizimi quyi tuzilmalairni tormozlaydi",
+   "ta'sir ko’rsatishi aniq",
+   "ekstrapirami da tizimi quyi tuzilmalarini faollashtiradi",
+   "ta'sir ko’rsatishi noaniq"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Kommissural tola qanday tuzilmalar shaklida ko’rinadi?",
+  "options": [
+   "miyaning o’rta bitishmasi",
+   "yoysimon tolalar",
+   "bodomsimon o'zak",
+   "qadoq tana, gumbaz, miyaning old va orqa bitishmasi"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Og’iz so’zini yunoncha nomi nima?",
+  "options": [
+   "bo’shliq",
+   "oris- og’iz",
+   "stoma-og’iz",
+   "corpus"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Miya yon qorinchalari III qorinchaga qaysi teshiklar orqali tutashadi?",
+  "options": [
+   "subaroxnoidal bo’shliq orqali",
+   "yoriqlar orqali",
+   "aloqada bo’lmaydi",
+   "qorinchalararo teshiklar orqali"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Tilning ta’m sezuvchi so’rg’ichi qaysi?",
+  "options": [
+   "papillae foliatae",
+   "papillae fungiformis",
+   "papillae filiformes",
+   "papillae conicae"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Tilning qanday qismlari bor?",
+  "options": [
+   "processus, collum",
+   "cauda, apex, radix",
+   "corpus, apex, radix",
+   "corpus, collum"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Qizilo’ngаch qismlаri qaysilar?",
+  "options": [
+   "bo’yin, ko’krаk, qorin",
+   "ko’krak, chanoq",
+   "kekirdаk, ko’krаk, diаfrаgmа",
+   "bosh qismi, yuqori, pаstki"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Harakat analizatori o’zagi qaerda joylashgan?",
+  "options": [
+   "markazoldi pushtasida",
+   "markaz orqasi pushtasida",
+   "qirg’oq usti pushtasida",
+   "bodomsimon o'zakda"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Ixota qanday o’zak?",
+  "options": [
+   "oddiy o’zak",
+   "bazal o’zak",
+   "targ’il o’zak",
+   "asosiy o’zak"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Jigar qorin parda bilan qanday o’ralgan?",
+  "options": [
+   "oldingi tomondan",
+   "uch tomonlama",
+   "ikki tomonlama",
+   "pastki tomondan"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Oshqozondan venoz qon qaysi venaga quyiladi?",
+  "options": [
+   "v.portae ga",
+   "v.mesenterica inferiorga",
+   "v.cava superior ga",
+   "v.cava inferior ga"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Oshqozon qorin parda bilan qanday o’ralgan?",
+  "options": [
+   "oldingi tomondan",
+   "har tomonlama",
+   "ikki tomonlama",
+   "pastki tomondan"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Umumiy o’t yo’li, me’da osti bezi yo’li qaerga ochiladi?",
+  "options": [
+   "12-barmoqli ichakka ochiladi",
+   "ko’r ichakka",
+   "oshqozonga",
+   "jigar qismiga"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "O’t qaerda ishlab chiqiladi?",
+  "options": [
+   "o’t va ichak yo’lida",
+   "o’t pufagi va jigarda",
+   "taloqda va o’t pufagida",
+   "buyrak xujayralarida"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "O’t pufagi qismlarini toping?",
+  "options": [
+   "tanasi, bo’yni, tubi",
+   "uchi, tomi",
+   "tubi, tanasi, uchi",
+   "tanasi, bo’yni"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "O’t pufagini proektsiyasi qaerga to’g’ri keladi?",
+  "options": [
+   "qorinning orqa devoriga qovurg’a ravog’idan chapda",
+   "qorinning oldingi devoriga o’ng qovurg’a ravog’idan pastda",
+   "qorinning yon devoriga",
+   "jigarni ostida"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Jigar qanday vazifalarni bajaradi?",
+  "options": [
+   "jigar-12 barmoqli ichak boylamlarini hosil qilishda",
+   "hazm jarayonida, modda almashinuvida, qon ichlab chiqarishda",
+   "modda almashinuvida",
+   "modda almashinuvida, oshqozonga ferment ishlab chiqarishda"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Regio olfactoria qayeda joylashgan?",
+  "options": [
+   "halqum bo’shlig’i oldingi qismida",
+   "burun bo’shlig’i yuqori qismida",
+   "burun bo’shlig’i oldingi qismida",
+   "burun bo’shlig’i tubida"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Regio resperatoria qayerda joylashgan?",
+  "options": [
+   "halqum bo’shlig’i oldingi qismida",
+   "burun bo’shlig’i pastki qismida",
+   "burun bo’shlig’i oldingi qismida",
+   "burun bo’shlig’i tubida"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Me’da osti bezi qorin parda bilan qanday o’ralgan?",
+  "options": [
+   "intraperitoneal",
+   "retroperitoneal",
+   "mezoperitoneal",
+   "ekstraperiton eal"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Hiqildoqni vazifasi nima?",
+  "options": [
+   "havoni tozalashda ishtirok etmaydi",
+   "havo o’tkazish, ovoz hosil qilish, pastki nafas yo’lini himoya qilish",
+   "ovoz hosil qilishda ishtirok etmaydi, isitish",
+   "suyuqlik va havoni o’tkazish"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Bosh miya postlog’I qanday moddadan iborat?",
+  "options": [
+   "pushti rang",
+   "qizil modda",
+   "kulrang modda",
+   "qora modda"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "«sitoаrxitectonika» termini nimani anglatadi?",
+  "options": [
+   "nerv tolalarini po’stloqda ko’payishini",
+   "nerv tolalarini po’stloqda tarqalishini",
+   "nerv tolalarini ketma-ket tarqalishini",
+   "nerv hujayralarini po’stloqda tarqalishini"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "«myeloarxitectonika» termini nimani anglatadi?",
+  "options": [
+   "nerv tolalarini po’stloqda ko’payishini",
+   "nerv tolalarini po’stloqda tarqalishini",
+   "nerv hujayralarini po’stloqda tarqalishini",
+   "nerv tolalarini ketma-ket tarqalishini"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Ko’tariluvchi proektsion yo’llarga qaysilar kiradi?",
+  "options": [
+   "propriotseptiv, harakat , interotseptiv",
+   "ekstratseptiv, propriotseptiv, interotseptiv",
+   "eksterotsepti v, piramida",
+   "propriotsepti v, sezuvchi"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Hamma sezuvchi o’tkazuv yo’llari uchun umumiylik nima?",
+  "options": [
+   "hammasi kesishgan, ikki neyronli",
+   "hammasi kesishmagan, 4 neyronli",
+   "1 neyron- ganglion spinale ni yolg’on unipolyar hujayrasi (periferik) va 2 ta markaziy neyron",
+   "hammasi kesishgan, 4 neyronli"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "6 neyronli murakkab refleks yoyi qaysi neyronlardan tarkib topgan?",
+  "options": [
+   "Govers va Fleksig yo’llaridan",
+   "3 ta sezuvchi, 2 ta harakat, orqa miyadagi oraliq neyron",
+   "simpatik va parasimpatik",
+   "Govers va Fleksig yo’llarini neyronlaridan, konduktor neyrondan, rubrospinal yo’l neyronlaridan"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Hidlov yo’li qaerdan boshlanadi?",
+  "options": [
+   "miyadan",
+   "simpatik va parasimpatik qismdan",
+   "kalla ichidan",
+   "burun bo’shlig’i shilliq qavatidan"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "O’tkazuvchi yo’llar necha xil bo’ladi?",
+  "options": [
+   "markaziy va periferik",
+   "afferent, efferent",
+   "sezuvchi va afferent",
+   "simpatik va parasimpatik"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Uzunchoq miyani orqa yuzasidan qanday yo’llar o’tadi?",
+  "options": [
+   "ko’ruv yo’li",
+   "ko’tariluvchi sezuvchi yo’llar",
+   "Goll va Burdax yo’llari",
+   "ekstotseptiv sezuvchi yo’llar"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Proektsion yo’llarda qanday tolalar farqlanadi?",
+  "options": [
+   "oldingi va orqa",
+   "ko’tariluvchi va tushuvchi",
+   "bir neyronli",
+   "medial va lateral"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Ekstratseptiv yo’llar qaerdan impulsni oladi?",
+  "options": [
+   "teridan",
+   "simpatik va parasimpatik yo’llardan",
+   "ichki a’zolardan",
+   "suyakdan"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Po’stloq o’zak yo’li qaerda tugaydi?",
+  "options": [
+   "uzunchoq miyada, gipotalamusda",
+   "o’rta miyada, ko’prikda, uzunchoq miyada",
+   "simpatik va parasimpatik tugunda",
+   "uzunchoq miyada, oraliq miyada"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Piramida yo’llari necha xil bo’ladi?",
+  "options": [
+   "piramida yo’llari 3 xil",
+   "piramida yo’llari 2 xil",
+   "piramida yo’llari 5 xil",
+   "simpatik va parasimpatik yo’llar"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Ikkala yarimshalarning bir xil nuqtalari qanday tutashadi?",
+  "options": [
+   "komissural tolalar vositasida",
+   "ichki kapsula kapsula vositasida",
+   "oldingi bitishma vositasida",
+   "simpatik va parasimpatik nerv vositasida"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Po’stloq yo’nalishidagi propriotsentiv sezgi 1 neyron tolalari qaysi tuzilmada tugaydi?",
+  "options": [
+   "simpatik va parasimpatik tugunda",
+   "nozik va ponasimon o’zakda",
+   "ko’krak o'zagi (klark)",
+   "orqa miyaning orqa shoxi"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "organizmning umumiy o'sishiga ta’sir qiluvchi gormon qaysi bezdan ishlab chiqariladi?",
+  "options": [
+   "me’da osti bezidan ishlab chiqariladi",
+   "gl. thyroidea bezidan ishlab chiqariladi",
+   "gipofiz bezidan ishlab chiqariladi",
+   "epifiz bezi bezidan ishlab chiqariladi"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Lateral kortikospinal yo’l kesishadi:",
+  "options": [
+   "orqa miyaning har bir segmentida",
+   "uzunchoq miyada",
+   "miyachada",
+   "simpatik va parasimpatik tugunda"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Umumiy ekstratseptiv sezgi (harorat, taktil, og’riq) yo’llar MNTning qaysi qismlari oralig’ida mavjud?",
+  "options": [
+   "miya po’stlogi bilan orqa miya o’rtasidagi lateral yo’llar",
+   "Simpatik va parasimpatik tugunda",
+   "orqa miya, miya poyasi, thalamus va po’stloqning sezuvchi sohalari",
+   "orqa miya bilan ko’ruv bo’rtig’i orasidagi yo’llar"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Ichki kapsulani tizzasidan o’tadigan o’tkazuvchi yo’l qaysi?",
+  "options": [
+   "miya po’stlogi bilan miya poyasi o’zaklari orasidagi yo’l",
+   "oldingi spinno- thalamik yo’l",
+   "lateral spino- talamik yo'l",
+   "simpatik va parasimpatik tugunda"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Orqa miya bilan ko’ruv bo’rtigi o’rtasidagi lateral yo’l orqa miyani qaysi qismidan o’tadi?",
+  "options": [
+   "orqa tizimchadan",
+   "oldingi tizimchadan",
+   "simpatik va parasimpatik tizimchadan",
+   "lateral tizimchadan"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Ichki kapsulani qismlarini ayting:",
+  "options": [
+   "bodomsimon tana va to’siq",
+   "oldingi va orqa oyoqchalar va tizza",
+   "ko’ruv bo’rtig’i va yasmiqson o’zaklar",
+   "do'mlik va bodomsimon o’zaklari"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Gumbaz ustunlari bilan qadoq tananing oldingi qismi o’rtasida nima tortilgan?",
+  "options": [
+   "tiniq parda",
+   "gumbaz bitishmasi",
+   "terminal plastinkasi",
+   "miyaning oldingi bitishmasi"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Ichki kapsula nima?",
+  "options": [
+   "gumbaz bilan qo’shiladigan tola",
+   "proektsion tolalar jamlanmasi",
+   "gipofiz bilan qo’shiladiga n tola",
+   "simpatik va parasimpatik o’zak"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Proprioretseptorlar qaerlardan axborot olib boradi?",
+  "options": [
+   "teri, muskul",
+   "suyak usti pardasi, bo’g’im kapsulasi, muskul paylari, fastsiyalaridan",
+   "simpatik va parasimpatik o’zakdan",
+   "suyak, teri, pay"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Fasciculus gracilis et fasciculus quneatus qanday o’tkazuvchi yo’llar hisoblanadi?",
+  "options": [
+   "ichki a'zolardan",
+   "simpatik va parasimpatik o’zakdan",
+   "chuqur sezgi o’tkazuvchi yo’llari",
+   "muskul va teridan"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Retikulyar formatsiya nima- ta’rif bering?",
+  "options": [
+   "orqa miya va miya po'stlog'idagi anatomo- fiziologik o’zaro bog’liq va ko’p sonli turli yo’nalishdagi nerv tolalari qurshovidagi neyronlar majmuasi",
+   "mushak tolalarining yig’indisi, nerv tolalari qurshovidagi neyronlar majmuasi",
+   "qo’shuvchi to'qimalarnin g to'plami, nerv tolalari qurshovidagi neyronlar majmuasi",
+   "simpatik va parasimpatik o’zaklar to’plami, nerv tolalari qurshovidagi neyronlar majmuasi"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Harakat o’tkazuvchi yo’llar qaysi yo’llar?",
+  "options": [
+   "orqa miya bilan ko’ruv bo’rtig’i o’rtasidagi lateral yo’l",
+   "simpatik va parasimpatik o’zaklar yo’llari",
+   "orqa miya bilan ko’ruv bo’rtig’i o’rtasidagi oldingi yo’l",
+   "miya po’stlog’i bilan miya poyasidagi va orqa miyadagi harakatlantiru vchi o’zaklar oralig’idagi yo’l"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Barcha o’tkazuvchi yo’llar quyidagicha bo’linadi?",
+  "options": [
+   "aylanma, komissural va proektsion",
+   "assotsiativ, komissural va proektsion",
+   "komissural va proektsion",
+   "simpatik va parasimpatik o’zaklar yo’llari"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Hamma harakat o’tkazuv yo’llari uchun umumiylik nima?",
+  "options": [
+   "ikki neyronli, bosh miya yarimsharlari po’stlog’idan boshlanadi",
+   "hammasi kesishgan, ikki neyronli",
+   "hammasi kesishgan, 4 neyronli",
+   "uch neyronli, bosh miya yarimsharlari po’stlog’idan boshlanadi"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Ko’ruv traktida o’zgarish bo’lsa nima sodir bo’ladi?",
+  "options": [
+   "o’ng ko’zni medial qismi, chap ko’zni lateral qismi ko’rmaydi",
+   "o’ng ko’zni lateral qismi,chap ko’z qisman ko’radi",
+   "ko’rishga ta’sir qilmaydi",
+   "o’ng ko’z ko’rmaydi"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Oshqozon egriligi qaysilar?",
+  "options": [
+   "medial egrilik",
+   "oldingi va lateral egrilik",
+   "ichki va tashqi egrilik",
+   "katta va kichik egrilik"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Neyronlar zanjiri bo’ylab nima harakat qiladi?",
+  "options": [
+   "sezgilar",
+   "nerv impulslari",
+   "harakat impulslari",
+   "tovush impulslari"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Exterotseptiv yo’llar qanday impulslarni olib ketadi?",
+  "options": [
+   "issiqlikni sezish",
+   "sovqotish sezgilarni",
+   "bosimni",
+   "og’riq va harorat sezgilarni"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Reflektor yoyi nima?",
+  "options": [
+   "nerv hujayralarini zanjiri",
+   "nerv impulslari",
+   "harakat impulslari",
+   "tovush signallari"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Bitta yarimsharni qismlarini bog’laydigan tolalar ?",
+  "options": [
+   "neyrofibrae arcuatae",
+   "neyrofibrae projectiones",
+   "neyrofibrae assosiationes",
+   "neyrofibrae comissurales"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Tractus vestibulospinalis qanday ahamiyatga ega?",
+  "options": [
+   "miyacha va bosh miyani bog’laydi",
+   "vestibulyar apparat o’zagini orqa miya oldingi shoxlari bilan bog’laydi",
+   "vestibulyar apparat o’zagini orqa miya orqa shoxlari bilan bog’laydi",
+   "orqa va bosh miyani bog’laydi"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Tractus corticospinalis qaerdan boshlanadi?",
+  "options": [
+   "girus precentralisda gi gigantpiramida hujayralaridan",
+   "girus precentralisd agi ganglioz hujayralaridan",
+   "bazal o’zaklardan",
+   "girus postcentralis dagi gigant- piramida hujayralaridan"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Qizil o’zakni ahamiyati qanday?",
+  "options": [
+   "muskullarni qisqartiradi",
+   "muskullar tonusini pasaytirish",
+   "ahamiyati yoq",
+   "muskullar tonusini ushlab turish"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Bo’yin chigalining aralash tarmogi qaysi nerv?",
+  "options": [
+   "o’mrov osti",
+   "diaphragma nervi",
+   "kichik ensa nervi",
+   "nervus intercostalis"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Diaphragmani qaysi nerv innervatsiya qiladi?",
+  "options": [
+   "nervusphrenicus",
+   "nervusaxillaris",
+   "nervus costalis",
+   "nervusinterc ostalis"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Bo’yin qovuzlog’ini hosil qiladi?",
+  "options": [
+   "bo’yin chigali, II- juft bosh-miya nervi",
+   "yelka chigali, XI - juft bosh- miya nervi",
+   "bo’yin chigali,YII- juft boshsh- miya nervi",
+   "bo’yin chigali, XII-juft bosh- miya nervi"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Bo’yin chigalini sezuvchi tarmoqlarini ko’rsating?",
+  "options": [
+   "katta quloq, kichik ensa nervi",
+   "dum chigali, XII-juft bosh-miya nervi",
+   "kichik ensa, diaphragmal",
+   "o’mrov osti, o’mrov usti"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Bo’yinning qaysi segmentlari bo’yin chigalini hosil qiladi?",
+  "options": [
+   "C8-C1 segmentlari",
+   "S1-S5 segmentlari",
+   "S3-S6 segmentlari",
+   "C1-C4 segmentlari"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Bo’yinning chuqur gurux mushaklarini qaysi chigal innervatsiya qiladi?",
+  "options": [
+   "plexus cervicalis",
+   "nervus vagus",
+   "nervus axillaris",
+   "nervus musculocutaneus"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Nervus phrenicus nimani innervatsiya qiladi?",
+  "options": [
+   "qo’ltiqni",
+   "diaphragmani",
+   "musculus intercostalisn i",
+   "yelkani"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Katta quloq, kichik ensa sezuvchi tarmoqlari qaysi chigalni tarmog’i?",
+  "options": [
+   "ko’krak chigalini",
+   "bo’yin chigalini",
+   "plexus brachialisni",
+   "boshni ko’ndalang chigalini"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Plexus cervicalis ning teri tarmog’i qaysi?",
+  "options": [
+   "nervus occipitalis medialis",
+   "nervus transversus colli",
+   "plexus brachialis",
+   "nervus occipitalis major"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Qaysi orqa miya nervlari chigallar hosil qilmaydi?",
+  "options": [
+   "ko’krak nervlari",
+   "bosh nervlari",
+   "bo’yin nervlari",
+   "bel nervlari"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Ansa cervicalis dan chiquvchi tarmoqlar qaysi muskullarni innervatsiyalaydi?",
+  "options": [
+   "bo’yinning o’rta qavat-til osti suyagidan pastdagi muskullarini",
+   "og’iz va yelka muskullarini",
+   "bosh va yuz muskullarini",
+   "bo’yin chigali, XII- juft bosh- miya nervi"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Diaphragma nervi qanday tarmoq?",
+  "options": [
+   "sezuvchi tarmoq",
+   "simpatik tarmoq",
+   "aralash tarmoq",
+   "tugun tarmoq"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Orqa miya nervlari oldingi shoxlari qanday anatomik tuzilmalarni yuzaga keltiradi?",
+  "options": [
+   "aralash nervlardan iborat chigallarni",
+   "sezuvchi nervlarni",
+   "uzun va kalta nervlarni",
+   "muskul tarmoqlarini"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Orqa miya nervlari qaysi ildizlardan hosil bo’ladi?",
+  "options": [
+   "uzun (harakat ) va orqa",
+   "oldingi va orqa",
+   "ichki va tashqi",
+   "oldingi (sezuvchi) va orqa (harakat)"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Atlant nima?",
+  "options": [
+   "I-bo‘yin umurtqasi",
+   "I-ko‘krak umurtqasi",
+   "yuza bel umurtqasi",
+   "II-bo‘yin umurtqasi"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Ko’krak nervlari chigallar hosil qiladimi?",
+  "options": [
+   "chigallar hosil qiladi",
+   "chigallar hosil qilmaydi",
+   "hamma ko’krak poyasida",
+   "hamma ko’krak tugunlarida"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Nerv tolalari turlari qanday?",
+  "options": [
+   "miyelinli, tarqoq",
+   "nozik, uzun",
+   "tuguncha",
+   "miyelinli, miyelinsiz"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Avtonom nerv sistemasini ikkinchi nomi nima?",
+  "options": [
+   "ganglion nerv sistemasi",
+   "periferik nerv sistemasi",
+   "vegetativ nerv sistemasi",
+   "somatik nerv sistemasi"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Sezuvchi nerv bu?",
+  "options": [
+   "impulslarni periferiyadan markazga olib boruvchi tola",
+   "orqa miyaga olib boruvchi tola",
+   "markazdan tana mushaklarig a olib boruvchi tola",
+   "suyaklarga olib boruvchi tola"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Avtonom nerv bu?",
+  "options": [
+   "orqa miyaga olib boruvchi tola",
+   "markazdan tana mushaklarig a olib boruvchi tola",
+   "impulslarni periferiyadan markazga olib boruvchi tola",
+   "ichki a’zolarga, qon tomirlar va bezlarga olib boruvchi tola"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Yelka chigalini medial tutamidan qaysi nerv chiqadi?",
+  "options": [
+   "nervus medianus",
+   "nervus radialis",
+   "nervus ulnaris",
+   "nervus musculocutaneus"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Qo’ltiq osti nervi qaysi mushaklarni innervatsiyalaydi?",
+  "options": [
+   "o’siq usti mushagini",
+   "deltasimon mushakni",
+   "m.brachialisni",
+   "ikki boshli mushakni"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Qo’l panjasini terisini qaysi nervlar innervatsiyalaydi?",
+  "options": [
+   "nervusmedianus, nervusradialis, nervusulnaris",
+   "nervus medianus, nervus radialis, nervus femoralis",
+   "nervus ulnaris, nervus muscu locutaneus",
+   "nervus ulnaris, nervus brachialis"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "mushak-teri nerv qaysi mushaklarni innervatsiyalaydi?",
+  "options": [
+   "1-3 boshli muskullarni",
+   "m.brachialisni",
+   "yelka, yelka- bilak muskullarni",
+   "ikki boshli yelka, yelka- tumshuqsimon muskullarni"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Bilakning orqa gurux mushaklarni qaysi nerv innervatsiyalaydi?",
+  "options": [
+   "nervus radialis",
+   "nervus medianus",
+   "nervus axillaris",
+   "nervus ulnaris"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Bemorda yelkaning orqa teri sezgisi yo’qolgan. Qaysi nerv jaroxatlangan?",
+  "options": [
+   "nervus medianus",
+   "nervus radialis",
+   "nervus coracobrachialisni",
+   "nervus ulnaris"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Bemorda bilakning lateral teri sezgisi yo’qolgan. Qaysi nerv jaroxatlangan?",
+  "options": [
+   "nervus medianus",
+   "nervus musculocutaneus",
+   "nervus ulnaris",
+   "nervus radialis"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Yelka chigalini qaysi nervlar hosil qiladi?",
+  "options": [
+   "C 5-C 6, Th-II dan chiquvchi nervlar",
+   "C 1-C 4, Th-I dan chiquvchi nervlar",
+   "C 5-C 8, Th-I dan chiquvchi nervlar",
+   "C 5-C 8, Th 1- Th 2 dan chiquvchi nervlar"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Bilak nervi qaysi kanaldan o’tadi?",
+  "options": [
+   "o’rta nervi kanalidan",
+   "bilak nervi",
+   "yelka-mushak kanalidan",
+   "tirsak nervi"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Bemorda bilak va kaftning pronatsiyasi buzilgan. Qaysi nerv jaroxatlangan?",
+  "options": [
+   "nervus ulnaris",
+   "nervus femoralis",
+   "nervus radialis",
+   "nervus medianus"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Bemorning barmoqlari bukilmayapti. Qaysi nerv jaroxatlangan?",
+  "options": [
+   "nervus ulnaris",
+   "nervus radialis",
+   "nervus medianus",
+   "nervus musculocutaneus"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Bemor bosh barmog’ini boshqalariga yaqinlashtira olmayapti. Qaysi nerv jaroxatlangan?",
+  "options": [
+   "nervus axillaris",
+   "nervus medianus",
+   "nervus ulnaris",
+   "nervus biceps brachialis"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Bemorning jimjilog’i bukilishi buzilgan. Qaysi nerv jaroxatlangan?",
+  "options": [
+   "nervus medianus",
+   "nervus axillaris",
+   "nervus ulnaris",
+   "nervus musculocutaneus"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Bemorda bilakning medial teri sezgisi yo’qolgan. Qaysi nerv jaroxatlangan?",
+  "options": [
+   "nervus medianus",
+   "nervus cutaneus antebrahii medialis",
+   "nervus ulnaris",
+   "arteriya brachialis"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Barmoqlarni orqa yuzasini terisini qaysi nerv innervatsiya qiladi?",
+  "options": [
+   "nervus radialis",
+   "nervus medianus",
+   "nervus axillaris",
+   "nervus ulnaris"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Bilakni terisini innervatsiya qiladigan nervlar qaysilar?",
+  "options": [
+   "nervus axillaris, nervus medianus",
+   "nervus musculocutaneus, nervus radialis, nervus cutaneus antebrachii medialis",
+   "bo’yin chigali, nervus cutaneus antebrachii medialis",
+   "nervus brachialis, nervus cutaneus antebrachii medialis"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Bemorning barmoqlari yozilishi buzilgan. Qaysi nerv jaroxatlangan?",
+  "options": [
+   "nervus medianus",
+   "nervus ulnaris",
+   "nervus musculocutaneus",
+   "nervus radialis"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Bemorning ko’rsatkich barmog’i yozilishi buzilgan. Qaysi nerv jaroxatlangan?",
+  "options": [
+   "nervus medianus",
+   "nervus radialis",
+   "nervus ulnaris",
+   "nervus musculocutaneus"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Bilakning oldingi gurux mushaklarini qaysi nerv innervatsiya qiladi?",
+  "options": [
+   "nervus medianus, nervus radialis",
+   "nervus ulnaris, nervus axillaris",
+   "nervus brachialis",
+   "nervus medianus, nervus ulnaris"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Bemorda bilak kaft bo’g’imining yozilishi buzilgan. Qaysi nerv jaroxatlangan?",
+  "options": [
+   "nervus medianus",
+   "nervus ulnaris",
+   "nervus radialis",
+   "arteriya brachialis"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Bemorning kaftini tirsak tomonga bukish buzilgan. Qaysi nerv jaroxatlangan?",
+  "options": [
+   "nervus trochlearis",
+   "nervus tibialis",
+   "vena brachialis",
+   "nervus ulnaris"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "O’rta nerv (n.medianus) qaysi muskullarni innervatsiya qiladi?",
+  "options": [
+   "yumaloq pronator, bosh barmoqni bukuvchi uzun muskulni,barmoqlarni bukuvchi chuqur muskulning lateral chetini",
+   "bosh barmoqni bukuvchi uzun, barmoqlarni bukuvchi chuqur muskulning medial chetini",
+   "kvadrat pronator, tirsak kaft usti bukuvchi muskul",
+   "barmoqlarni yozuvchi chuqur muskullarni medial cheti, tirsak kaft usti yozuvchi muskuli"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Musculus deltoideusning innervatsiya manbasini ko'rsating?",
+  "options": [
+   "nervus ulnaris",
+   "nervus axillaris",
+   "nervus radialis",
+   "nervus musculocutaneus"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Musculus extensor carpi radialis longusning innervatsiya manbasini ko'rsating?",
+  "options": [
+   "nervus radialis",
+   "nervus maxillaris",
+   "nervus medianus",
+   "nervus ulnaris"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Musculus flexor carpi ulnarisning innervatsiya manbasini ko'rsating?",
+  "options": [
+   "nervus musculocuta neus",
+   "nervus medianus",
+   "nervus mandibularis",
+   "nervus ulnaris"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Musculus brachioradialisning innervatsiya manbasini ko'rsating?",
+  "options": [
+   "nervus medianus",
+   "nervus ulnaris",
+   "nervus radialis",
+   "nervus musculocutaneus"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Musculus biceps brachii innervatsiyasi manbasini ko'rsating?",
+  "options": [
+   "nervus axillaris",
+   "nervus ulnaris",
+   "nervus musculocutaneus",
+   "nervus tibialis"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Musculus infraspinatusning innervatsiya manbasini ko'rsating?",
+  "options": [
+   "nervus thoracodorsalis",
+   "nervus suprascapularis",
+   "nervus axillaris",
+   "nervus triseps brachialis"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Musculus teres minorining innervatsiya manbasini ko'rsating?",
+  "options": [
+   "nervus clavicularis",
+   "nervus axillaris",
+   "nervus thoracodorsalis",
+   "nervus suprascapularis"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Musculus teres majorning innervatsiya manbasini ko'rsating?",
+  "options": [
+   "nervus subscapularis",
+   "nervus thoracodorsalis",
+   "nervus axillaris",
+   "nervus brachialis"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Musculus coracobrachialisning innervatsiya manbasini ko'rsating?",
+  "options": [
+   "nervus musculocutaneus",
+   "nervus axillaris",
+   "nervus radialis",
+   "vena brachialis"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Musculus brachialisning innervatsiya manbasini ko'rsating?",
+  "options": [
+   "nervus medianus",
+   "nervus axillaris",
+   "nervus musculocutaneus",
+   "nervus radialis"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Yelkadagi muskul - teri nervi nimani innervatsiya qiladi?",
+  "options": [
+   "musculus subbrachialisni",
+   "yelkaning medial mushaklari guruhini",
+   "oldingi yelka mushaklari guruhini",
+   "orqa yelka mushaklari guruhini"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "M.supinatorning innervatsiya manbasini ko'rsating?",
+  "options": [
+   "nervus medianus",
+   "nervus ulnaris",
+   "nervus radialis",
+   "nervus musculocutaneus"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Musculus abductor pollicis brevisning innervatsiya manbasini ko'rsating?",
+  "options": [
+   "nervus thoracodorsalis",
+   "nervus popliteus",
+   "nervus medianus",
+   "nervus ulnaris"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Gipotenar mushaklarning innervatsiya manbalarini ko'rsating?",
+  "options": [
+   "nervus ulnaris",
+   "nervus medianus",
+   "nervus radialis",
+   "nervus spinalis"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Sonning orqa gurux mushaklarini innervatsiyasi qaysi nerv tomonidan boshqariladi?",
+  "options": [
+   "nervus obturatorius",
+   "nervus thoracodorsalis",
+   "nervus femoralis",
+   "nervus tibialis"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Bemorning boldirini yozish vazifasi buzilgan. Qaysi nerv jaroxatlangan?",
+  "options": [
+   "nervus trochlearis",
+   "nervus oculomotorius",
+   "nervus ingivinalis",
+   "nervus femoralis"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Qaysi orqa miya nervlari bel chigalini hosil qiladi?",
+  "options": [
+   "Th XII, L I- II va L V bir qismi",
+   "nervus trochlearis",
+   "Th XI, L I- III va L IV bir qismi",
+   "Th XII, L I- III va L- IV bir qismi"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Sonning medial gurux mushaklarini qaysi nerv innervatsiya qiladi?",
+  "options": [
+   "nervus obturatorius",
+   "nervus trochlearis",
+   "nervus popliteus",
+   "nervus femoralis"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Sonning oldingi gurux mushaklarini innervatsiyasi qaysi nerv tomonidan boshqariladi?",
+  "options": [
+   "Nervus obturatorius",
+   "Nervus abducens",
+   "Nervus femoralis",
+   "Nervus ischiadicus"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Boldirning orqa gurux mushaklarini innervatsiyasi qaysi nerv tomonidan boshqariladi?",
+  "options": [
+   "Nervus obturatorius",
+   "Nervus femoralis",
+   "Nervus tibialis",
+   "Nervus peroneus superficialis"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Bemorda boldirning orqa teri sezgisi yo’qolgan. Qaysi nerv jaroxatlangan?",
+  "options": [
+   "Nervus saphenus",
+   "Nervus trochlearis",
+   "Nervus peroneus superficialis",
+   "Nervus tibialis"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Bemorda boldirning yon teri sezgisi yo’qolgan. Qaysi nerv jaroxatlangan?",
+  "options": [
+   "Nervus obturatorius",
+   "Nervus trochlearis",
+   "Nervus peroneus profundus",
+   "Nervus peroneus superficialis"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Bemorda boldirning medial teri sezgisi yo’qolgan. Qaysi nerv jaroxatlangan?",
+  "options": [
+   "Nervus saphenus",
+   "Nervus obturatorius",
+   "Nervus peroneus superficialis",
+   "Nervus supratrochlearis"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Bel chigalini hosil qiluvchi nervlar orqa miyaning qaysi segmentlaridan chiqadi?",
+  "options": [
+   "Nervus trochlearis segmentlaridan chiqadi",
+   "LI-LV segmentlaridan chiqadi",
+   "ThXII-L1-L- IV segmentlaridan chiqadi",
+   "LIII-LV segmentlaridan chiqadi"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Bemorning boldirini yozish buzilgan, qaysi chigal tarmog’i jaroxatlangan?",
+  "options": [
+   "dumg’aza chigali",
+   "bel chigali",
+   "nervus trochlearis",
+   "yelka chigali"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Bemorning boldirini bukish buzilgan. Qaysi nerv jaroxatlangan?",
+  "options": [
+   "Nervus trochlearis",
+   "Nervus oculomotorius",
+   "Nervus ophtalmicus",
+   "Nervus ishiadicus"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Dumba, tanosil nervi qaysi chigalning tarmoqlari?",
+  "options": [
+   "dumg’aza chigalning tarmoqlari",
+   "bel chigalning tarmoqlari",
+   "dumba chigalning tarmoqlari",
+   "chanoq chigalning tarmoqlari"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Dumg’azа chigalining tarmoqlari qaysilar?",
+  "options": [
+   "boldir nervi",
+   "sonning yon va orqa teri nervi",
+   "yuqori va pastki dumba nervi, tanosil va yopqich nervi",
+   "tanosil va son nervi"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Boldirning orqa gurux mushaklarini qaysi nerv innervatsiya qiladi?",
+  "options": [
+   "nervus tibialis innervatsiya qiladi",
+   "nervus femoralis innervatsiya qiladi",
+   "nervus peroneus anterior innervatsiya qiladi",
+   "sonning yon va orqa teri nervi innervatsiya qiladi"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "O’n ikki barmoqli ichak qismlari qaysilar?",
+  "options": [
+   "Pars descendens, ascendens, superior et inferior",
+   "Pars horizontalis superior, inferior, ascendens, anterior",
+   "Pars horizontalis superior, pars descendens, pars horizontalis inferior, pars ascendens",
+   "Pars superior, ascendens, posterior, horizontalis"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Bemorda boldirning orqa-yon teri sezgisi yo’qolgan. Qaysi nerv jaroxatlangan?",
+  "options": [
+   "Nervus obturatorius",
+   "Nervus peroneus superficialis",
+   "Nervus cutaneus surae lateralis",
+   "Nervus surae superficialis"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Bemorda boldirning medial teri sezgisi yo’qolgan, qaysi nerv jaroxatlangan?",
+  "options": [
+   "Nervus obturatorius",
+   "Nervus peroneus superficialis",
+   "Nervus surae superficialis",
+   "Nervus saphenus"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Boldirning oldingi chuqur gurux mushaklarini innervatsiyalaydi:",
+  "options": [
+   "Nervus peroneus profundus",
+   "Nervus tibialis",
+   "Nervus tibialis anterior",
+   "Nervus peroneus superficialis"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Oyoq kaftini medial nervi qaysi muskullarni innervatsiya qiladi?",
+  "options": [
+   "1-2 chuvalchangsimon va suyaklararo muskullarni",
+   "suyaklararo va 3-4 yozuvchi va yaqinlashtiruvchi muskullarni",
+   "bosh barmoqning kalta yozuvchi va yaqinlashtiru vchi muskullarini",
+   "bosh barmoqning kalta bukuvchi, uzoqlashtiruvchi va 1-2 chuvalchangsi mon muskullarini"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Qorinning yon gurux muskullarini, qov va yorg’oq old terisini qaysi nervi innervatsiylaydi?",
+  "options": [
+   "yonbosh-qorin osti nervi",
+   "aralash nervlar",
+   "nervus surae superficialis",
+   "dumba nervlari"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Yopqich nerv qaysi muskullarni innervatsiylaydi?",
+  "options": [
+   "nozik, ikki boshli muskulni",
+   "yaqinlashtiruvchi uzun, kalta va katta muskulni, taroqsimon muskulni",
+   "ikki boshli, yaqinlashtiruvchi muskulni",
+   "uzoqlashtiruvchi uzun, kalta va katta muskulni"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Chuqur kichik boldir nervi qaysi muskullarni innervatsiylaydi?",
+  "options": [
+   "barmoqlarini yozuvchi kalta va kambalasimon muskullarini",
+   "oldingi katta boldir, bosh barmoqni yozuvchi uzun muskullarni",
+   "uzun va kalta kichik boldir muskullarini",
+   "uzoqlashtiruvchi uzun, kalta va katta muskulni"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Orqa katta boldir nervi boldir sohasida qaysi muskullarni innervatsiya qiladi?",
+  "options": [
+   "uzoqlashtiruvchi uzun, kalta va katta muskulni",
+   "uzun kichik boldir va oldingi katta boldir muskullarini",
+   "uzun va kalta kichik boldir muskullarini",
+   "m.tibialis posterior, m. flexor hallucis longus, m. flexor digitorum longus"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Oraliqni, katta uyatli lablarni va yorg’oqni orqa soha terisini qaysi nerv innervatsiya qiladi?",
+  "options": [
+   "son nervi innervatsiya qiladi",
+   "son tanosil nervi innervatsiya qiladi",
+   "tanosil nervi innervatsiya qiladi",
+   "yopqich nervi innervatsiya qiladi"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Oyoqning pastki lateral mushak guruhining innervatsiya manbasini ko'rsating?",
+  "options": [
+   "Nervus fibularis profundus",
+   "Nervus tibialis",
+   "Nervus femoralis",
+   "Nervus fibularis superficialis"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Musculus extensor digitorum longusning innervatsiya manbasini ko'rsating?",
+  "options": [
+   "dumba nervi",
+   "Nervus tibialis",
+   "Nervus fibularis profundus",
+   "Nervus femoralis"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Musculus adductor hallucisning innervatsiya manbasini ko'rsating?",
+  "options": [
+   "Nervus plantaris medialis",
+   "Nervus plantaris lateralis",
+   "Nervus fibularis profundus",
+   "Nervus tibialis"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Musculus fibularis longusning innervatsiya manbasini ko'rsating?",
+  "options": [
+   "Nervus fibularis profundus",
+   "Nervus tibialis",
+   "Nervus fibularis superficialis",
+   "Nervus femoralis"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Musculus tibialis posteriorning innervatsiya manbasini ko'rsating?",
+  "options": [
+   "Nervus fibularis superficialis innervatsiya qiladi",
+   "Nervus tibialis innervatsiya qiladi",
+   "Nervus femoralis innervatsiya qiladi",
+   "Bel nervi innervatsiya qiladi"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Musculus flexor digitorum brevisning innervatsiya manbasini ko'rsating?",
+  "options": [
+   "Nervus plantaris medialis innervatsiya qiladi",
+   "Nervus tibialis innervatsiya qiladi",
+   "Bel nervi innervatsiya qiladi",
+   "Nervus plantaris lateralis innervatsiya qiladi"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Musculus sartoriusning innervatsiya manbasini ko'rsating?",
+  "options": [
+   "Nervus ischiadicus innervatsiya qiladi",
+   "Nervus tibialis innervatsiya qiladi",
+   "dumba nervi innervatsiya qiladi",
+   "Nervus femoralis innervatsiya qiladi"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Musculus semimembranosusnin g innervatsiya manbasini ko'rsating?",
+  "options": [
+   "Nervus fibularis communis innervatsiya qiladi",
+   "Nervus tibialis innervatsiya qiladi",
+   "Nervus ischiadicus innervatsiya qiladi",
+   "Bel nervi innervatsiya qiladi"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Musculus gastrocnemiusning innervatsiya manbasini ko'rsating?",
+  "options": [
+   "Nervus fibularis superficialis innervatsiya qiladi",
+   "Nervus ischiadicus innervatsiya qiladi",
+   "yopqich nervi innervatsiya qiladi",
+   "Nervus tibialis innervatsiya qiladi"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Musculus quadratus plantae innervatsiya manbasini ko'rsating?",
+  "options": [
+   "Nervus plantaris medialis innervatsiya qiladi",
+   "Nervus plantaris lateralis innervatsiya qiladi",
+   "qorin nervi innervatsiya qiladi",
+   "Nervus fibularis innervatsiya qiladi"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Bemorning tilini yonga burish buzilgan. Qaysi nerv jaroxatlangan?",
+  "options": [
+   "Nervus oculomotori us jaroxatlanga n",
+   "Nervus hypoglossus jaroxatlangan",
+   "Nervus ophtalmicus jaroxatlangan",
+   "Nervus trochlearis jaroxatlanga n"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "IV juft nervining o’zaklari nechta?",
+  "options": [
+   "o’zagi yo’q",
+   "6 ta o’zagi bor",
+   "1 ta o’zagi bor",
+   "3 ta o’zagi bor"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Yuz nervi kalladan qaysi teshikdan chiqadi?",
+  "options": [
+   "bigiz-so’rg’ich teshigidan",
+   "pastki ko’z kosasi yorig’idan",
+   "yuqori ko’z kosasi yorig’idan",
+   "yirtiq teshikdan"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Galtak nervi qaysi mushakni innervatsiyalaydi?",
+  "options": [
+   "pastki ko’z kosasini",
+   "peshona qiyshiq mushakni",
+   "ko’zning yuqori to’g’ri mushakni",
+   "ko’zning yuqori qiyshiq mushagini"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "VIII juft nervning dahliz qismidagi o’zaklarning soni nechta?",
+  "options": [
+   "1 ta o’zagi bor",
+   "6 ta o’zagi bor",
+   "4 ta o’zagi bor",
+   "3 ta o’zagi bor"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Qaysi bosh miya nervlari o’zaklari ko’prikda joylashgan?",
+  "options": [
+   "XII, IX bosh miya nervlari o’zaklari",
+   "I-II bosh miya nervlari o’zaklari",
+   "X, XI bosh miya nervlari o’zaklari",
+   "V-VI bosh miya nervlari o’zaklari"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Hidlov nervining kalla bo’shlig’iga kirish joyi qaysi?",
+  "options": [
+   "yuqori ko’z kosasi yorig’i",
+   "yumaloq teshik",
+   "galvirsimon plastinka",
+   "pastki burun yo’li shilliq pardasida"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Hidlov nervi qanday nerv?",
+  "options": [
+   "aralash nerv",
+   "sezuvchi nerv",
+   "vegetativ nerv",
+   "somatik nerv"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Ko’zni harakatlantiruvchi nerv kalladan qaysi teshik orqali chiqadi?",
+  "options": [
+   "oval teshik orqali chiqadi",
+   "qanot – tangalay teshik orqali chiqadi",
+   "yuqori ko’z kosasi yorig’I teshigi orqali chiqadi",
+   "yumaloq teshik orqali chiqadi"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Aralash bosh-miya nervlarini ko’rsating:",
+  "options": [
+   "YIII, IX, X- aralash bosh- miya nervlari",
+   "I, III, IX- aralash bosh- miya nervlari",
+   "V, VII, IX, X -aralash bosh- miya nervlari",
+   "IV, XI, XII -aralash bosh-miya nervlari"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Nervus hypoglossus qaysi muskullarni innervatsiyalaydi?",
+  "options": [
+   "tilning barcha xususiy va skelet muskullarini",
+   "musculus genioglossus",
+   "tananing barcha xususiy va skelet muskullarini",
+   "musculus styloglossus"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Ko’z soqqasi mushaklarini innervatsiyasida qaysi nervlar qatnashadi?",
+  "options": [
+   "nervus abducens, nervus oculomotorius nervus trochlearis",
+   "I, II, YII juft nervlar",
+   "nervus ophthalmicus",
+   "nervus abducens, nervus oculomotorius, nervus trochlearis"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Bosh miya nervlarining I guruhiga qaysi nervlar kiradi?",
+  "options": [
+   "bosh miya nervlarining I guruhiga III – IV – VI juft nervlari kiradi",
+   "bosh miya nervlarining I guruhiga V – VII - IX juft nervlari kiradi",
+   "bosh miya nervlarining I guruhiga I – II – VIII juft nervlari kiradi",
+   "bosh miya nervlarining I guruhiga X – XII juft nervlari kiradi"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Bosh miya nervlarining II guruhiga qaysi nervlar kiradi?",
+  "options": [
+   "X – XII juft nervlari kiradi",
+   "I, II, YII juft nervlari kiradi",
+   "V – VII - IX juft nervlari kiradi",
+   "bosh miya nervlarining II guruhiga III – IV – VI juft nervlari kiradi"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Bosh miya nervlarining III guruhiga qaysi nervlar kiradi?",
+  "options": [
+   "X – XII juft nervlari kiradi",
+   "III – IV – VI juft nervlari kiradi",
+   "I – II – VIII juft nervlari kiradi",
+   "bosh miya nervlarining III guruhiga V– VII - IX juft nervlari kiradi"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Bosh miyaning 12 juft nervlari hosil bo’lishiga ko’ra necha guruhga bo’linadi?",
+  "options": [
+   "IV ta guruhga bo’linadi",
+   "III ta guruhga bo’linadi",
+   "XII ta guruhga bo’linadi",
+   "II ta guruhga bo’linadi"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Visseral ravoq nervlari qaysi?",
+  "options": [
+   "visseral ravoq nervlariga kiradi: XII juft",
+   "visseral ravoq nervlariga kiradi: III, IV, VI juft",
+   "visseral ravoq nervlariga kiradi: I,II,YII juft nervlar",
+   "visseral ravoq nervlariga kiradi: V, VII, IX, X juft"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Oldingi miyadan taraqqiy etuvchi nervlar qaysi?",
+  "options": [
+   "oldingi miyadan taraqqiy etuvchi nervlar: I va II juft",
+   "oldingi miyadan taraqqiy etuvchi nervlar: III, IV, VI juft",
+   "oldingi miyadan taraqqiy etuvchi nervlar -XII juft",
+   "oldingi miyadan taraqqiy etuvchi nervlar: I, II, YII juft nervlar"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Nervus abducens qanday nerv?",
+  "options": [
+   "VI juft Yaqinlashtiruvchi nerv",
+   "IV juft G’altak nerv",
+   "XII juft Til osti nervi",
+   "VI juft Uzoqlashtiruvchi nerv"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Nervus olfactorius qanday nerv?",
+  "options": [
+   "VI juft Uzoqlashtiruvchi nerv",
+   "IV juft G’altak nerv",
+   "I juft Hidlov nervi",
+   "XII juft Til osti nervi"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Nervus trochlearis qanday nerv?",
+  "options": [
+   "VI juft Uzoqlashtiruvchi nerv",
+   "XII juft Til osti nervi",
+   "V juft uch shoxlik nerv",
+   "IV juft G’altak nerv"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Nervus hypoglossus qanday nerv?",
+  "options": [
+   "II juft ko'ruv nerv",
+   "XII juft Til osti nervi",
+   "VI juft Uzoqlashtiruvchi nerv",
+   "IV juft G’altak nerv"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Nervus opticus qanday nerv?",
+  "options": [
+   "I juft hidlov nerv",
+   "V juft Uch shoxli nerv",
+   "VII juft Yuz nervi",
+   "II juft Ko’ruv nervi"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Nervus trigeminus qanday nerv?",
+  "options": [
+   "II juft Ko’ruv nervi",
+   "V juft Uch shoxli nerv",
+   "VI juft uzoqlashtiruvchi nerv",
+   "VII juft Yuz nervi"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Nervus glossopharyngeus qanday nerv?",
+  "options": [
+   "II juft Ko’ruv nervi",
+   "IX juft Til-halqum nervi",
+   "V juft Uch shoxli nerv",
+   "VII juft Yuz nervi"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Nervus facialis qanday nerv?",
+  "options": [
+   "II juft Ko’ruv nervi",
+   "V juft Uch shoxli nerv",
+   "VII juft Yuz nervi",
+   "IX juft Til-halqum nervi"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Nervus oculomatorius qanday nerv?",
+  "options": [
+   "I juft hidlov nerv",
+   "III juft Ko’zni harakatlantiruvchi nerv",
+   "XI juft Qo’shimcha nerv",
+   "VIII juft Dahliz- chig’anoq nervi"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Nervus vestibulo- cochlearis qanday nerv?",
+  "options": [
+   "XI juft Qo’shimcha nerv",
+   "VIII juft Dahliz- chig’anoq nervi",
+   "VI juft Yaqinlashtiruvchi nerv",
+   "III juft Ko’zni harakatlantiruvchi nerv"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Nervus vagus qanday nerv?",
+  "options": [
+   "XI juft Qo’shimcha nerv",
+   "VI juft Yaqinlashtiruvchi nerv",
+   "VIII juft Dahliz-chig’anoq nervi",
+   "X juft Adashgan nerv"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Nervus accessorus qanday nerv?",
+  "options": [
+   "II juft ko'ruv nerv",
+   "XI juft Qo’shimcha nerv",
+   "VIII juft Dahliz- chig’anoq nervi",
+   "III juft Ko’zni harakatlantiruvchi nerv"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "CHaynov mushaklarini qaysi nerv innervatsiyalaydi?",
+  "options": [
+   "adashgan nerv innervastiyala ydi",
+   "uch shoxli nerv innervastiyala ydi",
+   "galtak nerv innervastiyal aydi",
+   "VI juft yaqinlashtiruvchi nerv innervastiyalaydi"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Uch shoxli nerv 1 chi tarmog’i qanday nomlanadi?",
+  "options": [
+   "nervus lingualis- uch shoxli nerv 1 chi tarmog’i",
+   "yaqinlashtiruvchi nerv- uch shoxli nerv 1 chi tarmog’i",
+   "nervus ophthalmicus- uch shoxli nerv 1 chi tarmog’i",
+   "nervus nasociliaris- uch shoxli nerv 1 chi tarmog’i"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Ko’z nervini ko’z yoshi tarmog’iga qanday tola birikadi?",
+  "options": [
+   "sezuvchi, preganlionar",
+   "parasimpatik postganlionar sekretor",
+   "harakat, ganlionar",
+   "yaqinlashtiruvchi tola, postganlionar"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Uch shoxli nervning qanday tarmoqlari bor?",
+  "options": [
+   "simpatik ganlionar tarmoqlari bor",
+   "ko’z, yuqori jag’ va pastki jag’ tarmoqlari bor",
+   "orqaga qaytuvchi, yuqori jag’ tarmoqlari bor",
+   "chakka, pastki jag’ tarmoqlari bor"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Uch shoxli nervning tarkibida qanday tolalar bor?",
+  "options": [
+   "harakatsizlantiruvchi, simpatik tolalari bor",
+   "harakatlantiruvchi va sezuvchi tolalari bor",
+   "qo’zg’atuvchi, parasimpatik tolalari bor",
+   "sezuvchi va tormozlovchi parasimpatik tolalari bor"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Yuqori jag’ nervi kalla bo’shlig’idan qaysi teshik orqali chiqadi?",
+  "options": [
+   "o’tmas teshik orqali chiqadi",
+   "oval teshik orqali chiqadi",
+   "o’tkir teshik orqali chiqadi",
+   "yumaloq teshik orqali chiqadi"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "V-juft nervning bosh o’zagi qanday vazifani bajaradi?",
+  "options": [
+   "parasimpatik postganlionar sekretor markazi",
+   "yuz sohasi taktil sezgisiga kommunikativ markaz hisoblanadi",
+   "chaynov muskullari kommunikativ markazi",
+   "yuz sohasiga proprioseptiv sezgilar uchun kommunicati v markaz hisoblanadi"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "V-juft nervning nucleus spinalis o’zagi qanday vazifalarni bajaradi?",
+  "options": [
+   "Yuz sohasigai og’riq va harorat sezgilari uchun kommunikativ markaz",
+   "yuqori qator tishlar uchun og’riq sezgisi kommunikativ markasi",
+   "pastki tish qatori uchun og’riq sezgisi kommunikati v markazi",
+   "og’iz bo’shlig’I shilliq pardasi uchun harorat sezgisi kommunikati v marjkazi"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Qaysi nerv kalla bo’shligida Gasser tugunini hosil qiladi?",
+  "options": [
+   "qo’shimcha nerv- Gasser tugunini hosil qiladi",
+   "til –halqum nerv- Gasser tugunini hosil qiladi",
+   "uch shoxli nerv- Gasser tugunini hosil qiladi",
+   "til osti nervi nerv- Gasser tugunini hosil qiladi"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Yuqori ko’z kosasi yorig’idan qaysi nerv o’tadi?",
+  "options": [
+   "yuz nervini II chi tarmog’i o’tadi",
+   "yoqori jag’ nervi - uch shoxli nervni II chi tarmog’i o’tadi",
+   "nervus ophthalmicus- uch shoxli nervni 1 chi tarmog’i o’tadi",
+   "pastki jag’ nervi - uch shoxli nervni III chi tarmog’i o’tadi"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Yonoq, ko’z kosasining pastki tarmoqlari qaysi nerv tarmoqlari?",
+  "options": [
+   "pastki jag’ nervining tarmoqlari",
+   "ko’z yosh, burun kiprik tarmoqlari",
+   "yuqori jag’ nervining tarmoqlari",
+   "til, pastki alveolyar tarmoqlari"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Ko’z коsasi osti teshigidan qaysi nerv chiqadi?",
+  "options": [
+   "ko’z косasi osti teshigidan nervus alveolaris superior o’tadi",
+   "adashgan nervi shoxlari o’tadi",
+   "nervus palpebralis inferior o’tadi",
+   "ko’z косasi osti teshigidan nervus infraorbitalis chiqadi"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Qanot- tanglay chuqurchasidan qaysi tuzilma ko’z kosasiga chiqadi?",
+  "options": [
+   "adashgan nervi - ko’z kosasiga chiqadi",
+   "nervus maxillaris- ko’z kosasiga chiqadi",
+   "nervus mandibularis- ko’z kosasiga chiqadi",
+   "nervus infraorbitalis- ko’z kosasiga chiqadi"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Tishlarni qaysi nerv innervatsiyalaydi?",
+  "options": [
+   "uch shoxli nerv innervatsiyalaydi",
+   "tilosti nervi innervatsiyalaydi",
+   "adashgan nervining shoxlari innervatsiyalaydi",
+   "qo’shimcha nerv innervatsiyalaydi"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Harakatlantiruvchi, sezuvchi tolalar qaysi nervga xos?",
+  "options": [
+   "harakatlantiruvchi, sezuvchi tolalar adashgan nerv tuguniga xos",
+   "harakatlantiruvchi, sezuvchi tolalar tilosti nerviga xos",
+   "harakatlantiruvchi, sezuvchi tolalar uch shoxli nervga xos",
+   "harakatlantiruvchi, sezuvchi tolalar qo’shimcha nervga xos"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "ko’z nervi qaysi nerv tarmog’i?",
+  "options": [
+   "ko’z nervi - besh shoxli nerv tarmog’i",
+   "ko’z nervi - adashgan nerv tarmog’i",
+   "ko’z nervi- yuz nervi tarmog’i",
+   "ko’z nervi- uch shoxli nerv tarmog’i"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Chaynov mushaklari qaysi nerv orqali boshqariladi?",
+  "options": [
+   "Nervus supraorbitalis orqali boshqariladi",
+   "Nervus trigeminus orqali boshqariladi",
+   "Adashgan nervi orqali boshqariladi",
+   "Nervus oculomotorius orqali boshqariladi"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Yuqori jag’ nervi qanday yo’nalgan ?",
+  "options": [
+   "Besh shoxli tugundan boshlanib, qanot- tanglay chuqurchasiga chiqadi",
+   "shu nomdagi kanal orqali o‘tib, yumshoq va qattiq tanglay shilliq pardasiga boradi",
+   "uch shoxli tugundan boshlanib, oldinga qarab yo‘naladi va yumaloq teshik orqali qanot-tanglay chuqurchasiga chiqadi",
+   "Ko‘z kosasining pastki yorig‘i orqali ko‘z kosasiga kiradi"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Pastki alveolyar nerv tarmog’i bo’lgan Jag’-til osti nervi (n. mylohyoideus) qaysi muskulni innervatsiya qiladi?",
+  "options": [
+   "tugundan boshlanib, oldinga qarab yo‘naladi va yumaloq teshik orqali chiqadi",
+   "Jag’-til osti nervi (n. mylohyoideus) jag‘-til osti mushagini innervatsiya qiladi",
+   "lunj mushagining tashqi yuzasida yotadi va shilliq pardasini va og‘iz yorig‘i burchagi terisini innervatsiya qiladi",
+   "o‘tkir qirrali teshik orqali kalla ichiga kirib, bosh miyaning qattiq pardasi innervatsiya qiladi"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Ko’z yosh bezining nervi innervatsiyasi qanday?",
+  "options": [
+   "jag‘-til osti mushagini innervatsiya qiladi",
+   "ikki qorinchali mushakning oldingi qorinchasini innervatsiya qiladi",
+   "tugundan boshlanib, oldinga qarab yo‘naladi va yumaloq teshik orqali qanot- tanglay chuqurchasiga chiqadi",
+   "ko‘z yoshi bezini, ko‘zning lateral burchagi, yuqorigi qovoq terisini va konyunktivasi ni innervatsiya qiladi"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "\"Katta goz\" panjasini qaysi nerv hosil qiladi?",
+  "options": [
+   "ko’z nervi hosil qiladi",
+   "\"Katta goz\" panjasini yuz nervi hosil qiladi",
+   "qo’shimcha nerv hosil qiladi",
+   "til- halqum nervi hosil qiladi"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Halqumni qaysi nerv innervatsiyalaydi?",
+  "options": [
+   "nervus facialis nervlari innervatsiyalaydi",
+   "nervus pharyngeus nervlari innervatsiyalaydi",
+   "IX-1X- juft bosh miya nervlari innervatsiyalaydi",
+   "7-9-12 - juft bosh miya nervlari innervatsiyalaydi"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Nervus chorda tympani nimalarni innervatsiyalaydi?",
+  "options": [
+   "jag’ osti va quloq osti so’lak bezlarini innervatsiy alaydi",
+   "quloq osti so’lak bezlarini innervatsiyalaydi",
+   "jag’ osti va til osti so’lak bezlarini innervatsiyalaydi",
+   "jag’ usti va til usti so’lak bezlarini innervatsiyalaydi"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Nervus facialis qaysi teshik orqali tashqariga chiqadi?",
+  "options": [
+   "foramen spinosum orqali tashqariga chiqadi",
+   "foramen caecum orqali tashqariga chiqadi",
+   "foramen ovale orqali tashqariga chiqadi",
+   "foramen stylomastoideum orqali tashqariga chiqadi"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Nervus facialisni ta’m biluvchi sezuvchi neyronlari qayerda joylashgan?",
+  "options": [
+   "ganglion geniculida joylashgan",
+   "ganglion ciliareda joylashgan",
+   "ganglion semilunareda joylashgan",
+   "ganglion sublingualeda joylashgan"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Nog’ora nervi qayerda tugaydi?",
+  "options": [
+   "ganglion ciliareda joylashgan",
+   "ganglion oticumda joylashgan",
+   "ganglion geniculida joylashgan",
+   "ganglion submanibulareda joylashgan"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Yuz nervining tarmoqlari soni nechta?",
+  "options": [
+   "Yuz nervining 4 ta tarmog’I bor",
+   "Yuz nervining 3 ta tarmog’I bor",
+   "Yuz nervining 7ta tarmog’I bor",
+   "Yuz nervining 11 ta tarmog’i bor"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Nervus glossopharyngeus tarmog’I qaysi?",
+  "options": [
+   "Nervus glossopharyngeus tarmog’I - nervus zygomaticus",
+   "Nervus glossopharyngeus tarmog’I - rami muscularis",
+   "Nervus glossopharyngeus tarmog’I - nervus genioglossus",
+   "Nervus glossopharyngeus tarmog’I - nervus tympanicus"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Nervus facialisning suyak ichidagi tarmoqlari qaysi?",
+  "options": [
+   "nervus lingualis, nervus petrosus minor",
+   "nervus genioglossus, nervus petrosus minor",
+   "nervus zygomaticus",
+   "nervus petrosus major, nervus chorda tympani"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Tilning oldingi 2/3 qismi qaysi nerv orqali ta’mni sezadi ?",
+  "options": [
+   "Tilning oldingi 2/3 qismi nervus chorda tympani orqali ta’mni sezadi",
+   "Nervus glossopharyngeus orqali ta’mni sezadi",
+   "Nervus hypoglossus orqali ta’mni sezadi",
+   "Nervus petrosus minor orqali ta’mni sezadi"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Ichki eshituv teshigi orqali kalla bo’shlig’iga chiqadi?",
+  "options": [
+   "Ichki eshituv teshigi orqali VII va VIII juft bosh miya nervlari kalla bo’shlig’iga chiqadi",
+   "Ichki eshituv teshigi orqali VIII juft asab chiqadi",
+   "Ichki eshituv teshigi orqali V juft asab chiqadi",
+   "Ichki eshituv teshigi orqali IV va V juft bosh miya nervlari chiqadi"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Qaysi bosh-miya nervlarining tarkibida parasimpatik tolalar bor?",
+  "options": [
+   "III,V,VI nervlarining tarkibida parasimpatik tolalar bor",
+   "IV va V nervlarinin g tarkibida parasimpatik tolalar bor",
+   "III, VII, IX, X nervlarining tarkibida parasimpatik tolalar bor",
+   "V,VII,XI nervlarining tarkibida parasimpatik tolalar bor"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Qaysi nervlarning sezuvchi tolalari yakka yo’l o’zagida tugaydi?",
+  "options": [
+   "X,V,VII nervlarning sezuvchi tolalari yakka yo’l o’zagida tugaydi",
+   "VII, IX, X nervlarning sezuvchi tolalari yakka yo’l o’zagida tugaydi",
+   "X, XI, V nervlarning sezuvchi tolalari yakka yo’l o’zagida tugaydi",
+   "IX,V,YII nervlarning sezuvchi tolalari yakka yo’l o’zagida tugaydi"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Til -halqum nervi qaysi teshik orqali kalla bo’shligidan chiqadi?",
+  "options": [
+   "yumaloq teshigi orqali kalla bo’shligidan chiqadi",
+   "oval teshigi orqali kalla bo’shligidan chiqadi",
+   "bo’yinturug’ teshigi orqali kalla bo’shligidan chiqadi",
+   "o’tkir teshigi orqali kalla bo’shligidan chiqadi"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Katta toshsimon nerv, nog’ora tori , uzangi nervilari qaysi kanaldan chiqadi?",
+  "options": [
+   "Bo’yinturug’ teshigidan",
+   "yuz nervining tarmoqlari yuz nervi kanalidan hiqadi",
+   "katta toshsimon nerv kanalidan",
+   "Yirtiq kanaldan"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Yuz nervi sezuvchi o’zagi qaerda joylashadi?",
+  "options": [
+   "uzunchoq miyada joylashadi",
+   "o’rta miyada joylashadi",
+   "orqa miyada joylashadi",
+   "oraliq miyada joylashadi"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Til-yutqin nervining o’zagi qaerda joylashadi?",
+  "options": [
+   "o’rta miyada joylashadi",
+   "Orqa miyada joylashadi",
+   "uzunchoq miyada joylashadi",
+   "oraliq miyada joylashadi"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Qaysi nerv noģ’ora bo‘shliģida uzangi mushagini innervatsiya qiladi?",
+  "options": [
+   "Nervus digastricus- noģ’ora bo‘shliģida uzangi mushagini innervatsiya qiladi",
+   "Nervus vagus - noģ’ora bo‘shliģida uzangi mushagini innervatsiy a qiladi",
+   "Nervus petrosus major- noģ’ora bo‘shliģida uzangi mushagini innervatsiya qiladi",
+   "Nervus stapesius- noģ’ora bo‘shliģida uzangi mushagini innervatsiya qiladi"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Til-halqum nervidan nechta tarmoq chiqadi?",
+  "options": [
+   "5 ta tarmoq chiqadi",
+   "6 ta tarmoq chiqadi",
+   "3 ta tarmoq chiqadi",
+   "9 ta tarmoq chiqadi"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Qaysi tarmoq nervus vagusga qarashli?",
+  "options": [
+   "nervus petrosus recurrens- nervus vagusga qarashli",
+   "nervus laryngeus recurrens- nervus vagusga qarashli",
+   "nervus petrosus minor- nervus vagusga qarashli",
+   "nervus petrosus major- nervus vagusga qarashli"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Nervus vagusni o’zagini ayting?",
+  "options": [
+   "nucleus accessories- nervus vagusni o’zagi",
+   "nucleus ambiguous- nervus vagusni o’zagi",
+   "nucleus salivatorius inferior - nervus vagusni o’zagi",
+   "nucleus vagus- nervus vagusni o’zagi"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Nervus vagus qaysi teshik orqali tashqariga chiqadi?",
+  "options": [
+   "foramen spinosum orqali tashqariga chiqadi",
+   "foramen yugulare orqali tashqariga chiqadi",
+   "foramen stylomastoid eum orqali tashqariga chiqadi",
+   "yirtiq teshik orqali tashqariga chiqadi"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Nervus vagus nimani innervatsiyalaydi?",
+  "options": [
+   "miya pardasi, bo’yin a’zolari, teri innervatsiyalaydi",
+   "miya pardasi, bo’yin sohasi a’zolari, ko’krak bo’shlig’i, qorin bo’shlig’i a’zolarini ko’p qismini innervatsiyalaydi",
+   "miya pardasi, bo’yin a’zolari, mimika muskullarini innervatsiyalaydi",
+   "bo’yin ko’krak, bo’shlig’i a’zolarini, qo’l va oyoq qismlarini innervatsiyalaydi"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Adashgan nerv tarkibida qanday tolalar bor?",
+  "options": [
+   "harakat, yugurish tolalar bor",
+   "parasimpatik efferent- sekretor tolalar bor",
+   "sezuvchi, harakat, sekretor tolalar bor",
+   "og’riq sezuvchi tolalar bor"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Adashgan nerv qanday vazifa bajaradi?",
+  "options": [
+   "bronxlarni toraytiradi, yurak urishini kuchaytiradi",
+   "ichak sfinktrlarni bushashtiradi, bronxlarni kengaytiradi",
+   "yurak urishini sekinlashtiradi, bronxlarni toraytiradi, peristaltikani kuchaytiradi",
+   "bronxlarni toraytiradi, sekretsiyani kuchaytiradi"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Nervus vagus ko’krаk bo’shlig’idа qаysi а’zo bilan yo’naladi?",
+  "options": [
+   "Traxeya bilan yo’naladi",
+   "Limfa bilan yo’naladi",
+   "Vena bilan yo’naladi",
+   "Esophagus bilan yo’naladi"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "X juft nervning yadrolari qaysilar?",
+  "options": [
+   "nucleus accessories, nucleus negra",
+   "nucleus ambigeus, nucleus nervi dorsalis nervus vagi, nucleus solitarius",
+   "nucleus solitarius, nucleus nervi trigeminus",
+   "nucleus dorsalis, nucleus nervi accessorius"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Nervus laryngeus recurens qaysi nerv tarmog’i?",
+  "options": [
+   "nervus vagusning tarmog’i",
+   "nervus facialis tarmog’i",
+   "nervus sublingualis tarmog’i",
+   "nervus trigeminus tarmog’i"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Qorin (quyosh) chigalini hosil qilishda qaysi nervlar qatnashadi?",
+  "options": [
+   "yelka kamari sohasi nervlari",
+   "qovurga osti va diaphragma asabi",
+   "hiqildoq- halqum asabi",
+   "ichki a’zolarga boruvchi katta va sayyor nerv"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Quyosh chigali nimalardan tashkil topgan?",
+  "options": [
+   "yelka kamari sohasi nervlaridan",
+   "qovurg’alararo nervlardan",
+   "chanoq bo’shlig’i nervlaridan",
+   "oshqozon chigali, jigar chigali, ichak tutqich chigali, oshqozon osti bezi, buyrak chigali, aorta chigali"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Adashgan nervning parasimpatik tolalarining vazifasi:",
+  "options": [
+   "bronxlarni toraytiradi,qon tomirlarni kengaytiradi, peristaltikani kamaytiradi",
+   "qon tomirlarni kengaytiradi, yurak urishini sekinlashtiradi, bronxlarni toraytiradi",
+   "qon tomirlarini kengaytiradi, yurak urishini va peristaltikani tezlashtiradi",
+   "qon tomirlarni toraytiradi, yurak urishini sekinlashtiradi, siydik yo’llarini toraytiradi"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Sayyor nerv qorin bo’shlig’iga qanday teshik orqali o’tadi?",
+  "options": [
+   "diaphragma oyoqchalari orasidagi teshik orqali o’tadi",
+   "yuqori kovak vena teshigi orqali o’tadi",
+   "pastki kovak vena teshigi orqali o’tadi",
+   "qizilo’ngach teshigi orqali o’tadi"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Bosh miya nervlari ichida eng uzuni qaysi?",
+  "options": [
+   "Bosh miya nervlari ichida eng uzuni - uzoqlashtiruvchi nervi",
+   "Bosh miya nervlari ichida eng uzuni- til- halqum nervi",
+   "Bosh miya nervlari ichida eng uzuni - adashgan nerv",
+   "Bosh miya nervlari ichida eng uzuni - qo’shimcha nervi"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Yurak chigalini hosil qilishda ishtirok etuvchi tarmoq qaysi?",
+  "options": [
+   "rr. pericardiaci inferior",
+   "Yurak chigalini hosil qilishda ishtirok etuvchi tarmoq -rr. cardiaci cervicales superior",
+   "Yurak chigalini hosil qilishda ishtirok etuvchi tarmoq -rr. cardiaci posterior",
+   "rr. cardiaci anterior"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Adashgan nervni lotincha nomi qanday?",
+  "options": [
+   "lotincha nomi nervus phrenica",
+   "lotincha nomi nervus vagus",
+   "to’g’ri javob yoq",
+   "lotincha nomi nervus oftalmicus"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Simpatik poyaning ko’krak qismidagi tugunlarini soni nechta?",
+  "options": [
+   "simpatik poyaning ko’krak qismidagi tugunlarini soni 9-12 ta tugunlardan iborat",
+   "simpatik poyaning ko’krak qismidagi tugunlarini soni 10-12ta tugunlardan iborat",
+   "simpatik poyaning ko’krak qismidagi tugunlarini soni 15-16 ta tugunlardan iborat",
+   "simpatik poyaning ko’krak qismidagi tugunlarini soni 5-6 ta tugunlardan iborat"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Oshqozon-me’dani qaysi nerv innervatsiyalaydi?",
+  "options": [
+   "kurak asablari innervatsiyalaydi",
+   "qovurg’a osti asabi innervatsiyalaydi",
+   "dum chigali innervatsiyalaydi",
+   "qorin (quyosh) chigali innervatsiyalaydi"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Vegetativ nerv sistemasining parasimpatik qismining bo’limlari qaysi?",
+  "options": [
+   "Vegetativ nerv sistemasinin g parasimpatik qismining bo’limlari - bosh, ko’krak",
+   "Vegetativ nerv sistemasining parasimpatik qismining bo’limlari - qorin, dum",
+   "Vegetativ nerv sistemasinin g parasimpatik qismining bo’limlari - bosh, bo'yin",
+   "Vegetativ nerv sistemasining parasimpatik qismining bo’limlari - bosh, dumg’aza"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Vegetativ chigallar qaysilar?",
+  "options": [
+   "quyosh, pastki qorin osti chigali",
+   "chanoq chigali",
+   "dumg’aza, aorta chigali",
+   "bo’yin, yelka chigali"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Adashgan nervni bo’yin qismidagi tarmoqlari qaysi?",
+  "options": [
+   "halqum, katta toshli nervi",
+   "pastki hiqildoq, o’pka nervi",
+   "quloq, pastki hiqildoq nervi",
+   "yuqori hiqildoq, yurak nervi"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Vegetativ nerv sistemasi nimalarni innervatsiya qiladi?",
+  "options": [
+   "silliq muskullarni, bezlarni, yurakni, sezgi a’zolarni",
+   "ko’ndalang targ’il muskullarni va tomirlarni",
+   "silliq muskullarni, bezlarni, yurakni",
+   "qo’l va oyoq muskullarini"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Simpatik poyani qismlarini ayting?",
+  "options": [
+   "bo’yin, ko’krak, bel, dumg’aza",
+   "ko’krak, bel, chanoq, qorin",
+   "bo’yin, ko’krak, bel, chanoq, dum",
+   "bo’yin, ko’krak, bel, chanoq, qorin"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Rangsiz, tiniq, qattiq, qon-tomir va asablari bo’lmaydi?",
+  "options": [
+   "kiprikli tana",
+   "Plevra suyuqligi",
+   "gavxar moddasi",
+   "bosh miya orqa miya suyuqligi"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Ko’z soqqasining shishasimon tanasi qaerda joylashadi?",
+  "options": [
+   "shox parda bilan rangdor pardalar orasida",
+   "ko’zni orqa kamerasida",
+   "gavxarni oldida, shox pardani ichki yuzasida oylashadi",
+   "gavxarni orqasida, to’r pardani ichki yuzasiga zich holatda joylashadi"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Ko’zni to’r pardasiga boruvchi nur qaerdan o’tadi?",
+  "options": [
+   "shlemmov kanali orqali",
+   "ko’zning nur sindiruvchi apparatidan",
+   "petit kanali orqali",
+   "shox pardani ichki yuzasidan"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Ko’z soqqasining tashqi pardasi tarkibiga nima kiradi?",
+  "options": [
+   "rang parda",
+   "kiprikli tana",
+   "shox parda va oqsil parda",
+   "to’r parda"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Ko’ruv nervining boshlanish joyi qaerda?",
+  "options": [
+   "Ko’ruv nervining boshlanish joyi -shox pardani ichki yuzasidan",
+   "Ko’ruv nervining boshlanish joyi - qorachiq",
+   "Ko’ruv nervining boshlanish joyi -to’r parda",
+   "Ko’ruv nervining boshlanish joyi -sklera"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "To’r pardada qanday retseptorlar joylashadi?",
+  "options": [
+   "ko’ruv nervi retseptorlari",
+   "ta’m bilish nervi retseptorlari",
+   "eshituv nervi retseptorlari",
+   "nafas olish nervi retseptorlar i"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Ko’ruv nervining oxirgi neyroni qaerda tugaydi?",
+  "options": [
+   "qush pixi egatida 17 maydonda",
+   "qush pixi egatida 7 maydonda",
+   "qush pixi egatida 11 maydonda",
+   "belbog’ egatida"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Shlem kanali qaysi tuzilmalar orasida joylashadi?",
+  "options": [
+   "rangdor parada va kiprikli tana orasida",
+   "kiprikli mushak tolalari orasida",
+   "qush pixi egatida 20 maydonda",
+   "sklera va muguz parda orasida"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Ko’z olmasi pardalarini ayting?",
+  "options": [
+   "endotiliy va adventitsiya qavat",
+   "seroz qavat, muskul qavat",
+   "fibroz qavat, seroz qavat endotiliy",
+   "fibroz parda, qon tomirli parda, to’r parda"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Ko’zning nur sindiruvchi apparati qaysilar?",
+  "options": [
+   "kipriksimon parda, shox parda, seroz qavat, muskul qavat",
+   "ko’zni qon- tomir va asablari, kameralardagi suvsimon suyuqlik",
+   "shox parda, oldingi va orqa kameralardagi suvsimon suyuqlik, ko’z gavhari, shishasimon tana",
+   "rangdor parda, gavxar, fibroz qavat, shishasimon tana"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Kiprik tuguni nimani innervatsiya qiladi?",
+  "options": [
+   "m. levator palpebraeni innervatsiya qiladi",
+   "m. rectus superiorni innervatsiya qiladi",
+   "m.sphincter pupillaeni innervatsiya qiladi",
+   "m. depressor palpebraeni innervatsiya qiladi"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Ko’z olmasida qanday kameralar bor?",
+  "options": [
+   "ichki va tashqi kameralari bor",
+   "oldingi, orqa kameralari bor",
+   "orqa, medial kameralari bor",
+   "pastki kameralari bor"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Gаvxаr moddаsi qаndаy tuzilgаn?",
+  "options": [
+   "hira, qon tomir, аsаblаri bo’lmаydi",
+   "sаriq, qаttiq, qon tomirlаri bo’lаdi",
+   "rаngsiz, tiniq vа nervlаri bo’lmаydi",
+   "qizil, yumshoq, nervlаri bo’lmаydi"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Tashqi sezgi a‘zolari nechta ?",
+  "options": [
+   "3 ta sezgi a‘zolari bor",
+   "5 ta sezgi a‘zolari bor",
+   "6 ta sezgi a‘zolari bor",
+   "4 ta sezgi a‘zolari bor"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Pupilla qaysi a’zoni bildiradi?",
+  "options": [
+   "Kiprikli tana",
+   "Qorachiq",
+   "Muguz parda",
+   "Rangdor parda"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Ko‘zning yordamchi hosilasini toping?",
+  "options": [
+   "Ko‘zning yordamchi hosilasi- qovoqlar",
+   "Ko‘zning yordamchi hosilasi- qorachiq",
+   "Ko‘zning yordamchi hosilasi- rangdor parda",
+   "Ko‘zning yordamchi hosilasi- sklera"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Ko‘ruv o‘tkazuv yo‘lining lotincha nomi qanday ataladi?",
+  "options": [
+   "Tractus medullaris",
+   "Tractus opticus",
+   "Chiasma opticum",
+   "Tracti spinalis"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Ko‘z yoshi bezining lotincha nomini toping ?",
+  "options": [
+   "Ko‘z yoshi bezi-Glandula conjunctivalis",
+   "Ko‘z yoshi bezi- Glandulae lacrimalis",
+   "Ko‘z yoshi bezi- Glandula periorbitalis",
+   "Ko‘z yoshi bezi- Glandula retroorbitalis"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Qorachiq kengligi qancha?",
+  "options": [
+   "qorachiq kengligi 2-3 mm",
+   "qorachiq kengligi 2 mm",
+   "qorachiq kengligi 1,5- 3,5 mm",
+   "qorachiq kengligi 1,5-2 mm"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "To‘r pardaning lotincha nomi qanday ataladi?",
+  "options": [
+   "to‘r pardaning lotincha nomi - durae mater",
+   "to‘r pardaning lotincha nomi -retina",
+   "to‘r pardaning lotincha nomi -pupilla",
+   "to‘r pardaning lotincha nomi -iris"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Suyak labirint qismlari qaysilar?",
+  "options": [
+   "chig’anoq, to’liq halqa kanallari",
+   "dahliz, chig’anoq, yarim halqa kanallar",
+   "dahliz, teshiklar, to’liq halqa kanallari",
+   "yarim halqa kanal, to’liq halqa kanallari"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Teri qavatlari nimalardan iborat?",
+  "options": [
+   "Teri qavatlari - tashqi va ichki",
+   "Teri qavatlari -epidermis va xususiy teri",
+   "Teri qavatlari – qoplama, sklera",
+   "Teri qavatlari -teri va pigment"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Tashqi quloqni ahamiyati qanday?",
+  "options": [
+   "ovoz to’lqinlarini tutadi",
+   "nogora bo’shlig’i, nog’ora pardasi",
+   "tovush to’lqinlarini tutadi",
+   "tovush to’lqinlarini tutadi va tashqi eshituv yo’li orqali nog’ora pardaga yo’naltiradi"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Eshituv suyakchalarini bog’langan tartibi qanday?",
+  "options": [
+   "uzangicha, bolg’acha, sandoncha",
+   "bolg’acha, sandoncha, uzangicha",
+   "sandoncha, uzangicha, bolg’acha",
+   "uzangicha, sandoncha, bolg’acha"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Eshituv po’stloq markazi qaerda joylashgan?",
+  "options": [
+   "yuqorigi chakka pushtasi ustki yuzasining orolchaga qaragan tomonida, 45, 47, 54 maydonlar",
+   "yuqorigi chakka pushtasi ustki yuzasining orolchaga qaragan tomonida, 47, 48, 56 maydonlar",
+   "yuqorigi chakka pushtasi ustki yuzasining orolchaga qaragan tomonida, 41, 42, 52 maydonlar",
+   "yuqorigi chakka pushtasi ustki yuzasining orolchaga qaragan tomonida, 41, 52, 62 maydonlar"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Ichki eshituv teshigi orqali kalla bo’shlig’iga qaysi nervlar chiqadi?",
+  "options": [
+   "Ichki eshituv teshigi orqali VI- VII juft nerv chiqadi",
+   "Ichki eshituv teshigi orqali VII juft nerv chiqadi",
+   "Ichki eshituv teshigi orqali VI juft nerv chiqadi",
+   "Ichki eshituv teshigi orqali VII va VIII juft bosh miya nervlari chiqadi"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "O‘rta quloqda nechta devor mavjud?",
+  "options": [
+   "8 ta devori mavjud",
+   "7 ta devori mavjud",
+   "5 ta devori mavjud",
+   "6 ta devori mavjud"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Lotincha malleus so’zi qaysi a’zoni bildiradi?",
+  "options": [
+   "sandoncha nomini bildiradi",
+   "bolg‘acha dastasi nomini bildiradi",
+   "bolg‘acha nomini bildiradi",
+   "sandoncha dastasi nomini bildiradi"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Uncus lotincha so’zi qaysi a’zoni bildiradi?",
+  "options": [
+   "uzangi nomini bildiradi",
+   "bolg‘acha nomini bildiradi",
+   "sandoncha nomini bildiradi",
+   "dum nomini bildiradi"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Stares lotincha so’zi qaysi a’zoni bildiradi?",
+  "options": [
+   "sandoncha nomini bildiradi",
+   "bolg‘acha nomini bildiradi",
+   "uzangi nomini bildiradi",
+   "sandoncha dastasi nomini bildiradi"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Tashqi eshituv yo‘li lotincha nomi qanday ataladi?",
+  "options": [
+   "conha acusticus externus",
+   "meatus acusticus internus",
+   "conha acusticus internus",
+   "meatus acusticus externus"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Lotinca tuba auditiva qanday ataladi?",
+  "options": [
+   "eshituv nayi",
+   "sandoncha",
+   "uzangi",
+   "nog‘ora parda"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "O‘rtacha uzunligi 35 mm, kengligi 2 mm.... qaysi a’zoga tegishli ?",
+  "options": [
+   "eshituv nayi",
+   "tashqi quloq",
+   "uzangi",
+   "nog‘ora parda"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Terining lotincha nomi qanday ataladi?",
+  "options": [
+   "Terining lotincha nomi -tendo",
+   "Terining lotincha nomi - epidermis",
+   "Terining lotincha nomi - stratum",
+   "Terining lotincha nomi -cutis"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Pili lotincha so’zi qaysi a’zoni bildiradi?",
+  "options": [
+   "teri",
+   "tirnoq",
+   "soch",
+   "tirnoq ildizi"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Tirnoqning lotincha nomi qanday ataladi??",
+  "options": [
+   "stratum",
+   "matrix",
+   "unguis",
+   "pili"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Markaziy nerv tizimining qaysi qismi bosh miyani orqa miyaga davom ettiradi?",
+  "options": [
+   "orta miya",
+   "orqa miya",
+   "uzunchoq miya",
+   "bosh miya pardalari"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Oddiy refleks yoyi qaysi tarkibiy qismlardan tashkil topgan?",
+  "options": [
+   "retseptor, sezuvchi nerv, markaz, harakatlantiru vchi nerv, efektor",
+   "markaz, faqat sezuvchi nerv",
+   "faqat retseptor va efektor",
+   "shartli harakatlar"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Bosh miya qaysi qismi epitalamusni o‘z ichiga oladi?",
+  "options": [
+   "Telensefalon (bosh miya yarim sharlar po‘stlog‘i)",
+   "Diensefalon (oraliq miya)",
+   "Metensefalon (uzunchoq miya)",
+   "miyacha"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Bosh miya yarim sharlarida qaysi markaz nutq uchun javobgar?",
+  "options": [
+   "Qadoq tana",
+   "Wernicke markazi",
+   "Gippokamp",
+   "Broka markazi"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Ko'zning rangni aniqlash funksiyasi qaysi qism bilan bog‘liq?",
+  "options": [
+   "To‘r pardadagi konuslar",
+   "To‘r pardadagi tayoqchalar",
+   "VIII – dahliz – chig’anoq nerviga",
+   "Ko‘z qorachig‘i"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Axis nima?",
+  "options": [
+   "II-ko‘krak umurtqasi",
+   "II-bo‘yin umurtqasi",
+   "III –bel umurtqasi",
+   "I-bo‘yin umurtqasi"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Bel umurtqalari - boshqa umurtqalardan tanasining nimasi bilan farqlanadi?",
+  "options": [
+   "foramen vertebrale bilan",
+   "Kattaligi bilan",
+   "Kengligi bilan",
+   "Kichikligi bilan"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Qaysi nervni shikastlanishi ko‘z qovoqlarining tushishiga olib keladi?",
+  "options": [
+   "VII - yuz nervi",
+   "III - ko‘zni olmasini harakatlantiru vchi nerv",
+   "VIII – dahliz – chig’anoq nervi",
+   "V - uch shoxli nerv"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Adashgan nerv qaysi soha uchun javobgar?",
+  "options": [
+   "Eshitish sohasi uchun javobgar",
+   "Ko‘rish sohasi uchun javobgar",
+   "Ichki a’zolarning vegetativ funksiyasi uchun javobgar",
+   "Yuz mushaklari harakati sohasi uchun javobgar"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Qaysi nerv tilning orqa qismi ta'm bilish qobiliyatini boshqaradi?",
+  "options": [
+   "IX – juft, til-halqum nervi boshqaradi",
+   "VIII – dahliz – chig’anoq nervi boshqaradi",
+   "XII –juft, til osti nervi boshqaradi",
+   "VII –juft, yuz nervi boshqaradi"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Bosh miya yarim sharlarini bog‘lovchi tuzilma nima?",
+  "options": [
+   "corpus callosum",
+   "epitalamus",
+   "orqa miya",
+   "gippokampus"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Qaysi tuzilma bosh miyada asosiy gormonal boshqaruvni amalga oshiradi?",
+  "options": [
+   "qalqonsimon oldi bezi gormonal boshqaruvni amalga oshiradi",
+   "gipofiz bezi gormonal boshqaruvni amalga oshiradi",
+   "kichik miya gormonal boshqaruvni amalga oshiradi",
+   "epitalamus gormonal boshqaruvni amalga oshiradi"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Markaziy nerv tizimining strukturaviy va funksional birligi nima?",
+  "options": [
+   "strukturaviy va funksional birligi -gliya hujayrasi",
+   "strukturaviy va funksional birligi - aksoplazma",
+   "strukturaviy va funksional birligi -o'rta miya",
+   "strukturaviy va funksional birligi -neyron"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Qaysi bosh miya qismida nafas olish va yurak markazlari joylashgan?",
+  "options": [
+   "kichik miyada joylashgan",
+   "o'rta miyada joylashgan",
+   "nafas olish va yurak markazlari uzunchoq miyada joylashgan",
+   "telensefalonda joylashgan"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Ko‘z soqqasi harakatlarini boshqaruvchi nervlar to‘plamiga nima kiradi?",
+  "options": [
+   "Ko‘z soqqasi harakatlarini boshqaruvchi nervlar to‘plamiga- VII, IX, X nervlar kiradi",
+   "Ko‘z soqqasi harakatlarini boshqaruvchi nervlar to‘plamiga -II, XI, XII nervlar kiradi",
+   "Ko‘z soqqasi harakatlarini boshqaruvchi nervlar to‘plamiga- III, IV, VI nervlar kiradi",
+   "Ko‘z soqqasi harakatlarini boshqaruv chi nervlar to‘plamiga -IV-VIII nervlar kiradi"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Oraliq miya tarkibiga kiruvchi asosiy strukturalar qaysilar?",
+  "options": [
+   "miyacha va ko’prik",
+   "Talamus va gipotalamus",
+   "Epitalamus va optik xiazm",
+   "Gippokampus va amigdaleus"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Tilning oldingi 3/2 qismi ta'm bilish qobiliyati qaysi nerv orqali amalga oshadi?",
+  "options": [
+   "V - uch shoxli nervi orqali amalga oshadi",
+   "X - adashgan nervi orqali amalga oshadi",
+   "VII - yuz nervi orqali amalga oshadi",
+   "IX - til- yutqich nervi orqali amalga oshadi"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Processus xiphoideus qaysi suyakka oid?",
+  "options": [
+   "to‘sh suyagi",
+   "bosh",
+   "corpus sterni",
+   "manubrium sterni"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Uzunchoq miya shikastlanishi qanday oqibatlarga olib keladi?",
+  "options": [
+   "Ko'rishning pasayishiga olib keladi",
+   "Xotira pasayishiga olib keladi",
+   "Nafas olish va yurak faoliyati buzilishiga olib keladi",
+   "Eshitish qobiliyatini yo'qotishiga olib keladi"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Ko'zning shaffof qismi nima deb ataladi?",
+  "options": [
+   "Ko'zning shaffof qismi- ko'z qorachig'i",
+   "Ko'zning shaffof qismi -ko'z qopqog'i",
+   "Ko'zning shaffof qismi - shox parda",
+   "Ko'zning shaffof qismi - qattiq parda"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Bosh miyaning qaysi qismlari asosiy reflekslar, masalan, yutish, nafas olish va qon aylanishi bilan bog‘liq?",
+  "options": [
+   "corpus callosum bilan bog‘liq",
+   "pons varoliy bilan bog‘liq",
+   "medulla oblangata bilan bog‘liq",
+   "talamus bilan bog‘liq"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Tilning harakatlanishiga qaysi nerv javobgar?",
+  "options": [
+   "IV- juft g’altak nervi javobgar",
+   "XII – juft til osti nervi javobgar",
+   "IX - juft til-yutqin nerv javobgar",
+   "VII – juft yuz nervi javobgar"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Orqa miya qaysi segmentlar qarshisida tugaydi?",
+  "options": [
+   "L1-L2 segmentlari",
+   "T12-L1 segmentlari",
+   "S1-S2 segmentlari",
+   "L5-L7 segmentlari"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Markaziy nerv tizimida axborot uzatishning asosiy shakli nima?",
+  "options": [
+   "Markaziy nerv tizimida axborot uzatishning asosiy shakli - qon tomirlar orqali",
+   "Markaziy nerv tizimida axborot uzatishning asosiy shakli - sinaps orqali",
+   "Markaziy nerv tizimida axborot uzatishning asosiy shakli - qattiq parda orqali",
+   "Markaziy nerv tizimida axborot uzatishning asosiy shakli -gormonlar orqali"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Nur sindiruvchi apparat tarkibiga kiradi…..?",
+  "options": [
+   "Nur sindiruvchi apparat tarkibiga kiradi-shox parda",
+   "Nur sindiruvchi apparat tarkibiga kiradi -to'r parda",
+   "Nur sindiruvchi apparat tarkibiga kiradi - qattiq parda",
+   "Nur sindiruvchi apparat tarkibiga kiradi -ko'z qopqog'i"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Ko'zning yorug'likka moslashuvi qaysi qism bilan amalga oshadi?",
+  "options": [
+   "To'r parda",
+   "Shox parda",
+   "Ko'z qorachig'i",
+   "qattiq parda"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Qaysi nerv diaphragmani innervatsiya qiladi?",
+  "options": [
+   "Nervus glossopharyng eus",
+   "Nervus phrenicus",
+   "Nervus vagus",
+   "O'rta miya"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Eshitish jarayoni qaysi bosh miya qismida boshlanadi?",
+  "options": [
+   "Oraliq miya",
+   "Uzunchoq miya",
+   "Eshitish po'stlog'i",
+   "Orqa miya"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Qaysi tuzilma tananing muvozanatini saqlashda yordam beradi?",
+  "options": [
+   "Kichik miya tananing muvozanatini saqlashda yordam beradi",
+   "Uzunchoq miya tananing muvozanatini saqlashda yordam beradi",
+   "O'rta miya tananing muvozanatini saqlashda yordam beradi",
+   "Orqa miya tananing muvozanatini saqlashda yordam beradi"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Uch shoxli nerv (nervus trigeminus) quyidagi qanday vazifani bajaradi?",
+  "options": [
+   "Ko‘rishni boshqaradi",
+   "Yuzdagi sezgilar vazifani bajaradi",
+   "Hushyorlikni boshqaradi",
+   "Yurak urishini boshqaradi"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Cor -Yurak qanday a’zo?",
+  "options": [
+   "chuqurli muskul a’zo",
+   "bez tuzilishiga ega a’zo",
+   "bo’shliqli muskul a’zo",
+   "moyak ortigi"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Chanоq qanday qismlarga bo’linadi ?",
+  "options": [
+   "dorsal va ichki",
+   "katta va kichik chanoqqa",
+   "оldingi va orqa chanоqlarga",
+   "yuqоrigi va pastki bo’limlarga"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Kuper bezlari qanday suyuqlik ishlab chiqaradi?",
+  "options": [
+   "shilliq suyuqlikni",
+   "sperma suyukligini",
+   "gistamin",
+   "spermatozoi dlarni"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Yoshga oid anatomiya o‘rganadi?",
+  "options": [
+   "patologik sharoitlarda a’zo va uning atrofidagi tuzilmalar morfologiyasini",
+   "a’zolar kattaligi, shakli va joylashishining jinsga oid farqlarini",
+   "Odam tanasi sistemalarini normal tuzilishini",
+   "a’zolar kattaligi, shakli va joylashishining yoshga oid farqlarini"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Yumshoq tanglayga nima xos?",
+  "options": [
+   "Qattiqlik xos",
+   "So’lak ajratishga xos",
+   "Harakatsizlik xos",
+   "Harakatchanlik xos"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Yuqori kavak vena o‘ng tomonda qaysi a'zoga yondashib turadi?",
+  "options": [
+   "Nervus phrenicus dexterga yondashib turadi",
+   "truncus brachiocephalicusga yondashib turadi",
+   "Aortae ascendensga yondashib turadi",
+   "Nervus vagus dexterga yondashib turadi"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Yuqori ko'ks oralig'ida qaysi organlar joylashgan?",
+  "options": [
+   "Perikard, to'sh yoni, diaphragma nervi, yuqori kovak vena",
+   "Ayrisimon bez, o'ng va chap yelka- bosh venalari, yuqori kovak vena, aorta ravog'I, kekirdak, qizilo'ngach ko’krak qismi",
+   "Ayrisimon bez, ko'krak qon tomirlari, perikard, aorta ravog'I, qizilo'ngach",
+   "Ko'krak qon tomirlari, to'sh yoni, perikard oldi limfa tugunlari"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Sariq va qizil tanalar qaysi a'zoda hosil bo'ladi?",
+  "options": [
+   "sariq va qizil tanalar bachadonda hosil bo'ladi",
+   "sariq va qizil tanalar qinda hosil bo'ladi",
+   "sariq va qizil tanalar urug'donda hosil bo'ladi",
+   "sariq va qizil tanalar tuxumdonda hosil bo'ladi"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Yo’g’on ichak qismlari qaysilar?",
+  "options": [
+   "Ko’r ichak, ko’ndalang chambar ichak, to’g’ri ichak, yonbosh ichak",
+   "Ko’r ichak, chuvalchangsimon o’simta, chambar ichak, 12 barmoq ichak",
+   "Ko’r ichak, Ko’tariluvchi, Ko’ndalang, pastga tushuvchi chambar ichak, sigmasimon ichak, to’g’ri ichak",
+   "Ko’ndalang chambar ichak, pastga tushuvchi va sigmasimon ichak"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Xalqumning limfa adenoid bezlari bakteriyalarga qarshi qanday faoliyat ko’rsatadi ?",
+  "options": [
+   "T va B limfositlar ishlab chiqaradi",
+   "Leykosit ishlab chiqaradi",
+   "Bazofil ishlab chiqaradi",
+   "Eritrosit ishlab chiqaradi"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Bosh sohasida Villiziy arterial doirasi nechta arteriyadan hosil boʼladi:",
+  "options": [
+   "Villiziy arterial doirasi 3 arteriyadan hosil boʼladi",
+   "Villiziy arterial doirasi 4 arteriyadan hosil boʼladi",
+   "Villiziy arterial doirasi 6 arteriyadan hosil boʼladi",
+   "Villiziy arterial doirasi 5 arteriyadan hosil boʼladi"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Toq vena -vena azygos qayerga quyiladi?",
+  "options": [
+   "Vena cava superiorga",
+   "Vena cava inferiorga",
+   "Vena brachiocepha lica sinistraga",
+   "Arteriya brachiocephalica dextraga"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Bachadon devorining qavatlarini sanang?",
+  "options": [
+   "perikard, miometrium, endometrium",
+   "perimetrium, miokardium, endometrium",
+   "capsulae fibroza, miometrium, endometrium",
+   "perimetrium, miometrium, endometrium"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Neyrogipofiz gormonlarini sanang?",
+  "options": [
+   "Neyrogipofiz gormonlari- insulin va follitropin",
+   "Neyrogipofiz gormonlari- laktin va kaltsitonin",
+   "Neyrogipofiz gormonlari vazopressin va glyukagon",
+   "Neyrogipofiz gormonlari- vazopressin va oksitotsin"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Tul o’zagida necha murtak bor",
+  "options": [
+   "Tul o’zagida 5 ta murtak bor",
+   "Tul o’zagida 1 ta murtak bor",
+   "Tul o’zagida 3ta murtak bor",
+   "Tul o’zagida 4 ta murtak bor"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Qalqonsimon orqa bezi olib tashlansa organizmda nima etishmay qoladi?",
+  "options": [
+   "Ca+ ioni miqdori kamayadi, suyak o'sishi buziladi",
+   "yod miqdori kamayadi, suyak o'sishi buziladi",
+   "fosfor miqdori kamayadi, suyak o'sishi buziladi",
+   "temir va rux miqdori kamayadi, suyak o'sishi buziladi"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Tish qatlamlarini ko'rsating?",
+  "options": [
+   "Dentinum, enamelum, molaris",
+   "Dentinum, enamelum, cementum",
+   "Dentinum, caninus",
+   "Enamelum, premolares"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Tishlarni qon bilan taʼminlaydi:",
+  "options": [
+   "til arteriyasi",
+   "tanglayning yuqorigi kotariluvchi arteriyasi",
+   "yuz arteriyasi",
+   "yuqorigi jag' arteriyasi"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Moyak faoliyati jihatidan qanday bez?",
+  "options": [
+   "Moyak faoliyati jihatidan aralash bez",
+   "Moyak faoliyati jihatidan seroz bez",
+   "Moyak faoliyati jihatidan ekzokrin bez",
+   "Moyak faoliyati jihatidan shilliq bez"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Tilning qismlarini ko'rsating?",
+  "options": [
+   "radix lingue, frenulum lingue",
+   "corpus lingue, dorsum lingue",
+   "apex lingue, corpus lingue, radix lingue",
+   "apex lingue, dorsum lingue"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Ikki tabaqali klapan qayerda joylashgan?",
+  "options": [
+   "o'pka poyasining boshlanish qismida",
+   "aorta piyozchasida",
+   "yurak chap bo'lmacha- qorinchaaro tirqishda",
+   "o'ng bo'lmacha- qorinchaaro tirqishda"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Testis (yorg’oq) parenximasi qaysi parda bilan o’ralgan?",
+  "options": [
+   "tunica vaginalis testis",
+   "tunica albuginea",
+   "fassia spermatica interna",
+   "fassia cremasterica"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Prostata bezi qanday to’qimadan tuzilgan?",
+  "options": [
+   "Mushak va bez to’qima",
+   "Mushak, pay to’qima va tomirlar",
+   "Biriktiruvchi to’qima",
+   "Bez to’qima va biriktiruvchi to’qima"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Siydik pufagi (vezica urinaria) ni sigimi qancha?",
+  "options": [
+   "Vezica urinariani sigimi 100 – 200 ml",
+   "Vezica urinariani sigimi 700 – 1000 ml",
+   "Vezica urinariani sigimi 250 – 300 ml",
+   "Vezica urinariani sigimi 500 – 700ml"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Siydik to’plash va chiqarish uchun xizmat qiladigan a’zolar?",
+  "options": [
+   "o’t pufagi, siydik yo’li, ductus efferens",
+   "siydik pufagi, siydik yo’li, siydik chiqaruv yo’li",
+   "siydik pufagi, ductus deferens",
+   "siydik pufagi, jinsiy lablar"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Buyrak og'irligi to’g’ri keltirilgan javobni belgilang?",
+  "options": [
+   "Buyrak og'irligi 120- 200 gramm",
+   "Buyrak og'irligi 80- 120 gramm",
+   "Buyrak og'irligi 100- 150 gramm",
+   "Buyrak og'irligi 180- 220 gramm"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Qulоq оldi so’lak bеzining nayi qaеrga оchiladi?",
+  "options": [
+   "оgiz bo’shligidagi til оsti so’rg’ichiga оchiladi",
+   "оgiz dahlizidagi yuqоrigi jag II katta оziq tishining to’grisiga оchiladi",
+   "оgiz dahlizining yuqоrigi III katta оziq tishining to’g’risiga оchiladi",
+   "оgiz dahlizidagi оstki jagni II kichik оziq tishining to’g’risiga оchiladi"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Qorinparda (peritoneum) ning varaqlari qaysilar?",
+  "options": [
+   "peritoneum dorsale",
+   "peritoneum parietale",
+   "peritoneum frontale,",
+   "peritoneum viscerale, peritoneum parietale"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "A'zolarini qorin parda hamma tarafdan oʻrab olsa qanday nomlanadi?",
+  "options": [
+   "eksteroperetoneal - qorin parda hamma tarafdan oʻrab olsa",
+   "interoperitoneal - qorin parda hamma tarafdan oʻrab olsa",
+   "cavum peritoneum - qorin parda hamma tarafdan oʻrab olsa",
+   "cavitas abdominis - qorin parda hamma tarafdan oʻrab olsa"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "A'zolar qorin parda bilan o'ralishiga ko'ra nechta turga bo'linadi?",
+  "options": [
+   "2 xil turga bo'linadi",
+   "1 xil turga bo'linadi",
+   "3 xil turga bo'linadi",
+   "5 xil turga bo'linadi"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Qiziloʻngach fiziologik toraymalarini toping?",
+  "options": [
+   "Qiziloʻngach fiziologik toraymalari bronxialis va aortal",
+   "Qiziloʻngach fiziologik toraymalari cardial, pulmonal",
+   "Qiziloʻngach fiziologik toraymalari aortal va abdominal",
+   "Qiziloʻngach fiziologik toraymalari aortal, cardial"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Moyakning gormoni nimaga ta’sir qiladi?",
+  "options": [
+   "Kal’tsiy, fosfor almashinuvi ga",
+   "Ikkilamchi jinsiy belgilarni rivojlanishiga",
+   "Tananing o’sishiga, uxlashga",
+   "Issiqlik almashinuviga"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Qaysi arteriya VI bo’yin umurtqasining oldingi do’mbogchasiga to’g’ri keladi?",
+  "options": [
+   "umumiy uyqu arteriyasi to’g’ri keladi",
+   "tashqi uyqu arteriyasi to’g’ri keladi",
+   "o’mrov osti arteriyasi to’g’ri keladi",
+   "ichki uyqu arteriyasi to’g’ri keladi"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "25 yoshdan o'tgandan so'ng qaysi bez yog' to'qimasiga aylanadi?",
+  "options": [
+   "Thymus bezi yog' to'qimasiga aylanadi",
+   "epifiz bezi yog' to'qimasiga aylanadi",
+   "qalqonsimon bezi yog' to'qimasiga aylanadi",
+   "Thyroidea bezi yog' to'qimasiga aylanadi"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Qaysi boylam jigarni ikki boʻlakka ajratib turadi?",
+  "options": [
+   "lig hepatoduoden ale",
+   "lig triangulare hepatis",
+   "lig. falciforme hepatis",
+   "lig cornarium hepatis"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Qorin oq chizig‘i o‘lchami qaysi joyda eng keng bo‘ladi?",
+  "options": [
+   "qov simfizi ustida keng bo‘ladi",
+   "xanjarsimon o‘siq ostida keng bo‘ladi",
+   "kindikdan 8 sm pastda keng bo‘ladi",
+   "kindik sathida keng bo‘ladi"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Qattiq tanglayni qaysi suyaklar hosil qiladi?",
+  "options": [
+   "processus maxillaris hosil qiladi",
+   "yuqori jag’ va tanglay suyaklari hosil qiladi",
+   "g’alvirsimon va ponasimon suyaklari hosil qiladi",
+   "yuqori jag’ va yonoq suyaklari hosil qiladi"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Qalqonsimon bez qanday gormonlar ishlab chiqaradi?",
+  "options": [
+   "Triyodotironin, aldosteron gormonlar ishlab chiqaradi",
+   "Tetrayodtironin, triyodtironin gormonlar ishlab chiqaradi",
+   "Paratgormon va insulin gormonlar ishlab chiqaradi",
+   "Triyodotironin, paratiroidin gormonlar ishlab chiqaradi"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Glandulae thyroideani qaysi arteriyalar qon bilan ta'minlaydi?",
+  "options": [
+   "a.thyroidea dorsalis, a.thyrocervicalis qon bilan ta'minlaydi",
+   "a.thyroidea posterior et inferior qon bilan ta'minlaydi",
+   "a.thyroidea superior, a.cervicalis qon bilan ta'minlaydi",
+   "a.thyroidea superior et inferior qon bilan ta'minlaydi"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Qalqonsimon bezning “xavfli zonasi” ini toping?",
+  "options": [
+   "Bezning yon bo‘laklari orqa yuzasida bezning “xavfli zonasi” aniqlanadi",
+   "Bez togayida bezning “xavfli zonasi” aniqlanadi",
+   "Bezning tepa bo‘laklari oldingi yuzasida bezning “xavfli zonasi” aniqlanadi",
+   "Bezning tanasida bezning “xavfli zonasi” aniqlanadi"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Siydik yo’lining kattalardagi o’lchamlarini toping:",
+  "options": [
+   "Uzunligi 30- 35 sm, kengligi o’rtacha 8 mm",
+   "Uzunligi 24- 29 sm, kengligi o’rtacha 5 mm",
+   "Uzunligi 25 sm, kengligi 2-3 mm",
+   "Uzunligi 32 sm, kengligi 5-7 mm"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Qalqonsimon orqa bezi gormonlari nimani boshqaradi?",
+  "options": [
+   "kaltsiy va fosfor almashinuvini",
+   "tuzlar va vitaminlar almashinuvini",
+   "siydik va o’t almashinuvini",
+   "glyukoza almashinuvini"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Buyrak usti bezining mag'iz moddasi qanday gormon ishlab chiqaradi?",
+  "options": [
+   "Adrenalin, insulin gormoni ishlab chiqaradi",
+   "Adrenalin va noradrenalin gormonlarini ishlab chiqaradi",
+   "Aldosteron, veroshperon gormoni ishlab chiqaradi",
+   "Adrenalin, androgenlar gormoni ishlab chiqaradi"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Plevra nechchi yoshgacha rivojlanadi va takomillashadi?",
+  "options": [
+   "17 yoshgacha rivojlanadi va takomillashadi",
+   "55 yoshgacha rivojlanadi va takomillashadi",
+   "7 yoshgacha rivojlanadi va takomillashadi",
+   "22 yoshgacha rivojlanadi va takomillashadi"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Parenhimatoz organlar berilgan qatorni belgilang?",
+  "options": [
+   "ichaklar, jigar, til",
+   "Jigar, buyrak, o’pka",
+   "tish, qizilo'ngach, jigar",
+   "me'da osti bezi, ichaklar"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Yurakda oval teshik qaerda va kimda joylashgan?",
+  "options": [
+   "o’ng quloqchasida joylashgan",
+   "bo’lmachalar orasidagi teshikda, embrionda joylashgan",
+   "chap quloqchasida joylashgan",
+   "qorinchalar orasidagi to’siqda, embrionda joylashgan"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Me’da bezlari qayerda ko’p to’plangan?",
+  "options": [
+   "Fundus- tubida ko’p to’plangan",
+   "Pars cardiaca ko’p to’plangan",
+   "Pars pylorica qismida ko’p to’plangan",
+   "Tanasida ko’p to’plangan"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Me’da osti bezi langergans orolchasi gormonlarini ayting",
+  "options": [
+   "insulin va glyukagon",
+   "progesterona androgen",
+   "aldosteron, insulin",
+   "gidrokortizo n, glyukoza"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Halqum muskullari qanday guruhlarga bo’linadi?",
+  "options": [
+   "siquvchi, ko’taruvchi",
+   "kengaytiruvchi, toraytiruvchi",
+   "Kengaytiruvchi",
+   "siquvchi, kengaytiruvchi"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Halqum muskullari qanday muskullardan tashkil topgan?",
+  "options": [
+   "silliq muskullardan",
+   "bez to'qimasidan",
+   "ko’ndalang targ’il muskullardan",
+   "Uzun muskullardan"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Pharynx qanaqa qismlardan tashkil topgan?",
+  "options": [
+   "pars nasalis, pars oralis, pars pharyngea",
+   "pars nasalis, pars oralis",
+   "processus va cauda qismlardan",
+   "pars oralis, pars laryngea"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Halqumni hiqildoq qismida nimasi bor?",
+  "options": [
+   "tarnovsimon cho’ntak",
+   "pufakli cho’ntak",
+   "o’siq va shoxi",
+   "noksimon cho’ntak"
+  ],
+  "correct": 3
+ },
+ {
+  "text": "Har jag'da oltitadan …. bo'ladi?",
+  "options": [
+   "dentes incivini",
+   "dentes molares",
+   "dentes premolares",
+   "dentes canini"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "havoni tozalash, ilitib berish, ovoz paydo qilish kabi funksiyalarni bajaradi?",
+  "options": [
+   "cavitas oris- havoni tozalash, ilitib berish, ovoz paydo qilish kabi funksiyalarni bajaradi",
+   "cavitas nasi- havoni tozalash, ilitib berish, ovoz paydo qilish kabi funksiyalarni bajaradi",
+   "Larynx- havoni tozalash, ilitib berish, ovoz paydo qilish kabi funksiyalarni bajaradi",
+   "Esophagus- havoni tozalash, ilitib berish, ovoz paydo qilish kabi funksiyalarni bajaradi"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Milk (gingivae) qanday a’zo?",
+  "options": [
+   "seroz biriktiruvchi to’qima",
+   "yuqori va pastki jag’laming alveolyar o’simtasini qoplagan biriktiruvchi to’qima",
+   "yuqori va pastki jag’larning alveolyar o’simtasini qoplagan shilliq parda",
+   "papillae conicaeni qoplagan shilliq parda"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Og’iz bo’shlig’i shilliq pardasidagi mayda so’lak bezlar qaysilar?",
+  "options": [
+   "glandulae buccales, palatinae, linguales",
+   "glandulae buccales, sublinguales",
+   "glandulae palatinae, sublinguales",
+   "glandulae buccales"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Bezlar orasidan og'irligi taxminan 20 gr bo’lgan bezni… toping?",
+  "options": [
+   "prostata bezi",
+   "gipofiz bezi",
+   "epifiz bezi",
+   "quloq oldi bezi"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Cavum oris oldingi qismining venalari qaysi venoz chigal bilan anastomozlashadi:",
+  "options": [
+   "qanotsimon venoz chigal bilan anastomozlashadi",
+   "tilosti kanalining venoz chigali anastomozlashadi",
+   "oval kanalning venoz chigali anastomozlashadi",
+   "halqum venoz chigal bilan anastomozlashadi"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Ogʼiz boʼshligʼi orqa qismining venalari qaysi venoz chigal bilan anastomozlashadi:",
+  "options": [
+   "oval kanalning venoz chigali bilan anastomozlashadi",
+   "halqum venoz chigal bilan anastomozlashadi",
+   "tilosti kanalining venoz chigali bilan anastomozlashadi",
+   "qanotsimon venoz chigal bilan anastomozlashadi"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Ogʼiz boʼshligʼi tubining diaphragmasini hosil qiladi:",
+  "options": [
+   "Musculus geniohyoide us",
+   "Musculus mylohyoideus",
+   "Musculus hyoglossus",
+   "Musculus stylohyoideus"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "diaphragma orisni hosil qiluvchi mushak:",
+  "options": [
+   "tilosti-til",
+   "bigizsimon- tilosti",
+   "jagʼ-tilosti",
+   "iyak-tilosti"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Pastki jagʼ nervi bilan qaysi tugun bogʼliq:",
+  "options": [
+   "quloq tuguni",
+   "kiprik tuguni",
+   "qattiq tanglay tuguni",
+   "tutam tuguni"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Pastki lab terisi va shilliq qavatining sezgi innervatsiyasi manbasini koʼrsating:",
+  "options": [
+   "til nervi",
+   "iyak osti nervi",
+   "yuz nervi",
+   "jagʼ-tilosti nervi"
+  ],
+  "correct": 1
+ },
+ {
+  "text": "Rimcha \"V\" shaklida joylashgan so'rgichlarni toping?",
+  "options": [
+   "papillae foliatae",
+   "papillae filiformes",
+   "papillae vallatae",
+   "papillae fungiformes"
+  ],
+  "correct": 2
+ },
+ {
+  "text": "Sut tishlari necha yoshdan chiqa boshlaydi:",
+  "options": [
+   "6 oylikdan chiqa boshlaydi",
+   "6 yoshdan chiqa boshlaydi",
+   "8 oylikdan chiqa boshlaydi",
+   "2 yoshdan chiqa boshlaydi"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Tishning qattiq moddasini qaysi modda tashkil etadi",
+  "options": [
+   "Tishning qattiq moddasi- Dentinum",
+   "Tishning qattiq moddasi –cementum, pulpa",
+   "Tishning qattiq moddasi -pulpa",
+   "Tishning qattiq moddasi –Enamelum, pulpa"
+  ],
+  "correct": 0
+ },
+ {
+  "text": "Yangi tug’ilgan chaqaloq burun yo’llari qanday rivojlangan?",
+  "options": [
+   "ustki burun yo’li bo’lmaydi, o’rta va pastki burun yo’llari yaxshi riivojlangan, berk bo’ladi",
+   "ustki va pastki burun yo’li bo’lmaydi, o’rta yo’llari yaxshi riivojlanmagan, berk bo’ladi",
+   "ustki burun yo’li bo’lmaydi, o’rta va pastki burun yo’llari yaxshi riivojlanmagan",
+   "ustki burun yo’li yaxshi riivojlanmagan, o’rta va pastki burun yo’llari bo’lmaydi"
+  ],
+  "correct": 2
+ }
+]

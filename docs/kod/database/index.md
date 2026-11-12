@@ -12,6 +12,7 @@
 | [`users.py`](users.md) | Foydalanuvchilar va sozlamalar |
 | [`content.py`](content.md) | Fanlar, darslar, savollar, qidiruv |
 | [`quizzes.py`](quizzes.md) | Test natijalarini saqlash |
+| [`anatomy.py`](anatomy.md) | 546 savollik Anatomiya banki va yashirin natija fani |
 | [`progress.py`](progress.md) | Dars jarayoni va statistika |
 | [`goals.py`](goals.md) | Kunlik maqsad va eslatma ro'yxati |
 | [`chat.py`](chat.md) | AI suhbat tarixi va kunlik limit |
@@ -22,7 +23,7 @@
 
 ## Ma'lumotlar bazasi sxemasi
 
-Loyihada **12 ta jadval** bor:
+Loyihada **13 ta jadval** bor:
 
 1. `users`
 2. `subjects`
@@ -36,6 +37,7 @@ Loyihada **12 ta jadval** bor:
 10. `achievements`
 11. `favorites`
 12. `daily_answers`
+13. `anatomy_questions`
 
 ## Umumiy qoidalar
 

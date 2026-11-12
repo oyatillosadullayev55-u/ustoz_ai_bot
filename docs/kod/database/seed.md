@@ -66,3 +66,10 @@ kontent bilan ishga tushmaydi.
 - Seed faqat kontent jadvallariga tegadi: `users`, `quiz_results`, `study_progress`, `chat_history`, `daily_goals` saqlanadi.
 - Savol ID'lari barqaror bo'lgani uchun eski natijalar va havolalar buzilmaydi.
 - JSON'da faqat admin tomonidan tasdiqlangan matn bo'lishi kerak; foydalanuvchi kiritgan matn seed'ga tushmaydi.
+
+## Anatomiya banki
+
+`seed_content()` fan/dars/savollarni yuklagach, `init_db()` `seed_anatomy()` ni ham
+chaqiradi. U `content/anatomy_questions.json` dagi 546 savolni `anatomy_questions`
+jadvaliga yozadi va `subjects.id=900` yashirin fanini yaratadi. Batafsil:
+[`database/anatomy.md`](anatomy.md).

@@ -43,6 +43,7 @@ Test oxirida `TemporaryDirectory.cleanup()` baza faylini o'chiradi. Haqiqiy `.en
 | Kontent | 8 fan, 35 dars, 140 savol; har bir darsda 4 savol |
 | Dars sifati | Har bir darsda 80+ belgili `summary`, aynan 3 ta `key_points`, to'g'ri `level`, 1–120 `duration_min`, 900+ belgili `content` |
 | Savollar | `get_questions_by_ids` va bo'sh ro'yxat |
+| Anatomiya | 546 ta takrorlanmagan savol; yashirin `subjects.id=900`; har bir savolda 4 variant va 0–3 indeks; tasodifiy tanlash limiti; ID bo'yicha o'qish; `seed_anatomy()` idempotentligi |
 | Health server | `PORT` bo'lmasa server ochilmaydi; `PORT` berilganda `/health` 200 va `status=ok` qaytaradi |
 | Vaqt | `seconds_until_local_time` bugun/ertaga hisobi |
 | Qidiruv | `search_lessons("fotosintez nima")` natijasi |

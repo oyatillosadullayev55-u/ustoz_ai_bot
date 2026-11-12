@@ -21,6 +21,7 @@ Bu papkada UstozAI loyihasining **har bir kod fayli** uchun alohida markdown huj
 | `database/users.py` | [database/users.md](database/users.md) |
 | `database/content.py` | [database/content.md](database/content.md) |
 | `database/quizzes.py` | [database/quizzes.md](database/quizzes.md) |
+| `database/anatomy.py` | [database/anatomy.md](database/anatomy.md) |
 | `database/progress.py` | [database/progress.md](database/progress.md) |
 | `database/goals.py` | [database/goals.md](database/goals.md) |
 | `database/chat.py` | [database/chat.md](database/chat.md) |
@@ -38,6 +39,7 @@ Bu papkada UstozAI loyihasining **har bir kod fayli** uchun alohida markdown huj
 | `handlers/ai_tutor.py` | [handlers/ai_tutor.md](handlers/ai_tutor.md) |
 | `handlers/lessons.py` | [handlers/lessons.md](handlers/lessons.md) |
 | `handlers/quizzes.py` | [handlers/quizzes.md](handlers/quizzes.md) |
+| `handlers/anatomy.py` | [handlers/anatomy.md](handlers/anatomy.md) |
 | `handlers/progress.py` | [handlers/progress.md](handlers/progress.md) |
 | `handlers/daily_plan.py` | [handlers/daily_plan.md](handlers/daily_plan.md) |
 | `handlers/settings.py` | [handlers/settings.md](handlers/settings.md) |

@@ -99,8 +99,15 @@ def _lessons_text(subject, lessons, completed_ids: set[int]) -> str:
         duration_note = f"⏱️ Har bir dars {min(durations)}–{max(durations)} daqiqa.\n"
 
     is_prog = (subject["code"] == "programming") if "code" in subject.keys() else False
+    is_biology = (subject["code"] == "biology") if "code" in subject.keys() else False
     title_suffix = " YO'NALISHLARI" if is_prog else ""
     choose_prompt = "Yo'nalishni tanlang:" if is_prog else "Mavzuni tanlang:"
+    anatomy_note = (
+        "\n🫀 <b>Anatomiya</b> bo'yicha 2-kurs test banki ham mavjud — "
+        "vaqt cheklangan rejimlarda sinab ko'ring.\n"
+        if is_biology
+        else ""
+    )
 
     return (
         f"{subject['emoji']} "
@@ -109,7 +116,8 @@ def _lessons_text(subject, lessons, completed_ids: set[int]) -> str:
         f"{html.escape(subject['description'])}\n\n"
         f"📊 {completed_count}/{len(lessons)} dars · "
         f"{progress_bar(completed_count, len(lessons))}\n"
-        f"{duration_note}\n"
+        f"{duration_note}"
+        f"{anatomy_note}\n"
         f"{choose_prompt}"
     )
 
@@ -405,7 +413,12 @@ async def show_lessons(callback: CallbackQuery) -> None:
     await safe_edit(
         callback,
         _lessons_text(subject, lessons, completed_ids),
-        get_lessons_keyboard(lessons, completed_ids, subject_id),
+        get_lessons_keyboard(
+            lessons,
+            completed_ids,
+            subject_id,
+            anatomy=subject["code"] == "biology",
+        ),
     )
     await callback.answer()
 

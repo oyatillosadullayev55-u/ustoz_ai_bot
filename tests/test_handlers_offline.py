@@ -31,6 +31,7 @@ from aiogram.client.default import DefaultBotProperties  # noqa: E402
 from aiogram.enums import ChatAction, ChatType, ParseMode  # noqa: E402
 from aiogram.fsm.storage.memory import MemoryStorage  # noqa: E402
 from aiogram.methods import (  # noqa: E402
+    AnswerCallbackQuery,
     EditMessageCaption,
     EditMessageText,
     SendChatAction,
@@ -54,6 +55,10 @@ from config import get_settings  # noqa: E402
 
 get_settings.cache_clear()
 
+from database.anatomy import (  # noqa: E402
+    ANATOMY_SUBJECT_ID,
+    get_anatomy_question,
+)
 from database.chat import add_message, get_history  # noqa: E402
 from database.content import get_lesson, get_question  # noqa: E402
 from database.daily import (  # noqa: E402
@@ -74,6 +79,7 @@ from database.users import get_user  # noqa: E402
 from handlers import (  # noqa: E402
     admin,
     ai_tutor,
+    anatomy,
     daily,
     daily_plan,
     gamification,
@@ -226,6 +232,7 @@ async def main() -> None:
     dispatcher.include_router(ai_tutor.router)
     dispatcher.include_router(lessons.router)
     dispatcher.include_router(quizzes.router)
+    dispatcher.include_router(anatomy.router)
     dispatcher.include_router(progress.router)
     dispatcher.include_router(gamification.router)
     dispatcher.include_router(daily.router)
@@ -374,6 +381,11 @@ async def main() -> None:
     fake.calls.clear()
     await send_callback("lesson:subject:5")
     check("lesson:view:501" in last_inline_callbacks(fake), "Biologiya darslari chiqdi", errors)
+    check(
+        "anatomy:menu" in last_inline_callbacks(fake),
+        "Biologiya bo'limida vaqtli anatomiya testlari tugmasi bor",
+        errors,
+    )
 
     fake.calls.clear()
     await send_callback("lesson:view:501")
@@ -998,6 +1010,205 @@ async def main() -> None:
         "takroriy missiya mukofoti XP qo'shmadi",
         errors,
     )
+
+    # 9. Anatomiya: vaqtli test rejimlari
+    fake.calls.clear()
+    await send_callback("anatomy:menu", message=callback_message)
+    check(
+        "ANATOMIYA" in last_caption(fake),
+        "anatomiya menyusi banner bilan ochildi",
+        errors,
+    )
+    check(
+        any(isinstance(method, SendPhoto) for method in fake.calls),
+        "anatomiya banneri rasm sifatida yuborildi",
+        errors,
+    )
+    check(
+        {"anatomy:start:10", "anatomy:start:20", "anatomy:start:50"}
+        <= set(last_inline_callbacks(fake)),
+        "anatomiya menyusida uch vaqtli rejim bor",
+        errors,
+    )
+
+    fake.calls.clear()
+    await send_callback("anatomy:start:10", message=photo_message)
+    first_question_text = last_text(fake)
+    check(
+        "ANATOMIYA" in first_question_text and "1/10" in first_question_text,
+        "anatomiya testi birinchi savoldan boshlandi",
+        errors,
+    )
+    check(
+        re.search(r"\d{2}:\d{2}", first_question_text) is not None,
+        "savolda vaqt hisoblagichi ko'rsatildi",
+        errors,
+    )
+    check(
+        "A)" in first_question_text and "D)" in first_question_text,
+        "variantlar savol matnida A-D ko'rinishida chiqdi",
+        errors,
+    )
+    check(
+        len(
+            [
+                item
+                for item in last_inline_callbacks(fake)
+                if item.startswith("anatomy:answer:")
+            ]
+        )
+        == 4,
+        "anatomiya savolida 4 ta javob tugmasi bor",
+        errors,
+    )
+
+    for question_number in range(1, 11):
+        answer_callbacks = [
+            item
+            for item in last_inline_callbacks(fake)
+            if item.startswith("anatomy:answer:")
+        ]
+        check(
+            len(answer_callbacks) == 4,
+            f"anatomiya {question_number}-savolda 4 ta variant bor",
+            errors,
+        )
+        _, _, question_raw, _ = answer_callbacks[0].split(":")
+        question = await get_anatomy_question(int(question_raw))
+        assert question is not None
+        correct = int(question["correct_option"])
+        option = correct if question_number > 1 else (correct + 1) % 4
+
+        fake.calls.clear()
+        await send_callback(f"anatomy:answer:{question['id']}:{option}")
+        if question_number == 1:
+            check(
+                "❌" in reaction_emojis(fake),
+                "xato javobga reaksiya qo'yildi",
+                errors,
+            )
+        if question_number == 2:
+            check(
+                "✅" in reaction_emojis(fake),
+                "to'g'ri javobga reaksiya qo'yildi",
+                errors,
+            )
+        if question_number < 10:
+            check(
+                f"{question_number + 1}/10" in last_text(fake),
+                f"anatomiya {question_number + 1}-savolga o'tildi",
+                errors,
+            )
+
+    anatomy_texts = sent_texts(fake)
+    check(
+        any("TEST YAKUNLANDI" in text for text in anatomy_texts),
+        "anatomiya testi yakunlandi xabari chiqdi",
+        errors,
+    )
+    check(
+        any("9/10" in text and "90%" in text for text in anatomy_texts),
+        "anatomiya natijasi 9/10 va 90% hisoblandi",
+        errors,
+    )
+    check(
+        any("Mukofot: <b>+" in text for text in anatomy_texts),
+        "anatomiya uchun XP mukofoti ko'rsatildi",
+        errors,
+    )
+    check(
+        any("Xatolar tahlili" in text for text in anatomy_texts),
+        "anatomiya xato javoblari tahlil qilindi",
+        errors,
+    )
+
+    async with get_connection() as db:
+        cursor = await db.execute(
+            """
+            SELECT correct_answers, total_questions, score_percent
+            FROM quiz_results
+            WHERE user_id = ? AND subject_id = ?
+            ORDER BY id DESC
+            LIMIT 1
+            """,
+            (USER_ID, ANATOMY_SUBJECT_ID),
+        )
+        anatomy_result = await cursor.fetchone()
+    check(
+        anatomy_result is not None
+        and int(anatomy_result["correct_answers"]) == 9
+        and int(anatomy_result["total_questions"]) == 10
+        and int(anatomy_result["score_percent"]) == 90,
+        "anatomiya natijasi yashirin fanga saqlandi",
+        errors,
+    )
+    goal = await get_today_goal(USER_ID)
+    check(
+        int(goal["completed_quizzes"]) == 2,
+        "anatomiya testi kunlik reja hisobini oshirdi",
+        errors,
+    )
+
+    fake.calls.clear()
+    await send_callback(f"anatomy:answer:{question['id']}:{correct}")
+    stale_answers = [
+        method
+        for method in fake.calls
+        if isinstance(method, AnswerCallbackQuery)
+    ]
+    check(
+        bool(stale_answers)
+        and "yakunlangan" in (stale_answers[-1].text or ""),
+        "eski anatomiya tugmasi ogohlantirish qaytardi",
+        errors,
+    )
+
+    anatomy.ANATOMY_MODES[10] = 2.0
+    try:
+        fake.calls.clear()
+        await send_callback("anatomy:start:10", message=photo_message)
+        timeout_callbacks = [
+            item
+            for item in last_inline_callbacks(fake)
+            if item.startswith("anatomy:answer:")
+        ]
+        _, _, question_raw, _ = timeout_callbacks[0].split(":")
+        timed_question = await get_anatomy_question(int(question_raw))
+        assert timed_question is not None
+        timed_option = int(timed_question["correct_option"])
+        await send_callback(f"anatomy:answer:{timed_question['id']}:{timed_option}")
+        await asyncio.sleep(2.5)
+        timeout_text = next(
+            (text for text in sent_texts(fake) if "VAQT TUGADI" in text),
+            "",
+        )
+        check(
+            "javob berilgan <b>1</b> ta savol" in timeout_text,
+            "vaqt tugaganda javob berilgan savol baholandi",
+            errors,
+        )
+        check(
+            "⏱ Sarflandi" in timeout_text,
+            "vaqt tugagan natijada sarflangan vaqt ko'rsatildi",
+            errors,
+        )
+        async with get_connection() as db:
+            cursor = await db.execute(
+                """
+                SELECT COUNT(*) AS total
+                FROM quiz_results
+                WHERE user_id = ? AND subject_id = ?
+                """,
+                (USER_ID, ANATOMY_SUBJECT_ID),
+            )
+            anatomy_count = int((await cursor.fetchone())["total"])
+        check(
+            anatomy_count == 2,
+            "vaqt tugaganda ham natija fanga saqlandi",
+            errors,
+        )
+    finally:
+        anatomy.ANATOMY_MODES[10] = 300
 
     check(not errors, "kunlik bo'limlar xatosiz ishladi", errors)
 

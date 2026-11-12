@@ -131,6 +131,26 @@ So'rov 2–100 belgi oralig'ida bo'lishi shart.
 Test natijasi avtomatik saqlanadi, kunlik rejaga +1 test qo'shiladi va XP beriladi:
 `5 + 2 × to'g'ri javob`, 100% natija uchun qo'shimcha `+10`.
 
+### 🫀 Anatomiya vaqtli testlari
+
+**📚 Darslar → Biologiya** bo'limida `🫀 Anatomiya testlari · ⏱ vaqtli` tugmasi bor.
+Bu 546 savollik alohida bank va uch rejim:
+
+| Rejim | Savollar | Vaqt |
+| --- | --- | --- |
+| ⚡ Tezkor | 10 | 5 daqiqa |
+| 🎯 Standart | 20 | 10 daqiqa |
+| 🏆 Marafon | 50 | 25 daqiqa |
+
+1. Rejimni tanlang — savol ekranida qolgan vaqt va progress bar ko'rinadi.
+2. Har bir savolda A–D variantlari matnda chiqadi; mos harfni bosing.
+3. Vaqt tugasa, faqat javob berilgan savollar baholanadi; birorta javob bo'lmasa,
+   natija saqlanmaydi.
+4. Yakunda foiz, sarflangan vaqt, rekord va XP ko'rsatiladi. Xato javoblar alohida
+   xabarda tahlil qilinadi.
+5. Natija **📊 Mening natijalarim** bo'limida «Anatomiya» nomi bilan chiqadi va kunlik
+   rejaga qo'shiladi.
+
 ## Mening natijalarim
 
 **📊 Mening natijalarim** bo'limida quyidagilar ko'rsatiladi:

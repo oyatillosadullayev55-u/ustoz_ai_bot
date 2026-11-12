@@ -289,3 +289,52 @@ o'rnatadi. WAL rejimida bu xavfsiz va yozishni tezlashtiradi.
 O'zgarishlar lokal commit qilindi. GitHub'ga push qilish va Render deploy alohida
 tasdiq bilan bajariladi. **Lokal `python bot.py` ni Render ishlab turganda ishga
 tushirmang** — polling rejimida bitta nusxa ishlashi kerak.
+
+## 2026-11-12 — Anatomiya vaqtli testlari
+
+**Nima qo'shildi:** **📚 Darslar → Biologiya** ichida `🫀 Anatomiya testlari · ⏱ vaqtli`
+bo'limi. `ANATOMIYA_549_test.html` faylidagi testlar 546 ta takrorlanmagan savolga
+keltirildi va uch vaqtli rejimda ishlaydi.
+
+| Rejim | Savollar | Vaqt |
+| --- | --- | --- |
+| ⚡ Tezkor | 10 | 5 daqiqa |
+| 🎯 Standart | 20 | 10 daqiqa |
+| 🏆 Marafon | 50 | 25 daqiqa |
+
+### Dizayn
+
+- Menyu `assets/anatomy_banner.png` rasmli kartochka bilan ochiladi.
+- Savol ekranida `⏳ 04:46 qoldi` hisoblagichi va `▓▓▓░░░░░░░` progress bar.
+- Variantlar matnda **A)–D)** qatorlari sifatida, tugmalarda faqat harflar — uzun
+  variantlar ham tugma limitiga sig'adi.
+- Javobda `✅`/`❌` reaksiyasi, yakunda natijaga mos `🏆`/`👏`/`👍`/`💪`.
+- Natija ekranida foiz, progress bar, sarflangan vaqt, rekord va XP.
+
+### Vaqt chegarasi
+
+- Har bir test uchun fon vazifasi deadline'gacha kutadi va testni yakunlaydi.
+- Foydalanuvchi lock'i tufayli kechikkan javob va taymer bir vaqtda yakunlay olmaydi.
+- Vaqt tugasa faqat javob berilgan savollar baholanadi; birorta javob bo'lmasa,
+  natija saqlanmaydi.
+- Eski savol tugmasi bosilsa, "Bu test yakunlangan" ogohlantirishi qaytadi.
+
+### Baza va natijalar
+
+- Yangi `anatomy_questions` jadvali (546 savol, 4 variant, 0–3 indeks).
+- Natijalar `quiz_results.subject_id = 900` yashirin `Anatomiya` faniga yoziladi;
+  fanlar ro'yxatida ko'rinmaydi, lekin **📊 Mening natijalarim**da chiqadi.
+- XP: `5 + 2 × to'g'ri javob`; to'liq 100% natija uchun `+10`; kunlik rejaga +1 test.
+
+### Tekshiruv natijalari
+
+| Tekshiruv | Natija |
+| --- | --- |
+| `ruff check .` | All checks passed |
+| `tests/test_offline.py` | `OFFLINE_TESTS_OK` |
+| `tests/test_handlers_offline.py` | `HANDLER_FLOW_OK` |
+
+### Deploy holati
+
+O'zgarishlar faqat lokal commit qilinadi. Push va Render deploy alohida tasdiq bilan
+bajariladi; Render xizmati va tokenlar o'zgartirilmaydi.

@@ -21,6 +21,7 @@ from database.db import init_db
 from handlers import (
     admin,
     ai_tutor,
+    anatomy,
     daily,
     daily_plan,
     gamification,
@@ -147,6 +148,7 @@ async def run_bot(settings: Settings) -> None:
         dispatcher.include_router(ai_tutor.router)
         dispatcher.include_router(lessons.router)
         dispatcher.include_router(quizzes.router)
+        dispatcher.include_router(anatomy.router)
         dispatcher.include_router(progress.router)
         dispatcher.include_router(gamification.router)
         dispatcher.include_router(daily.router)

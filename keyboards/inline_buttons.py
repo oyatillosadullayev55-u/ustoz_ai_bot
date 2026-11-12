@@ -15,6 +15,18 @@ LEVELS: dict[str, str] = {
 
 OPTION_LETTERS = ("A", "B", "C", "D")
 
+ANATOMY_MODES: dict[int, int] = {
+    10: 300,
+    20: 600,
+    50: 1500,
+}
+
+ANATOMY_MODE_LABELS: dict[int, str] = {
+    10: "⚡ Tezkor · 10 savol · 5 daqiqa",
+    20: "🎯 Standart · 20 savol · 10 daqiqa",
+    50: "🏆 Marafon · 50 savol · 25 daqiqa",
+}
+
 
 def get_levels_keyboard() -> InlineKeyboardMarkup:
     builder = InlineKeyboardBuilder()
@@ -55,7 +67,11 @@ def get_subjects_keyboard(
 
 
 def get_lessons_keyboard(
-    lessons: Sequence, completed_ids: set[int], subject_id: int
+    lessons: Sequence,
+    completed_ids: set[int],
+    subject_id: int,
+    *,
+    anatomy: bool = False,
 ) -> InlineKeyboardMarkup:
     builder = InlineKeyboardBuilder()
     for lesson in lessons:
@@ -65,6 +81,13 @@ def get_lessons_keyboard(
             callback_data=f"lesson:view:{lesson['id']}",
         )
     builder.adjust(1)
+    if anatomy:
+        builder.row(
+            InlineKeyboardButton(
+                text="🫀 Anatomiya testlari · ⏱ vaqtli",
+                callback_data="anatomy:menu",
+            )
+        )
     builder.row(
         InlineKeyboardButton(
             text="⬅️ Fanlar", callback_data="lesson:subjects"
@@ -191,6 +214,41 @@ def get_lesson_details_keyboard(
         ),
         InlineKeyboardButton(text="🏠 Menyu", callback_data="menu:home"),
     )
+    return builder.as_markup()
+
+
+def get_anatomy_menu_keyboard() -> InlineKeyboardMarkup:
+    builder = InlineKeyboardBuilder()
+    for count, label in ANATOMY_MODE_LABELS.items():
+        builder.button(text=label, callback_data=f"anatomy:start:{count}")
+    builder.adjust(1)
+    builder.row(
+        InlineKeyboardButton(text="📊 Natijalarim", callback_data="stats:refresh"),
+        InlineKeyboardButton(text="⬅️ Biologiya", callback_data="lesson:subject:5"),
+    )
+    builder.row(InlineKeyboardButton(text="🏠 Bosh menyu", callback_data="menu:home"))
+    return builder.as_markup()
+
+
+def get_anatomy_options_keyboard(question_id: int) -> InlineKeyboardMarkup:
+    builder = InlineKeyboardBuilder()
+    for index, letter in enumerate(OPTION_LETTERS):
+        builder.button(
+            text=letter,
+            callback_data=f"anatomy:answer:{question_id}:{index}",
+        )
+    builder.adjust(4)
+    return builder.as_markup()
+
+
+def get_anatomy_result_keyboard() -> InlineKeyboardMarkup:
+    builder = InlineKeyboardBuilder()
+    builder.button(text="🔁 Boshqa rejim", callback_data="anatomy:menu")
+    builder.button(
+        text="📚 Biologiya darslari", callback_data="lesson:subject:5"
+    )
+    builder.button(text="🏠 Bosh menyu", callback_data="menu:home")
+    builder.adjust(1)
     return builder.as_markup()
 
 

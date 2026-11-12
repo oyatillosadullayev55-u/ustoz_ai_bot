@@ -7,6 +7,8 @@
 
 - `LEVELS` — daraja kodi → o'qiladigan nom (`beginner` → `Boshlang'ich` va h.k.).
 - `OPTION_LETTERS` — `("A", "B", "C", "D")`, test variantlari uchun.
+- `ANATOMY_MODES` — `{10: 300, 20: 600, 50: 1500}`: savollar soni → vaqt (soniya).
+- `ANATOMY_MODE_LABELS` — rejim tugmalaridagi matnlar (`⚡ Tezkor · 10 savol · 5 daqiqa` …).
 
 ## Klaviaturalar
 
@@ -19,6 +21,9 @@
 | `get_lesson_details_keyboard(...)` | `lesson:view:<id>` (kartochkaga qaytish), `lesson:complete`, `lesson:ask`, `quiz:subject`, qo'shni darslar, `lesson:subject`, `menu:home` |
 | `get_quiz_options_keyboard(question_id, options)` | `quiz:answer:<question_id>:<0-3>` |
 | `get_quiz_result_keyboard(subject_id)` | `quiz:subject:<id>`, `quiz:subjects` |
+| `get_anatomy_menu_keyboard()` | `anatomy:start:10`, `anatomy:start:20`, `anatomy:start:50`, `stats:refresh`, `lesson:subject:5`, `menu:home` |
+| `get_anatomy_options_keyboard(question_id)` | `anatomy:answer:<question_id>:<0-3>` (faqat A–D harflari) |
+| `get_anatomy_result_keyboard()` | `anatomy:menu`, `lesson:subject:5`, `menu:home` |
 | `get_search_results_keyboard(lessons)` | `lesson:view:<id>` |
 | `get_progress_keyboard()` | `stats:refresh`, `quiz:subjects`, `menu:home` |
 | `get_goal_keyboard(...)` | `goal:set:<lessons>:<quizzes>`, `goal:refresh` |
@@ -34,6 +39,8 @@
 ## Xavfsizlik va limitlar
 
 - Test tugmalarida to'g'ri javob yo'q — faqat savol ID'si va variant indeksi.
+- Anatomiya variantlari matnda A)–D) qatorlari sifatida chiqadi; tugmalarda faqat harf
+  bo'ladi, shuning uchun eng uzun variant ham Telegram tugma limitiga urilmaydi.
 - Variant matni 60 belgidan uzun bo'lsa qisqartiriladi (Telegram tugma limiti).
 - Qidiruv natijalari tugma matni ham 60 belgi bilan cheklanadi.
 - Barcha callback'lar qisqa va barqaror; matn o'zgarishi callback'ni buzmaydi.

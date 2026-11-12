@@ -7,15 +7,16 @@ O'zbek tilida ishlaydigan to'liq ta'lim Telegram boti. **Python 3**, **aiogram 3
 
 > **Holat: barcha asosiy bo'limlar tayyor.** Ro'yxatdan o'tish, AI Ustoz, 8 fan (Dasturlash yo'nalishlari birlashtirilgan)
 > bo'yicha rasmli darslar (qisqa mazmun, asosiy fikrlar, batafsil izoh va mini mashq),
-> 140 savol, natijalar statistikasi, XP va yutuqlar, haftalik reyting, sevimli darslar,
-> kunlik reja, kunlik sovg'a va savol, haftalik missiyalar, sozlamalar, admin panel
-> (baza zaxirasi va CSV eksport), dars qidiruvi, kunlik eslatmalar va bepul serverga
-> joylash tayyor.
+> 140 savol, Biologiya ichida 546 savollik vaqtli Anatomiya testlari, natijalar statistikasi,
+> XP va yutuqlar, haftalik reyting, sevimli darslar, kunlik reja, kunlik sovg'a va savol,
+> haftalik missiyalar, sozlamalar, admin panel (baza zaxirasi va CSV eksport), dars qidiruvi,
+> kunlik eslatmalar va bepul serverga joylash tayyor.
 
 ## Hujjatlar
 
-- [Yangilanishlar tarixi](docs/YANGILANISH.md) — 2026-11-01: kunlik sovg'a, savol va
-  missiyalar; 2026-10-31: gamifikatsiya, sevimlilar, zaxira, test va AI UX.
+- [Yangilanishlar tarixi](docs/YANGILANISH.md) — 2026-11-12: vaqtli Anatomiya testlari;
+  2026-11-01: kunlik sovg'a, savol va missiyalar; 2026-10-31: gamifikatsiya, sevimlilar,
+  zaxira, test va AI UX.
 - [Loyiha hujjati](docs/LOYIHA.md) — arxitektura, baza sxemasi, asosiy oqimlar,
   AI cheklovlari, testlar va xavfsizlik.
 - [Foydalanuvchi qo'llanmasi](docs/FOYDALANISH.md) — botdan foydalanish, buyruqlar,
@@ -48,6 +49,10 @@ O'zbek tilida ishlaydigan to'liq ta'lim Telegram boti. **Python 3**, **aiogram 3
   test yakunlanguncha ko'rsatilmaydi. Yakunda xato javoblar tahlili (tanlangan variant,
   to'g'ri variant va izoh) yuboriladi. Fan tugmasida eng yaxshi natija (`80%`) turadi,
   yangi rekord alohida nishonlanadi.
+- **Anatomiya vaqtli testlari** — **📚 Darslar → Biologiya** ichida 546 savollik bankdan
+  uch rejim: ⚡ 10 savol / 5 daqiqa, 🎯 20 / 10 daqiqa, 🏆 50 / 25 daqiqa. Savol ekranida
+  vaqt hisoblagichi va progress bar, yakunda foiz, sarflangan vaqt, rekord va xatolar
+  tahlili. Vaqt tugasa faqat javob berilgan savollar baholanadi.
 - **Gamifikatsiya** — har bir dars, test, to'g'ri javob, kunlik maqsad va AI savoli
   uchun XP. 6 daraja (🌱 Yangi boshlovchi → 👑 Afsona), 12 ta yutuq va so'nggi 7 kunlik
   **TOP-10 haftalik reyting**. Darajaga yetganda va yutuq ochilganda xabar keladi.
@@ -412,15 +417,17 @@ python tests\test_handlers_offline.py
 - `test_offline.py` — baza, 140 savol, dars maydonlari, eski baza migratsiyasi, health
   server, qidiruv, natijalar, streak, XP va yutuqlar, haftalik reyting, sevimlilar,
   fan progressi, baza zaxirasi va CSV eksport, AI fallback va dars konteksti,
-  kunlik sovg'a va savol, haftalik missiyalar, bildirishnomalar, eslatma ro'yxati va
+  kunlik sovg'a va savol, haftalik missiyalar, bildirishnomalar, eslatma ro'yxati,
+  Anatomiya banki (546 savol, yashirin fan, idempotent seed) va
   admin statistikasi. Natija: `OFFLINE_TESTS_OK`.
 - `test_handlers_offline.py` — to'liq handler oqimi: ro'yxatdan o'tish, 35 ta rasmning
   mavjudligi, caption limiti, rasmli dars kartochkasi, asosiy fikrlar, batafsil o'qish,
   oldingi/keyingi dars, darsni batafsil ekranda tugatish, sevimlilar, dars bo'yicha AI,
   qidiruv, 5 savolli test (bitta xato javob va tahlil), XP, statistika, yutuqlar,
   reyting, sevimlilar ekrani, kunlik reja, sozlamalar, AI, `/id`, admin, baza zaxirasi,
-  CSV eksport, xabar yuborish, kunlik eslatma, sovg'a, kunlik savol va missiya
-  mukofotini olish. Natija: `HANDLER_FLOW_OK`.
+  CSV eksport, xabar yuborish, kunlik eslatma, sovg'a, kunlik savol, missiya mukofoti,
+  Anatomiya rejimlari, 10 savolli natija, vaqt tugashi va eski tugma ogohlantirishi.
+  Natija: `HANDLER_FLOW_OK`.
 
 Testlar vaqtinchalik bazadan foydalanadi va haqiqiy `ustoz_ai.db` ga tegmaydi.
 
@@ -460,12 +467,15 @@ ustoz_ai_bot/
 ├── README.md
 ├── .github/workflows/ci.yml  # Ruff + offline testlar
 ├── assets/
-│   └── lesson_images/        # 35 ta 1280x735 dars rasmi
+│   ├── lesson_images/        # 35 ta 1280x735 dars rasmi
+│   └── anatomy_banner.png    # Anatomiya bo'limi banneri
 ├── content/
-│   └── seed_data.json        # 8 fan (Dasturlash yo'nalishlari birlashtirilgan), 35 dars, 140 savol
+│   ├── seed_data.json        # 8 fan (Dasturlash yo'nalishlari birlashtirilgan), 35 dars, 140 savol
+│   └── anatomy_questions.json # 546 ta Anatomiya testi
 ├── database/
-│   ├── db.py                 # 12 jadval sxemasi, ulanish va migratsiya
+│   ├── db.py                 # 13 jadval sxemasi, ulanish va migratsiya
 │   ├── seed.py               # Kontentni yuklash
+│   ├── anatomy.py            # Anatomiya banki va yashirin natija fani
 │   ├── users.py              # Foydalanuvchilar
 │   ├── content.py            # Fanlar, darslar, qidiruv, fan progressi
 │   ├── progress.py           # Darslar, statistika, streak
@@ -481,6 +491,7 @@ ustoz_ai_bot/
 │   ├── ai_tutor.py           # AI Ustoz rejimi va dars konteksti
 │   ├── lessons.py            # Kartochka, batafsil o'qish, navigatsiya, sevimlilar, /qidiruv
 │   ├── quizzes.py            # Testlar, natija va xatolar tahlili
+│   ├── anatomy.py            # Vaqtli Anatomiya testlari (10/20/50 savol)
 │   ├── progress.py           # Natijalar, daraja va yutuqlar
 │   ├── gamification.py       # Yutuqlar, reyting va sevimlilar ekranlari
 │   ├── daily.py              # Sovg'a, kunlik savol va missiyalar

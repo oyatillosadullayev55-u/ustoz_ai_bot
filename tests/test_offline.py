@@ -35,6 +35,14 @@ from config import ConfigError, get_settings  # noqa: E402
 get_settings.cache_clear()
 
 from database.admin import get_admin_stats, get_all_user_ids  # noqa: E402
+from database.anatomy import (  # noqa: E402
+    ANATOMY_SUBJECT_ID,
+    count_anatomy_questions,
+    get_anatomy_question,
+    get_anatomy_questions,
+    get_anatomy_questions_by_ids,
+    seed_anatomy,
+)
 from database.chat import add_message, get_ai_usage, get_history  # noqa: E402
 from database.content import (  # noqa: E402
     get_lesson,
@@ -341,6 +349,73 @@ async def run_tests() -> None:
         "ID bo'yicha olingan savol matni mos keldi",
     )
     check(await get_questions_by_ids([]) == {}, "bo'sh ro'yxat uchun lug'at bo'sh")
+
+    check(
+        await count_anatomy_questions() == 546,
+        "anatomiya bankida 546 ta takrorlanmagan savol bor",
+    )
+    async with get_connection() as db:
+        cursor = await db.execute(
+            """
+            SELECT id, is_active
+            FROM subjects
+            WHERE id = ?
+            """,
+            (ANATOMY_SUBJECT_ID,),
+        )
+        anatomy_subject = await cursor.fetchone()
+        cursor = await db.execute(
+            "SELECT COUNT(DISTINCT question_text) AS total FROM anatomy_questions"
+        )
+        unique_anatomy = int((await cursor.fetchone())["total"])
+    check(
+        anatomy_subject is not None and int(anatomy_subject["is_active"]) == 0,
+        "anatomiya fani yashirin fan sifatida saqlandi",
+    )
+    check(
+        all(int(item["id"]) != ANATOMY_SUBJECT_ID for item in subjects),
+        "anatomiya fani fanlar ro'yxatiga chiqmaydi",
+    )
+    check(
+        unique_anatomy == 546,
+        "anatomiya savollari matni takrorlanmaydi",
+    )
+
+    anatomy_sample = await get_anatomy_questions(10)
+    check(len(anatomy_sample) == 10, "anatomiya uchun 10 ta savol tanlandi")
+    check(
+        all(
+            str(question["question_text"]).strip()
+            and all(
+                str(question[field]).strip()
+                for field in ("option_a", "option_b", "option_c", "option_d")
+            )
+            and 0 <= int(question["correct_option"]) <= 3
+            for question in anatomy_sample
+        ),
+        "anatomiya savollarida matn, 4 variant va to'g'ri indeks bor",
+    )
+    check(
+        len(await get_anatomy_questions(0)) == 0,
+        "anatomiya uchun bo'sh limit savol qaytarmadi",
+    )
+    anatomy_single = await get_anatomy_question(int(anatomy_sample[0]["id"]))
+    check(
+        anatomy_single is not None
+        and anatomy_single["question_text"] == anatomy_sample[0]["question_text"],
+        "anatomiya savoli ID bo'yicha o'qildi",
+    )
+    anatomy_map = await get_anatomy_questions_by_ids(
+        [int(anatomy_sample[0]["id"]), int(anatomy_sample[1]["id"])]
+    )
+    check(len(anatomy_map) == 2, "anatomiya savollari ID ro'yxati bilan olindi")
+    check(await get_anatomy_questions_by_ids([]) == {}, "bo'sh anatomiya ro'yxati lug'ati bo'sh")
+
+    await seed_anatomy()
+    check(
+        await count_anatomy_questions() == 546,
+        "anatomiya banki qayta yuklanganda dublikat yaratmadi",
+    )
 
     noon = datetime(2026, 10, 25, 12, 0, tzinfo=LOCAL_TZ)
     check(
