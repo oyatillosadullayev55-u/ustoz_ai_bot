@@ -1210,6 +1210,62 @@ async def main() -> None:
     finally:
         anatomy.ANATOMY_MODES[10] = 300
 
+    # 9b. Faol test FSM holatiga bog'liq emas
+    fake.calls.clear()
+    await send_callback("anatomy:start:10", message=photo_message)
+    resume_callbacks = [
+        item
+        for item in last_inline_callbacks(fake)
+        if item.startswith("anatomy:answer:")
+    ]
+    _, _, resume_raw, _ = resume_callbacks[0].split(":")
+    resume_question = await get_anatomy_question(int(resume_raw))
+    assert resume_question is not None
+    resume_option = int(resume_question["correct_option"])
+
+    await send_callback("menu:home")
+    anatomy._sessions.clear()
+    for timer_task in list(anatomy._timers.values()):
+        timer_task.cancel()
+    anatomy._timers.clear()
+
+    fake.calls.clear()
+    await send_callback(
+        f"anatomy:answer:{resume_question['id']}:{resume_option}"
+    )
+    check(
+        "2/10" in last_text(fake),
+        "FSM tozalangach ham faol anatomiya testi javobni qabul qildi",
+        errors,
+    )
+    resume_alerts = [
+        method.text
+        for method in fake.calls
+        if isinstance(method, AnswerCallbackQuery)
+    ]
+    check(
+        not any("bekor qilingan" in (text or "") for text in resume_alerts),
+        "faol testda eskirgan test ogohlantirishi chiqmadi",
+        errors,
+    )
+
+    await send_callback("anatomy:menu", message=callback_message)
+    async with get_connection() as db:
+        cursor = await db.execute(
+            """
+            SELECT COUNT(*) AS total
+            FROM quiz_results
+            WHERE user_id = ? AND subject_id = ?
+            """,
+            (USER_ID, ANATOMY_SUBJECT_ID),
+        )
+        abandoned_count = int((await cursor.fetchone())["total"])
+    check(
+        abandoned_count == 2,
+        "bekor qilingan anatomiya testi natija sifatida saqlanmadi",
+        errors,
+    )
+
     check(not errors, "kunlik bo'limlar xatosiz ishladi", errors)
 
     print("\nHANDLER_FLOW_OK")

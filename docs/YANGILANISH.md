@@ -338,3 +338,26 @@ keltirildi va uch vaqtli rejimda ishlaydi.
 
 O'zgarishlar faqat lokal commit qilinadi. Push va Render deploy alohida tasdiq bilan
 bajariladi; Render xizmati va tokenlar o'zgartirilmaydi.
+
+### Tuzatish — faol testda javob qabul qilinmasligi
+
+**Muammo:** savol ekranida (masalan, `4/20`, taymer `09:55`) A–D tugmasi bosilganda
+«Bu test yakunlangan. Yangi rejim tanlang: /start → 📚 Darslar.» ogohlantirishi chiqardi.
+
+**Sabab:** faol test faqat `FSMContext` (`MemoryStorage`) da saqlanardi, javob handleri esa
+`AnatomyStates.answering` holatiga bog'langan edi. Foydalanuvchi test paytida boshqa
+bo'limga o'tsa (`/menu`, `🏠 Bosh menyu`, darslar, testlar — barchasi `state.clear()`
+chaqiradi) yoki bot qayta ishga tushsa, holat yo'qolib, savol tugmalari ishlamay qolardi.
+
+**Yechim:**
+
+- faol test endi xotiradagi `_sessions` va `anatomy_sessions` jadvalida saqlanadi;
+- `anatomy:answer:` FSM holatiga bog'lanmagan — sessiyani xotiradan, bo'lmasa bazadan oladi;
+- taymer yo'qolgan bo'lsa, javob kelganda qayta ishga tushadi;
+- sessiya chindan yo'q bo'lsagina «test yakunlangan yoki bekor qilingan» ogohlantirishi
+  qaytadi;
+- `anatomy:menu` yangi menyuni ochganda joriy sessiya ongli ravishda bekor qilinadi.
+
+**Testlar:** `test_offline.py` — sessiyani saqlash/tiklash/o'chirish; `test_handlers_offline.py`
+— `menu:home` bilan FSM tozalangach va xotiradagi sessiya bo'shatilgach ham javob qabul
+qilinishi, bekor qilingan test natija sifatida saqlanmasligi.

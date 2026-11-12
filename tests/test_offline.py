@@ -38,9 +38,12 @@ from database.admin import get_admin_stats, get_all_user_ids  # noqa: E402
 from database.anatomy import (  # noqa: E402
     ANATOMY_SUBJECT_ID,
     count_anatomy_questions,
+    delete_anatomy_session,
     get_anatomy_question,
     get_anatomy_questions,
     get_anatomy_questions_by_ids,
+    load_anatomy_session,
+    save_anatomy_session,
     seed_anatomy,
 )
 from database.chat import add_message, get_ai_usage, get_history  # noqa: E402
@@ -451,6 +454,44 @@ async def run_tests() -> None:
     user = await get_user(USER_ID)
     check(user is not None and user["full_name"] == "Test O'quvchi",
           "takroriy ro'yxatdan o'tish dublikat yaratmadi")
+
+    session_questions = [int(item["id"]) for item in anatomy_sample[:4]]
+    await save_anatomy_session(
+        USER_ID,
+        {
+            "mode": 20,
+            "question_ids": session_questions,
+            "index": 3,
+            "correct": 2,
+            "answers": [
+                {"question_id": session_questions[0], "selected": 1},
+                {"question_id": session_questions[1], "selected": 3},
+                {"question_id": session_questions[2], "selected": 0},
+            ],
+            "current_id": session_questions[3],
+            "deadline": 12345.5,
+            "started_at": 12000.0,
+            "chat_id": 42,
+            "message_id": 77,
+        },
+    )
+    stored_session = await load_anatomy_session(USER_ID)
+    check(
+        stored_session is not None
+        and stored_session["question_ids"] == session_questions
+        and stored_session["index"] == 3
+        and stored_session["correct"] == 2
+        and len(stored_session["answers"]) == 3
+        and stored_session["answers"][0]["selected"] == 1
+        and stored_session["deadline"] == 12345.5
+        and stored_session["message_id"] == 77,
+        "faol anatomiya testi bazadan to'liq tiklandi",
+    )
+    await delete_anatomy_session(USER_ID)
+    check(
+        await load_anatomy_session(USER_ID) is None,
+        "yakunlangan anatomiya testi bazadan o'chirildi",
+    )
 
     goal = await get_today_goal(USER_ID)
     check(

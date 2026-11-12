@@ -144,11 +144,14 @@ Bu 546 savollik alohida bank va uch rejim:
 
 1. Rejimni tanlang — savol ekranida qolgan vaqt va progress bar ko'rinadi.
 2. Har bir savolda A–D variantlari matnda chiqadi; mos harfni bosing.
-3. Vaqt tugasa, faqat javob berilgan savollar baholanadi; birorta javob bo'lmasa,
+3. Test davomida boshqa bo'limga o'tsangiz ham savol xabaridagi tugmalar ishlayveradi —
+   faqat anatomiya menyusini qayta ochsangiz yoki yangi testni boshlasangiz, joriy test
+   bekor qilinadi.
+4. Vaqt tugasa, faqat javob berilgan savollar baholanadi; birorta javob bo'lmasa,
    natija saqlanmaydi.
-4. Yakunda foiz, sarflangan vaqt, rekord va XP ko'rsatiladi. Xato javoblar alohida
+5. Yakunda foiz, sarflangan vaqt, rekord va XP ko'rsatiladi. Xato javoblar alohida
    xabarda tahlil qilinadi.
-5. Natija **📊 Mening natijalarim** bo'limida «Anatomiya» nomi bilan chiqadi va kunlik
+6. Natija **📊 Mening natijalarim** bo'limida «Anatomiya» nomi bilan chiqadi va kunlik
    rejaga qo'shiladi.
 
 ## Mening natijalarim

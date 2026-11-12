@@ -23,7 +23,7 @@
 
 ## Ma'lumotlar bazasi sxemasi
 
-Loyihada **13 ta jadval** bor:
+Loyihada **14 ta jadval** bor:
 
 1. `users`
 2. `subjects`
@@ -38,6 +38,7 @@ Loyihada **13 ta jadval** bor:
 11. `favorites`
 12. `daily_answers`
 13. `anatomy_questions`
+14. `anatomy_sessions`
 
 ## Umumiy qoidalar
 

@@ -141,3 +141,78 @@ async def get_anatomy_questions_by_ids(
         )
         rows = await cursor.fetchall()
     return {int(row["id"]): row for row in rows}
+
+
+async def save_anatomy_session(user_id: int, data: dict[str, Any]) -> None:
+    """Faol testni bazaga yozadi — bot qayta ishga tushsa ham yo'qolmaydi."""
+    async with get_connection() as db:
+        await db.execute(
+            """
+            INSERT INTO anatomy_sessions (
+                user_id, mode, question_ids, answered_index, correct, answers,
+                current_id, deadline, started_at, chat_id, message_id
+            )
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            ON CONFLICT(user_id) DO UPDATE SET
+                mode = excluded.mode,
+                question_ids = excluded.question_ids,
+                answered_index = excluded.answered_index,
+                correct = excluded.correct,
+                answers = excluded.answers,
+                current_id = excluded.current_id,
+                deadline = excluded.deadline,
+                started_at = excluded.started_at,
+                chat_id = excluded.chat_id,
+                message_id = excluded.message_id
+            """,
+            (
+                user_id,
+                int(data["mode"]),
+                json.dumps([int(item) for item in data["question_ids"]]),
+                int(data.get("index", 0)),
+                int(data.get("correct", 0)),
+                json.dumps(data.get("answers", [])),
+                int(data["current_id"]),
+                float(data["deadline"]),
+                float(data["started_at"]),
+                int(data["chat_id"]),
+                int(data["message_id"]),
+            ),
+        )
+
+
+async def load_anatomy_session(user_id: int) -> dict[str, Any] | None:
+    async with get_connection() as db:
+        cursor = await db.execute(
+            """
+            SELECT user_id, mode, question_ids, answered_index, correct,
+                   answers, current_id, deadline, started_at, chat_id,
+                   message_id
+            FROM anatomy_sessions
+            WHERE user_id = ?
+            """,
+            (user_id,),
+        )
+        row = await cursor.fetchone()
+    if row is None:
+        return None
+    return {
+        "mode": int(row["mode"]),
+        "question_ids": [int(item) for item in json.loads(row["question_ids"])],
+        "index": int(row["answered_index"]),
+        "correct": int(row["correct"]),
+        "answers": json.loads(row["answers"]),
+        "current_id": int(row["current_id"]),
+        "deadline": float(row["deadline"]),
+        "started_at": float(row["started_at"]),
+        "chat_id": int(row["chat_id"]),
+        "message_id": int(row["message_id"]),
+    }
+
+
+async def delete_anatomy_session(user_id: int) -> None:
+    async with get_connection() as db:
+        await db.execute(
+            "DELETE FROM anatomy_sessions WHERE user_id = ?", (user_id,)
+        )
+

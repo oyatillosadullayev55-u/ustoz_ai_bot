@@ -1,7 +1,7 @@
 # `database/db.py` — ulanish va sxema
 
 **Yo'l:** [`database/db.py`](../../../database/db.py)
-**Vazifasi:** SQLite ulanishini boshqarish, 13 ta jadvalni va indekslarni yaratish,
+**Vazifasi:** SQLite ulanishini boshqarish, 14 ta jadvalni va indekslarni yaratish,
 eski bazaga yangi dars ustunlarini migratsiya qilish.
 
 ## Tarkib
@@ -42,6 +42,8 @@ eski bazaga yangi dars ustunlarini migratsiya qilish.
 - `questions.correct_option` 0–3 oralig'ida.
 - `anatomy_questions.correct_option` 0–3 oralig'ida; savollar yashirin `subjects.id=900`
   faniga bog'langan natijalar bilan ishlatiladi.
+- `anatomy_sessions` asosiy kaliti `user_id` — har bir foydalanuvchida bittadan faol
+  anatomiya testi bo'ladi.
 - `study_progress` asosiy kaliti `(user_id, lesson_id)` — takroriy yozuv oldini oladi.
 - `daily_goals` uchun `UNIQUE (user_id, goal_date)`.
 - `quiz_results.score_percent` 0–100.

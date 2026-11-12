@@ -51,6 +51,27 @@ yuklash va savollarni tanlash.
 | `get_anatomy_questions(limit)` | `ORDER BY RANDOM() LIMIT ?` bilan tasodifiy savollar |
 | `get_anatomy_question(id)` | Bitta savol |
 | `get_anatomy_questions_by_ids(ids)` | Xatolar tahlili uchun `{id: row}` lug'ati |
+| `save_anatomy_session(user_id, data)` | Faol testni `anatomy_sessions` ga upsert qiladi |
+| `load_anatomy_session(user_id)` | Faol testni lug'at sifatida qaytaradi (yo'q bo'lsa `None`) |
+| `delete_anatomy_session(user_id)` | Yakunlangan/bekor qilingan testni o'chiradi |
+
+## `anatomy_sessions` jadvali
+
+Faol test FSM o'rniga shu jadvalda saqlanadi — bot qayta ishga tushsa yoki boshqa bo'lim
+FSM holatini tozalasa ham javoblar qabul qilinaveradi. `question_ids` va `answers` JSON
+satr sifatida yoziladi; `deadline`/`started_at` — `time.time()` qiymatlari.
+
+| Ustun | Ma'nosi |
+|---|---|
+| `user_id` | Egasi (birlamchi kalit, `users` ga FK) |
+| `mode` | 10 / 20 / 50 savollik rejim |
+| `question_ids` | Savol ID'lari JSON ro'yxati |
+| `answered_index` | Joriy savol indeksi |
+| `correct` | To'g'ri javoblar soni |
+| `answers` | `[{"question_id": ..., "selected": ...}]` JSON |
+| `current_id` | Joriy savol ID'si (eski tugmalarni rad etish uchun) |
+| `deadline`, `started_at` | Vaqt chegarasi va boshlanish vaqti |
+| `chat_id`, `message_id` | Tahrirlanadigan savol xabari |
 
 ## Jadval
 

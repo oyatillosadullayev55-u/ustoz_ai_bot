@@ -272,7 +272,7 @@ To'xtatish: `Ctrl + C`.
 
 Birinchi ishga tushishda avtomatik yaratiladi:
 
-- `ustoz_ai.db` — 12 jadval bilan SQLite bazasi;
+- `ustoz_ai.db` — 14 jadval bilan SQLite bazasi;
 - `logs/bot.log` — xatolar jurnali;
 - 8 fan (Dasturlash yo'nalishlari birlashtirilgan), 35 dars va 140 savol bazaga yuklanadi.
 
@@ -473,7 +473,7 @@ ustoz_ai_bot/
 │   ├── seed_data.json        # 8 fan (Dasturlash yo'nalishlari birlashtirilgan), 35 dars, 140 savol
 │   └── anatomy_questions.json # 546 ta Anatomiya testi
 ├── database/
-│   ├── db.py                 # 13 jadval sxemasi, ulanish va migratsiya
+│   ├── db.py                 # 14 jadval sxemasi, ulanish va migratsiya
 │   ├── seed.py               # Kontentni yuklash
 │   ├── anatomy.py            # Anatomiya banki va yashirin natija fani
 │   ├── users.py              # Foydalanuvchilar

@@ -10,16 +10,18 @@ import time
 from aiogram import F, Router
 from aiogram.exceptions import TelegramBadRequest
 from aiogram.fsm.context import FSMContext
-from aiogram.fsm.state import State, StatesGroup
 from aiogram.types import CallbackQuery, FSInputFile, Message
 
 from config import BASE_DIR
 from database.anatomy import (
     ANATOMY_SUBJECT_ID,
     count_anatomy_questions,
+    delete_anatomy_session,
     get_anatomy_question,
     get_anatomy_questions,
     get_anatomy_questions_by_ids,
+    load_anatomy_session,
+    save_anatomy_session,
 )
 from database.goals import increment_goal
 from database.quizzes import get_subject_best_score, save_quiz_result
@@ -54,13 +56,14 @@ logger = logging.getLogger(__name__)
 ANATOMY_BANNER = BASE_DIR / "assets" / "anatomy_banner.png"
 OPTION_FIELDS = ("option_a", "option_b", "option_c", "option_d")
 REVIEW_LIMIT = 8
+STALE_TEXT = (
+    "⏳ Bu test yakunlangan yoki bekor qilingan.\n"
+    "Yangi testni 📚 Darslar → 🫀 Anatomiya orqali boshlang."
+)
 
 _timers: dict[int, asyncio.Task] = {}
 _locks: dict[int, asyncio.Lock] = {}
-
-
-class AnatomyStates(StatesGroup):
-    answering = State()
+_sessions: dict[int, dict] = {}
 
 
 def _lock_for(user_id: int) -> asyncio.Lock:
@@ -75,6 +78,34 @@ def _cancel_timer(user_id: int) -> None:
     task = _timers.pop(user_id, None)
     if task is not None and task is not asyncio.current_task() and not task.done():
         task.cancel()
+
+
+async def _load_session(user_id: int) -> dict | None:
+    """Faol testni xotiradan, bo'lmasa bazadan oladi."""
+    session = _sessions.get(user_id)
+    if session is not None:
+        return session
+    session = await load_anatomy_session(user_id)
+    if session is not None:
+        _sessions[user_id] = session
+    return session
+
+
+async def _store_session(user_id: int, data: dict) -> None:
+    _sessions[user_id] = data
+    await save_anatomy_session(user_id, data)
+
+
+async def _drop_session(user_id: int) -> dict | None:
+    _cancel_timer(user_id)
+    session = _sessions.pop(user_id, None)
+    await delete_anatomy_session(user_id)
+    return session
+
+
+def _start_timer(bot, user_id: int) -> None:
+    _cancel_timer(user_id)
+    _timers[user_id] = asyncio.create_task(_timeout_task(bot, user_id))
 
 
 def _clock(seconds: float | int) -> str:
@@ -249,9 +280,6 @@ async def _edit_message(
 
 async def _finish(
     bot,
-    chat_id: int,
-    message_id: int,
-    state: FSMContext,
     user_id: int,
     data: dict,
     *,
@@ -261,10 +289,12 @@ async def _finish(
     answers: list[dict[str, int]] = list(data.get("answers", []))
     correct_total = int(data.get("correct", 0))
     mode = int(data["mode"])
+    chat_id = int(data["chat_id"])
+    message_id = int(data["message_id"])
     started_at = float(data.get("started_at", time.time()))
     elapsed = min(int(time.time() - started_at), ANATOMY_MODES[mode])
 
-    await state.clear()
+    await _drop_session(user_id)
 
     total = len(answers) if timed_out else len(question_ids)
     if total <= 0:
@@ -349,30 +379,25 @@ async def _finish(
     )
 
 
-async def _timeout_task(bot, state: FSMContext, user_id: int) -> None:
+async def _timeout_task(bot, user_id: int) -> None:
     me = asyncio.current_task()
-    data = await state.get_data()
-    deadline = float(data.get("deadline", 0))
-    delay = max(0.0, deadline - time.time())
     try:
-        await asyncio.sleep(delay)
-        async with _lock_for(user_id):
-            data = await state.get_data()
-            if not data or data.get("deadline") is None:
+        while True:
+            data = await _load_session(user_id)
+            if data is None:
                 return
-            if time.time() < float(data["deadline"]):
-                return
-            if _timers.get(user_id) is me:
-                _timers.pop(user_id, None)
-            await _finish(
-                bot,
-                int(data["chat_id"]),
-                int(data["message_id"]),
-                state,
-                user_id,
-                data,
-                timed_out=True,
-            )
+            delay = float(data["deadline"]) - time.time()
+            if delay > 0:
+                await asyncio.sleep(delay)
+                continue
+            async with _lock_for(user_id):
+                data = await _load_session(user_id)
+                if data is None:
+                    return
+                if float(data["deadline"]) > time.time():
+                    continue
+                await _finish(bot, user_id, data, timed_out=True)
+            return
     finally:
         if _timers.get(user_id) is me:
             _timers.pop(user_id, None)
@@ -386,7 +411,7 @@ async def show_menu(callback: CallbackQuery, state: FSMContext) -> None:
 
     user_id = int(user["telegram_id"])
     await state.clear()
-    _cancel_timer(user_id)
+    await _drop_session(user_id)
 
     total = await count_anatomy_questions()
     best = await get_subject_best_score(user_id, ANATOMY_SUBJECT_ID)
@@ -474,24 +499,22 @@ async def start_test(callback: CallbackQuery, state: FSMContext) -> None:
 
     user_id = int(user["telegram_id"])
     await state.clear()
-    await state.set_state(AnatomyStates.answering)
-    await state.update_data(
-        question_ids=[int(question["id"]) for question in questions],
-        index=0,
-        correct=0,
-        answers=[],
-        current_id=int(first["id"]),
-        deadline=deadline,
-        started_at=now,
-        mode=mode,
-        chat_id=chat_id,
-        message_id=message_id,
+    await _store_session(
+        user_id,
+        {
+            "question_ids": [int(question["id"]) for question in questions],
+            "index": 0,
+            "correct": 0,
+            "answers": [],
+            "current_id": int(first["id"]),
+            "deadline": deadline,
+            "started_at": now,
+            "mode": mode,
+            "chat_id": chat_id,
+            "message_id": message_id,
+        },
     )
-
-    _cancel_timer(user_id)
-    _timers[user_id] = asyncio.create_task(
-        _timeout_task(callback.bot, state, user_id)
-    )
+    _start_timer(callback.bot, user_id)
 
     await react(sent if isinstance(sent, Message) else message, "🫀")
     await callback.answer(
@@ -499,8 +522,8 @@ async def start_test(callback: CallbackQuery, state: FSMContext) -> None:
     )
 
 
-@router.callback_query(AnatomyStates.answering, F.data.startswith("anatomy:answer:"))
-async def answer_question(callback: CallbackQuery, state: FSMContext) -> None:
+@router.callback_query(F.data.startswith("anatomy:answer:"))
+async def answer_question(callback: CallbackQuery) -> None:
     user = await require_user_callback(callback)
     if user is None or callback.data is None:
         return
@@ -519,37 +542,36 @@ async def answer_question(callback: CallbackQuery, state: FSMContext) -> None:
 
     user_id = int(user["telegram_id"])
     async with _lock_for(user_id):
-        data = await state.get_data()
-        if not data or int(data.get("current_id", 0)) != question_id:
+        data = await _load_session(user_id)
+        if data is None:
+            await callback.answer(STALE_TEXT, show_alert=True)
+            return
+
+        timer = _timers.get(user_id)
+        if timer is None or timer.done():
+            _start_timer(callback.bot, user_id)
+
+        if time.time() >= float(data["deadline"]):
+            await _finish(callback.bot, user_id, data, timed_out=True)
+            await callback.answer("⏰ Vaqt tugadi!", show_alert=True)
+            return
+
+        if int(data.get("current_id", 0)) != question_id:
             await callback.answer(
                 "Bu savol allaqachon yakunlangan.", show_alert=True
             )
             return
 
-        if time.time() >= float(data["deadline"]):
-            _cancel_timer(user_id)
-            await _finish(
-                callback.bot,
-                int(data["chat_id"]),
-                int(data["message_id"]),
-                state,
-                user_id,
-                data,
-                timed_out=True,
-            )
-            await callback.answer("⏰ Vaqt tugadi!", show_alert=True)
-            return
-
         question = await get_anatomy_question(question_id)
         if question is None:
-            await state.clear()
+            await _drop_session(user_id)
             await callback.answer("Savol topilmadi.", show_alert=True)
             return
 
-        question_ids = [int(item) for item in data.get("question_ids", [])]
-        answers: list[dict[str, int]] = list(data.get("answers", []))
-        index = int(data.get("index", 0))
-        correct_total = int(data.get("correct", 0))
+        question_ids = [int(item) for item in data["question_ids"]]
+        answers: list[dict[str, int]] = list(data["answers"])
+        index = int(data["index"])
+        correct_total = int(data["correct"])
 
         is_correct = option == int(question["correct_option"])
         if is_correct:
@@ -559,49 +581,38 @@ async def answer_question(callback: CallbackQuery, state: FSMContext) -> None:
 
         next_index = index + 1
         if next_index >= len(question_ids):
-            _cancel_timer(user_id)
             data.update(correct=correct_total, answers=answers)
-            await _finish(
-                callback.bot,
-                int(data["chat_id"]),
-                int(data["message_id"]),
-                state,
-                user_id,
-                data,
-                timed_out=False,
-            )
+            await _finish(callback.bot, user_id, data, timed_out=False)
             await callback.answer("Test yakunlandi! 🏁")
             return
 
         next_question = await get_anatomy_question(question_ids[next_index])
         if next_question is None:
-            await state.clear()
+            await _drop_session(user_id)
             await callback.answer("Keyingi savol topilmadi.", show_alert=True)
             return
 
-        deadline = float(data["deadline"])
-        await state.update_data(
+        data.update(
             index=next_index,
             correct=correct_total,
             answers=answers,
             current_id=int(next_question["id"]),
         )
+        await _store_session(user_id, data)
         message_id = await _edit_message(
             callback.bot,
             int(data["chat_id"]),
             int(data["message_id"]),
-            _question_text(next_question, next_index, len(question_ids), deadline),
+            _question_text(
+                next_question,
+                next_index,
+                len(question_ids),
+                float(data["deadline"]),
+            ),
             get_anatomy_options_keyboard(int(next_question["id"])),
         )
         if message_id != int(data["message_id"]):
-            await state.update_data(message_id=message_id)
+            data["message_id"] = message_id
+            await _store_session(user_id, data)
 
     await callback.answer("✅ Javob qabul qilindi")
-
-
-@router.callback_query(F.data.startswith("anatomy:answer:"))
-async def stale_answer(callback: CallbackQuery) -> None:
-    await callback.answer(
-        "Bu test yakunlangan. Yangi rejim tanlang: /start → 📚 Darslar.",
-        show_alert=True,
-    )

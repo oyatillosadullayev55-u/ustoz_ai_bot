@@ -79,6 +79,20 @@ CREATE TABLE IF NOT EXISTS anatomy_questions (
     order_index INTEGER NOT NULL DEFAULT 0
 );
 
+CREATE TABLE IF NOT EXISTS anatomy_sessions (
+    user_id INTEGER PRIMARY KEY REFERENCES users(telegram_id) ON DELETE CASCADE,
+    mode INTEGER NOT NULL,
+    question_ids TEXT NOT NULL,
+    answered_index INTEGER NOT NULL DEFAULT 0 CHECK (answered_index >= 0),
+    correct INTEGER NOT NULL DEFAULT 0 CHECK (correct >= 0),
+    answers TEXT NOT NULL DEFAULT '[]',
+    current_id INTEGER NOT NULL,
+    deadline REAL NOT NULL,
+    started_at REAL NOT NULL,
+    chat_id INTEGER NOT NULL,
+    message_id INTEGER NOT NULL
+);
+
 CREATE TABLE IF NOT EXISTS quiz_results (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER NOT NULL REFERENCES users(telegram_id) ON DELETE CASCADE,
