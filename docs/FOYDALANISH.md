@@ -100,8 +100,26 @@ juda uzun bo'lsa, bot darsni matnli kartochka sifatida ochadi — mazmun yo'qolm
 
 ### Fanlar
 
-Ingliz tili, Matematika, Fizika, Kimyo, Biologiya, Tarix, Ona tili va adabiyot,
-Informatika, Python, Dart va Flutter. Har bir fanda 2 tadan dars bor.
+Asosiy fanlar — Ingliz tili, Matematika, Fizika, Kimyo, Biologiya, Tarix, Ona tili va
+adabiyot, Informatika; amaliy yo'nalishda Python, Dart va Flutter. Dasturlash
+yo'nalishlari bitta fan ostida birlashtirilgan, Biologiya ichida 🫀 **Anatomiya
+testlari** va alohida **Turk tili** kursi ham bor.
+
+## Turk tili va ovozli talaffuz
+
+**📚 Darslar → 🇹🇷 Turk tili** bo'limida 8 ta boshlang'ich dars bor: salomlashish,
+raqamlar, oila, ovqat, shahar, vaqt, xarid va mehmonxona.
+
+1. Darsni kartochka yoki **📖 Batafsil o'qish** orqali o'qing.
+2. **🎧 Ovozli talaffuz** tugmasini bosing — 8 ta turkcha gap ro'yxati ochiladi.
+3. Bitta gap uchun `🔊 1. Merhaba` kabi tugmani bosing: bot o'sha gapni ovozda
+   o'qib beradi va ostiga tarjima hamda talaffuz izohini yozadi.
+4. **▶️ Hammasini tinglash** 8 ta gapni ketma-ket o'qib chiqadi — tinglab takrorlang.
+5. **⬅️ Darsga qaytish** bilan dars kartochkasiga qaytasiz.
+
+Ovoz tayyor OGG fayllardan yuboriladi, shuning uchun talaffuz tez ochiladi va
+internet tezligiga bog'liq emas. Birinchi yuborishdan keyin Telegram `file_id` si
+keshlanadi va keyingi tinglashlar yanada tezkor bo'ladi.
 
 ## Dars qidiruvi
 

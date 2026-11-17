@@ -38,6 +38,7 @@ from aiogram.methods import (  # noqa: E402
     SendDocument,
     SendMessage,
     SendPhoto,
+    SendVoice,
     SetMessageReaction,
 )
 from aiogram.types import (  # noqa: E402
@@ -88,6 +89,7 @@ from handlers import (  # noqa: E402
     progress,
     quizzes,
     start,
+    turkish,
 )
 from handlers import settings as user_settings  # noqa: E402
 from keyboards.main_menu import (  # noqa: E402
@@ -233,6 +235,7 @@ async def main() -> None:
     dispatcher.include_router(lessons.router)
     dispatcher.include_router(quizzes.router)
     dispatcher.include_router(anatomy.router)
+    dispatcher.include_router(turkish.router)
     dispatcher.include_router(progress.router)
     dispatcher.include_router(gamification.router)
     dispatcher.include_router(daily.router)
@@ -245,7 +248,7 @@ async def main() -> None:
         cursor = await db.execute("SELECT id FROM lessons WHERE is_active = 1")
         lesson_ids = [int(row["id"]) for row in await cursor.fetchall()]
 
-    check(len(lesson_ids) == 35, "bazada 35 ta dars bor", errors)
+    check(len(lesson_ids) == 43, "bazada 43 ta dars bor", errors)
     check(
         all(
             get_lesson_image_path(lesson_id) is not None
@@ -504,6 +507,85 @@ async def main() -> None:
         errors,
     )
 
+    # 2a-2. Turk tili va ovozli talaffuz
+    fake.calls.clear()
+    await send_callback("lesson:subject:9", message=photo_message)
+    check(
+        "TURK TILI" in last_text(fake),
+        "turk tili darslari ro'yxati ochildi",
+        errors,
+    )
+    check(
+        "Ovozli talaffuz" in last_text(fake),
+        "turk tili ro'yxatida ovoz eslatmasi bor",
+        errors,
+    )
+    check(
+        "lesson:view:1201" in last_inline_callbacks(fake),
+        "turk tili darsi tugmasi ro'yxatda bor",
+        errors,
+    )
+
+    fake.calls.clear()
+    await send_callback("lesson:view:1201", message=photo_message)
+    check(
+        "Salomlashish" in last_caption(fake),
+        "turk tili dars kartochkasi ochildi",
+        errors,
+    )
+    check(
+        "turk:audio:1201" in last_inline_callbacks(fake),
+        "kartochkada ovozli talaffuz tugmasi bor",
+        errors,
+    )
+
+    fake.calls.clear()
+    await send_callback("turk:audio:1201", message=photo_message)
+    audio_text = last_text(fake)
+    check(
+        "Ovozli talaffuz" in audio_text and "Merhaba" in audio_text,
+        "talaffuz ekrani 8 ta gap bilan ochildi",
+        errors,
+    )
+    audio_callbacks = last_inline_callbacks(fake)
+    check(
+        sum(
+            item.startswith("turk:say:1201:") for item in audio_callbacks
+        )
+        == 8,
+        "talaffuz ekranida 8 ta gap tugmasi bor",
+        errors,
+    )
+    check(
+        "turk:all:1201" in audio_callbacks,
+        "hammasini tinglash tugmasi bor",
+        errors,
+    )
+
+    fake.calls.clear()
+    await send_callback("turk:say:1201:1")
+    voices = [item for item in fake.calls if isinstance(item, SendVoice)]
+    check(
+        len(voices) == 1
+        and "Merhaba" in (voices[0].caption or ""),
+        "gap ovozli xabar bilan yuborildi",
+        errors,
+    )
+    check(
+        ChatAction.RECORD_VOICE in sent_chat_actions(fake),
+        "ovoz yozish holati ko'rsatildi",
+        errors,
+    )
+
+    fake.calls.clear()
+    turkish.PLAYBACK_GAP_SECONDS = 0
+    await send_callback("turk:all:1201")
+    check(
+        sum(isinstance(item, SendVoice) for item in fake.calls) == 8,
+        "hammasini tinglash 8 ta ovoz yubordi",
+        errors,
+    )
+
     # 2b. Dars qidiruvi
     fake.calls.clear()
     await send_text("/qidiruv fotosintez")
@@ -749,7 +831,7 @@ async def main() -> None:
     fake.calls.clear()
     await send_callback("admin:stats")
     check("Bot statistikasi" in last_text(fake), "admin statistikasi chiqdi", errors)
-    check("140</b> savol" in last_text(fake), "statistikada savollar soni bor", errors)
+    check("172</b> savol" in last_text(fake), "statistikada savollar soni bor", errors)
 
     fake.calls.clear()
     await send_callback("admin:backup")

@@ -5,9 +5,10 @@
 O'zbek tilida ishlaydigan to'liq ta'lim Telegram boti. **Python 3**, **aiogram 3**,
 **SQLite** va **aiosqlite** asosida qurilgan.
 
-> **Holat: barcha asosiy bo'limlar tayyor.** Ro'yxatdan o'tish, AI Ustoz, 8 fan (Dasturlash yo'nalishlari birlashtirilgan)
+> **Holat: barcha asosiy bo'limlar tayyor.** Ro'yxatdan o'tish, AI Ustoz, 9 fan (Dasturlash yo'nalishlari birlashtirilgan, Turk tili qo'shilgan)
 > bo'yicha rasmli darslar (qisqa mazmun, asosiy fikrlar, batafsil izoh va mini mashq),
-> 140 savol, Biologiya ichida 546 savollik vaqtli Anatomiya testlari, natijalar statistikasi,
+> 172 savol, Biologiya ichida 546 savollik vaqtli Anatomiya testlari, Turk tili uchun
+> 64 ta ovozli talaffuz gapi, natijalar statistikasi,
 > XP va yutuqlar, haftalik reyting, sevimli darslar, kunlik reja, kunlik sovg'a va savol,
 > haftalik missiyalar, sozlamalar, admin panel (baza zaxirasi va CSV eksport), dars qidiruvi,
 > kunlik eslatmalar va bepul serverga joylash tayyor.
@@ -26,7 +27,7 @@ O'zbek tilida ishlaydigan to'liq ta'lim Telegram boti. **Python 3**, **aiogram 3
 - [Kod fayllari hujjati](docs/kod/README.md) — har bir Python fayli, kontent, test va
   infratuzilma fayli uchun alohida markdown hujjat.
 - [Bepul darslar va Dasturlash](BEPUL_KURSLAR.md) — dasturlash yo'nalishlari va 15 ta bepul kurs ro'yxati.
-- [Dars kartochkalari dizayni](docs/DARS_DIZAYNI.md) — 20 rasm, kartochka tuzilishi,
+- [Dars kartochkalari dizayni](docs/DARS_DIZAYNI.md) — 43 rasm, kartochka tuzilishi,
   ranglar tizimi, kod oqimi va rasm almashtirish yo'riqnomasi.
 
 ## Nimalar ishlaydi
@@ -36,11 +37,15 @@ O'zbek tilida ishlaydigan to'liq ta'lim Telegram boti. **Python 3**, **aiogram 3
   kalit bo'lmasa dars bazasidan mos javob qidiradi. Darsdagi **🧠 AI Ustozga so'rash**
   tugmasi AI ga shu dars mazmunini beradi va tushunarsiz joyni dars asosida tushuntiradi.
   Kunlik limit va so'rovlar orasidagi tanaffus amal qiladi.
-- **Darslar** — 8 fan (Dasturlash yo'nalishlari birlashtirilgan), 35 dars. Har bir dars 16:9 rasmli kartochkada qisqa mazmun,
+- **Darslar** — 9 fan (Dasturlash yo'nalishlari birlashtirilgan, Turk tili qo'shilgan), 43 dars. Har bir dars 16:9 rasmli kartochkada qisqa mazmun,
   3 ta asosiy fikr, davomiylik va daraja bilan ochiladi. **📖 Batafsil o'qish** to'liq
   izoh, hayotiy misol va mini mashqni ko'rsatadi; oldingi/keyingi darsga o'tish,
   **✅ Darsni tugatdim**, **🧠 AI Ustozga so'rash** va **📝 Test yechish** tugmalari bor.
   Har bir fan tugmasida tugatilgan darslar soni (`2/5`) ko'rsatiladi.
+- **Turk tili va ovozli talaffuz** — 🇹🇷 **Turk tili** fanida 8 amaliy dars va 64 ta
+  tayyor gap. Dars kartochkasidagi **🎧 Ovozli talaffuz** tugmasi har bir gapni
+  o'zbekcha tarjima va talaffuz maslahati bilan ovozli xabar qilib yuboradi;
+  **▶️ Hammasini tinglash** butun darsni ketma-ket o'qib beradi.
 - **Sevimli darslar** — kartochkadagi **⭐ Sevimlilarga qo'shish** bilan dars saqlanadi;
   **⭐ Sevimlilarim** ekranidan tez ochiladi.
 - **Dars qidiruvi** — `/qidiruv fotosintez` yoki `/search fotosintez` orqali sarlavha
@@ -93,8 +98,9 @@ O'zbek tilida ishlaydigan to'liq ta'lim Telegram boti. **Python 3**, **aiogram 3
 | Informatika | 2 |
 | Python | 2 |
 | Dart va Flutter | 2 |
+| Turk tili | 8 |
 
-Jami **8 fan (Dasturlash yo'nalishlari birlashtirilgan)**, **35 dars**, **140 savol**. Har bir darsda 16:9 rasm, qisqa mazmun,
+Jami **9 fan (Dasturlash yo'nalishlari birlashtirilgan, Turk tili qo'shilgan)**, **43 dars**, **172 savol**. Har bir darsda 16:9 rasm, qisqa mazmun,
 3 ta asosiy fikr, batafsil izoh va mini mashq; har bir darsda 4 tadan savol, har bir
 savolda 4 ta variant va izoh bor.
 
@@ -265,6 +271,7 @@ Kutilgan natija:
 ```text
 INFO | database.db | Ma'lumotlar bazasi tayyor: ...\ustoz_ai.db
 INFO | database.seed | Kontent yuklandi: 8 fan (Dasturlash yo'nalishlari birlashtirilgan), 35 dars, 140 savol.
+INFO | database.turkish | Turk tili yuklandi: 8 dars, 64 gap, 32 savol.
 INFO | bot | UstozAI ishga tushdi: @ustoz_ai_2026_bot
 ```
 
@@ -272,9 +279,10 @@ To'xtatish: `Ctrl + C`.
 
 Birinchi ishga tushishda avtomatik yaratiladi:
 
-- `ustoz_ai.db` — 14 jadval bilan SQLite bazasi;
+- `ustoz_ai.db` — 15 jadval bilan SQLite bazasi;
 - `logs/bot.log` — xatolar jurnali;
-- 8 fan (Dasturlash yo'nalishlari birlashtirilgan), 35 dars va 140 savol bazaga yuklanadi.
+- 9 fan (Dasturlash yo'nalishlari birlashtirilgan, Turk tili qo'shilgan), 43 dars va
+  172 savol bazaga yuklanadi.
 
 ## Bepul serverga joylash
 
@@ -414,20 +422,20 @@ python tests\test_offline.py
 python tests\test_handlers_offline.py
 ```
 
-- `test_offline.py` — baza, 140 savol, dars maydonlari, eski baza migratsiyasi, health
+- `test_offline.py` — baza, 172 savol, dars maydonlari, eski baza migratsiyasi, health
   server, qidiruv, natijalar, streak, XP va yutuqlar, haftalik reyting, sevimlilar,
   fan progressi, baza zaxirasi va CSV eksport, AI fallback va dars konteksti,
   kunlik sovg'a va savol, haftalik missiyalar, bildirishnomalar, eslatma ro'yxati,
-  Anatomiya banki (546 savol, yashirin fan, idempotent seed) va
-  admin statistikasi. Natija: `OFFLINE_TESTS_OK`.
-- `test_handlers_offline.py` — to'liq handler oqimi: ro'yxatdan o'tish, 35 ta rasmning
+  Anatomiya banki (546 savol, yashirin fan, idempotent seed), Turk tili (8 dars,
+  64 gap, 64 ovoz fayli) va admin statistikasi. Natija: `OFFLINE_TESTS_OK`.
+- `test_handlers_offline.py` — to'liq handler oqimi: ro'yxatdan o'tish, 43 ta rasmning
   mavjudligi, caption limiti, rasmli dars kartochkasi, asosiy fikrlar, batafsil o'qish,
   oldingi/keyingi dars, darsni batafsil ekranda tugatish, sevimlilar, dars bo'yicha AI,
   qidiruv, 5 savolli test (bitta xato javob va tahlil), XP, statistika, yutuqlar,
   reyting, sevimlilar ekrani, kunlik reja, sozlamalar, AI, `/id`, admin, baza zaxirasi,
   CSV eksport, xabar yuborish, kunlik eslatma, sovg'a, kunlik savol, missiya mukofoti,
-  Anatomiya rejimlari, 10 savolli natija, vaqt tugashi va eski tugma ogohlantirishi.
-  Natija: `HANDLER_FLOW_OK`.
+  Anatomiya rejimlari, 10 savolli natija, vaqt tugashi, Turk tili ovozli talaffuz
+  ekrani va eski tugma ogohlantirishi. Natija: `HANDLER_FLOW_OK`.
 
 Testlar vaqtinchalik bazadan foydalanadi va haqiqiy `ustoz_ai.db` ga tegmaydi.
 
@@ -467,14 +475,17 @@ ustoz_ai_bot/
 ├── README.md
 ├── .github/workflows/ci.yml  # Ruff + offline testlar
 ├── assets/
-│   ├── lesson_images/        # 35 ta 1280x735 dars rasmi
+│   ├── lesson_images/        # 43 ta 1280x720 dars rasmi
+│   ├── turkish_audio/        # 64 ta turkcha talaffuz ovozi (OGG/Opus)
 │   └── anatomy_banner.png    # Anatomiya bo'limi banneri
 ├── content/
 │   ├── seed_data.json        # 8 fan (Dasturlash yo'nalishlari birlashtirilgan), 35 dars, 140 savol
+│   ├── turkish_courses.json  # Turk tili: 8 dars, 64 gap, 32 savol
 │   └── anatomy_questions.json # 546 ta Anatomiya testi
 ├── database/
-│   ├── db.py                 # 14 jadval sxemasi, ulanish va migratsiya
+│   ├── db.py                 # 15 jadval sxemasi, ulanish va migratsiya
 │   ├── seed.py               # Kontentni yuklash
+│   ├── turkish.py            # Turk tili darslari va gaplarini yuklash
 │   ├── anatomy.py            # Anatomiya banki va yashirin natija fani
 │   ├── users.py              # Foydalanuvchilar
 │   ├── content.py            # Fanlar, darslar, qidiruv, fan progressi
@@ -492,6 +503,7 @@ ustoz_ai_bot/
 │   ├── lessons.py            # Kartochka, batafsil o'qish, navigatsiya, sevimlilar, /qidiruv
 │   ├── quizzes.py            # Testlar, natija va xatolar tahlili
 │   ├── anatomy.py            # Vaqtli Anatomiya testlari (10/20/50 savol)
+│   ├── turkish.py            # Turk tili ovozli talaffuz mashqlari
 │   ├── progress.py           # Natijalar, daraja va yutuqlar
 │   ├── gamification.py       # Yutuqlar, reyting va sevimlilar ekranlari
 │   ├── daily.py              # Sovg'a, kunlik savol va missiyalar
@@ -510,7 +522,10 @@ ustoz_ai_bot/
 │   ├── backup.py             # Baza zaxirasi va CSV eksport
 │   ├── health_server.py      # Render uchun /health HTTP serveri
 │   ├── lesson_media.py       # Dars rasmlari va file_id kesh
+│   ├── turkish_audio.py      # Talaffuz ovozi fayllari va file_id kesh
 │   └── reminders.py          # Kunlik eslatma scheduler'i
+├── scripts/
+│   └── generate_turkish_audio.py # Turkcha OGG talaffuz fayllarini yaratish
 ├── tests/
 │   ├── test_offline.py
 │   └── test_handlers_offline.py
@@ -528,8 +543,8 @@ ustoz_ai_bot/
 ### Ma'lumotlar bazasi jadvallari
 
 `users`, `subjects`, `lessons`, `questions`, `quiz_results`, `study_progress`,
-`chat_history`, `daily_goals`, `xp_log`, `achievements`, `favorites`, `daily_answers` —
-jami 12 ta jadval.
+`chat_history`, `daily_goals`, `xp_log`, `achievements`, `favorites`, `daily_answers`,
+`anatomy_questions`, `anatomy_sessions`, `turkish_phrases` — jami 15 ta jadval.
 
 ## Tez-tez uchraydigan xatolar
 

@@ -27,6 +27,9 @@
 8. **Biologiya** fanining darslar ro'yxatida `🫀 Anatomiya testlari · ⏱ vaqtli`
    (`anatomy:menu`) tugmasi chiqadi; u `handlers/anatomy.py` oqimini ochadi. Ro'yxat
    matnida ham 546 savollik test banki haqida eslatma ko'rsatiladi.
+9. **Turk tili** fanida har bir dars kartochkasi va batafsil ekranida
+   `🎧 Ovozli talaffuz` (`turk:audio:<id>`) tugmasi chiqadi. Dars ro'yxatida ovozli
+   mashqlar haqida eslatma ko'rsatiladi. Oqim `handlers/turkish.py` da.
 
 ## Kartochka va batafsil ekran
 
@@ -117,7 +120,14 @@ xabarni matnga almashtiradi yoki foto xabarni o'chirib, yangi matn yuboradi.
 
 Rasmlar `assets/lesson_images/lesson_<dars_id>.jpg` nomida saqlanadi. To'liq ro'yxat,
 dizayn tizimi va rasm almashtirish yo'riqnomasi:
-[`docs/DARS_DIZAYNI.md`](../../DARS_DIZAYNI.md).
+[`docs/DARS_DIZAYNI.md`](../../DARS_DIZAYNI.md). Turk tili darslari `1201–1208`
+rasmlari ham shu papkada.
+
+## Turk tili uchun ovoz
+
+`get_lesson()` so'roviga `s.code AS subject_code` qo'shilgan. `_send_lesson_card()` va
+`_send_lesson_details()` `subject_code == "turkish"` bo'lsa klaviaturaga `audio=True`
+uzatadi va `🎧 Ovozli talaffuz` tugmasi chiqadi. Boshqa fanlarda tugma ko'rinmaydi.
 
 ## Xavfsizlik
 

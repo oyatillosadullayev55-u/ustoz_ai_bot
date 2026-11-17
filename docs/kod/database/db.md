@@ -1,7 +1,7 @@
 # `database/db.py` — ulanish va sxema
 
 **Yo'l:** [`database/db.py`](../../../database/db.py)
-**Vazifasi:** SQLite ulanishini boshqarish, 14 ta jadvalni va indekslarni yaratish,
+**Vazifasi:** SQLite ulanishini boshqarish, 15 ta jadvalni va indekslarni yaratish,
 eski bazaga yangi dars ustunlarini migratsiya qilish.
 
 ## Tarkib
@@ -11,7 +11,7 @@ eski bazaga yangi dars ustunlarini migratsiya qilish.
 - `_ensure_lesson_columns(db)` — eski bazaga `summary`, `key_points`, `level`,
   `duration_min` ustunlarini qo'shadi.
 - `init_db()` — WAL rejimini yoqadi, sxemani qo'llaydi, migratsiyani bajaradi,
-  `seed_content()` va `seed_anatomy()` ni chaqiradi.
+  `seed_content()`, `seed_anatomy()` va `seed_turkish()` ni chaqiradi.
 
 ## `lessons` jadvali ustunlari
 
@@ -44,6 +44,8 @@ eski bazaga yangi dars ustunlarini migratsiya qilish.
   faniga bog'langan natijalar bilan ishlatiladi.
 - `anatomy_sessions` asosiy kaliti `user_id` — har bir foydalanuvchida bittadan faol
   anatomiya testi bo'ladi.
+- `turkish_phrases` asosiy kaliti `(lesson_id, phrase_index)`; `lesson_id` `lessons` ga
+  `ON DELETE CASCADE` bilan bog'langan.
 - `study_progress` asosiy kaliti `(user_id, lesson_id)` — takroriy yozuv oldini oladi.
 - `daily_goals` uchun `UNIQUE (user_id, goal_date)`.
 - `quiz_results.score_percent` 0–100.
@@ -60,7 +62,7 @@ yoziladi. Foydalanuvchi natijalari, progress va maqsadlar saqlanadi.
 `lessons(subject_id, order_index)`, `questions(lesson_id, order_index)`,
 `quiz_results(user_id, created_at DESC)`, `study_progress(user_id, status)`,
 `chat_history(user_id, created_at)`, `daily_goals(user_id, goal_date)`,
-`anatomy_questions(order_index)`.
+`anatomy_questions(order_index)`, `turkish_phrases(lesson_id, phrase_index)`.
 
 ## Eslatma
 

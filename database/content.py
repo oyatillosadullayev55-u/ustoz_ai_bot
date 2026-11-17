@@ -124,7 +124,8 @@ async def get_lesson(lesson_id: int) -> aiosqlite.Row | None:
             """
             SELECT l.id, l.subject_id, l.title, l.content, l.summary,
                    l.key_points, l.level, l.duration_min, l.order_index,
-                   s.name AS subject_name, s.emoji AS subject_emoji
+                   s.name AS subject_name, s.emoji AS subject_emoji,
+                   s.code AS subject_code
             FROM lessons AS l
             JOIN subjects AS s ON s.id = l.subject_id
             WHERE l.id = ? AND l.is_active = 1 AND s.is_active = 1

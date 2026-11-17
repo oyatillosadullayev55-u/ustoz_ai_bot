@@ -130,11 +130,16 @@ def get_lesson_keyboard(
     is_favorite: bool = False,
     prev_lesson_id: int | None = None,
     next_lesson_id: int | None = None,
+    audio: bool = False,
 ) -> InlineKeyboardMarkup:
     builder = InlineKeyboardBuilder()
     builder.button(
         text="📖 Batafsil o'qish", callback_data=f"lesson:read:{lesson_id}"
     )
+    if audio:
+        builder.button(
+            text="🎧 Ovozli talaffuz", callback_data=f"turk:audio:{lesson_id}"
+        )
     if not is_completed:
         builder.button(
             text="✅ Darsni tugatdim",
@@ -177,12 +182,17 @@ def get_lesson_details_keyboard(
     is_favorite: bool = False,
     prev_lesson_id: int | None = None,
     next_lesson_id: int | None = None,
+    audio: bool = False,
 ) -> InlineKeyboardMarkup:
     builder = InlineKeyboardBuilder()
     builder.button(
         text="🖼️ Kartochkaga qaytish",
         callback_data=f"lesson:view:{lesson_id}",
     )
+    if audio:
+        builder.button(
+            text="🎧 Ovozli talaffuz", callback_data=f"turk:audio:{lesson_id}"
+        )
     if not is_completed:
         builder.button(
             text="✅ Darsni tugatdim",
@@ -211,6 +221,33 @@ def get_lesson_details_keyboard(
     builder.row(
         InlineKeyboardButton(
             text="⬅️ Darslar", callback_data=f"lesson:subject:{subject_id}"
+        ),
+        InlineKeyboardButton(text="🏠 Menyu", callback_data="menu:home"),
+    )
+    return builder.as_markup()
+
+
+def get_turkish_audio_keyboard(
+    lesson_id: int, phrases: Sequence,
+) -> InlineKeyboardMarkup:
+    builder = InlineKeyboardBuilder()
+    for phrase in phrases:
+        label = f"🔊 {phrase['phrase_index']}. {phrase['phrase_tr']}"
+        if len(label) > 60:
+            label = f"{label[:57]}..."
+        builder.button(
+            text=label,
+            callback_data=f"turk:say:{lesson_id}:{phrase['phrase_index']}",
+        )
+    builder.adjust(1)
+    builder.row(
+        InlineKeyboardButton(
+            text="▶️ Hammasini tinglash", callback_data=f"turk:all:{lesson_id}"
+        )
+    )
+    builder.row(
+        InlineKeyboardButton(
+            text="⬅️ Darsga qaytish", callback_data=f"lesson:view:{lesson_id}"
         ),
         InlineKeyboardButton(text="🏠 Menyu", callback_data="menu:home"),
     )

@@ -17,8 +17,9 @@
 | `get_levels_keyboard()` | `level:<code>` |
 | `get_subjects_keyboard(subjects, prefix)` | `<prefix>:subject:<id>` |
 | `get_lessons_keyboard(lessons, completed_ids, subject_id)` | `lesson:view:<id>` |
-| `get_lesson_keyboard(...)` | `lesson:read:<id>`, `lesson:complete:<id>`, `lesson:ask:<id>`, `quiz:subject:<id>`, `lesson:view:<id>` (qo'shnilar), `lesson:subject:<id>` |
-| `get_lesson_details_keyboard(...)` | `lesson:view:<id>` (kartochkaga qaytish), `lesson:complete`, `lesson:ask`, `quiz:subject`, qo'shni darslar, `lesson:subject`, `menu:home` |
+| `get_lesson_keyboard(...)` | `lesson:read:<id>`, `lesson:complete:<id>`, `lesson:ask:<id>`, `quiz:subject:<id>`, `lesson:view:<id>` (qo'shnilar), `lesson:subject:<id>`; `audio=True` bo'lsa `turk:audio:<id>` |
+| `get_lesson_details_keyboard(...)` | `lesson:view:<id>` (kartochkaga qaytish), `lesson:complete`, `lesson:ask`, `quiz:subject`, qo'shni darslar, `lesson:subject`, `menu:home`; `audio=True` bo'lsa `turk:audio:<id>` |
+| `get_turkish_audio_keyboard(lesson_id, phrases)` | `turk:say:<lesson_id>:<index>`, `turk:all:<lesson_id>`, `lesson:view:<id>`, `menu:home` |
 | `get_quiz_options_keyboard(question_id, options)` | `quiz:answer:<question_id>:<0-3>` |
 | `get_quiz_result_keyboard(subject_id)` | `quiz:subject:<id>`, `quiz:subjects` |
 | `get_anatomy_menu_keyboard()` | `anatomy:start:10`, `anatomy:start:20`, `anatomy:start:50`, `stats:refresh`, `lesson:subject:5`, `menu:home` |
@@ -43,6 +44,8 @@
   bo'ladi, shuning uchun eng uzun variant ham Telegram tugma limitiga urilmaydi.
 - Variant matni 60 belgidan uzun bo'lsa qisqartiriladi (Telegram tugma limiti).
 - Qidiruv natijalari tugma matni ham 60 belgi bilan cheklanadi.
+- Turk tili gap tugmalari `🔊 <tartib>. <gap>` ko'rinishida; 60 belgidan uzun matn
+  qisqartiriladi. To'g'ri javob yoki foydalanuvchi ma'lumoti callback'da yo'q.
 - Barcha callback'lar qisqa va barqaror; matn o'zgarishi callback'ni buzmaydi.
 
 ## Yangilanishlar

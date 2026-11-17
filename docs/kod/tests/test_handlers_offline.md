@@ -24,7 +24,7 @@ Muvaffaqiyatli yakun: `HANDLER_FLOW_OK`.
 
 1. Ro'yxatdan o'tish: `/start` → ism → daraja callback → baza va menyu.
 2. Rasmli darslar:
-   - 35 ta rasm mavjudligi va caption limiti;
+   - 43 ta rasm mavjudligi va caption limiti;
    - `SendPhoto` va kartochkadagi `Asosiy fikrlar`;
    - `lesson:read` va `lesson:ask` tugmalari;
    - `lesson:view:502` orqali keyingi darsga o'tish va `lesson:view:501` bilan qaytish;
@@ -42,7 +42,7 @@ Muvaffaqiyatli yakun: `HANDLER_FLOW_OK`.
 6. Sozlamalar: bildirishnoma va daraja.
 7. AI Ustoz: AI o'chirilganda dars bazasidan javob, tarix bazaga yozilishi; `lesson:ask:501`
    orqali dars kontekstida `Shu darsdan tushuntirish` javobi.
-8. Admin: panel, statistika (140 savol), broadcast tasdiqlash va yuborilgan xabar.
+8. Admin: panel, statistika (172 savol), broadcast tasdiqlash va yuborilgan xabar.
 9. Kunlik eslatma: `send_due_reminders()` bitta foydalanuvchiga "Kunlik eslatma" yuborishi.
 10. Kunlik bo'limlar:
     - menyuda `🎁 Sovg'a`, `❓ Kunlik savol`, `🎯 Missiyalar` tugmalari;
@@ -60,6 +60,13 @@ Muvaffaqiyatli yakun: `HANDLER_FLOW_OK`.
     - eski javob tugmasi "yakunlangan" ogohlantirishini qaytaradi;
     - `ANATOMY_MODES[10]` vaqtincha qisqartirilib, taymer javob berilgan 1 savolni
       baholashi tekshiriladi.
+12. Turk tili va ovoz:
+    - fanlar ro'yxatida `turkish` fani va 8 ta dars ko'rinadi;
+    - `lesson:view:1201` kartochkasida `🎧 Ovozli talaffuz` tugmasi bor;
+    - `turk:audio:1201` ekranda 8 ta gap tugmasi va «Hammasini tinglash» chiqadi;
+    - `turk:say:1201:1` `RECORD_VOICE` harakati va `SendVoice` yuboradi, izohda
+      turkcha gap bo'ladi, `file_id` keshlanadi;
+    - `turk:all:1201` ketma-ket 8 ta ovoz yuboradi (`PLAYBACK_GAP_SECONDS = 0`).
 
 ## Izolyatsiya
 

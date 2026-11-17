@@ -96,7 +96,7 @@ Tugatilgandan keyin holat qatori quyidagicha o'zgaradi:
 
 ## Vizual tizim
 
-Barcha 20 rasm bitta uslubda tayyorlangan:
+Barcha 43 rasm bitta uslubda tayyorlangan:
 
 | Parametr | Qiymat |
 |---|---|
@@ -113,7 +113,7 @@ Barcha 20 rasm bitta uslubda tayyorlangan:
 Rasmlarda harflar, raqamlar va logotiplar ataylab ishlatilmagan: Telegram shrifti va
 tarjima qilish imkoniyati captionda qoladi, rasm esa faqat mavzuni vizual ochib beradi.
 
-## 35 ta rasm
+## 43 ta rasm
 
 Fayllar `assets/lesson_images/` papkasida, nomi `lesson_<dars_id>.jpg`.
 
@@ -139,6 +139,17 @@ Fayllar `assets/lesson_images/` papkasida, nomi `lesson_<dars_id>.jpg`.
 | 902 | Python | Shart operatorlari | [lesson_902.jpg](../assets/lesson_images/lesson_902.jpg) |
 | 1001 | Dart va Flutter | Dart asoslari | [lesson_1001.jpg](../assets/lesson_images/lesson_1001.jpg) |
 | 1002 | Dart va Flutter | Flutter va widget | [lesson_1002.jpg](../assets/lesson_images/lesson_1002.jpg) |
+| 1201 | Turk tili | Salomlashish va tanishuv | [lesson_1201.jpg](../assets/lesson_images/lesson_1201.jpg) |
+| 1202 | Turk tili | Raqamlar va yosh | [lesson_1202.jpg](../assets/lesson_images/lesson_1202.jpg) |
+| 1203 | Turk tili | Oila a'zolari | [lesson_1203.jpg](../assets/lesson_images/lesson_1203.jpg) |
+| 1204 | Turk tili | Ovqat va ichimlik | [lesson_1204.jpg](../assets/lesson_images/lesson_1204.jpg) |
+| 1205 | Turk tili | Shahar va yo'l so'rash | [lesson_1205.jpg](../assets/lesson_images/lesson_1205.jpg) |
+| 1206 | Turk tili | Vaqt va kunlar | [lesson_1206.jpg](../assets/lesson_images/lesson_1206.jpg) |
+| 1207 | Turk tili | Xarid qilish | [lesson_1207.jpg](../assets/lesson_images/lesson_1207.jpg) |
+| 1208 | Turk tili | Mehmonxona va sayohat | [lesson_1208.jpg](../assets/lesson_images/lesson_1208.jpg) |
+
+1101–1115 darslari — Dasturlash yo'nalishidagi bepul kurslar; ularning rasmlari ham
+shu papkada.
 
 ## Kod qanday ishlaydi
 
@@ -272,7 +283,7 @@ almashtirib, botni qayta ishga tushiring.
 
 `tests/test_offline.py` va `tests/test_handlers_offline.py` quyidagilarni tekshiradi:
 
-- bazada 35 ta dars va 140 ta savol bor;
+- bazada 43 ta dars va 172 ta savol bor;
 - har bir darsda `summary`, 3 ta `key_points`, `level`, `duration_min` va kamida 900
   belgili `content` mavjud;
 - har bir dars uchun rasm fayli mavjud;

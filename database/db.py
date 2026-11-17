@@ -79,6 +79,15 @@ CREATE TABLE IF NOT EXISTS anatomy_questions (
     order_index INTEGER NOT NULL DEFAULT 0
 );
 
+CREATE TABLE IF NOT EXISTS turkish_phrases (
+    lesson_id INTEGER NOT NULL REFERENCES lessons(id) ON DELETE CASCADE,
+    phrase_index INTEGER NOT NULL CHECK (phrase_index > 0),
+    phrase_tr TEXT NOT NULL,
+    phrase_uz TEXT NOT NULL,
+    hint TEXT NOT NULL DEFAULT '',
+    PRIMARY KEY (lesson_id, phrase_index)
+);
+
 CREATE TABLE IF NOT EXISTS anatomy_sessions (
     user_id INTEGER PRIMARY KEY REFERENCES users(telegram_id) ON DELETE CASCADE,
     mode INTEGER NOT NULL,
@@ -175,6 +184,8 @@ CREATE INDEX IF NOT EXISTS idx_questions_lesson
     ON questions (lesson_id, order_index);
 CREATE INDEX IF NOT EXISTS idx_anatomy_questions_order
     ON anatomy_questions (order_index);
+CREATE INDEX IF NOT EXISTS idx_turkish_phrases_lesson
+    ON turkish_phrases (lesson_id, phrase_index);
 CREATE INDEX IF NOT EXISTS idx_quiz_results_user
     ON quiz_results (user_id, created_at DESC);
 CREATE INDEX IF NOT EXISTS idx_study_progress_user
@@ -260,7 +271,9 @@ async def init_db() -> None:
 
     from database.anatomy import seed_anatomy
     from database.seed import seed_content
+    from database.turkish import seed_turkish
 
     await seed_content()
     await seed_anatomy()
+    await seed_turkish()
     logger.info("Ma'lumotlar bazasi tayyor: %s", get_settings().database_path)

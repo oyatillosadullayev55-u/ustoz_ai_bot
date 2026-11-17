@@ -2,7 +2,7 @@
 
 Bu hujjat loyihaga qo'shilgan imkoniyatlar, ularni qanday ishlatish va tekshiruv
 natijalarini jamlaydi. Eng so'nggi o'zgarishlar hujjat oxiridagi
-**2026-11-12** bo'limida.
+**2026-11-17** bo'limida.
 
 ## 2026-10-31 yangilanishi
 
@@ -361,3 +361,51 @@ chaqiradi) yoki bot qayta ishga tushsa, holat yo'qolib, savol tugmalari ishlamay
 **Testlar:** `test_offline.py` — sessiyani saqlash/tiklash/o'chirish; `test_handlers_offline.py`
 — `menu:home` bilan FSM tozalangach va xotiradagi sessiya bo'shatilgach ham javob qabul
 qilinishi, bekor qilingan test natija sifatida saqlanmasligi.
+
+## 2026-11-17 — Turk tili kursi va ovozli talaffuz
+
+**Nima qo'shildi:** **📚 Darslar → 🇹🇷 Turk tili** — 8 ta boshlang'ich dars va har bir
+darsda 8 ta turkcha gap. **🎧 Ovozli talaffuz** tugmasi orqali gaplar ovozda o'qib
+beriladi, shuning uchun talaffuzni tinglab mashq qilish mumkin.
+
+| Bo'lim | Natija |
+| --- | --- |
+| Kontent | 8 dars: salomlashish, raqamlar, oila, ovqat, shahar, vaqt, xarid, mehmonxona |
+| Gaplar | 64 ta gap: `tr`, `uz` tarjima va talaffuz izohi (`hint`) |
+| Savollar | 32 ta test savoli (har darsda 4 ta) |
+| Ovoz | 64 ta tayyor OGG/Opus fayl (`assets/turkish_audio/`) |
+| Rasmlar | 1201–1208 darslari uchun 8 ta 16:9 illyustratsiya |
+| Jami kontent | 9 fan, 43 dars, 172 savol |
+
+### Ovoz qanday tayyorlangan
+
+- `scripts/generate_turkish_audio.py` Edge TTS (`tr-TR-EmelNeural`, `-8%` tezlik)
+  bilan MP3 yaratadi va `imageio-ffmpeg` orqali OGG/Opus (48 kHz, mono) ga aylantiradi.
+- Skript faqat ishlab chiqishda ishlaydi; bot ish vaqtida tayyor fayllarni yuboradi,
+  shuning uchun serverda TTS yoki ffmpeg talab qilinmaydi.
+- `services/turkish_audio.py` `file_id` keshini yuritadi: birinchi yuborishdan keyin
+  fayl qayta yuklanmaydi.
+
+### Botdagi oqim
+
+- `handlers/turkish.py` yangi router: `turk:audio:<lesson_id>` ekran,
+  `turk:say:<lesson_id>:<n>` bitta gap va `turk:all:<lesson_id>` ketma-ket tinglash.
+- Dars kartochkasida faqat Turk tili darslarida `🎧 Ovozli talaffuz` tugmasi chiqadi
+  (`lessons.subject_code == 'turkish'`).
+- Hammasini tinglash foydalanuvchi uchun lock bilan himoyalangan; gaplar orasida
+  0,5 soniya tanaffus bor.
+
+### Baza
+
+- Yangi `turkish_phrases` jadvali (`lesson_id`, `phrase_index` — birlamchi kalit).
+- `database/turkish.py` `seed_turkish()` fan, dars, savol va gaplarni upsert qiladi;
+  seed idempotent va `seed_content()` dan keyin ishlaydi.
+- `questions` va `quiz_results` bilan bir xil sxema; 15 ta jadval.
+
+### Tekshiruv natijalari
+
+| Tekshiruv | Natija |
+| --- | --- |
+| `ruff check .` | All checks passed |
+| `tests/test_offline.py` | `OFFLINE_TESTS_OK` |
+| `tests/test_handlers_offline.py` | `HANDLER_FLOW_OK` |

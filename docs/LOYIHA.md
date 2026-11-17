@@ -15,7 +15,8 @@ oqimlari va texnik qarorlarini tavsiflaydi.
 | --- | --- |
 | Ro'yxatdan o'tish | Ism, bilim darajasi (boshlang'ich / o'rta / yuqori), ma'lumotlarni saqlash |
 | AI Ustoz | Savol-javob, AI provayderi yoki dars bazasidan fallback, dars konteksti, kunlik limit |
-| Darslar | 8 fan, 35 dars; qisqa mazmun, 3 asosiy fikr, batafsil izoh, mini mashq, oldingi/keyingi dars, fan progressi va sevimlilar |
+| Darslar | 9 fan, 43 dars; qisqa mazmun, 3 asosiy fikr, batafsil izoh, mini mashq, oldingi/keyingi dars, fan progressi va sevimlilar |
+| Turk tili | 8 amaliy dars, 64 ta tayyor gap va har bir gap uchun ovozli talaffuz (OGG/Opus) |
 | Qidiruv | Darslarni nomi va mazmuni bo'yicha topish (`/qidiruv`) |
 | Testlar | Har urinishda 5 ta tasodifiy savol, 4 variant, yakuniy natija, eng yaxshi ball va xato javoblar tahlili |
 | Natijalar | Testlar, o'rtacha va eng yaxshi natija, faol kunlar, streak, daraja, yutuqlar va haftalik reyting |
@@ -31,7 +32,7 @@ oqimlari va texnik qarorlarini tavsiflaydi.
 | Kontent | JSON orqali fan, dars va savollarni boshqarish |
 | Joylash | Render bepul tarifi, Docker/Compose, Oracle Always Free, `/health` |
 
-Jami: **8 fan**, **35 dars**, **140 savol** (har bir darsda 4 tadan). Har bir
+Jami: **9 fan**, **43 dars**, **172 savol** (har bir darsda 4 tadan). Har bir
 savolda 4 ta variant va izoh bor.
 
 ## Arxitektura
@@ -53,6 +54,7 @@ handlers/  ── FSM, validatsiya, foydalanuvchi oqimlari
    ├── services/daily.py ── sovg'a, kunlik savol va missiya mantiqi
    ├── services/backup.py ── baza zaxirasi va CSV eksport
    ├── services/lesson_media.py ── dars rasmlari + file_id kesh
+   ├── services/turkish_audio.py ── talaffuz ovozi + file_id kesh
    ├── services/health_server.py ── Render uchun /health HTTP serveri
    ├── services/reminders.py ── kunlik eslatmalar
    ▼
@@ -367,8 +369,8 @@ Loyihada Telegram'ga ulanmasdan ishlaydigan ikkita test to'plami bor:
 
 | Test | Qamrov | Natija |
 | --- | --- | --- |
-| `tests/test_offline.py` | Baza sxemasi va migratsiya, 140 savol, dars maydonlari, qidiruv, savollarni ID bo'yicha olish, natijalar, eng yaxshi ball, streak, XP va yutuqlar, sevimlilar, fan progressi, zaxira va CSV, kunlik sovg'a va savol, haftalik faollik va missiyalar, vaqt yordamchilari, eslatmalar, AI fallback va dars konteksti, health server, admin statistikasi | `OFFLINE_TESTS_OK` |
-| `tests/test_handlers_offline.py` | Ro'yxatdan o'tish, menyu tugmalari, rasmli kartochka, asosiy fikrlar, batafsil o'qish, oldingi/keyingi dars, batafsil ekranda tugatish, sevimlilar, dars AI konteksti, qidiruv, 5 savolli test, xato tahlili va XP mukofoti, statistika (daraja, yutuqlar, reyting, sevimlilar), reja, sozlamalar, AI, `/id`, admin, broadcast, zaxira va CSV, eslatma, sovg'a, kunlik savol, missiya progressi va mukofot | `HANDLER_FLOW_OK` |
+| `tests/test_offline.py` | Baza sxemasi va migratsiya, 172 savol, dars maydonlari, qidiruv, savollarni ID bo'yicha olish, natijalar, eng yaxshi ball, streak, XP va yutuqlar, sevimlilar, fan progressi, zaxira va CSV, kunlik sovg'a va savol, haftalik faollik va missiyalar, vaqt yordamchilari, eslatmalar, AI fallback va dars konteksti, health server, Anatomiya banki, Turk tili va 64 ovoz fayli, admin statistikasi | `OFFLINE_TESTS_OK` |
+| `tests/test_handlers_offline.py` | Ro'yxatdan o'tish, menyu tugmalari, rasmli kartochka, asosiy fikrlar, batafsil o'qish, oldingi/keyingi dars, batafsil ekranda tugatish, sevimlilar, dars AI konteksti, qidiruv, 5 savolli test, xato tahlili va XP mukofoti, statistika (daraja, yutuqlar, reyting, sevimlilar), reja, sozlamalar, AI, `/id`, admin, broadcast, zaxira va CSV, eslatma, sovg'a, kunlik savol, missiya progressi va mukofot, Anatomiya rejimlari, Turk tili ovozli talaffuz ekrani | `HANDLER_FLOW_OK` |
 
 Testlar vaqtinchalik SQLite faylidan foydalanadi va haqiqiy bazaga tegmaydi.
 Handler testi aiogram `FakeSession` orqali chiquvchi so'rovlarni ushlaydi; bu
@@ -424,12 +426,15 @@ ustoz_ai_bot/
 ├── render.yaml               # Render bepul web-service blueprint
 ├── .dockerignore
 ├── .github/workflows/ci.yml  # GitHub Actions CI
-├── assets/lesson_images/     # 35 ta dars rasmi (1280x720 JPEG)
+├── assets/lesson_images/     # 43 ta dars rasmi (1280x720 JPEG)
+├── assets/turkish_audio/     # 64 ta turkcha talaffuz ovozi (OGG/Opus)
 ├── content/seed_data.json    # O'quv kontenti (140 savol)
+├── content/turkish_courses.json # Turk tili: 8 dars, 64 gap, 32 savol
 ├── database/                 # Sxema, seed va jadval modullari
 ├── handlers/                 # Bo'limlar bo'yicha routerlar
 ├── keyboards/                # Reply va inline klaviaturalar
-├── services/                 # AI, gamifikatsiya, kunlik, zaxira, rasm, health, eslatmalar
+├── services/                 # AI, gamifikatsiya, kunlik, zaxira, rasm, ovoz, health, eslatmalar
+├── scripts/                  # Turkcha ovozlarni yaratish skripti
 ├── tests/                    # Offline testlar
 ├── docs/                     # Hujjatlar va har bir kod fayli uchun tavsif
 ├── backups/                  # Admin zaxiralari (git'ga kirmaydi)

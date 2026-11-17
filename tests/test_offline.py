@@ -101,6 +101,7 @@ from database.quizzes import (  # noqa: E402
     get_subject_best_score,
     save_quiz_result,
 )
+from database.turkish import get_turkish_phrases  # noqa: E402
 from database.users import (  # noqa: E402
     create_user,
     get_user,
@@ -135,6 +136,7 @@ from services.health_server import (  # noqa: E402
     stop_health_server,
 )
 from services.reminders import format_reminder  # noqa: E402
+from services.turkish_audio import missing_audio_files  # noqa: E402
 from time_utils import (  # noqa: E402
     LOCAL_TZ,
     local_today,
@@ -230,14 +232,14 @@ async def run_tests() -> None:
     await init_db()  # idempotent bo'lishi kerak
 
     subjects = await get_subjects_with_counts()
-    check(len(subjects) == 8, "8 ta fan yuklandi")
+    check(len(subjects) == 9, "9 ta fan yuklandi")
     total_questions = sum(int(item["question_count"]) for item in subjects)
-    check(total_questions == 140, "140 ta savol yuklandi")
+    check(total_questions == 172, "172 ta savol yuklandi")
 
     all_lessons = []
     for subject in subjects:
         all_lessons.extend(await get_lessons(int(subject["id"])))
-    check(len(all_lessons) == 35, "35 ta dars yuklandi")
+    check(len(all_lessons) == 43, "43 ta dars yuklandi")
 
     content_ok = True
     for item in all_lessons:
@@ -270,10 +272,39 @@ async def run_tests() -> None:
         )
         per_lesson = list(await cursor.fetchall())
     check(
-        len(per_lesson) == 35
+        len(per_lesson) == 43
         and all(int(row["total"]) == 4 for row in per_lesson),
         "har bir darsda 4 tadan savol bor",
     )
+
+    turkish = next((item for item in subjects if item["code"] == "turkish"), None)
+    check(turkish is not None, "turk tili fani yuklandi")
+    if turkish is not None:
+        turkish_lessons = await get_lessons(int(turkish["id"]))
+        turkish_ids = [int(item["id"]) for item in turkish_lessons]
+        check(len(turkish_lessons) == 8, "turk tilida 8 ta dars bor")
+        check(
+            int(turkish["question_count"]) == 32,
+            "turk tilida 32 ta test savoli bor",
+        )
+        phrase_counts = [
+            len(await get_turkish_phrases(lesson_id))
+            for lesson_id in turkish_ids
+        ]
+        check(
+            phrase_counts == [8] * 8,
+            "har bir turk tili darsida 8 tadan talaffuz gapi bor",
+        )
+        check(
+            not missing_audio_files(turkish_ids, 8),
+            "64 ta talaffuz ovozi fayli mavjud",
+        )
+        first_lesson = await get_lesson(turkish_ids[0])
+        check(
+            first_lesson is not None
+            and first_lesson["subject_code"] == "turkish",
+            "dars so'rovida fan kodi qaytadi",
+        )
 
     legacy_path = pathlib.Path(TEMP_DIR.name) / "legacy.db"
     async with aiosqlite.connect(legacy_path) as legacy:
@@ -815,7 +846,7 @@ async def run_tests() -> None:
     admin_stats = await get_admin_stats()
     check(int(admin_stats["total_users"]) == 1, "admin statistikasi foydalanuvchini ko'rsatdi")
     check(int(admin_stats["quizzes"]) == 1, "admin statistikasi testni ko'rsatdi")
-    check(int(admin_stats["questions"]) == 140, "admin statistikasi 140 savolni ko'rsatdi")
+    check(int(admin_stats["questions"]) == 172, "admin statistikasi 172 savolni ko'rsatdi")
     check(
         round(float(admin_stats["average_score"])) == 80,
         "admin statistikasi o'rtachani ko'rsatdi",

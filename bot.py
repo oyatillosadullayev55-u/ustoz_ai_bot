@@ -30,6 +30,7 @@ from handlers import (
     progress,
     quizzes,
     start,
+    turkish,
 )
 from handlers import settings as user_settings
 from services.ai_service import close_ai_session
@@ -149,6 +150,7 @@ async def run_bot(settings: Settings) -> None:
         dispatcher.include_router(lessons.router)
         dispatcher.include_router(quizzes.router)
         dispatcher.include_router(anatomy.router)
+        dispatcher.include_router(turkish.router)
         dispatcher.include_router(progress.router)
         dispatcher.include_router(gamification.router)
         dispatcher.include_router(daily.router)

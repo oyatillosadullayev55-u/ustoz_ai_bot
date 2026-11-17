@@ -100,12 +100,19 @@ def _lessons_text(subject, lessons, completed_ids: set[int]) -> str:
 
     is_prog = (subject["code"] == "programming") if "code" in subject.keys() else False
     is_biology = (subject["code"] == "biology") if "code" in subject.keys() else False
+    is_turkish = (subject["code"] == "turkish") if "code" in subject.keys() else False
     title_suffix = " YO'NALISHLARI" if is_prog else ""
     choose_prompt = "Yo'nalishni tanlang:" if is_prog else "Mavzuni tanlang:"
     anatomy_note = (
         "\n🫀 <b>Anatomiya</b> bo'yicha 2-kurs test banki ham mavjud — "
         "vaqt cheklangan rejimlarda sinab ko'ring.\n"
         if is_biology
+        else ""
+    )
+    turkish_note = (
+        "\n🎧 <b>Ovozli talaffuz:</b> har bir darsda 8 ta tayyor gap bor. "
+        "Darsni oching va «Ovozli talaffuz» tugmasi orqali tinglang.\n"
+        if is_turkish
         else ""
     )
 
@@ -117,7 +124,8 @@ def _lessons_text(subject, lessons, completed_ids: set[int]) -> str:
         f"📊 {completed_count}/{len(lessons)} dars · "
         f"{progress_bar(completed_count, len(lessons))}\n"
         f"{duration_note}"
-        f"{anatomy_note}\n"
+        f"{anatomy_note}"
+        f"{turkish_note}\n"
         f"{choose_prompt}"
     )
 
@@ -229,6 +237,7 @@ async def _send_lesson_card(
         is_favorite=await is_favorite(user_id, lesson_id),
         prev_lesson_id=previous_id,
         next_lesson_id=next_id,
+        audio=lesson["subject_code"] == "turkish",
     )
     photo = get_lesson_photo(lesson_id)
 
@@ -277,6 +286,7 @@ async def _send_lesson_details(
             is_favorite=await is_favorite(user_id, int(lesson["id"])),
             prev_lesson_id=previous_id,
             next_lesson_id=next_id,
+            audio=lesson["subject_code"] == "turkish",
         ),
     )
 

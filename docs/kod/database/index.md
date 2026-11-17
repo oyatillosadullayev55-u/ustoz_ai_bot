@@ -9,6 +9,7 @@
 |---|---|
 | [`db.py`](db.md) | Ulanish, sxema va indekslar |
 | [`seed.py`](seed.md) | `content/seed_data.json` ni bazaga yuklash |
+| [`turkish.py`](turkish.md) | Turk tili darslari, gaplari va savollarini yuklash |
 | [`users.py`](users.md) | Foydalanuvchilar va sozlamalar |
 | [`content.py`](content.md) | Fanlar, darslar, savollar, qidiruv |
 | [`quizzes.py`](quizzes.md) | Test natijalarini saqlash |
@@ -23,7 +24,7 @@
 
 ## Ma'lumotlar bazasi sxemasi
 
-Loyihada **14 ta jadval** bor:
+Loyihada **15 ta jadval** bor:
 
 1. `users`
 2. `subjects`
@@ -39,6 +40,7 @@ Loyihada **14 ta jadval** bor:
 12. `daily_answers`
 13. `anatomy_questions`
 14. `anatomy_sessions`
+15. `turkish_phrases`
 
 ## Umumiy qoidalar
 

@@ -264,6 +264,7 @@ Logda quyidagilar ko'rinishi kerak:
 
 ```text
 database.seed | Kontent yuklandi: 8 fan, 35 dars, 140 savol.
+database.turkish | Turk tili yuklandi: 8 dars, 64 gap, 32 savol.
 bot | UstozAI ishga tushdi: @...
 ```
 

@@ -18,6 +18,7 @@ Bu papkada UstozAI loyihasining **har bir kod fayli** uchun alohida markdown huj
 | `database/__init__.py` | [database/index.md](database/index.md) |
 | `database/db.py` | [database/db.md](database/db.md) |
 | `database/seed.py` | [database/seed.md](database/seed.md) |
+| `database/turkish.py` | [database/turkish.md](database/turkish.md) |
 | `database/users.py` | [database/users.md](database/users.md) |
 | `database/content.py` | [database/content.md](database/content.md) |
 | `database/quizzes.py` | [database/quizzes.md](database/quizzes.md) |
@@ -40,6 +41,7 @@ Bu papkada UstozAI loyihasining **har bir kod fayli** uchun alohida markdown huj
 | `handlers/lessons.py` | [handlers/lessons.md](handlers/lessons.md) |
 | `handlers/quizzes.py` | [handlers/quizzes.md](handlers/quizzes.md) |
 | `handlers/anatomy.py` | [handlers/anatomy.md](handlers/anatomy.md) |
+| `handlers/turkish.py` | [handlers/turkish.md](handlers/turkish.md) |
 | `handlers/progress.py` | [handlers/progress.md](handlers/progress.md) |
 | `handlers/daily_plan.py` | [handlers/daily_plan.md](handlers/daily_plan.md) |
 | `handlers/settings.py` | [handlers/settings.md](handlers/settings.md) |
@@ -64,6 +66,7 @@ Bu papkada UstozAI loyihasining **har bir kod fayli** uchun alohida markdown huj
 | `services/__init__.py` | [services/index.md](services/index.md) |
 | `services/ai_service.py` | [services/ai_service.md](services/ai_service.md) |
 | `services/lesson_media.py` | [services/lesson_media.md](services/lesson_media.md) |
+| `services/turkish_audio.py` | [services/turkish_audio.md](services/turkish_audio.md) |
 | `services/reminders.py` | [services/reminders.md](services/reminders.md) |
 | `services/gamification.py` | [services/gamification.md](services/gamification.md) |
 | `services/daily.py` | [services/daily.md](services/daily.md) |
@@ -77,6 +80,8 @@ Bu papkada UstozAI loyihasining **har bir kod fayli** uchun alohida markdown huj
 | `tests/test_offline.py` | [tests/test_offline.md](tests/test_offline.md) |
 | `tests/test_handlers_offline.py` | [tests/test_handlers_offline.md](tests/test_handlers_offline.md) |
 | `content/seed_data.json` | [content/seed_data.md](content/seed_data.md) |
+| `content/turkish_courses.json` | [content/turkish_courses.md](content/turkish_courses.md) |
+| `scripts/generate_turkish_audio.py` | [scripts/generate_turkish_audio.md](scripts/generate_turkish_audio.md) |
 
 ## Infratuzilma
 
@@ -107,7 +112,8 @@ Bu papkada UstozAI loyihasining **har bir kod fayli** uchun alohida markdown huj
 - Kunlik sovg'a, kunlik savol va haftalik missiyalar (3 dars / 2 test / 3 AI savoli).
 - Sevimli darslar (⭐) va «Sevimlilarim» ekrani.
 - Har bir fan bo'yicha tugatilgan darslar progressi va testlarda eng yaxshi natija.
-- 35 ta dars uchun 140 ta savol; test yakunida xato javoblar tahlili.
+- 43 ta dars uchun 172 ta savol; test yakunida xato javoblar tahlili.
+- Turk tili kursi: 8 dars, 64 ta tayyor gap va ovozli talaffuz mashqlari.
 - Admin uchun `/backup` (baza nusxasi) va `/export` (CSV) buyruqlari.
 - `/qidiruv` va `/search` orqali darslardan matnli qidiruv.
 - Har kuni belgilangan vaqtda kunlik reja eslatmasi (UTC+5).

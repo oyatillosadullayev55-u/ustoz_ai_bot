@@ -40,7 +40,8 @@ Test oxirida `TemporaryDirectory.cleanup()` baza faylini o'chiradi. Haqiqiy `.en
 | Yordamchilar | `message is not modified` ajratiladi; `ProviderGuard` 2 xatodan keyin bloklaydi va muddatdan so'ng ochadi; admin/dars klaviaturalari qatorlari saqlanadi |
 | Sxema | `init_db()` ikki marta chaqirilganda idempotentligi |
 | Migratsiya | Eski `lessons` jadvaliga `summary`, `key_points`, `level`, `duration_min` qo'shilishi |
-| Kontent | 8 fan, 35 dars, 140 savol; har bir darsda 4 savol |
+| Kontent | 9 fan, 43 dars, 172 savol; har bir darsda 4 savol |
+| Turk tili | 8 dars, 32 savol, har darsda 8 ta gap; `subject_code='turkish'`; 64 ta OGG ovoz fayli mavjud |
 | Dars sifati | Har bir darsda 80+ belgili `summary`, aynan 3 ta `key_points`, to'g'ri `level`, 1–120 `duration_min`, 900+ belgili `content` |
 | Savollar | `get_questions_by_ids` va bo'sh ro'yxat |
 | Anatomiya | 546 ta takrorlanmagan savol; yashirin `subjects.id=900`; har bir savolda 4 variant va 0–3 indeks; tasodifiy tanlash limiti; ID bo'yicha o'qish; `seed_anatomy()` idempotentligi |
@@ -58,7 +59,7 @@ Test oxirida `TemporaryDirectory.cleanup()` baza faylini o'chiradi. Haqiqiy `.en
 | Sozlamalar | Bildirishnoma `0/1` va eslatma ro'yxati |
 | Kunlik | Kunlik savol kun davomida barqaror; javob saqlanadi va takroriy javob rad etiladi; sovg'a bir marta olinadi va seriya hisoblanadi |
 | Missiyalar | Haftalik faollik dars/test/AI bo'yicha sanaladi; missiya progressi va hafta kaliti to'g'ri |
-| Admin | Jami foydalanuvchi, testlar, 140 savol, o'rtacha foiz |
+| Admin | Jami foydalanuvchi, testlar, 172 savol, o'rtacha foiz |
 
 ## Nima uchun skript ko'rinishida
 

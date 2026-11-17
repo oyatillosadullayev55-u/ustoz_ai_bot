@@ -1,0 +1,245 @@
+{
+  "subjects": [
+    {
+      "id": 9,
+      "code": "turkish",
+      "name": "Turk tili",
+      "emoji": "🇹🇷",
+      "description": "Turk tilini noldan o'rganing: 8 amaliy mavzu, 64 ta tayyor gap va har bir gap uchun ovozli talaffuz. Tinglang, takrorlang va yodlang.",
+      "lessons": [
+        {
+          "id": 1201,
+          "title": "Salomlashish va tanishuv",
+          "summary": "Turk tilida salomlashish, o'zini tanishtirish va oddiy suhbatni boshlash uchun eng kerakli 8 ta gap. Har bir gapni ovozli tinglab, talaffuzni mashq qiling.",
+          "key_points": [
+            "Merhaba — universal salomlashuv, kunning istalgan vaqtida ishlatiladi.",
+            "Günaydın tongda, İyi akşamlar kechqurun aytiladi.",
+            "O'z ismingizni «Benim adım ...» deb aytsangiz bo'ladi."
+          ],
+          "level": "beginner",
+          "duration_min": 8,
+          "content": "Turk tili lotin alifbosida yoziladi, lekin ba'zi harflar o'zbekchadan farq qiladi. «c» harfi «j» kabi o'qiladi (cam — jom), «ç» — «ch» (çay — choy), «ş» — «sh» (şehir — shehir), «ı» — «i» bilan «u» orasidagi tovush, «ö» va «ü» esa lablarni dumaloqlab aytiladigan tovushlar. Turk tilida so'z oxiridagi qo'shimchalar oldingi unliga moslashadi: bu qoidaga unli uyg'unligi deyiladi. Masalan, «ben» — men, «sen» — sen, «siz» — siz (hurmat shakli ham). Tanishuvda «Benim adım Ali» (mening ismim Ali) deb aytiladi; savol shakli «Senin adın ne?» (sening isming nima?). Hurmatli muloqotda «Sizin adınız ne?» ishlatiladi. «Nasılsın?» — qalaysan, «Nasılsınız?» — qalaysiz. Javobda «İyiyim, teşekkür ederim» (yaxshiman, rahmat) deyiladi, so'ng «sen?» yoki «siz?» deb savol qaytarish odat tusiga kirgan. Vidolashuvda «Görüşürüz!» (ko'rishguncha) yoki «Hoşça kal!» (xayr) ishlatiladi. Quyidagi 8 ta gapni avval sekin, keyin tabiiy tezlikda takrorlang — talaffuz uchun ovoz tugmasidan foydalaning.",
+          "phrases": [
+            {"tr": "Merhaba!", "uz": "Salom!", "hint": "mer-ha-BA — oxirgi bo'g'in urg'uli"},
+            {"tr": "Günaydın!", "uz": "Xayrli tong!", "hint": "gyu-nay-DIN — «ü» lablarni dumaloqlab"},
+            {"tr": "İyi akşamlar!", "uz": "Xayrli kech!", "hint": "i-YI ak-sham-LAR"},
+            {"tr": "Benim adım Ali.", "uz": "Mening ismim Ali.", "hint": "be-NIM a-DIM Ali"},
+            {"tr": "Senin adın ne?", "uz": "Sening isming nima?", "hint": "se-NIN a-DIN ne"},
+            {"tr": "Ben Özbekistanlıyım.", "uz": "Men O'zbekistonlikman.", "hint": "ben yoz-be-kis-tan-LI-yim"},
+            {"tr": "Nasılsın?", "uz": "Qalaysan?", "hint": "na-sil-SIN — «ı» — i/u orasidagi tovush"},
+            {"tr": "İyiyim, teşekkür ederim.", "uz": "Yaxshiman, rahmat.", "hint": "i-yi-YIM, te-shek-KYUR e-de-RIM"}
+          ],
+          "questions": [
+            {"text": "«Merhaba» so'zining ma'nosi nima?", "options": ["Salom", "Xayr", "Rahmat", "Kechirasiz"], "correct": 0, "explanation": "Merhaba — kunning istalgan vaqtida ishlatiladigan salomlashuv."},
+            {"text": "«Benim adım Ali» gapining tarjimasi qaysi?", "options": ["Men Alini bilaman", "Mening ismim Ali", "Ali mening ukam", "Men Aliga aytdim"], "correct": 1, "explanation": "Benim adım — mening ismim; Ali — ism."},
+            {"text": "«Nasılsın?» savoli nimani so'raydi?", "options": ["Isming nima?", "Qayerdansan?", "Qalaysan?", "Necha yoshdasan?"], "correct": 2, "explanation": "Nasılsın — qalaysan, hol-ahvol so'rash savoli."},
+            {"text": "«Teşekkür ederim» qanday tarjima qilinadi?", "options": ["Kechirasiz", "Rahmat", "Salom", "Xayr"], "correct": 1, "explanation": "Teşekkür ederim — rahmat, minnatdorchilik bildirish."}
+          ]
+        },
+        {
+          "id": 1202,
+          "title": "Raqamlar va yosh",
+          "summary": "Birdan o'ngacha sanash, yoshni aytish va suhbatdoshning yoshini so'rash. Ovozli misollar bilan talaffuzni mustahkamlang.",
+          "key_points": [
+            "1–5: bir, iki, üç, dört, beş; 10 — on.",
+            "«Kaç yaşındasın?» — necha yoshdasan degan savol.",
+            "Yosh aytishda «yaşındayım» qo'shimchasi ishlatiladi."
+          ],
+          "level": "beginner",
+          "duration_min": 8,
+          "content": "Turk tilida raqamlar juda muntazam tuzilgan: 1 — bir, 2 — iki, 3 — üç, 4 — dört, 5 — beş, 6 — altı, 7 — yedi, 8 — sekiz, 9 — dokuz, 10 — on. O'nliklar ham oson: 20 — yirmi, 30 — otuz, 40 — kırk, 50 — elli, 60 — altmış, 70 — yetmiş, 80 — seksen, 90 — doksan, 100 — yüz. Ikki xonali sonlar oddiy ketma-ketlikda aytiladi: 25 — yirmi beş, 48 — kırk sekiz, 99 — doksan dokuz. Telefon raqami yoki narx aytilganda har bir raqam alohida o'qiladi. «Kaç?» so'zi «nechta, qancha» ma'nosini beradi, «Kaç yaşındasın?» esa «necha yoshdasan?» degan savol. Javobda «Ben yirmi yaşındayım» (men yigirma yoshdaman) deb aytiladi. «Yaş» — yosh, «yaşındayım» — yoshdaman. Hurmatli shaklda «Kaç yaşındasınız?» ishlatiladi. Yosh haqidagi savol notanish kishiga nisbatan kamroq beriladi, lekin til o'rganish mashqlarida bu eng foydali mavzulardan biri. Raqamlarni ovoz bilan tinglab, ovoz balandligida takrorlang — bu talaffuzni tez yaxshilaydi.",
+          "phrases": [
+            {"tr": "bir", "uz": "bir (1)", "hint": "bir — qisqa va aniq"},
+            {"tr": "iki", "uz": "ikki (2)", "hint": "i-KI — urg'u oxirida"},
+            {"tr": "üç", "uz": "uch (3)", "hint": "ych — «ü» lablarni dumaloqlab"},
+            {"tr": "dört", "uz": "to'rt (4)", "hint": "dyort — «ö» yumshoq"},
+            {"tr": "beş", "uz": "besh (5)", "hint": "besh — «ş» — sh"},
+            {"tr": "on", "uz": "o'n (10)", "hint": "on — burun tovushi yo'q, sof «o»"},
+            {"tr": "Kaç yaşındasın?", "uz": "Necha yoshdasan?", "hint": "kach ya-shin-DA-sin"},
+            {"tr": "Ben yirmi yaşındayım.", "uz": "Men yigirma yoshdaman.", "hint": "ben yir-MI ya-shin-da-yim"}
+          ],
+          "questions": [
+            {"text": "«üç» raqami nechchi?", "options": ["2", "3", "4", "5"], "correct": 1, "explanation": "üç — uch (3)."},
+            {"text": "«beş» qaysi raqamni bildiradi?", "options": ["4", "5", "6", "7"], "correct": 1, "explanation": "beş — besh (5)."},
+            {"text": "«Kaç yaşındasın?» savolining ma'nosi nima?", "options": ["Qayerdansan?", "Necha yoshdasan?", "Isming nima?", "Qalaysan?"], "correct": 1, "explanation": "Kaç yaşındasın — necha yoshdasan."},
+            {"text": "«Men yigirma yoshdaman» gapining turkcha shakli qaysi?", "options": ["Ben on yaşındayım", "Ben yirmi yaşındayım", "Ben iki yaşındayım", "Ben yirmi yaş var"], "correct": 1, "explanation": "yirmi — yigirma, yaşındayım — yoshdaman."}
+          ]
+        },
+        {
+          "id": 1203,
+          "title": "Oila a'zolari",
+          "summary": "Ona, ota, aka-uka va opa-singillarni turkcha aytish, oila haqida gapirish. «Var» va «yok» so'zlari bilan oddiy gaplar tuzish.",
+          "key_points": [
+            "anne — ona, baba — ota, kardeş — aka-uka yoki opa-singil.",
+            "Egalik qo'shimchasi: anne + m = annem (onam).",
+            "«Var» — bor, «yok» — yo'q."
+          ],
+          "level": "beginner",
+          "duration_min": 8,
+          "content": "Turk tilida oila a'zolari uchun eng ko'p ishlatiladigan so'zlar: anne — ona, baba — ota, kardeş — aka-uka yoki opa-singil (yoshiga va jinsiga qarab), abla — opa, ağabey — aka. «Oğul» — o'g'il, «kız» — qiz ma'nosini beradi. Egalikni bildirish uchun so'z oxiriga qo'shimcha qo'shiladi: annem — onam, babam — otam, kardeşim — ukam yoki singlim. Ko'plikda «kardeşlerim» — aka-ukalarim. Oddiy gap tuzish uchun «var» (bor) va «yok» (yo'q) so'zlari juda qulay: «Benim bir kardeşim var» — mening bitta ukam bor; «Benim ablam yok» — mening opam yo'q. «Bu benim annem» — bu mening onam, «Bu benim babam» — bu mening otam. Savol shakli: «Ailen nerede?» — oilang qayerda; «Kaç kardeşin var?» — nechta aka-ukang bor. Hurmatli muloqotda «aileniz» va «kardeşiniz» shakllari ishlatiladi. Oila haqida gapirganda son bilan birga «bir» so'zini qo'shish tabiiy: «iki kardeşim var» — ikkita ukam bor. Quyidagi gaplarni ovoz bilan tinglab, «m» qo'shimchasini aniq talaffuz qiling.",
+          "phrases": [
+            {"tr": "anne", "uz": "ona", "hint": "an-NE — ikki bo'g'in, urg'u oxirida"},
+            {"tr": "baba", "uz": "ota", "hint": "ba-BA — ikkala «a» aniq"},
+            {"tr": "kardeş", "uz": "aka-uka / opa-singil", "hint": "kar-DESH — «ş» — sh"},
+            {"tr": "abla", "uz": "opa", "hint": "ab-LA"},
+            {"tr": "ağabey", "uz": "aka", "hint": "a-a-BEY — «ğ» deyarli eshitilmaydi"},
+            {"tr": "Bu benim annem.", "uz": "Bu mening onam.", "hint": "bu be-NIM an-NEM"},
+            {"tr": "Benim bir kardeşim var.", "uz": "Mening bitta ukam bor.", "hint": "be-NIM bir kar-de-SHIM var"},
+            {"tr": "Ailen nerede?", "uz": "Oilang qayerda?", "hint": "a-i-LEN ne-re-DE"}
+          ],
+          "questions": [
+            {"text": "«anne» so'zining ma'nosi nima?", "options": ["Ota", "Ona", "Opa", "Aka"], "correct": 1, "explanation": "anne — ona."},
+            {"text": "«baba» so'zi qanday tarjima qilinadi?", "options": ["Ona", "Bola", "Ota", "Buvi"], "correct": 2, "explanation": "baba — ota."},
+            {"text": "«var» so'zining ma'nosi nima?", "options": ["Yo'q", "Bor", "Ko'p", "Kam"], "correct": 1, "explanation": "var — bor; yok — yo'q."},
+            {"text": "«Bu benim annem» gapining tarjimasi qaysi?", "options": ["Bu mening onam", "Bu mening opam", "Bu mening otam", "Bu mening ukam"], "correct": 0, "explanation": "anne — ona, benim — mening."}
+          ]
+        },
+        {
+          "id": 1204,
+          "title": "Ovqat va ichimlik",
+          "summary": "Kafeda yoki oshxonada buyurtma berish: suv, choy, non va qahva so'rash. «Lütfen» va «teşekkürler» bilan xushmuomala muloqot.",
+          "key_points": [
+            "su — suv, çay — choy, ekmek — non, kahve — qahva.",
+            "Buyurtmada «Bir çay lütfen» shakli ishlatiladi.",
+            "«Hesap lütfen» — hisobni so'rash."
+          ],
+          "level": "beginner",
+          "duration_min": 8,
+          "content": "Turk oshxonasi juda boy, lekin boshlang'ich bosqichda eng kerakli so'zlar: su — suv, çay — choy, kahve — qahva, ekmek — non, süt — sut, yemek — ovqat, meyve — meva, et — go'sht. Buyurtma berish uchun «Bir çay lütfen» (bitta choy, iltimos) deyish kifoya: «bir» — bitta, «lütfen» — iltimos. «Ne yemek istersin?» — nima yemoqchisan degan savol; «istiyorum» — xohlayman. «Ben açım» — men ochman, «Ben susadım» — men chanqadim. Ovqatdan keyin «Hesap lütfen» (hisob, iltimos) deb aytiladi. Taom yoqqanida «Çok lezzetli!» (juda mazali!) deyish odob. «Afiyet olsun!» — yoqimli ishtaha degan tilak, uni ovqatdan oldin yoki keyin aytish mumkin. «Teşekkürler» — rahmat, «Bir şey değil» — arzimaydi. Kafeda ko'pincha «Bardak» (stakan), «Tabak» (tarelka), «Kaşık» (qoshiq) so'zlari uchraydi. Talaffuzda «ç» harfini «ch» deb, «ş» ni «sh» deb o'qing. Quyidagi gaplarni ovoz bilan tinglab, buyurtma berish ohangini mashq qiling.",
+          "phrases": [
+            {"tr": "su", "uz": "suv", "hint": "su — qisqa, cho'zilmaydi"},
+            {"tr": "çay", "uz": "choy", "hint": "chay — «ç» — ch"},
+            {"tr": "ekmek", "uz": "non", "hint": "ek-MEK — ikkinchi «e» aniq"},
+            {"tr": "kahve", "uz": "qahva", "hint": "kah-VE"},
+            {"tr": "Bir çay lütfen.", "uz": "Bitta choy, iltimos.", "hint": "bir chay LYUT-fen"},
+            {"tr": "Ne yemek istersin?", "uz": "Nima yemoqchisan?", "hint": "ne ye-MEK is-ter-SIN"},
+            {"tr": "Ben açım.", "uz": "Men ochman.", "hint": "ben a-CHIM"},
+            {"tr": "Hesap lütfen.", "uz": "Hisob, iltimos.", "hint": "he-SAP LYUT-fen"}
+          ],
+          "questions": [
+            {"text": "«su» so'zining ma'nosi nima?", "options": ["Choy", "Suv", "Non", "Sut"], "correct": 1, "explanation": "su — suv."},
+            {"text": "«ekmek» qanday tarjima qilinadi?", "options": ["Non", "Go'sht", "Meva", "Qahva"], "correct": 0, "explanation": "ekmek — non."},
+            {"text": "«Hesap lütfen» nima degani?", "options": ["Suv, iltimos", "Hisob, iltimos", "Choy, iltimos", "Rahmat"], "correct": 1, "explanation": "Hesap — hisob, lütfen — iltimos."},
+            {"text": "«çay» so'zi nimani bildiradi?", "options": ["Qahva", "Suv", "Choy", "Sut"], "correct": 2, "explanation": "çay — choy."}
+          ]
+        },
+        {
+          "id": 1205,
+          "title": "Shahar va yo'l so'rash",
+          "summary": "Shaharda yo'nalish so'rash: «qayerda», «chap», «o'ng», «to'g'ri». Transportda va ko'chada kerak bo'ladigan 8 ta amaliy gap.",
+          "key_points": [
+            "nerede — qayerda; «Tuvalet nerede?» — hojatxona qayerda.",
+            "sağ — o'ng, sol — chap, düz — to'g'ri.",
+            "«Soldan dönün» — chapga buriling."
+          ],
+          "level": "beginner",
+          "duration_min": 9,
+          "content": "Notanish shaharda eng foydali savol «Nerede?» — qayerda? Masalan, «Tuvalet nerede?» — hojatxona qayerda, «Otel nerede?» — mehmonxona qayerda, «Durak nerede?» — bekat qayerda. Yo'nalish so'zlari: sağ — o'ng, sol — chap, düz — to'g'ri, yukarı — yuqoriga, aşağı — pastga, yakın — yaqin, uzak — uzoq. «Soldan dönün» — chapga buriling, «Sağdan gidin» — o'ngdan boring. «Buraya nasıl gidebilirim?» — bu yerga qanday boraman degan savol; javobda ko'pincha «Düz gidin, sonra sola dönün» (to'g'ri boring, keyin chapga buriling) deyiladi. «Çok yakın» — juda yaqin, «Yürüyerek beş dakika» — piyoda besh daqiqa. Taksi chaqirish uchun «Taksi çağırabilir misiniz?» deb so'raladi. Hurmatli shakl «-iniz» qo'shimchasi bilan yasaladi: «gidin» — boring, «gidiniz» — boring (hurmat). «Bilmiyorum» — bilmayman, «Anlamadım» — tushunmadim — bu ikki gap sayohatda ko'p asqotadi. «Harita» — xarita, «Sokak» — ko'cha, «Meydan» — maydon. Quyidagi gaplarni ovoz bilan tinglab, yo'nalish ohangini takrorlang.",
+          "phrases": [
+            {"tr": "nerede", "uz": "qayerda", "hint": "ne-re-DE"},
+            {"tr": "sağ", "uz": "o'ng", "hint": "saa — «ğ» cho'zadi, tovush deyarli yo'q"},
+            {"tr": "sol", "uz": "chap", "hint": "sol — sof «o» tovushi"},
+            {"tr": "düz", "uz": "to'g'ri", "hint": "dyuz — lablarni dumaloqlab"},
+            {"tr": "Tuvalet nerede?", "uz": "Hojatxona qayerda?", "hint": "tu-va-LET ne-re-DE"},
+            {"tr": "Soldan dönün.", "uz": "Chapga buriling.", "hint": "sol-DAN dyu-NYUN"},
+            {"tr": "Buraya nasıl gidebilirim?", "uz": "Bu yerga qanday boraman?", "hint": "bu-ra-YA na-SIL gi-de-bi-li-RIM"},
+            {"tr": "Çok yakın.", "uz": "Juda yaqin.", "hint": "chok ya-KIN"}
+          ],
+          "questions": [
+            {"text": "«nerede» so'zining ma'nosi nima?", "options": ["Qachon", "Qayerda", "Nima uchun", "Qancha"], "correct": 1, "explanation": "nerede — qayerda."},
+            {"text": "«sağ» qaysi tomonga ishora qiladi?", "options": ["Chap", "O'ng", "To'g'ri", "Orqa"], "correct": 1, "explanation": "sağ — o'ng; sol — chap."},
+            {"text": "«Soldan dönün» gapining tarjimasi qaysi?", "options": ["O'ngga buriling", "To'g'ri boring", "Chapga buriling", "Orqaga qayting"], "correct": 2, "explanation": "sol — chap, dönün — buriling."},
+            {"text": "«Çok yakın» nima degani?", "options": ["Juda uzoq", "Juda yaqin", "Juda qimmat", "Juda katta"], "correct": 1, "explanation": "çok — juda, yakın — yaqin."}
+          ]
+        },
+        {
+          "id": 1206,
+          "title": "Vaqt va kunlar",
+          "summary": "Soatni so'rash, kunlarni aytish va uchrashuv vaqtini kelishish. Hafta kunlari va «bugun, ertaga, kecha» so'zlari.",
+          "key_points": [
+            "bugün — bugun, yarın — ertaga, dün — kecha.",
+            "«Saat kaç?» — soat necha degan savol.",
+            "Hafta kunlari: pazartesi, salı, çarşamba, perşembe, cuma, cumartesi, pazar."
+          ],
+          "level": "beginner",
+          "duration_min": 9,
+          "content": "Vaqt haqida gapirish uchun «saat» — soat so'zi ishlatiladi. «Saat kaç?» — soat necha? Javobda «Saat üç» — soat uch, «Saat yedi buçuk» — soat yetti yarim. «Şimdi» — hozir, «sonra» — keyin, «önce» — oldin. Kunlar: bugün — bugun, yarın — ertaga, dün — kecha. Hafta kunlari: pazartesi — dushanba, salı — seshanba, çarşamba — chorshanba, perşembe — payshanba, cuma — juma, cumartesi — shanba, pazar — yakshanba. Uchrashuv vaqtini kelishishda «Saat kaçta buluşalım?» — soat nechada uchrashamiz deb so'raladi; javobda «Saat altıda» — soat oltida. «Yarın görüşürüz» — ertaga ko'rishamiz. Ertalab, kunduzi va kechqurun: sabah — tong, öğlen — tush, akşam — kech. «Ne zaman?» — qachon degan savol; «Yarın sabah» — ertaga tong. «Geç» — kech, «erken» — erta. Kechikkaningizda «Özür dilerim, geç kaldım» (kechirasiz, kechikdim) deyish odob. Quyidagi gaplarni ovoz bilan tinglab, «-da/-de» qo'shimchasining jarangdorligini mashq qiling.",
+          "phrases": [
+            {"tr": "bugün", "uz": "bugun", "hint": "bu-GYUN — «ü» lablarni dumaloqlab"},
+            {"tr": "yarın", "uz": "ertaga", "hint": "ya-RIN — «ı» — i/u orasidagi tovush"},
+            {"tr": "dün", "uz": "kecha", "hint": "dyun"},
+            {"tr": "pazartesi", "uz": "dushanba", "hint": "pa-zar-te-SI"},
+            {"tr": "Saat kaç?", "uz": "Soat necha?", "hint": "sa-AT kach"},
+            {"tr": "Saat üç.", "uz": "Soat uch.", "hint": "sa-AT ych"},
+            {"tr": "Yarın görüşürüz.", "uz": "Ertaga ko'rishamiz.", "hint": "ya-RIN gyu-ryu-shu-RYUZ"},
+            {"tr": "Özür dilerim, geç kaldım.", "uz": "Kechirasiz, kechikdim.", "hint": "yo-ZYUR di-le-RIM, gech kal-DIM"}
+          ],
+          "questions": [
+            {"text": "«yarın» so'zining ma'nosi nima?", "options": ["Kecha", "Bugun", "Ertaga", "Hozir"], "correct": 2, "explanation": "yarın — ertaga."},
+            {"text": "«dün» qaysi vaqtni bildiradi?", "options": ["Kecha", "Bugun", "Ertaga", "Indinga"], "correct": 0, "explanation": "dün — kecha."},
+            {"text": "«Saat kaç?» savoli nimani so'raydi?", "options": ["Necha kun?", "Soat necha?", "Qachon kelasan?", "Qayerdasan?"], "correct": 1, "explanation": "Saat kaç — soat necha."},
+            {"text": "«pazartesi» qaysi hafta kuni?", "options": ["Seshanba", "Dushanba", "Juma", "Yakshanba"], "correct": 1, "explanation": "pazartesi — dushanba."}
+          ]
+        },
+        {
+          "id": 1207,
+          "title": "Xarid qilish",
+          "summary": "Bozorda va do'konda narx so'rash, chegirma haqida gapirish va karta bilan to'lash. Xaridor uchun eng zarur 8 ta ibora.",
+          "key_points": [
+            "«Ne kadar?» — qancha, narxi qancha.",
+            "ucuz — arzon, pahalı — qimmat.",
+            "«İndirim var mı?» — chegirma bormi."
+          ],
+          "level": "beginner",
+          "duration_min": 8,
+          "content": "Xarid qilishda birinchi savol «Bu ne kadar?» — bu qancha? «Ne kadar» ikki ma'noda ishlatiladi: narx va miqdor. «Çok pahalı» — juda qimmat, «Daha ucuzu var mı?» — arzonroqi bormi? «İndirim var mı?» — chegirma bormi? «Yüzde on» — o'n foiz, «Yarı yarıya» — yarmiga. To'lovda «Kartla ödeyebilir miyim?» — karta bilan to'lasam bo'ladimi? «Nakit» — naqd pul. «Fiş» — chek, «Poşet» — paket. «Teşekkürler, alıyorum» — rahmat, olaman; «Hayır, bakıyorum» — yo'q, qarab ko'rayapman. Kiyim tanlashda «Bu beden var mı?» — bu o'lcham bormi degan savol beriladi. «Deneyebilir miyim?» — kiyib ko'rsam bo'ladimi? «Rengi» — rangi. Bozorda savdolashish odatiy hol: «Son fiyat ne?» — oxirgi narxi qancha? Do'kondan chiqayotganda «İyi günler!» — xayrli kun deyish odob. Narx aytilganda raqam bilan birga «lira» so'zi ishlatiladi: «Elli lira» — ellik lira. Quyidagi gaplarni ovoz bilan tinglab, savol ohangini mashq qiling.",
+          "phrases": [
+            {"tr": "Ne kadar?", "uz": "Qancha?", "hint": "ne ka-DAR"},
+            {"tr": "pahalı", "uz": "qimmat", "hint": "pa-ha-LI"},
+            {"tr": "ucuz", "uz": "arzon", "hint": "u-JUZ — «c» — j"},
+            {"tr": "Bu ne kadar?", "uz": "Bu qancha?", "hint": "bu ne ka-DAR"},
+            {"tr": "Çok pahalı.", "uz": "Juda qimmat.", "hint": "chok pa-ha-LI"},
+            {"tr": "İndirim var mı?", "uz": "Chegirma bormi?", "hint": "in-di-RIM var mi"},
+            {"tr": "Kartla ödeyebilir miyim?", "uz": "Karta bilan to'lasam bo'ladimi?", "hint": "kart-LA yo-de-ye-bi-lir mi-yim"},
+            {"tr": "Teşekkürler, alıyorum.", "uz": "Rahmat, olaman.", "hint": "te-shek-kyur-LER, a-li-YO-rum"}
+          ],
+          "questions": [
+            {"text": "«Ne kadar?» savolining ma'nosi nima?", "options": ["Qayerda?", "Qancha?", "Qachon?", "Kim?"], "correct": 1, "explanation": "Ne kadar — qancha, narxi qancha."},
+            {"text": "«ucuz» so'zi qanday tarjima qilinadi?", "options": ["Qimmat", "Arzon", "Katta", "Yangi"], "correct": 1, "explanation": "ucuz — arzon."},
+            {"text": "«pahalı» so'zining ma'nosi nima?", "options": ["Arzon", "Qimmat", "Eski", "Chiroyli"], "correct": 1, "explanation": "pahalı — qimmat."},
+            {"text": "«İndirim var mı?» gapining tarjimasi qaysi?", "options": ["Karta bormi?", "Chegirma bormi?", "Boshqa rang bormi?", "Paket bormi?"], "correct": 1, "explanation": "indirim — chegirma, var mı — bormi."}
+          ]
+        },
+        {
+          "id": 1208,
+          "title": "Mehmonxona va sayohat",
+          "summary": "Mehmonxonada bron qilish, aeroportda va yo'lda kerak bo'ladigan iboralar. Sayohatchi uchun 8 ta tayyor gap ovozli talaffuz bilan.",
+          "key_points": [
+            "otel — mehmonxona, bilet — chipta, havaalanı — aeroport.",
+            "«Rezervasyonum var» — bronim bor.",
+            "«Yardım edebilir misiniz?» — yordam bera olasizmi."
+          ],
+          "level": "beginner",
+          "duration_min": 9,
+          "content": "Sayohatda eng kerakli so'zlar: otel — mehmonxona, bilet — chipta, pasaport — pasport, bagaj — yuk, uçak — samolyot, havaalanı — aeroport, tren — poyezd, otobüs — avtobus. Mehmonxonada: «Bir gecelik rezervasyonum var» — bir kechalik bronim bor; «Oda boş mu?» — xona bo'shmi?; «Kahvaltı dahil mi?» — nonushta kirmi?; «Anahtar» — kalit. Aeroportda: «Bagajım nerede?» — yukim qayerda?; «Uçuş saat kaçta?» — parvoz soat nechada?; «Kapı numarası» — eshik raqami. Yordam so'rash: «Yardım edebilir misiniz?» — yordam bera olasizmi?; «İngilizce konuşuyor musunuz?» — inglizcha gapirasizmi? «Havaalanına gitmek istiyorum» — aeroportga bormoqchiman. Xayrlashuvda «İyi yolculuklar!» — yaxshi yo'l degan tilak aytiladi; «Güle güle!» — xayr, yana kel degan ma'no. Chipta sotib olishda «Tek yön» — bir tomonlama, «Gidiş dönüş» — borish-qaytish. Mehmonxonadan chiqishda «Hesabı kapatabilir miyim?» deb so'raladi. Quyidagi gaplarni ovoz bilan tinglab, sayohat suhbatini mashq qiling.",
+          "phrases": [
+            {"tr": "otel", "uz": "mehmonxona", "hint": "o-TEL"},
+            {"tr": "bilet", "uz": "chipta", "hint": "bi-LET"},
+            {"tr": "pasaport", "uz": "pasport", "hint": "pa-sa-PORT"},
+            {"tr": "Bir gecelik rezervasyonum var.", "uz": "Bir kechalik bronim bor.", "hint": "bir ge-je-LIK re-zer-vas-yo-NUM var"},
+            {"tr": "Bagajım nerede?", "uz": "Yukim qayerda?", "hint": "ba-ga-ZHIM ne-re-DE"},
+            {"tr": "Havaalanına gitmek istiyorum.", "uz": "Aeroportga bormoqchiman.", "hint": "ha-va-a-la-NI-na git-MEK is-ti-YO-rum"},
+            {"tr": "Yardım edebilir misiniz?", "uz": "Yordam bera olasizmi?", "hint": "yar-DIM e-de-bi-lir mi-si-NIZ"},
+            {"tr": "İyi yolculuklar!", "uz": "Yaxshi yo'l!", "hint": "i-YI yol-ju-luk-LAR"}
+          ],
+          "questions": [
+            {"text": "«otel» so'zining ma'nosi nima?", "options": ["Aeroport", "Mehmonxona", "Bekat", "Do'kon"], "correct": 1, "explanation": "otel — mehmonxona."},
+            {"text": "«bilet» qanday tarjima qilinadi?", "options": ["Chipta", "Pasport", "Yuk", "Kalit"], "correct": 0, "explanation": "bilet — chipta."},
+            {"text": "«Yardım edebilir misiniz?» gapining ma'nosi nima?", "options": ["Inglizcha gapirasizmi?", "Yordam bera olasizmi?", "Qayerda yashaysiz?", "Necha pul?"], "correct": 1, "explanation": "yardım — yordam, edebilir misiniz — bera olasizmi."},
+            {"text": "«havaalanı» so'zi nimani bildiradi?", "options": ["Vokzal", "Aeroport", "Mehmonxona", "Bozor"], "correct": 1, "explanation": "havaalanı — aeroport (havo + maydon)."}
+          ]
+        }
+      ]
+    }
+  ]
+}
